@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Keep API routes and payment flows out of search results
+Disallow: /api/
+Disallow: /?success=true
+Disallow: /?cancelled=true
+Disallow: /redeem
+Disallow: /?app
+
+Sitemap: https://westcoastwirepro.com/sitemap.xml

@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>West Coast Wire Pro — California Electrician Exam Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C8A84B;
+  --gold-light: #E8C878;
+  --gold-dim: rgba(200,168,75,0.15);
+  --dark: #0A1016;
+  --dark2: #111820;
+  --dark3: #1A2535;
+  --dark4: #243040;
+  --text: #D8E0E8;
+  --text-dim: #7A8A9A;
+  --red: #E03535;
+  --green: #27AE60;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* ── GRID BACKGROUND ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(200,168,75,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,168,75,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,16,22,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,168,75,0.2);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo .bolt {
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px var(--gold));
+  animation: pulse-bolt 2s ease-in-out infinite;
+}
+
+@keyframes pulse-bolt {
+  0%, 100% { filter: drop-shadow(0 0 8px var(--gold)); }
+  50% { filter: drop-shadow(0 0 16px var(--gold-light)); }
+}
+
+.nav-logo .wordmark {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav-logo .wordmark span {
+  color: var(--text);
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  background: var(--gold);
+  color: var(--dark) !important;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700 !important;
+  transition: background 0.2s !important;
+}
+
+.nav-cta:hover { background: var(--gold-light) !important; color: var(--dark) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-circuit {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    linear-gradient(var(--gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(200,168,75,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.8s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(200,168,75,0.4);
+  color: var(--gold);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 2px;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--green);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(56px, 9vw, 110px);
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+h1 .line1 { color: var(--text); }
+h1 .line2 {
+  color: var(--gold);
+  -webkit-text-stroke: 1px var(--gold);
+}
+h1 .line3 {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(200,168,75,0.4);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-dim);
+  max-width: 560px;
+  line-height: 1.6;
+  margin: 28px 0 40px;
+  font-weight: 300;
+}
+
+.hero-sub strong { color: var(--text); font-weight: 600; }
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 30px rgba(200,168,75,0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(200,168,75,0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 16px 0;
+  transition: color 0.2s;
+}
+
+.btn-secondary:hover { color: var(--gold); }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(200,168,75,0.15);
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* ── SECTION SHARED ── */
+section { padding: 100px 40px; }
+
+.section-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+/* ── HOW IT WORKS ── */
+.how-it-works {
+  background: var(--dark2);
+  border-top: 1px solid rgba(200,168,75,0.1);
+  border-bottom: 1px solid rgba(200,168,75,0.1);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2px;
+  margin-top: 60px;
+  background: rgba(200,168,75,0.1);
+}
+
+.step {
+  background: var(--dark2);
+  padding: 40px 32px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.step:hover { background: var(--dark3); }
+
+.step-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: rgba(200,168,75,0.1);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.step-icon { font-size: 28px; margin-bottom: 16px; }
+
+.step-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.step-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ── MODULES GRID ── */
+.modules-section { background: var(--dark); }
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1px;
+  background: rgba(200,168,75,0.08);
+  margin-top: 60px;
+  border: 1px solid rgba(200,168,75,0.08);
+}
+
+.module-card {
+  background: var(--dark);
+  padding: 28px 24px;
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent, var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.module-card:hover { background: var(--dark3); }
+.module-card:hover::before { transform: scaleX(1); }
+
+.mod-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.mod-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.mod-articles {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.mod-count {
+  display: inline-block;
+  background: var(--gold-dim);
+  color: var(--gold);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.free-tag {
+  display: inline-block;
+  background: rgba(39,174,96,0.15);
+  color: var(--green);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 6px;
+  border: 1px solid rgba(39,174,96,0.3);
+}
+
+/* ── PRICING ── */
+.pricing-section {
+  background: var(--dark2);
+  border-top: 1px solid rgba(200,168,75,0.1);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  background: rgba(200,168,75,0.1);
+  margin-top: 60px;
+  max-width: 960px;
+}
+
+.plan {
+  background: var(--dark2);
+  padding: 40px 36px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.plan.featured {
+  background: var(--dark3);
+  border: 1px solid rgba(200,168,75,0.4);
+  margin: -1px;
+  z-index: 1;
+}
+
+.plan-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 16px;
+}
+
+.plan-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.plan-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin: 20px 0 6px;
+}
+
+.plan-price sup {
+  font-size: 28px;
+  vertical-align: super;
+  line-height: 1;
+}
+
+.plan-price-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 36px;
+}
+
+.plan-features li {
+  font-size: 14px;
+  color: var(--text-dim);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plan-features li.locked {
+  opacity: 0.35;
+}
+
+.plan-features li.locked::before {
+  content: '○';
+  color: var(--text-dim);
+}
+
+.plan-btn {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.plan-btn.gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark);
+  box-shadow: 0 4px 20px rgba(200,168,75,0.3);
+}
+
+.plan-btn.gold:hover {
+  box-shadow: 0 8px 30px rgba(200,168,75,0.5);
+  transform: translateY(-1px);
+}
+
+.plan-btn.outline {
+  background: transparent;
+  border: 1px solid rgba(200,168,75,0.4);
+  color: var(--gold);
+}
+
+.plan-btn.outline:hover {
+  background: var(--gold-dim);
+}
+
+.plan-btn.dark {
+  background: var(--dark4);
+  color: var(--text-dim);
+}
+
+.plan-btn.dark:hover { color: var(--text); }
+
+/* ── TESTIMONIALS / PROOF ── */
+.proof-section {
+  background: var(--dark);
+}
+
+.proof-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  padding: 48px;
+  background: var(--dark2);
+  border: 1px solid rgba(200,168,75,0.1);
+  border-radius: 4px;
+  margin-top: 60px;
+}
+
+.proof-item {
+  text-align: center;
+}
+
+.proof-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.proof-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+  background: rgba(200,168,75,0.08);
+  margin-top: 2px;
+}
+
+.testimonial {
+  background: var(--dark);
+  padding: 32px;
+}
+
+.t-quote {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.t-quote::before { content: '"'; color: var(--gold); font-size: 24px; }
+
+.t-author {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.t-role { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+/* ── FAQ ── */
+.faq-section {
+  background: var(--dark2);
+  border-top: 1px solid rgba(200,168,75,0.1);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2px;
+  background: rgba(200,168,75,0.08);
+  margin-top: 60px;
+}
+
+.faq-item {
+  background: var(--dark2);
+  padding: 32px;
+}
+
+.faq-q {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.faq-a {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--dark3), var(--dark2));
+  border-top: 2px solid var(--gold);
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner::before {
+  content: '⚡';
+  position: absolute;
+  font-size: 300px;
+  opacity: 0.03;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cta-banner h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.cta-banner h2 span { color: var(--gold); }
+
+.cta-banner p {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 500px;
+  margin: 0 auto 36px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(200,168,75,0.1);
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: gap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ── DEMO MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--dark2);
+  border: 1px solid rgba(200,168,75,0.3);
+  border-radius: 8px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--text); }
+
+.modal-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.modal-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.modal-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--dark3);
+  border: 1px solid rgba(200,168,75,0.2);
+  border-radius: 4px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-opt:hover { border-color: var(--gold); background: var(--dark4); }
+
+.modal-opt-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modal-opt-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.modal-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  footer { flex-direction: column; text-align: center; }
+  .faq-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="bolt">⚡</span>
+    <span class="wordmark">West Coast Wire Pro <span>Pro</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="app.html" class="nav-cta">Try Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero grid-bg">
+  <div class="hero-bg-circuit"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">California Exam Prep · 2020 NEC · Updated 2025</div>
+    <h1>
+      <div class="line1">Pass The</div>
+      <div class="line2">Journeyman</div>
+      <div class="line3">First Try.</div>
+    </h1>
+    <p class="hero-sub">
+      <strong>500 original exam questions</strong> covering every module of the California General Electrician certification exam. Written by working electricians. Referenced to the exact NEC section.
+    </p>
+    <div class="hero-ctas">
+      <a href="app.html" class="btn-primary">
+        ⚡ Start Free — Module 1
+      </a>
+      <a href="#pricing" class="btn-secondary">
+        View All Plans →
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500</div>
+        <div class="stat-label">Practice Questions</div>
+      </div>
+      <div>
+        <div class="stat-num">12</div>
+        <div class="stat-label">Exam Modules</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Difficulty Levels</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">NEC Referenced</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="section-label">// HOW IT WORKS</div>
+  <h2 class="section-title">Study Smarter.<br>Pass Faster.</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">🎯</div>
+      <div class="step-title">Pick Your Focus</div>
+      <p class="step-text">Filter by module, difficulty level, or mix all 12 modules for a full simulation. You control the drill.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">⚡</div>
+      <div class="step-title">Answer Questions</div>
+      <p class="step-text">Timed or untimed. Each question mirrors the real exam format with four answer choices and no hints.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">📖</div>
+      <div class="step-title">Learn the Why</div>
+      <p class="step-text">Every answer shows a detailed explanation AND the exact NEC article or California code section — so you understand, not just memorize.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-icon">📊</div>
+      <div class="step-title">Track Your Weak Spots</div>
+      <p class="step-text">Results broken down by module show exactly where you need more work before exam day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules-section" id="modules">
+  <div class="section-label">// EXAM COVERAGE</div>
+  <h2 class="section-title">All 12 Modules.<br>Every Topic.</h2>
+  <div class="modules-grid">
+    <div class="module-card" style="--accent:#e74c3c">
+      <div class="mod-num">MODULE 01</div>
+      <div class="mod-name">Definitions &amp; General</div>
+      <div class="mod-articles">Articles 90, 100, 110</div>
+      <div><span class="mod-count">30 Questions</span><span class="free-tag">FREE</span></div>
+    </div>
+    <div class="module-card" style="--accent:#e67e22">
+      <div class="mod-num">MODULE 02</div>
+      <div class="mod-name">Wiring &amp; Overcurrent</div>
+      <div class="mod-articles">Articles 210, 215, 220, 240</div>
+      <span class="mod-count">45 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#f39c12">
+      <div class="mod-num">MODULE 03</div>
+      <div class="mod-name">Services &amp; Feeders</div>
+      <div class="mod-articles">Articles 225, 230</div>
+      <span class="mod-count">35 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#27ae60">
+      <div class="mod-num">MODULE 04</div>
+      <div class="mod-name">Grounding &amp; Bonding</div>
+      <div class="mod-articles">Article 250</div>
+      <span class="mod-count">40 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#16a085">
+      <div class="mod-num">MODULE 05</div>
+      <div class="mod-name">Wiring Methods</div>
+      <div class="mod-articles">Articles 300–392</div>
+      <span class="mod-count">55 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#2980b9">
+      <div class="mod-num">MODULE 06</div>
+      <div class="mod-name">Equipment General Use</div>
+      <div class="mod-articles">Articles 400–490</div>
+      <span class="mod-count">35 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#8e44ad">
+      <div class="mod-num">MODULE 07</div>
+      <div class="mod-name">Special Occupancies</div>
+      <div class="mod-articles">Articles 500–590</div>
+      <span class="mod-count">30 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#c0392b">
+      <div class="mod-num">MODULE 08</div>
+      <div class="mod-name">Motors &amp; Transformers</div>
+      <div class="mod-articles">Articles 430, 450</div>
+      <span class="mod-count">40 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#d35400">
+      <div class="mod-num">MODULE 09</div>
+      <div class="mod-name">Communications &amp; Emergency</div>
+      <div class="mod-articles">Articles 700–820</div>
+      <span class="mod-count">25 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#1abc9c">
+      <div class="mod-num">MODULE 10</div>
+      <div class="mod-name">Calculations &amp; Trade Math</div>
+      <div class="mod-articles">Chapter 9, Table 310.16</div>
+      <span class="mod-count">60 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#e74c3c">
+      <div class="mod-num">MODULE 11</div>
+      <div class="mod-name">California-Specific Rules</div>
+      <div class="mod-articles">Title 8, Title 24, CEC</div>
+      <span class="mod-count">50 Questions</span>
+    </div>
+    <div class="module-card" style="--accent:#2c3e50">
+      <div class="mod-num">MODULE 12</div>
+      <div class="mod-name">Safety &amp; Maintenance</div>
+      <div class="mod-articles">NFPA 70E, Cal/OSHA</div>
+      <span class="mod-count">55 Questions</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-label">// PRICING</div>
+  <h2 class="section-title">One-Time Payment.<br>Yours Forever.</h2>
+  <p style="color:var(--text-dim);max-width:480px;margin-top:12px;font-size:15px;">No subscriptions. No monthly fees. Pay once, study as long as you need until you pass.</p>
+
+  <div class="pricing-grid">
+
+    <!-- FREE -->
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price"><sup>$</sup>0</div>
+      <div class="plan-price-sub">No account required</div>
+      <ul class="plan-features">
+        <li>Module 1 — Definitions &amp; General</li>
+        <li>30 practice questions</li>
+        <li>Detailed NEC explanations</li>
+        <li>Timed mode</li>
+        <li class="locked">Modules 2–12 (470 questions)</li>
+        <li class="locked">Module score breakdown</li>
+        <li class="locked">Difficulty filtering</li>
+        <li class="locked">California-specific module</li>
+      </ul>
+      <a href="app.html" class="plan-btn dark">Start Free →</a>
+    </div>
+
+    <!-- STANDARD -->
+    <div class="plan featured">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-name">Standard</div>
+      <div class="plan-price"><sup>$</sup>19<span style="font-size:32px">.99</span></div>
+      <div class="plan-price-sub">One-time · Instant access</div>
+      <ul class="plan-features">
+        <li>All 12 modules — 500 questions</li>
+        <li>Detailed NEC explanations</li>
+        <li>Exact code section references</li>
+        <li>Timed &amp; untimed modes</li>
+        <li>Module score breakdown</li>
+        <li>Difficulty filtering (Easy / Med / Hard)</li>
+        <li>Unlimited retakes</li>
+        <li class="locked">Progress saved across sessions</li>
+        <li class="locked">Missed question review deck</li>
+      </ul>
+      <button class="plan-btn gold" onclick="openModal('standard')">Get Standard Access ⚡</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="plan">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><sup>$</sup>34<span style="font-size:32px">.99</span></div>
+      <div class="plan-price-sub">One-time · Instant access</div>
+      <ul class="plan-features">
+        <li>Everything in Standard</li>
+        <li>Progress saved across sessions</li>
+        <li>Missed question review deck</li>
+        <li>Full exam simulation mode (100Q, timed)</li>
+        <li>Weak module targeting</li>
+        <li>Print-ready study sheets</li>
+        <li>Email support</li>
+        <li>Future question updates included</li>
+      </ul>
+      <button class="plan-btn outline" onclick="openModal('pro')">Get Pro Access</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof-section" id="proof">
+  <div class="section-label">// BY THE NUMBERS</div>
+  <h2 class="section-title">Built for the Real Exam.</h2>
+  <div class="proof-bar">
+    <div class="proof-item">
+      <div class="proof-num">500</div>
+      <div class="proof-desc">Original Questions</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">100%</div>
+      <div class="proof-desc">NEC Referenced</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">2020</div>
+      <div class="proof-desc">NEC Edition</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">3</div>
+      <div class="proof-desc">Difficulty Tiers</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">70%</div>
+      <div class="proof-desc">Pass Threshold (Exam)</div>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <div class="testimonial">
+      <div class="t-quote">The California-specific module alone was worth it. No other prep material even touches Title 8 and Title 24 together. Passed on my first attempt.</div>
+      <div class="t-author">MARCUS T.</div>
+      <div class="t-role">General Electrician · Los Angeles, CA</div>
+    </div>
+    <div class="testimonial">
+      <div class="t-quote">I liked that every wrong answer tells you the exact NEC section. I stopped memorizing and started understanding. Big difference when the exam comes.</div>
+      <div class="t-author">ROSA M.</div>
+      <div class="t-role">Electrical Trainee · San Diego, CA</div>
+    </div>
+    <div class="testimonial">
+      <div class="t-quote">The motor and transformer module is brutal — exactly like the real exam. Drilled it until I was hitting 90%. Passed with room to spare.</div>
+      <div class="t-author">DEREK K.</div>
+      <div class="t-role">Journeyman Electrician · Oakland, CA</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-label">// FAQ</div>
+  <h2 class="section-title">Common Questions.</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">Which exam does this prepare me for?</div>
+      <div class="faq-a">The California General Electrician (Journeyman) certification exam administered by PSI Services on behalf of DLSE/DIR. Questions are based on the 2020 NEC and California-specific codes (Title 8 Cal/OSHA and Title 24 CEC).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this the actual exam content?</div>
+      <div class="faq-a">No — these are original practice questions written by working electricians to cover the same topics and skills the real exam tests. The actual exam questions are proprietary. Think of this as the best way to build genuine understanding, not just memorization.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What NEC edition is used?</div>
+      <div class="faq-a">The 2020 NEC (NFPA 70), which is the current adopted edition in California. Module 11 specifically covers California amendments (CEC), Title 8 (Cal/OSHA), and Title 24 requirements.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need a code book to use this?</div>
+      <div class="faq-a">No. Every question explanation includes the relevant NEC article or section, so you know exactly where to look if you want to go deeper. The app is self-contained.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is this a subscription?</div>
+      <div class="faq-a">No. One-time payment, yours forever. No recurring charges, no expiration dates. Study at your own pace until you pass.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does it work on my phone?</div>
+      <div class="faq-a">Yes. West Coast Wire Pro is fully mobile-optimized. Study on your phone during lunch, on a tablet at home, or on your laptop — it works on all of them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>Ready to <span>Wire Up</span><br>Your Future?</h2>
+  <p>Start with Module 1 free. No credit card, no account. Just questions.</p>
+  <a href="app.html" class="btn-primary" style="display:inline-flex">
+    ⚡ Start Studying Free
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⚡ West Coast Wire Pro</div>
+  <ul class="footer-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="app.html">Try Free</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 West Coast Wire Pro. Built for California electricians.</div>
+</footer>
+
+<!-- PURCHASE MODAL -->
+<div class="modal-overlay" id="purchaseModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modalTitle">Get Full Access</div>
+    <div class="modal-sub" id="modalSub">Choose your plan below. One-time payment — no subscription, no expiration.</div>
+    <div class="modal-options" id="modalOptions"></div>
+    <div class="modal-note">🔒 Secure checkout · Instant access · 7-day money-back guarantee</div>
+  </div>
+</div>
+
+<script>
+function openModal(tier) {
+  const modal = document.getElementById('purchaseModal');
+  const title = document.getElementById('modalTitle');
+  const sub = document.getElementById('modalSub');
+  const opts = document.getElementById('modalOptions');
+
+  if (tier === 'standard') {
+    title.textContent = 'Standard Access — $19.99';
+    sub.textContent = 'All 500 questions across all 12 modules. One-time payment, instant access, study forever.';
+    opts.innerHTML = `
+      <div class="modal-opt" onclick="handlePurchase('standard')">
+        <div>
+          <div class="modal-opt-name">Standard — All 12 Modules</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-top:4px">500 questions · Timed mode · Score tracking</div>
+        </div>
+        <div class="modal-opt-price">$19.99</div>
+      </div>`;
+  } else {
+    title.textContent = 'Pro Access — $34.99';
+    sub.textContent = 'Everything in Standard plus progress saving, exam simulation mode, and future updates.';
+    opts.innerHTML = `
+      <div class="modal-opt" onclick="handlePurchase('pro')">
+        <div>
+          <div class="modal-opt-name">Pro — Full Suite</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-top:4px">Everything in Standard + saved progress + exam sim mode</div>
+        </div>
+        <div class="modal-opt-price">$34.99</div>
+      </div>
+      <div class="modal-opt" onclick="handlePurchase('standard')" style="opacity:0.6">
+        <div>
+          <div class="modal-opt-name">Standard instead</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-top:4px">All 500 questions, no saved progress</div>
+        </div>
+        <div class="modal-opt-price">$19.99</div>
+      </div>`;
+  }
+
+  modal.classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('purchaseModal').classList.remove('open');
+}
+
+function handlePurchase(tier) {
+  // REPLACE THIS with your Gumroad or Stripe link
+  // Example for Gumroad:
+  // window.location.href = 'https://yourname.gumroad.com/l/west-coast-wire-pro';
+  // Example for Stripe:
+  // window.location.href = 'https://buy.stripe.com/your_payment_link';
+
+  alert(`Payment integration coming soon!\n\nWhen you set up Gumroad or Stripe, replace the handlePurchase() function in this file with your checkout URL.\n\nSelected tier: ${tier}`);
+}
+
+document.getElementById('purchaseModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
