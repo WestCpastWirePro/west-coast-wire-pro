@@ -137,11 +137,24 @@ function ScrollButtons() {
   )
 }
 
+function resolveViewFromURL() {
+  if (typeof window === 'undefined') return 'landing'
+  const params = new URLSearchParams(window.location.search)
+  const path   = window.location.pathname
+  if (params.get('success') === 'true')   return 'success'
+  if (params.get('cancelled') === 'true') return 'landing'
+  if (params.has('app') || params.has('quiz') || window.location.hash === '#app') return 'app'
+  if (ROUTES[path]) { setPageMeta(ROUTES[path]); return ROUTES[path] }
+  if (path !== '/' && path !== '') return '404'
+  setPageMeta('landing')
+  return 'landing'
+}
+
 export default function App() {
-  const [view, setView] = useState('loading')
+  const [view, setView] = useState(() => resolveViewFromURL())
 
   useEffect(() => {
-    const resolveView = () => {
+    const onPopState = () => {
       const params = new URLSearchParams(window.location.search)
       const path   = window.location.pathname
       if (params.get('success') === 'true')   { setView('success'); return }
@@ -152,10 +165,8 @@ export default function App() {
       setPageMeta('landing')
       setView('landing')
     }
-
-    resolveView()
-    window.addEventListener('popstate', resolveView)
-    return () => window.removeEventListener('popstate', resolveView)
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
   }, [])
 
   const navigate = (to) => {
@@ -170,8 +181,6 @@ export default function App() {
   React.useEffect(() => { window.__navigateTo = navigate }, [view])
   const getAccess = () => { try { return localStorage.getItem('wrp_access') || 'free' } catch(e) { return 'free' } }
 
-  if (view === 'loading') return <Splash />
-  // Study app has its own internal navigation — render without global nav wrapper
   if (view === 'app') return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
 
   // All other views get the persistent GlobalNav
