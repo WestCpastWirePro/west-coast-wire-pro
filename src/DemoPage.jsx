@@ -161,7 +161,7 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
 
             <div style={s.resultsCtaRow}>
               <button style={s.btnGold} onClick={onLaunchApp}>
-                ⚡ Unlock All 500 Questions
+                ⚡ Unlock All 512 Questions
               </button>
               <button style={s.btnGhost} onClick={restart}>
                 Retry Demo

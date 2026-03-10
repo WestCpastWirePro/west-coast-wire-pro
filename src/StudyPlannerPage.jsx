@@ -19,7 +19,7 @@ const s = {
 
 const DAILY_MINUTES = { "30":30, "60":60, "90":90, "120":120 };
 
-function buildPlan(examDate, dailyMins, weakMods) {
+function buildPlan(examDate, dailyMins, weakMods, access) {
   const today = new Date();
   today.setHours(0,0,0,0);
   const exam = new Date(examDate);
@@ -71,7 +71,8 @@ function buildPlan(examDate, dailyMins, weakMods) {
         tasks: [
           { day:"Mon–Tue", task:`Run the full 110-question Exam Simulation. Score yourself.`, icon:"📋" },
           { day:"Wed–Thu", task:`Drill Missed Questions deck — hit every wrong answer from this week.`, icon:"🔁" },
-          { day:"Fri–Sat", task:`Review weak modules: ${reviewMods.slice(0,4).map(id=>MODULES.find(m=>m.id===id)?.name||`Mod ${id}`).join(", ")}`, icon:"⚠️" },
+          { day:"Fri", task:`Review weak modules: ${reviewMods.slice(0,4).map(id=>MODULES.find(m=>m.id===id)?.name||`Mod ${id}`).join(", ")}`, icon:"⚠️" },
+          ...(access==="pro" ? [{ day:"Sat", task:"Table Mastery — run ALL 10 NEC table decks. Any deck under 90% gets drilled twice.", icon:"⚡" }] : []),
           { day:"Sunday", task:`Second full simulation or 50-question timed sprint. Target 75%+.`, icon:"🎯" },
         ]
       });
@@ -92,7 +93,8 @@ function buildPlan(examDate, dailyMins, weakMods) {
           { day:"Mon–Tue", task:`Read through ${modNames} NEC articles. Note every article number.`, icon:"📖" },
           { day:"Wed–Thu", task:`Quiz mode: select only ${weekMods.map(m=>`Mod ${m.id}`).join("/")} — do 25 questions each day.`, icon:"❓" },
           { day:"Friday", task:`Review wrong answers. Look up every NEC reference you missed.`, icon:"🔁" },
-          { day:"Sat–Sun", task:`50-question timed quiz across this week's modules. Target ≥70%.`, icon:"⏱️" },
+          { day:"Sat", task:`50-question timed quiz across this week's modules. Target ≥70%.`, icon:"⏱️" },
+          ...(access==="pro" ? [{ day:"Sunday", task:"Table Mastery drills — run the NEC tables for this week's modules. Aim for 90%+ on each deck.", icon:"⚡" }] : [{ day:"Sunday", task:"Rest or light review.", icon:"😴" }]),
         ]
       });
     }
@@ -101,7 +103,7 @@ function buildPlan(examDate, dailyMins, weakMods) {
   return { plan, daysUntil, weeks, dailyMins };
 }
 
-export default function StudyPlannerPage({ onHome }) {
+export default function StudyPlannerPage({ onHome, access }) {
   const [examDate, setExamDate] = useState(() => {
     try { return localStorage.getItem("wrp_exam_date") || ""; } catch(e) { return ""; }
   });

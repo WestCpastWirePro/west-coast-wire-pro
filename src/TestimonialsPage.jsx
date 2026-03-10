@@ -81,7 +81,7 @@ const TESTIMONIALS = [
 ];
 
 const STATS = [
-  { value: "500", label: "Practice Questions" },
+  { value: "512", label: "Practice Questions" },
   { value: "12", label: "Exam Modules" },
   { value: "70%", label: "Passing Score" },
   { value: "2020", label: "NEC Edition" },

@@ -116,7 +116,7 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             <CredItem num="14" label="Years in the Trade" />
             <CredItem num="4" label="Years Teaching Electricians" />
             <CredItem num="100s" label="Students Per Semester" />
-            <CredItem num="500" label="Questions Written" />
+            <CredItem num="512" label="Questions Written" />
           </div>
 
           <h2 style={s.h2}>Why I Built This for California Specifically</h2>

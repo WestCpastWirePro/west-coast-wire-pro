@@ -1,5 +1,11 @@
 import React from 'react'
 export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
+  const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
+  React.useEffect(() => {
+    const h = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener("resize", h)
+    return () => window.removeEventListener("resize", h)
+  }, [])
   return (
     <div style={s.root}>
       <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
@@ -47,8 +53,8 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
       </div>
 
       {/* CONTENT */}
-      <div style={s.layout}>
-        <main style={s.main}>
+      <div style={{...s.layout, flexDirection: isMobile ? "column" : "row", padding: isMobile ? "32px 20px 60px" : "52px 40px"}}>
+        <main style={{...s.main, width: isMobile ? "100%" : undefined}}>
 
           {/* TOC */}
           <div style={s.toc}>
@@ -285,7 +291,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
         </main>
 
         {/* SIDEBAR */}
-        <aside style={s.sidebar}>
+        <aside style={{...s.sidebar, display: isMobile ? "none" : "flex"}}>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>At a Glance</div>
             {[
@@ -472,7 +478,7 @@ function PageFooter({ onNavigate }) {
 
 const s = {
   root: { minHeight:'100vh', background:'#0a1016', color:'#d8e0e8', fontFamily:"'Georgia', serif" },
-  hero: { padding:'72px 40px 52px', position:'relative', overflow:'hidden', background:'#0a1016', borderBottom:'1px solid rgba(200,168,75,0.08)' },
+  hero: { padding:'clamp(36px,6vw,72px) clamp(20px,4vw,40px) clamp(26px,4vw,52px)', position:'relative', overflow:'hidden', background:'#0a1016', borderBottom:'1px solid rgba(200,168,75,0.08)' },
   heroGrid: { position:'absolute', inset:0, opacity:0.03, backgroundImage:'linear-gradient(rgba(200,168,75,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,1) 1px, transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none' },
   heroInner: { maxWidth:'820px', position:'relative', zIndex:1 },
   label: { fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'3px', marginBottom:'16px' },
@@ -488,7 +494,7 @@ const s = {
   factVal: { fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'26px', fontWeight:'900', color:'#c8a84b', lineHeight:1 },
   factLabel: { fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'6px', fontFamily:"'Courier New', monospace" },
 
-  layout: { display:'flex', gap:'48px', padding:'52px 40px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start', flexWrap:'wrap' },
+  layout: { display:'flex', gap:'48px', padding:'52px 40px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start' },
   main: { flex:'1', minWidth:'280px' },
   sidebar: { width:'260px', flexShrink:0, position:'sticky', top:'80px', display:'flex', flexDirection:'column', gap:'16px' },
 

@@ -216,7 +216,7 @@ export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate })
               <div style={s.ctaTitle}>The Foundation Is the Journeyman Exam</div>
               <div style={s.ctaBody}>
                 Every path in California electrical — journeyman, C-10, business owner — starts with
-                passing this test. 500 NEC-referenced questions to get you there.
+                passing this test. 512 NEC-referenced questions to get you there.
               </div>
               <div style={s.ctaBtns}>
                 <button style={s.btnGold} onClick={onLaunchApp}>Start Free Practice</button>
@@ -292,7 +292,7 @@ function PageFooter({ onNavigate }) {
 }
 const s = {
   root:{minHeight:'100vh',background:'#0a1016',color:'#d8e0e8',fontFamily:"'Georgia', serif"},
-  hero:{padding:'64px 40px 48px',position:'relative',overflow:'hidden',borderBottom:'1px solid rgba(200,168,75,0.08)'},
+  hero:{padding:'clamp(32px,6vw,64px) clamp(20px,4vw,40px) clamp(24px,4vw,48px)',position:'relative',overflow:'hidden',borderBottom:'1px solid rgba(200,168,75,0.08)'},
   heroGrid:{position:'absolute',inset:0,opacity:0.03,backgroundImage:'linear-gradient(rgba(200,168,75,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,1) 1px, transparent 1px)',backgroundSize:'50px 50px',pointerEvents:'none'},
   heroInner:{maxWidth:'820px',position:'relative',zIndex:1},
   breadcrumb:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'16px'},

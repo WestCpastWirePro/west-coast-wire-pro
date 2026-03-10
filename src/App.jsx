@@ -98,6 +98,44 @@ function setPageMeta(view) {
   el.content = meta.desc
 }
 
+
+// ── Scroll To Top / Bottom Buttons ─────────────────────────────────────────
+function ScrollButtons() {
+  const [show, setShow] = React.useState(false)
+  const [atBottom, setAtBottom] = React.useState(false)
+
+  React.useEffect(() => {
+    const onScroll = () => {
+      const scrolled = window.scrollY > 300
+      const bottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 100
+      setShow(scrolled)
+      setAtBottom(bottom)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+  const scrollBottom = () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+
+  if (!show) return null
+
+  const btnStyle = {
+    width: '40px', height: '40px', borderRadius: '50%',
+    background: 'rgba(200,168,75,0.15)', border: '1px solid rgba(200,168,75,0.4)',
+    color: '#c8a84b', fontSize: '18px', cursor: 'pointer',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    backdropFilter: 'blur(8px)', transition: 'all 0.2s',
+  }
+
+  return (
+    <div style={{ position: 'fixed', bottom: '24px', right: '20px', zIndex: 999, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <button style={btnStyle} onClick={scrollTop} title="Back to top" aria-label="Scroll to top">↑</button>
+      {!atBottom && <button style={btnStyle} onClick={scrollBottom} title="Jump to bottom" aria-label="Scroll to bottom">↓</button>}
+    </div>
+  )
+}
+
 export default function App() {
   const [view, setView] = useState('loading')
 
@@ -127,7 +165,7 @@ export default function App() {
   if (view === 'loading')          return <Splash />
   if (view === '404')              return <NotFoundPage onHome={goHome} onNavigate={navigate} />
   if (view === 'success')          return <SuccessPage onEnterApp={() => navigate('app')} />
-  if (view === 'app')              return <WestCoastWirePro onHome={goHome} />
+  if (view === 'app')              return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
   if (view === 'privacy')          return <PrivacyPolicy onHome={goHome} />
   if (view === 'terms')            return <TermsOfService onHome={goHome} />
   if (view === 'refund')           return <RefundPolicy onHome={goHome} />
@@ -142,7 +180,7 @@ export default function App() {
   if (view === 'simulator')        return <ExamSimulatorPage onHome={goHome} access={getAccess()} />
   if (view === 'nec-ref')          return <NECReferencePage onHome={goHome} />
   if (view === 'calculations')     return <CalculationsPage onHome={goHome} />
-  if (view === 'planner')          return <StudyPlannerPage onHome={goHome} />
+  if (view === 'planner')          return <StudyPlannerPage onHome={goHome} access={getAccess()} />
   if (view === 'faq')              return <FAQPage onHome={goHome} />
   if (view === 'testimonials')     return <TestimonialsPage onHome={goHome} onNavigate={navigate} />
 
@@ -160,6 +198,7 @@ export default function App() {
 function Splash() {
   return (
     <div style={{minHeight:'100vh', background:'#0a1016', display:'flex', alignItems:'center', justifyContent:'center'}}>
+      <ScrollButtons />
       <div style={{fontSize:'40px'}}>⚡</div>
     </div>
   )

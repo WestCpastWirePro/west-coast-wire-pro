@@ -25,6 +25,35 @@ async function startCheckout(tier, setLoading) {
   }
 }
 
+
+// ── Scroll Buttons ────────────────────────────────────────────────────────
+function ScrollButtons() {
+  const [show, setShow] = useState(false)
+  const [atBottom, setAtBottom] = useState(false)
+  useEffect(() => {
+    const onScroll = () => {
+      setShow(window.scrollY > 300)
+      setAtBottom(window.innerHeight + window.scrollY >= document.body.scrollHeight - 100)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+  const btnStyle = {
+    width:'40px', height:'40px', borderRadius:'50%',
+    background:'rgba(200,168,75,0.15)', border:'1px solid rgba(200,168,75,0.4)',
+    color:'#c8a84b', fontSize:'18px', cursor:'pointer',
+    display:'flex', alignItems:'center', justifyContent:'center',
+    backdropFilter:'blur(8px)', transition:'all 0.2s',
+  }
+  if (!show) return null
+  return (
+    <div style={{position:'fixed', bottom:'24px', right:'20px', zIndex:999, display:'flex', flexDirection:'column', gap:'8px'}}>
+      <button style={btnStyle} onClick={() => window.scrollTo({top:0,behavior:'smooth'})} title="Back to top">↑</button>
+      {!atBottom && <button style={btnStyle} onClick={() => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})} title="Jump to bottom">↓</button>}
+    </div>
+  )
+}
+
 export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalTier, setModalTier] = useState('standard')
@@ -53,6 +82,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
   return (
     <div style={s.root}>
+      <ScrollButtons />
 
       {/* RESPONSIVE NAV CSS */}
       <style>{`
@@ -196,7 +226,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={s.heroStats}>
             {[
-              ['500','Practice Questions'],
+              ['512','Practice Questions'],
               ['12','Exam Modules'],
               ['3','Difficulty Levels'],
               ['100%','NEC Referenced'],
@@ -325,7 +355,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <SectionLabel>// BY THE NUMBERS</SectionLabel>
         <SectionTitle>Built for the Real Exam.</SectionTitle>
         <div style={s.proofBar}>
-          {[['500','Original Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
+          {[['512','Original Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
             <div key={l} style={{textAlign:'center'}}>
               <div style={s.proofNum}>{n}</div>
               <div style={s.proofLabel}>{l}</div>
