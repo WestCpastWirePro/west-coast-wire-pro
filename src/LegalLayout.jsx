@@ -3,6 +3,7 @@
 
 export default function LegalLayout({ title, subtitle, lastUpdated, children, onHome, onNavigate }) {
   return (
+    <div style={s.root}>
 
       {/* HEADER */}
       <header style={s.header}>
