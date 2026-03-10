@@ -101,7 +101,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <nav style={{...s.nav, ...(scrolled ? s.navScrolled : {})}}>
         {/* LOGO */}
         <div style={s.navLogo} onClick={() => onNavigate && onNavigate('landing')}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'36px', width:'auto'}}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'52px', width:'auto'}}>
             <defs>
               <linearGradient id="nb" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style={{stopColor:'transparent',stopOpacity:1}} />
@@ -585,7 +585,7 @@ const styles = {
   navBtn: {background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'},
   navCta: {background:'#c8a84b', color:'#0a1016', fontWeight:'800', fontSize:'13px', padding:'8px 18px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px', fontFamily:"'Arial Black', Arial, sans-serif"},
   mobileNavRight: {display:'flex', alignItems:'center', gap:'12px'},
-  hamburger: {display:'none', flexDirection:'column', gap:'5px', background:'none', border:'none', cursor:'pointer', padding:'4px', '@media(maxWidth:768px)':{display:'flex'}},
+  hamburger: {flexDirection:'column', gap:'5px', background:'none', border:'none', cursor:'pointer', padding:'4px', display:'flex'},
   bar: {display:'block', width:'22px', height:'2px', background:'#c8a84b', borderRadius:'2px', transition:'all 0.25s ease'},
   mobileMenu: {position:'fixed', top:'58px', left:0, right:0, zIndex:199, background:'#0d1520', borderBottom:'2px solid #c8a84b', boxShadow:'0 8px 32px rgba(0,0,0,0.7)', maxHeight:'calc(100vh - 58px)', overflowY:'auto'},
   menuSection: {padding:'12px 20px 4px'},

@@ -181,7 +181,7 @@ export default function App() {
   if (view === 'nec-ref')          return <NECReferencePage onHome={goHome} />
   if (view === 'calculations')     return <CalculationsPage onHome={goHome} />
   if (view === 'planner')          return <StudyPlannerPage onHome={goHome} access={getAccess()} />
-  if (view === 'faq')              return <FAQPage onHome={goHome} />
+  if (view === 'faq')              return <FAQPage onHome={goHome} onNavigate={navigate} />
   if (view === 'testimonials')     return <TestimonialsPage onHome={goHome} onNavigate={navigate} />
 
   if (view === 'contact')      return <ContactPage onHome={goHome} onNavigate={navigate} />

@@ -117,7 +117,7 @@ const FAQS = [
   },
 ];
 
-export default function FAQPage({ onHome }) {
+export default function FAQPage({ onHome, onNavigate }) {
   const [expanded, setExpanded] = useState(null);
   const [search, setSearch] = useState("");
 
@@ -186,7 +186,7 @@ export default function FAQPage({ onHome }) {
         <div style={{...s.card, borderColor:"rgba(200,168,75,0.3)", margin:"12px 16px 0", textAlign:"center"}}>
           <div style={{fontSize:"14px", color:"#e8eaf0", fontWeight:"700", marginBottom:"6px"}}>Still have questions?</div>
           <div style={{fontSize:"13px", color:"#8899aa", marginBottom:"12px"}}>We typically respond within 24 hours.</div>
-          <a href="#" onClick={e => { e.preventDefault(); onHome && onHome('contact') }}
+          <a href="#" onClick={e => { e.preventDefault(); onNavigate ? onNavigate('contact') : onHome && onHome() }}
             style={{...s.btn, ...s.btnGold, textDecoration:"none", display:"inline-block", fontSize:"13px", padding:"10px 20px"}}>
             Use our contact form
           </a>
