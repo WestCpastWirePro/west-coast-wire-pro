@@ -76,7 +76,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           <a href="/#pricing" style={{color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",transition:'color 0.2s'}}
             onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>Pricing</a>
           <GnDropdown label="Study Tools" onNavigate={nav} items={[
-            {label:'Try 5 Demo Questions', page:'demo'},
+            {label:'Start Free — No Account Needed', page:'landing'},
             {label:'Diagnostic Test', page:'diagnostic'},
             {label:'Exam Simulator', page:'simulator'},
             {label:'Missed Questions', page:'missed'},
@@ -126,7 +126,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
       {menuOpen && (
         <div style={{position:'fixed',top:'120px',left:0,right:0,zIndex:499,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 120px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <MobileSection title="⚡ Study App" items={[
-            ['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],
+            ['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],
             ['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
             ['Missed Questions Review','missed'],['Study Planner','planner'],
             ['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],

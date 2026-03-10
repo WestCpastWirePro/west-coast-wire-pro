@@ -70,9 +70,9 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             of the California General Electrician exam. Every answer referenced to the exact NEC article.
           </p>
           <div style={s.heroCtas}>
-            <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Module 1</button>
+            <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
             <button style={{...s.btnGhost, background:'none', border:'none', cursor:'pointer', fontFamily:'inherit'}}
-              onClick={() => onNavigate && onNavigate('demo')}>Try 5 Sample Questions →</button>
+              onClick={() => onLaunchApp()}>Start Free — No Account Needed →</button>
           </div>
           <div style={s.heroStats}>
             {[
@@ -146,12 +146,14 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             priceSub="No account required"
             features={[
               {text:'Module 1 — Definitions & General', locked:false},
-              {text:'30 practice questions', locked:false},
+              {text:'Module 2 — Wiring & Overcurrent', locked:false},
+              {text:'~75 practice questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed mode', locked:false},
-              {text:'Modules 2–12 (470 questions)', locked:true},
+              {text:'Table 310.16 & Conduit Fill drills', locked:false},
+              {text:'Modules 3–12 (437 questions)', locked:true},
+              {text:'Full Table Mastery (8 more tables)', locked:true},
               {text:'Module score breakdown', locked:true},
-              {text:'Difficulty filtering', locked:true},
             ]}
             btnLabel="Start Free →"
             btnStyle="dark"
@@ -253,7 +255,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <section style={s.ctaBanner}>
         <div style={s.ctaBannerEmoji}>⚡</div>
         <h2 style={s.ctaH2}>Ready to <span style={{color:'#c8a84b'}}>Wire Up</span><br/>Your Future?</h2>
-        <p style={s.ctaP}>Start with Module 1 free. No credit card, no account. Just questions.</p>
+        <p style={s.ctaP}>Start with Modules 1 & 2 free. No credit card, no account. Just questions.</p>
         <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Studying Free</button>
       </section>
 
