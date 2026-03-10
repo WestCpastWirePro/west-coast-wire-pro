@@ -32,7 +32,7 @@ export default function LegalLayout({ title, subtitle, lastUpdated, children, on
         <span style={s.noticeIcon}>⚠️</span>
         <span>
           <strong style={{color:'#e8c878'}}>Before going live:</strong>
-          {' '}Questions? <a href="/contact" style={{color:'#c8a84b'}}>Contact us via our support form</a>
+          {' '}Questions? <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>Contact us via our support form</a>
         </span>
       </div>
 

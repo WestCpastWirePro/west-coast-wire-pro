@@ -81,7 +81,7 @@ export default function RefundPolicy({ onHome }) {
       <Section title="Chargebacks">
         <P>
           We strongly prefer to resolve any payment disputes directly. If you have a concern 
-          about a charge, please email us at our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a> 
+          about a charge, please email us at our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a> 
           before initiating a chargeback with your bank or credit card company.
         </P>
         <P>
@@ -100,7 +100,7 @@ export default function RefundPolicy({ onHome }) {
         </P>
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Technical support:</strong>{' '}
-          our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a><br />
+          our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a><br />
           We aim to respond to all support emails within 1 business day.
         </Highlight>
       </Section>
@@ -109,7 +109,7 @@ export default function RefundPolicy({ onHome }) {
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Refund requests and questions:</strong><br />
           <Placeholder label="West Coast Wire Pro Training" /><br />
-          Email: our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a><br />
+          Email: our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a><br />
           Response time: within 2 business days<br />
           <Placeholder label="CITY, STATE, ZIP" />
         </Highlight>

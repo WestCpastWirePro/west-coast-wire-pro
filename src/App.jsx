@@ -160,6 +160,8 @@ export default function App() {
   }
 
   const goHome = () => navigate('landing')
+  // Expose navigate globally for legal pages
+  React.useEffect(() => { window.__navigateTo = navigate }, [view])
   const getAccess = () => { try { return localStorage.getItem('wrp_access') || 'free' } catch(e) { return 'free' } }
 
   if (view === 'loading')          return <Splash />
@@ -170,7 +172,7 @@ export default function App() {
   if (view === 'terms')            return <TermsOfService onHome={goHome} />
   if (view === 'refund')           return <RefundPolicy onHome={goHome} />
   if (view === 'demo')             return <DemoPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'redeem')           return <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} />
+  if (view === 'redeem')           return <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
   if (view === 'about')            return <AboutPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'exam-info')        return <ExamInfoPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'nec-2020-changes') return <NEC2020Page onLaunchApp={() => navigate('app')} onNavigate={navigate} />

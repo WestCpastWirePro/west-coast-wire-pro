@@ -18,7 +18,7 @@ export default function PrivacyPolicy({ onHome }) {
         </P>
         <P>
           If you have any questions about this Privacy Policy, contact us at:{' '}
-          our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a>
+          our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a>
         </P>
       </Section>
 
@@ -88,7 +88,7 @@ export default function PrivacyPolicy({ onHome }) {
           Stripe retains your payment records as required by financial regulations (typically 7 years). 
           We retain your email address and purchase record for as long as your access is active and for 
           a reasonable period afterward to handle support requests. You may request deletion of your 
-          information at any time by contacting us at our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a>.
+          information at any time by contacting us at our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a>.
         </P>
       </Section>
 
@@ -104,7 +104,7 @@ export default function PrivacyPolicy({ onHome }) {
           'Right to non-discrimination: We will not discriminate against you for exercising any of these rights.',
         ]} />
         <P>
-          To exercise any of these rights, email us at our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a>. 
+          To exercise any of these rights, email us at our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a>. 
           We will respond within 45 days as required by law.
         </P>
       </Section>
@@ -143,7 +143,7 @@ export default function PrivacyPolicy({ onHome }) {
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Privacy questions or data requests:</strong><br />
           <Placeholder label="West Coast Wire Pro Training" /><br />
-          Email: our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a><br />
+          Email: our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a><br />
           <Placeholder label="CITY, STATE, ZIP" />
         </Highlight>
       </Section>

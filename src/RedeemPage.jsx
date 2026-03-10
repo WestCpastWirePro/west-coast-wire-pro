@@ -6,7 +6,7 @@ import { useState } from 'react'
 // then store the access level in localStorage and send them to the app.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export default function RedeemPage({ onEnterApp, onHome }) {
+export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
   const [code,    setCode]    = useState('')
   const [status,  setStatus]  = useState('idle')  // idle | loading | success | error
   const [tier,    setTier]    = useState('')
@@ -161,7 +161,7 @@ export default function RedeemPage({ onEnterApp, onHome }) {
 
           <div style={s.supportRow}>
             <span style={{fontSize:'13px', color:'#4a5a6a'}}>Still can't find it?</span>
-            <button onClick={() => onHome && onHome('contact')} style={{...s.supportLink, background:'none', border:'none', cursor:'pointer', padding:0}}>
+            <button onClick={() => onNavigate ? onNavigate('contact') : onHome && onHome()} style={{...s.supportLink, background:'none', border:'none', cursor:'pointer', padding:0}}>
               Contact support →
             </button>
           </div>

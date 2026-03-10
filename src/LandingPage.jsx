@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 // ── Stripe checkout ───────────────────────────────────────────────────────────
 // Calls the /api/create-checkout serverless function, which creates a
@@ -101,7 +101,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <nav style={{...s.nav, ...(scrolled ? s.navScrolled : {})}}>
         {/* LOGO */}
         <div style={s.navLogo} onClick={() => onNavigate && onNavigate('landing')}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'52px', width:'auto'}}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'104px', width:'auto'}}>
             <defs>
               <linearGradient id="nb" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style={{stopColor:'transparent',stopOpacity:1}} />
@@ -139,11 +139,39 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         {/* DESKTOP LINKS */}
         <div style={s.navRight} className="wcwp-nav-desktop">
           <NavLink href="#how-it-works">How It Works</NavLink>
-          <NavLink href="#modules">Modules</NavLink>
           <NavLink href="#pricing">Pricing</NavLink>
-          <button style={s.navBtn} onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'} onClick={() => onNavigate && onNavigate('exam-info')}>Exam Guide</button>
-          <button style={s.navBtn} onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'} onClick={() => onNavigate && onNavigate('testimonials')}>Reviews</button>
-          <button style={s.navBtn} onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'} onClick={() => onNavigate && onNavigate('faq')}>FAQ</button>
+
+          {/* STUDY TOOLS DROPDOWN */}
+          <NavDropdown label="Study Tools" onNavigate={onNavigate} items={[
+            {label:'Try 5 Demo Questions', page:'demo'},
+            {label:'Diagnostic Test', page:'diagnostic'},
+            {label:'Exam Simulator', page:'simulator'},
+            {label:'Missed Questions', page:'missed'},
+            {label:'Study Planner', page:'planner'},
+            {label:'NEC Reference Guide', page:'nec-ref'},
+            {label:'Calculations Helper', page:'calculations'},
+            {label:'Progress Dashboard', page:'progress'},
+            {label:'Glossary', page:'glossary'},
+          ]} />
+
+          {/* RESOURCES DROPDOWN */}
+          <NavDropdown label="Resources" onNavigate={onNavigate} items={[
+            {label:'CA Journeyman Exam Guide', page:'exam-info'},
+            {label:'How to Pass — Study Tips', page:'study-tips'},
+            {label:'Exam Day Guide', page:'exam-day'},
+            {label:'NEC 2020 Changes for CA', page:'nec-2020-changes'},
+            {label:'Electrician Salary in CA', page:'salary'},
+            {label:'Contractor vs. Electrician', page:'contractor-vs-electrician'},
+          ]} />
+
+          {/* COMPANY DROPDOWN */}
+          <NavDropdown label="Company" onNavigate={onNavigate} items={[
+            {label:'About', page:'about'},
+            {label:'Reviews', page:'testimonials'},
+            {label:'FAQ', page:'faq'},
+            {label:'Contact & Support', page:'contact'},
+          ]} />
+
           <button style={s.navCta} onClick={onLaunchApp}>Try Free ⚡</button>
         </div>
 
@@ -492,6 +520,44 @@ function NavLink({ href, children }) {
     </a>
   )
 }
+
+function NavDropdown({ label, items, onNavigate }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  return (
+    <div ref={ref} style={{position:'relative', display:'inline-block'}}>
+      <button
+        style={{color: open ? '#c8a84b' : '#7a8a9a', background:'none', border:'none', cursor:'pointer', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s', display:'flex', alignItems:'center', gap:'4px', padding:'4px 0'}}
+        onMouseEnter={e => e.currentTarget.style.color='#c8a84b'}
+        onMouseLeave={e => { if (!open) e.currentTarget.style.color='#7a8a9a' }}
+        onClick={() => setOpen(o => !o)}
+      >
+        {label} <span style={{fontSize:'9px', opacity:0.7}}>{open ? '▲' : '▼'}</span>
+      </button>
+      {open && (
+        <div style={{position:'absolute', top:'calc(100% + 10px)', left:'50%', transform:'translateX(-50%)', background:'#1a2840', border:'1px solid rgba(200,168,75,0.25)', borderRadius:'10px', padding:'8px 0', minWidth:'220px', zIndex:999, boxShadow:'0 12px 40px rgba(0,0,0,0.5)'}}>
+          <div style={{position:'absolute', top:'-6px', left:'50%', transform:'translateX(-50%)', width:'10px', height:'10px', background:'#1a2840', border:'1px solid rgba(200,168,75,0.25)', borderBottom:'none', borderRight:'none', transform:'translateX(-50%) rotate(45deg)'}} />
+          {items.map(({label, page}) => (
+            <button key={page}
+              style={{display:'block', width:'100%', textAlign:'left', padding:'9px 18px', background:'none', border:'none', color:'#b0bec5', fontSize:'13px', cursor:'pointer', transition:'all 0.15s', fontWeight:'500'}}
+              onMouseEnter={e => { e.currentTarget.style.color='#c8a84b'; e.currentTarget.style.background='rgba(200,168,75,0.07)' }}
+              onMouseLeave={e => { e.currentTarget.style.color='#b0bec5'; e.currentTarget.style.background='none' }}
+              onClick={() => { onNavigate && onNavigate(page); setOpen(false) }}
+            >{label}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 
 function SectionLabel({ children }) {
   return <div style={{fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'16px'}}>{children}</div>
