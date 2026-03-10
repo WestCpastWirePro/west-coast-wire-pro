@@ -603,6 +603,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
   const [showExp, setShowExp] = useState(false);
   const [score, setScore] = useState({correct:0,wrong:0});
   const [answered, setAnswered] = useState([]);
+  const [showEmailCapture, setShowEmailCapture] = useState(false);
+  const [emailDismissed, setEmailDismissed] = useState(() => {
+    try { return !!localStorage.getItem('wrp_email_dismissed') } catch(e) { return false }
+  });
   const [quizSize, setQuizSize] = useState(25);
   const [timedMode, setTimedMode] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
@@ -664,8 +668,13 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     setSelected(idx);
     const correct = idx === quizQuestions[qIndex].ans;
     setScore(s => ({...s, correct: s.correct+(correct?1:0), wrong: s.wrong+(correct?0:1)}));
-    setAnswered(a => [...a, {qid: quizQuestions[qIndex].id, selected: idx, correct}]);
+    const newAnswered = [...answered, {qid: quizQuestions[qIndex].id, selected: idx, correct}];
+    setAnswered(newAnswered);
     setShowExp(true);
+    // Show email capture after 10 answers on free tier
+    if (access === 'free' && newAnswered.length === 10 && !emailDismissed) {
+      setShowEmailCapture(true);
+    }
   };
 
   const nextQ = () => {
@@ -1079,8 +1088,20 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
   if (screen === "quiz" && q) {
     const progress = qIndex / quizQuestions.length;
+
+    const dismissEmail = () => {
+      setShowEmailCapture(false);
+      setEmailDismissed(true);
+      try { localStorage.setItem('wrp_email_dismissed', '1') } catch(e) {}
+    };
+
+    const EmailCaptureBanner = showEmailCapture ? (
+      <EmailCaptureModal onDismiss={dismissEmail} />
+    ) : null;
+
     return (
       <div style={styles.app}>
+        {EmailCaptureBanner}
         {GlobalMenu}
         <div style={{...styles.header, padding:"10px 16px"}}>
           {/* Hamburger — LEFT */}
@@ -1263,3 +1284,102 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
   return <div style={styles.app}><div style={{padding:"20px", color:"#8899aa"}}>Loading...</div></div>;
 }
+
+// ── EmailCaptureModal ──────────────────────────────────────────────────────
+// Shown to free users after answering 10 questions. Non-intrusive overlay.
+// Submits to Formspree. Once dismissed, never shown again (localStorage flag).
+function EmailCaptureModal({ onDismiss }) {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | sending | done
+
+  const submit = async () => {
+    if (!email || !email.includes('@')) return;
+    setStatus('sending');
+    try {
+      await fetch('https://formspree.io/f/mwvrvdzj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, source: 'in-app-capture', _subject: 'New study tip signup' }),
+      });
+    } catch(e) {}
+    setStatus('done');
+    setTimeout(onDismiss, 2000);
+  };
+
+  return (
+    <div style={{
+      position:'fixed', inset:0, zIndex:9999,
+      background:'rgba(0,0,0,0.7)', backdropFilter:'blur(4px)',
+      display:'flex', alignItems:'center', justifyContent:'center', padding:'20px'
+    }}>
+      <div style={{
+        background:'linear-gradient(135deg,#111820,#0f1923)',
+        border:'1px solid rgba(200,168,75,0.4)',
+        borderRadius:'14px', padding:'32px 28px',
+        maxWidth:'400px', width:'100%', textAlign:'center',
+        position:'relative'
+      }}>
+        <button onClick={onDismiss} style={{
+          position:'absolute', top:'14px', right:'16px',
+          background:'none', border:'none', color:'#4a5a6a',
+          fontSize:'20px', cursor:'pointer', lineHeight:1
+        }}>×</button>
+
+        <div style={{fontSize:'36px', marginBottom:'12px'}}>⚡</div>
+        <div style={{
+          fontFamily:"'Arial Black', Arial, sans-serif",
+          fontSize:'18px', fontWeight:'900', textTransform:'uppercase',
+          color:'#d8e0e8', marginBottom:'10px', letterSpacing:'0.5px'
+        }}>You're on a roll!</div>
+
+        {status === 'done' ? (
+          <div style={{color:'#27ae60', fontSize:'15px', padding:'20px 0'}}>
+            ✅ You're in! Study tip coming soon.
+          </div>
+        ) : (
+          <>
+            <p style={{fontSize:'14px', color:'#7a8a9a', lineHeight:'1.6', marginBottom:'20px'}}>
+              Get a <strong style={{color:'#c8a84b'}}>free weekly study tip</strong> — one NEC trick, 
+              one calc shortcut, or one CA-specific thing most people miss.
+            </p>
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && submit()}
+              style={{
+                width:'100%', padding:'12px 14px',
+                background:'#0a1016', border:'1px solid rgba(200,168,75,0.3)',
+                borderRadius:'8px', color:'#e8eaf0', fontSize:'15px',
+                outline:'none', boxSizing:'border-box', marginBottom:'12px'
+              }}
+            />
+            <button
+              onClick={submit}
+              disabled={status === 'sending'}
+              style={{
+                width:'100%', padding:'13px',
+                background:'linear-gradient(135deg,#c8a84b,#e8c878)',
+                color:'#0a1016', border:'none', borderRadius:'8px',
+                fontFamily:"'Arial Black', Arial, sans-serif",
+                fontWeight:'900', fontSize:'14px', textTransform:'uppercase',
+                cursor:'pointer', marginBottom:'12px',
+                opacity: status === 'sending' ? 0.7 : 1
+              }}
+            >
+              {status === 'sending' ? 'Sending...' : 'Get Free Tips ⚡'}
+            </button>
+            <button onClick={onDismiss} style={{
+              background:'none', border:'none', color:'#4a5a6a',
+              fontSize:'12px', cursor:'pointer', textDecoration:'underline'
+            }}>
+              No thanks, keep studying
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+

@@ -1,0 +1,18 @@
+{
+  "name": "West Coast Wire Pro",
+  "short_name": "Wire Pro",
+  "description": "California Journeyman Electrician Exam Prep — 512 NEC 2020 practice questions",
+  "start_url": "/?app",
+  "display": "standalone",
+  "background_color": "#0a1016",
+  "theme_color": "#0a1016",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -4,50 +4,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- PWA / Home Screen -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0a1016" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Wire Pro" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
     <!-- Primary SEO -->
     <title>West Coast Wire Pro — California Electrician Exam Prep</title>
-    <meta name="description" content="500 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC-referenced answers, timed mode. Module 1 always free." />
-    <meta name="keywords" content="California journeyman electrician exam, NEC practice questions, California general electrician test prep, journeyman exam study guide, electrician license California" />
+    <meta name="description" content="512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC 2020-referenced answers, timed mode. Modules 1 &amp; 2 always free — no account needed." />
+    <meta name="keywords" content="California journeyman electrician exam, NEC 2020 practice questions, California general electrician test prep, journeyman exam study guide, electrician license California" />
     <meta name="author" content="West Coast Wire Pro" />
     <link rel="canonical" href="https://westcoastwirepro.com/" />
 
-    <!-- Open Graph (Facebook, LinkedIn previews) -->
+    <!-- Open Graph (Facebook, LinkedIn, iMessage previews) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://westcoastwirepro.com/" />
     <meta property="og:title" content="West Coast Wire Pro — California Journeyman Electrician Exam Prep" />
-    <meta property="og:description" content="500 original practice questions. 12 modules. Every answer tied to the exact NEC section. Built by a California electrician and trade school instructor." />
+    <meta property="og:description" content="512 NEC 2020-referenced practice questions. 12 modules. Every answer tied to the exact code section. Built by a California electrician and trade school instructor." />
     <meta property="og:site_name" content="West Coast Wire Pro" />
+    <meta property="og:image" content="https://westcoastwirepro.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="West Coast Wire Pro — CA Electrician Exam Prep" />
-    <meta name="twitter:description" content="500 NEC-referenced practice questions for the California Journeyman exam. Module 1 free." />
+    <meta name="twitter:description" content="512 NEC 2020-referenced practice questions for the California Journeyman exam. Modules 1 &amp; 2 free — no account needed." />
+    <meta name="twitter:image" content="https://westcoastwirepro.com/og-image.png" />
 
-    <!-- Structured Data — helps Google understand what the page is -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "West Coast Wire Pro",
       "applicationCategory": "EducationalApplication",
-      "description": "California General Electrician (Journeyman) exam preparation. 500 practice questions across 12 modules, NEC-referenced, timed mode.",
+      "description": "California General Electrician (Journeyman) exam preparation. 512 practice questions across 12 modules, NEC 2020-referenced answers, timed mode.",
       "offers": [
         {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
-          "description": "Module 1 — 30 questions free"
+          "description": "Modules 1 & 2 + 2 Table Mastery drills — free, no account needed"
         },
         {
           "@type": "Offer",
-          "price": "19.99",
+          "price": "29.99",
           "priceCurrency": "USD",
-          "description": "Standard — all 500 questions"
+          "description": "Standard — all 512 questions across 12 modules"
+        },
+        {
+          "@type": "Offer",
+          "price": "59.99",
+          "priceCurrency": "USD",
+          "description": "Pro — all 512 questions, exam simulator, saved progress, Table Mastery"
         }
       ],
       "operatingSystem": "Web, iOS, Android",
       "url": "https://westcoastwirepro.com"
     }
+    </script>
+
+    <!-- Google Analytics 4 -->
+    <!-- IMPORTANT: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <!-- Get it from: analytics.google.com → Admin → Data Streams → your stream → Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

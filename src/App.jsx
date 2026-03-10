@@ -26,6 +26,7 @@ import CalculationsPage     from './CalculationsPage.jsx'
 import StudyPlannerPage     from './StudyPlannerPage.jsx'
 import FAQPage              from './FAQPage.jsx'
 import TestimonialsPage     from './TestimonialsPage.jsx'
+import MissedQuestionsPage  from './MissedQuestionsPage.jsx'
 
 const ROUTES = {
   '/privacy': 'privacy',              '/privacy-policy': 'privacy',
@@ -82,11 +83,28 @@ const PAGE_PATHS = {
 }
 
 const PAGE_META = {
-  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC-referenced answers, timed mode. Modules 1 & 2 free.' },
+  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC 2020-referenced answers, timed mode. Modules 1 & 2 + Table Mastery drills free — no account needed.' },
   'exam-info':       { title: 'California Journeyman Electrician Exam — Complete Guide | West Coast Wire Pro', desc: 'Everything about the California General Electrician (Journeyman) exam: eligibility, format, pass rate, what codes to study, and how to prepare.' },
   about:             { title: 'About West Coast Wire Pro — Built by a California Electrician', desc: 'Built by a 14-year electrician and trade school instructor who studied for the CA journeyman exam the hard way. No connections, no shortcuts.' },
-  'nec-2020-changes':{ title: 'NEC 2020 vs 2017 — What Changed | West Coast Wire Pro', desc: 'AFCI expanded to all rooms, new GFCI locations, EV charging rules, solar rapid shutdown, and more. What changed in the 2020 NEC that matters for the CA journeyman exam.' },
+  'nec-2020-changes':{ title: 'NEC 2020 vs 2017 — What Changed for CA Electricians | West Coast Wire Pro', desc: 'AFCI expanded to all rooms, new GFCI locations, EV charging rules, solar rapid shutdown, and more. What changed in the 2020 NEC that matters for the CA journeyman exam.' },
   'study-tips':      { title: 'How to Pass the CA Journeyman Electrician Exam | West Coast Wire Pro', desc: 'A straight-talk study guide from a California journeyman and trade school instructor. Timelines, module priorities, calculation drills, California-specific content, and test day strategy.' },
+  contact:           { title: 'Contact & Support | West Coast Wire Pro', desc: 'Questions about your purchase, access codes, or technical issues? We respond within 24 hours Monday–Friday.' },
+  faq:               { title: 'Frequently Asked Questions | West Coast Wire Pro', desc: 'Common questions about the California Journeyman exam, how West Coast Wire Pro works, access codes, pricing, and what to expect on exam day.' },
+  salary:            { title: 'Electrician Salary in California 2024 | West Coast Wire Pro', desc: 'How much do electricians make in California? Apprentice, journeyman, and master electrician wages by region, plus how your license affects your earning potential.' },
+  'exam-day':        { title: 'Exam Day Guide — What to Expect at Your PSI Test Center | West Coast Wire Pro', desc: 'What to bring, what to expect, how the PSI testing center works, and last-minute tips from someone who has been there. The CA journeyman exam day guide.' },
+  'contractor-vs-electrician': { title: 'C-10 Contractor vs. Journeyman Electrician — What\'s the Difference? | West Coast Wire Pro', desc: 'Individual electrician certification vs. contractor license — what each requires, what work each authorizes, and which path is right for you in California.' },
+  glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms, electrical concepts, and California-specific licensing terminology — built for journeyman exam prep.' },
+  testimonials:      { title: 'Pass Stories — Electricians Who Passed with West Coast Wire Pro', desc: 'Real stories from California electricians who used West Coast Wire Pro to pass the journeyman exam. See how they studied and what finally made it click.' },
+  diagnostic:        { title: 'Readiness Diagnostic — Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
+  simulator:         { title: 'Full Exam Simulator — 110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 12 modules weighted proportionally. Practice under real test conditions.' },
+  'nec-ref':         { title: 'NEC 2020 Quick Reference Guide | West Coast Wire Pro', desc: 'Fast-access NEC 2020 tables, key code sections, and calculation formulas for the California journeyman exam — without flipping through the whole codebook.' },
+  calculations:      { title: 'Electrical Calculations Helper | West Coast Wire Pro', desc: 'Step-by-step guides for load calculations, voltage drop, conduit fill, motor branch circuits, and more — the math section of the CA journeyman exam explained.' },
+  planner:           { title: 'Personalized Study Planner | West Coast Wire Pro', desc: 'Build a custom study schedule for the California journeyman exam based on your weak modules, available time, and target test date.' },
+  mastery:           { title: 'NEC Table Mastery Drills | West Coast Wire Pro', desc: 'Flashcard-style drills for all 10 critical NEC 2020 tables — Table 310.16, conduit fill, motor FLA, and more. The fastest way to memorize what the exam tests.' },
+  progress:          { title: 'Progress Dashboard | West Coast Wire Pro', desc: 'Track your scores by module, see your improvement over time, and identify your weakest areas before the California journeyman exam.' },
+  privacy:           { title: 'Privacy Policy | West Coast Wire Pro', desc: 'How West Coast Wire Pro collects, uses, and protects your information.' },
+  terms:             { title: 'Terms of Service | West Coast Wire Pro', desc: 'Terms and conditions for using West Coast Wire Pro.' },
+  refund:            { title: 'Refund Policy | West Coast Wire Pro', desc: '7-day refund policy for West Coast Wire Pro — full details on eligibility and how to request a refund.' },
 }
 
 function setPageMeta(view) {
@@ -222,10 +240,4 @@ export default function App() {
   )
 }
 
-function Splash() {
-  return (
-    <div style={{minHeight:'100vh', background:'#0a1016', display:'flex', alignItems:'center', justifyContent:'center'}}>
-      <div style={{fontSize:'40px'}}>⚡</div>
-    </div>
-  )
-}
+
