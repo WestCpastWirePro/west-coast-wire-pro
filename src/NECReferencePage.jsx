@@ -197,7 +197,7 @@ const TABLES = [
 
 const TAGS = ["All", "Wiring", "Grounding", "Motors", "Conduit", "Transformers", "Boxes", "Calculations", "Protection", "Safety"];
 
-export default function NECReferencePage({ onHome }) {
+export default function NECReferencePage({ onHome , onNavigate }) {
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState("All");
   const [expanded, setExpanded] = useState(null);

@@ -17,7 +17,7 @@ const s = {
   progressBar: { height:"100%", borderRadius:"3px", background:"linear-gradient(90deg,#c8a84b,#e8c878)", transition:"width 0.3s" },
 };
 
-export default function MissedQuestionsPage({ onHome, access }) {
+export default function MissedQuestionsPage({ onHome, access , onNavigate }) {
   const [missedIds, setMissedIds] = useState([]);
   const [deck, setDeck] = useState([]);
   const [idx, setIdx] = useState(0);

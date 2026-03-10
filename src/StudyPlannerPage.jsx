@@ -103,7 +103,7 @@ function buildPlan(examDate, dailyMins, weakMods, access) {
   return { plan, daysUntil, weeks, dailyMins };
 }
 
-export default function StudyPlannerPage({ onHome, access }) {
+export default function StudyPlannerPage({ onHome, access , onNavigate }) {
   const [examDate, setExamDate] = useState(() => {
     try { return localStorage.getItem("wrp_exam_date") || ""; } catch(e) { return ""; }
   });

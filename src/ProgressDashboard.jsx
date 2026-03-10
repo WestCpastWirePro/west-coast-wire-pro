@@ -18,7 +18,7 @@ function fmt(ts) {
   return new Date(ts).toLocaleDateString("en-US", { month:"short", day:"numeric" });
 }
 
-export default function ProgressDashboard({ onHome }) {
+export default function ProgressDashboard({ onHome, onNavigate }) {
   const [history, setHistory] = useState([]);
   const [missed, setMissed] = useState([]);
 

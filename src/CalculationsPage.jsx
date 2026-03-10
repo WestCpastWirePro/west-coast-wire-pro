@@ -365,7 +365,7 @@ const CALCS = [
   { id:"boxfill", label:"Box Fill", icon:"📦", desc:"NEC 314.16 volume calculations" },
 ];
 
-export default function CalculationsPage({ onHome }) {
+export default function CalculationsPage({ onHome , onNavigate }) {
   const [active, setActive] = useState(null);
 
   return (

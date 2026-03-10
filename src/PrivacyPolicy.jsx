@@ -1,6 +1,6 @@
 import LegalLayout, { Section, P, Ul, Highlight, Placeholder } from './LegalLayout.jsx'
 
-export default function PrivacyPolicy({ onHome }) {
+export default function PrivacyPolicy({ onHome , onNavigate }) {
   return (
     <LegalLayout
       title="Privacy Policy"

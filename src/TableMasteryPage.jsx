@@ -437,7 +437,7 @@ const TABLE_ORDER = [
   "t250_66","t250_122","t430_52","t430_flc","t220_12"
 ];
 
-export default function TableMasteryPage({ onHome, access }) {
+export default function TableMasteryPage({ onHome, access , onNavigate }) {
   const [active, setActive]   = useState(null);
   const [scores, setScores]   = useState({});  // tableId → last pct
 

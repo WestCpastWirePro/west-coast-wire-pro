@@ -168,31 +168,31 @@ export default function App() {
   if (view === '404')              return <NotFoundPage onHome={goHome} onNavigate={navigate} />
   if (view === 'success')          return <SuccessPage onEnterApp={() => navigate('app')} />
   if (view === 'app')              return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
-  if (view === 'privacy')          return <PrivacyPolicy onHome={goHome} />
-  if (view === 'terms')            return <TermsOfService onHome={goHome} />
-  if (view === 'refund')           return <RefundPolicy onHome={goHome} />
+  if (view === 'privacy')          return <PrivacyPolicy onHome={goHome} onNavigate={navigate} />
+  if (view === 'terms')            return <TermsOfService onHome={goHome} onNavigate={navigate} />
+  if (view === 'refund')           return <RefundPolicy onHome={goHome} onNavigate={navigate} />
   if (view === 'demo')             return <DemoPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'redeem')           return <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
   if (view === 'about')            return <AboutPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'exam-info')        return <ExamInfoPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'nec-2020-changes') return <NEC2020Page onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'study-tips')       return <StudyTipsPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'missed')           return <MissedQuestionsPage onHome={goHome} access={getAccess()} />
+  if (view === 'missed')           return <MissedQuestionsPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   if (view === 'diagnostic')       return <DiagnosticPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
-  if (view === 'simulator')        return <ExamSimulatorPage onHome={goHome} access={getAccess()} />
-  if (view === 'nec-ref')          return <NECReferencePage onHome={goHome} />
-  if (view === 'calculations')     return <CalculationsPage onHome={goHome} />
-  if (view === 'planner')          return <StudyPlannerPage onHome={goHome} access={getAccess()} />
+  if (view === 'simulator')        return <ExamSimulatorPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  if (view === 'nec-ref')          return <NECReferencePage onHome={goHome} onNavigate={navigate} />
+  if (view === 'calculations')     return <CalculationsPage onHome={goHome} onNavigate={navigate} />
+  if (view === 'planner')          return <StudyPlannerPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   if (view === 'faq')              return <FAQPage onHome={goHome} onNavigate={navigate} />
   if (view === 'testimonials')     return <TestimonialsPage onHome={goHome} onNavigate={navigate} />
 
   if (view === 'contact')      return <ContactPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'glossary')     return <GlossaryPage onHome={goHome} />
+  if (view === 'glossary')     return <GlossaryPage onHome={goHome} onNavigate={navigate} />
   if (view === 'exam-day')     return <ExamDayPage onHome={goHome} onNavigate={navigate} />
   if (view === 'salary')       return <SalaryPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'contractor-vs-electrician') return <ContractorVsElectricianPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'progress')     return <ProgressDashboard onHome={goHome} />
-  if (view === 'mastery')      return <TableMasteryPage onHome={goHome} access={getAccess()} />
+  if (view === 'progress')     return <ProgressDashboard onHome={goHome} onNavigate={navigate} />
+  if (view === 'mastery')      return <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
 
   return <LandingPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
 }

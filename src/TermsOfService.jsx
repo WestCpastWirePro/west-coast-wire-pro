@@ -1,6 +1,6 @@
 import LegalLayout, { Section, P, Ul, Highlight, Placeholder } from './LegalLayout.jsx'
 
-export default function TermsOfService({ onHome }) {
+export default function TermsOfService({ onHome , onNavigate }) {
   return (
     <LegalLayout
       title="Terms of Service"

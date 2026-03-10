@@ -28,7 +28,7 @@ function fmt(secs) {
   return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 }
 
-export default function ExamSimulatorPage({ onHome, access }) {
+export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
   const [phase, setPhase] = useState("intro");
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({}); // qIndex -> selectedOption

@@ -15,11 +15,11 @@ async function startCheckout(tier, setLoading) {
     if (data.url) {
       window.location.href = data.url   // → Stripe hosted checkout page
     } else {
-      alert('Checkout error: ' + (data.error || 'Unknown error. Check console.'))
+      setPayError('Payment error: ' + (data.error || 'Please try again.'))
       setLoading(null)
     }
   } catch (err) {
-    alert('Could not reach payment server. Please try again.')
+    setPayError('Could not reach payment server. Please try again.')
     console.error(err)
     setLoading(null)
   }
@@ -310,6 +310,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       </section>
 
       {/* PRICING */}
+      {payError && <div style={{background:'rgba(231,76,60,0.15)', border:'1px solid rgba(231,76,60,0.4)', color:'#e74c3c', padding:'12px 20px', borderRadius:'8px', margin:'0 clamp(20px,5vw,40px) 16px', fontSize:'14px', textAlign:'center'}}>{payError}</div>}
       <section id="pricing" style={s.sectionDark2}>
         <SectionLabel>// PRICING</SectionLabel>
         <SectionTitle>One-Time Payment.<br/>Yours Forever.</SectionTitle>
@@ -679,7 +680,7 @@ const styles = {
   sectionDark2: {padding:'80px clamp(20px,5vw,40px)', background:'#111820', borderTop:'1px solid rgba(200,168,75,0.08)', borderBottom:'1px solid rgba(200,168,75,0.08)'},
   steps: {display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px,1fr))', gap:'1px', marginTop:'50px', background:'rgba(200,168,75,0.08)'},
   step: {background:'#111820', padding:'36px 28px', transition:'background 0.2s'},
-  stepNum: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'64px', fontWeight:'900', color:'rgba(200,168,75,0.08)', lineHeight:'1', marginBottom:'12px'},
+  stepNum: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'48px', fontWeight:'900', color:'rgba(200,168,75,0.5)', lineHeight:'1', marginBottom:'12px', letterSpacing:'-2px'},
   stepIcon: {fontSize:'26px', marginBottom:'12px'},
   stepTitle: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'20px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'8px'},
   stepText: {fontSize:'13px', color:'#7a8a9a', lineHeight:'1.6'},

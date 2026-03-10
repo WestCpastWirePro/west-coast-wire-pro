@@ -111,7 +111,7 @@ const TERMS = [
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-export default function GlossaryPage({ onHome }) {
+export default function GlossaryPage({ onHome , onNavigate }) {
   const [search, setSearch] = useState("");
   const [letter, setLetter] = useState("All");
   const [expanded, setExpanded] = useState(null);

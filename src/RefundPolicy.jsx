@@ -1,6 +1,6 @@
 import LegalLayout, { Section, P, Ul, Highlight, Placeholder } from './LegalLayout.jsx'
 
-export default function RefundPolicy({ onHome }) {
+export default function RefundPolicy({ onHome , onNavigate }) {
   return (
     <LegalLayout
       title="Refund Policy"
