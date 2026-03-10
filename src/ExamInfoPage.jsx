@@ -278,8 +278,8 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
                   Built by a California journeyman electrician and trade school instructor.
                 </div>
                 <div style={s.ctaBtns}>
-                  <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Module 1</button>
-                  <button style={s.btnGhost} onClick={() => onNavigate('demo')}>Try 5 Sample Questions</button>
+                  <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
+                  <button style={s.btnGhost} onClick={() => onLaunchApp()}>Start Free — No Account Needed</button>
                 </div>
                 <div style={s.ctaNote}>Module 1 (30 questions) is always free. No account required.</div>
               </div>
@@ -313,7 +313,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, background:'linear-gradient(135deg, rgba(200,168,75,0.08), rgba(200,168,75,0.03))', border:'1px solid rgba(200,168,75,0.3)'}}>
             <div style={s.sideTitle}>Start Preparing</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'16px'}}>
-              512 questions. 12 modules. Every answer NEC-referenced. Module 1 always free.
+              512 questions. 12 modules. Every answer NEC-referenced. Modules 1 & 2 always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'11px 16px', width:'100%'}} onClick={onLaunchApp}>
               ⚡ Try Free Now
@@ -434,7 +434,7 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
         <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
-            {[['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+            {[['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
