@@ -152,8 +152,8 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
               {text:'Modules 3–12 (437 questions)', locked:true},
-              {text:'Full Table Mastery (8 more tables)', locked:true},
-              {text:'Module score breakdown', locked:true},
+              {text:'Table Mastery — 8 more NEC tables', locked:true},
+              {text:'Progress saved & missed question deck', locked:true},
             ]}
             btnLabel="Start Free →"
             btnStyle="dark"
@@ -171,8 +171,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Timed & untimed modes', locked:false},
               {text:'Module score breakdown', locked:false},
               {text:'Difficulty filtering (Easy/Med/Hard)', locked:false},
+              {text:'Table 310.16 & Conduit Fill drills', locked:false},
               {text:'Unlimited retakes', locked:false},
               {text:'Progress saved across sessions', locked:true},
+              {text:'Full Table Mastery (10 tables)', locked:true},
               {text:'Missed question review deck', locked:true},
             ]}
             btnLabel="Get Standard Access ⚡"
@@ -186,10 +188,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             priceSub="One-time · Instant access"
             features={[
               {text:'Everything in Standard', locked:false},
+              {text:'Full Table Mastery — 10 NEC tables, 113 flashcards', locked:false},
               {text:'Progress saved across sessions', locked:false},
               {text:'Missed question review deck', locked:false},
               {text:'Full exam simulation mode (100Q, timed)', locked:false},
-              {text:'Table Mastery drills — 10 NEC tables, 113 flashcards', locked:false},
               {text:'Weak module targeting', locked:false},
               {text:'Study Planner', locked:false},
               {text:'Email support', locked:false},
