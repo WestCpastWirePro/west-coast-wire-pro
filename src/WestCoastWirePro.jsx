@@ -706,9 +706,9 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     timer: { fontSize:"24px", fontWeight:"800", fontVariantNumeric:"tabular-nums" },
   };
 
-  if (screen === "home") return (
-    <div style={styles.app}>
-      {/* HAMBURGER MENU OVERLAY */}
+  // ── GLOBAL MENU (renders on ALL screens) ────────────────────────────────────
+  const GlobalMenu = (
+    <>
       {menuOpen && (
         <div onClick={() => setMenuOpen(false)} style={{position:"fixed",inset:0,zIndex:198,background:"rgba(0,0,0,0.5)"}} />
       )}
@@ -738,6 +738,12 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </div>
         </div>
       )}
+    </>
+  );
+
+  if (screen === "home") return (
+    <div style={styles.app}>
+      {GlobalMenu}
       <div style={{...styles.header, padding:"12px 16px"}}>
         {/* Hamburger — LEFT, large tap target */}
         <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
@@ -752,7 +758,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"11px", color:"#8899aa"}}>CA Electrician Exam Prep</div>
         </div>
         <div style={{marginLeft:"auto"}}>
-          <span style={styles.badge}>512 Q's</span>
+          <button onClick={() => onNavigate && onNavigate('exam-info')} style={{...styles.badge, background:"#c8a84b", color:"#0f1923", border:"none", cursor:"pointer"}}>512 Q's</button>
         </div>
       </div>
 
@@ -769,12 +775,18 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
               <div>
                 <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px"}}>⚡ FREE TIER — Modules 1 &amp; 2</div>
-                <div style={{fontSize:"12px", color:"#8899aa"}}>Unlock all 12 modules + Table Mastery drills</div>
+                <div style={{fontSize:"12px", color:"#8899aa"}}>Includes 2 free Table Mastery drills</div>
               </div>
-              <button style={{...styles.btn, ...styles.btnGold, fontSize:"13px", padding:"8px 16px"}}
-                onClick={() => setScreen("paywall")}>
-                Unlock Full Access →
-              </button>
+              <div style={{display:"flex", gap:"8px", flexWrap:"wrap"}}>
+                <button style={{...styles.btn, background:"transparent", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"12px", padding:"7px 14px"}}
+                  onClick={() => onNavigate && onNavigate('mastery')}>
+                  🏆 Table Mastery
+                </button>
+                <button style={{...styles.btn, ...styles.btnGold, fontSize:"13px", padding:"8px 16px"}}
+                  onClick={() => setScreen("paywall")}>
+                  Unlock Full Access →
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -876,6 +888,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
   // ── PAYWALL SCREEN ──────────────────────────────────────────
   if (screen === "paywall") return (
     <div style={styles.app}>
+      {GlobalMenu}
       <div style={{...styles.header, padding:"12px 16px"}}>
         <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
           style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0}}>
@@ -982,6 +995,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
   // ── UPGRADE SCREEN (Standard → Pro) ────────────────────────────────────────
   if (screen === "upgrade") return (
     <div style={styles.app}>
+      {GlobalMenu}
       <div style={{...styles.header, padding:"12px 16px"}}>
         <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
           style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0}}>
@@ -1067,6 +1081,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     const progress = qIndex / quizQuestions.length;
     return (
       <div style={styles.app}>
+        {GlobalMenu}
         <div style={{...styles.header, padding:"10px 16px"}}>
           {/* Hamburger — LEFT */}
           <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
@@ -1196,7 +1211,14 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
     return (
       <div style={styles.app}>
+        {GlobalMenu}
         <div style={styles.header}>
+          <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
+            style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,marginRight:"12px"}}>
+            <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+          </button>
           <span style={{fontSize:"28px"}}>⚡</span>
           <div style={styles.logo}>Quiz Results</div>
         </div>
