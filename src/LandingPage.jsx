@@ -124,7 +124,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               <div style={s.modArticles}>{m.articles}</div>
               <div>
                 <span style={s.modCount}>{m.qCount} Questions</span>
-                {m.id === 1 && <span style={s.freeTag}>FREE</span>}
+                {(m.id === 1 || m.id === 2) && <span style={s.freeTag}>FREE</span>}
               </div>
             </div>
           ))}
