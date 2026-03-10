@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // ═══════════════════════════════════════════════════════════
 // WIREREADY PRO — 512-QUESTION CA ELECTRICIAN EXAM PREP APP
