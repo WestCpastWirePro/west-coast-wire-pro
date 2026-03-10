@@ -207,7 +207,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <SectionLabel>// BY THE NUMBERS</SectionLabel>
         <SectionTitle>Built for the Real Exam.</SectionTitle>
         <div style={s.proofBar}>
-          {[['512','Original Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
+          {[['512','Practice Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
             <div key={l} style={{textAlign:'center'}}>
               <div style={s.proofNum}>{n}</div>
               <div style={s.proofLabel}>{l}</div>

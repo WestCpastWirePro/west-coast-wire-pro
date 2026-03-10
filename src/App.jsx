@@ -214,7 +214,6 @@ export default function App() {
 function Splash() {
   return (
     <div style={{minHeight:'100vh', background:'#0a1016', display:'flex', alignItems:'center', justifyContent:'center'}}>
-      <ScrollButtons />
       <div style={{fontSize:'40px'}}>⚡</div>
     </div>
   )
