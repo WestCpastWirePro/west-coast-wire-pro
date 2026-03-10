@@ -6,7 +6,6 @@ import SuccessPage          from './SuccessPage.jsx'
 import PrivacyPolicy        from './PrivacyPolicy.jsx'
 import TermsOfService       from './TermsOfService.jsx'
 import RefundPolicy         from './RefundPolicy.jsx'
-import DemoPage             from './DemoPage.jsx'
 import RedeemPage           from './RedeemPage.jsx'
 import AboutPage            from './AboutPage.jsx'
 import ExamInfoPage         from './ExamInfoPage.jsx'
@@ -32,7 +31,7 @@ const ROUTES = {
   '/privacy': 'privacy',              '/privacy-policy': 'privacy',
   '/terms': 'terms',                  '/terms-of-service': 'terms',
   '/refund': 'refund',               '/refund-policy': 'refund',
-  '/demo': 'demo',                   '/sample': 'demo',            '/try': 'demo',
+  '/try': 'landing',
   '/redeem': 'redeem',               '/activate': 'redeem',        '/unlock': 'redeem',
   '/about': 'about',                 '/about-us': 'about',
   '/exam': 'exam-info',              '/exam-info': 'exam-info',
@@ -60,7 +59,7 @@ const ROUTES = {
 
 const PAGE_PATHS = {
   landing: '/',          app: '/?app',
-  demo: '/demo',         redeem: '/redeem',
+  redeem: '/redeem',
   privacy: '/privacy',   terms: '/terms',          refund: '/refund',
   about: '/about',       'exam-info': '/exam-info',
   'nec-2020-changes': '/nec-2020-changes',
@@ -83,10 +82,9 @@ const PAGE_PATHS = {
 }
 
 const PAGE_META = {
-  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC-referenced answers, timed mode. Module 1 free.' },
+  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC-referenced answers, timed mode. Modules 1 & 2 free.' },
   'exam-info':       { title: 'California Journeyman Electrician Exam — Complete Guide | West Coast Wire Pro', desc: 'Everything about the California General Electrician (Journeyman) exam: eligibility, format, pass rate, what codes to study, and how to prepare.' },
   about:             { title: 'About West Coast Wire Pro — Built by a California Electrician', desc: 'Built by a 14-year electrician and trade school instructor who studied for the CA journeyman exam the hard way. No connections, no shortcuts.' },
-  demo:              { title: 'Try 5 Free Sample Questions | West Coast Wire Pro', desc: 'Test yourself with 5 real-style California journeyman electrician exam practice questions. No account required.' },
   'nec-2020-changes':{ title: 'NEC 2020 vs 2017 — What Changed | West Coast Wire Pro', desc: 'AFCI expanded to all rooms, new GFCI locations, EV charging rules, solar rapid shutdown, and more. What changed in the 2020 NEC that matters for the CA journeyman exam.' },
   'study-tips':      { title: 'How to Pass the CA Journeyman Electrician Exam | West Coast Wire Pro', desc: 'A straight-talk study guide from a California journeyman and trade school instructor. Timelines, module priorities, calculation drills, California-specific content, and test day strategy.' },
 }
@@ -193,7 +191,6 @@ export default function App() {
   else if (view === 'privacy')     pageContent = <PrivacyPolicy onHome={goHome} onNavigate={navigate} />
   else if (view === 'terms')       pageContent = <TermsOfService onHome={goHome} onNavigate={navigate} />
   else if (view === 'refund')      pageContent = <RefundPolicy onHome={goHome} onNavigate={navigate} />
-  else if (view === 'demo')        pageContent = <DemoPage onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'redeem')      pageContent = <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
   else if (view === 'about')       pageContent = <AboutPage onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'exam-info')   pageContent = <ExamInfoPage onLaunchApp={launchApp} onNavigate={navigate} />
