@@ -32,7 +32,7 @@ export default function LegalLayout({ title, subtitle, lastUpdated, children, on
         <span style={s.noticeIcon}>⚠️</span>
         <span>
           <strong style={{color:'#e8c878'}}>Before going live:</strong>
-          {' '}Questions? Email us at <a href="mailto:wirereadypro@gmail.com" style={{color:'#c8a84b'}}>wirereadypro@gmail.com</a>
+          {' '}Questions? <a href="/contact" style={{color:'#c8a84b'}}>Contact us via our support form</a>
         </span>
       </div>
 
@@ -96,13 +96,13 @@ export function Placeholder({ label }) {
 
 const s = {
   root: { fontFamily:"'Georgia', 'Times New Roman', serif", background:'#0a1016', color:'#d8e0e8', minHeight:'100vh' },
-  nav: { position:'sticky', top:0, zIndex:100, padding:'14px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)' },
+  nav: { position:'sticky', top:0, zIndex:100, padding:'14px clamp(16px, 4vw, 40px)', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)' },
   navLogo: { display:'flex', alignItems:'center', gap:'8px', background:'none', border:'none', cursor:'pointer', padding:0 },
   bolt: { fontSize:'20px' },
   wordmark: { fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'18px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase' },
   wordmarkThin: { color:'#d8e0e8', fontWeight:'400' },
   backBtn: { background:'none', border:'1px solid rgba(200,168,75,0.3)', color:'#c8a84b', fontSize:'13px', padding:'7px 16px', borderRadius:'4px', cursor:'pointer', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'700', textTransform:'uppercase', letterSpacing:'0.5px' },
-  header: { background:'linear-gradient(180deg, #111820 0%, #0a1016 100%)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'64px 40px 48px' },
+  header: { background:'linear-gradient(180deg, #111820 0%, #0a1016 100%)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'64px clamp(20px,5vw,40px) 48px' },
   headerInner: { maxWidth:'760px', margin:'0 auto' },
   label: { fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'3px', marginBottom:'16px' },
   title: { fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'clamp(32px, 5vw, 52px)', fontWeight:'900', textTransform:'uppercase', lineHeight:'1', color:'#d8e0e8', marginBottom:'16px' },
@@ -112,9 +112,9 @@ const s = {
   notice: { background:'rgba(232,200,120,0.07)', borderLeft:'3px solid #c8a84b', margin:'0 40px', padding:'14px 20px', display:'flex', gap:'12px', alignItems:'flex-start', fontSize:'13px', color:'#aabbcc', lineHeight:'1.6' },
   noticeIcon: { fontSize:'16px', flexShrink:0, marginTop:'1px' },
   code: { fontFamily:"'Courier New', monospace", background:'rgba(200,168,75,0.15)', color:'#c8a84b', padding:'1px 6px', borderRadius:'3px', fontSize:'12px' },
-  main: { padding:'48px 40px 80px' },
+  main: { padding:'48px clamp(20px,5vw,40px) 80px' },
   content: { maxWidth:'760px', margin:'0 auto' },
-  footer: { borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px 40px', background:'#0a1016' },
+  footer: { borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px clamp(20px,5vw,40px)', background:'#0a1016' },
   footerLinks: { display:'flex', alignItems:'center', gap:'12px', maxWidth:'760px', margin:'0 auto' },
   footerLink: { background:'none', border:'none', color:'#7a8a9a', fontSize:'13px', cursor:'pointer', padding:0, textDecoration:'underline' },
   footerDot: { color:'#3a4a5a' },

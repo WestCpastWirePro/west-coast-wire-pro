@@ -110,7 +110,7 @@ export default function SuccessPage({ onEnterApp }) {
 
 const styles = {
   page: {minHeight:'100vh', background:'#0a1016', display:'flex', alignItems:'center', justifyContent:'center', padding:'24px'},
-  card: {background:'#111820', border:'1px solid rgba(200,168,75,0.3)', borderRadius:'12px', padding:'48px 40px', maxWidth:'480px', width:'100%', textAlign:'center'},
+  card: {background:'#111820', border:'1px solid rgba(200,168,75,0.3)', borderRadius:'12px', padding:'48px clamp(20px,5vw,40px)', maxWidth:'480px', width:'100%', textAlign:'center'},
   spinner: {fontSize:'48px', animation:'spin 1s linear infinite', marginBottom:'16px'},
   title: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'28px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'12px'},
   tierBadge: {display:'inline-block', background:'rgba(200,168,75,0.15)', border:'1px solid rgba(200,168,75,0.4)', color:'#c8a84b', fontFamily:"'Courier New', monospace", fontSize:'12px', letterSpacing:'2px', padding:'6px 16px', borderRadius:'3px', marginBottom:'20px'},

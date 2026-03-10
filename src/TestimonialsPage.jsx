@@ -102,7 +102,7 @@ export default function TestimonialsPage({ onNavigate, onHome }) {
       </div>
 
       {/* Stats bar */}
-      <div style={{display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"1px", background:"#2a3a54", margin:"12px 16px", borderRadius:"10px", overflow:"hidden"}}>
+      <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))", gap:"1px", background:"#2a3a54", margin:"12px 16px", borderRadius:"10px", overflow:"hidden"}}>
         {STATS.map(({value,label}) => (
           <div key={label} style={{background:"#1a2840", padding:"12px 8px", textAlign:"center"}}>
             <div style={{fontSize:"18px", fontWeight:"900", color:"#c8a84b"}}>{value}</div>
@@ -175,7 +175,7 @@ export default function TestimonialsPage({ onNavigate, onHome }) {
       <div style={{...s.card, textAlign:"center", marginBottom:"32px"}}>
         <div style={{fontSize:"14px", fontWeight:"700", color:"#e8eaf0", marginBottom:"6px"}}>Did you pass using West Coast Wire Pro?</div>
         <div style={{fontSize:"13px", color:"#8899aa", marginBottom:"12px"}}>Share your story and we'll add it here.</div>
-        <a href="mailto:wirereadypro@gmail.com?subject=My Pass Story"
+        <a href="#" onClick={e => { e.preventDefault(); onNavigate && onNavigate('contact') }}
           style={{...s.btn, ...s.btnGray, textDecoration:"none", display:"inline-block", fontSize:"13px", padding:"10px 20px"}}>
           Share Your Story →
         </a>

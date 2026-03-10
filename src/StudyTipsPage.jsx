@@ -1,7 +1,8 @@
+import React from 'react'
 export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
   return (
     <div style={s.root}>
-      <BlogNav onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
+      <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       <header style={s.hero}>
         <div style={s.heroGrid} />
@@ -46,6 +47,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
               ['#california', 'The California-Specific Content Nobody Prepares For'],
               ['#method',     'The Study Method That Actually Works'],
               ['#final',      'The Final 2 Weeks'],
+              ['#openbooktactics', 'Open Book Exam Tactics That Actually Save Time'],
               ['#testday',    'Test Day Strategy'],
             ].map(([href, text]) => (
               <a key={href} href={href} style={s.tocLink}>{text}</a>
@@ -321,6 +323,110 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
               ]} />
             </Section>
 
+            <Section id="openbooktactics" title="Open Book Exam Tactics That Actually Save Time">
+              <P>
+                The exam is open book — but that only helps you if you can find answers
+                quickly. Most candidates who fail don't run out of knowledge. They run out
+                of time. Electricians who pass on the first attempt tend to use the same
+                three codebook strategies. Here's exactly what they do.
+              </P>
+
+              <TipBlock icon="📇" color="#c8a84b" title="Use the index — not the chapters">
+                <P>
+                  The single biggest time-saver in the exam is the NEC index in the back
+                  of the codebook. Experienced electricians skip the chapter pages entirely
+                  and go straight to the index first.
+                </P>
+                <P>
+                  The workflow is straightforward: identify the keyword in the question,
+                  look it up in the index, jump to the article listed, then verify the
+                  answer inside that section. That's it.
+                </P>
+                <P>
+                  For example — a question about GFCI requirements for a garage. Instead
+                  of flipping through Chapter 2 hoping to find it, go straight to the index:
+                  GFCI → garages → Article 210.8. You're there in 15 seconds instead of 90.
+                </P>
+                <P>
+                  The key is getting comfortable with the index before exam day. Practice
+                  looking up keywords while you study so the motion is automatic by the time
+                  you sit down at PSI.
+                </P>
+              </TipBlock>
+
+              <TipBlock icon="🧠" color="#c8a84b" title="Memorize where key sections live — the codebook is unfamiliar">
+                <P>
+                  PSI provides an unmarked NEC codebook at the testing center. You cannot
+                  bring your own. That means no personal tabs, no annotations — just a
+                  clean book you've never touched before.
+                </P>
+                <P>
+                  This makes it even more important to know the codebook's structure cold
+                  before you walk in. The goal is to navigate a stranger's book without
+                  hesitation. The articles that show up most on the exam are:
+                </P>
+                <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(200px, 1fr))', gap:'8px', margin:'16px 0'}}>
+                  {[
+                    ['110', 'General Requirements'],
+                    ['200', 'Neutral Conductors'],
+                    ['210', 'Branch Circuits'],
+                    ['215', 'Feeders'],
+                    ['220', 'Load Calculations'],
+                    ['240', 'Overcurrent Protection'],
+                    ['250', 'Grounding & Bonding'],
+                    ['300', 'Wiring Methods'],
+                    ['310', 'Conductor Ampacity'],
+                    ['314', 'Box Fill'],
+                    ['430', 'Motors'],
+                  ].map(([art, name]) => (
+                    <div key={art} style={{background:'#0a1016', border:'1px solid rgba(200,168,75,0.12)', borderRadius:'4px', padding:'8px 12px', display:'flex', gap:'10px', alignItems:'center'}}>
+                      <span style={{fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', fontWeight:'700', flexShrink:0}}>Art. {art}</span>
+                      <span style={{fontSize:'12px', color:'#7a8a9a'}}>{name}</span>
+                    </div>
+                  ))}
+                </div>
+                <P>
+                  Two tables need to be second nature: Table 310.16 (conductor ampacity,
+                  in Article 310) and Table 8 (conductor properties / circular mil area,
+                  in Chapter 9). These appear on nearly every exam. Knowing their location
+                  and their key values without hunting saves several minutes total.
+                </P>
+              </TipBlock>
+
+              <TipBlock icon="⏭" color="#c8a84b" title="Skip calculation questions on the first pass">
+                <P>
+                  This is one of the most consistently useful test-taking strategies for
+                  this exam. Not all 110 questions take the same amount of time. Code
+                  lookup questions — where you're confirming a rule or a requirement —
+                  can be answered in 20 to 40 seconds with the index and a little
+                  familiarity. Calculation questions — load calcs, voltage drop, motor
+                  sizing — can easily take 2 to 3 minutes each.
+                </P>
+                <P>
+                  The strategy: on your first pass through the exam, answer every code
+                  question you can confidently handle, and flag any calculation question
+                  for later. Once you've cleared the lookup questions, go back and work
+                  through the math.
+                </P>
+                <P>
+                  Why it works: code questions are worth the same points as calculation
+                  questions. Spending 10 minutes on two hard calculations while leaving
+                  five quick code questions unanswered is a losing trade. Secure the fast
+                  points first, then tackle the time-consuming ones with whatever time
+                  remains.
+                </P>
+              </TipBlock>
+
+              <CallOut>
+                Practice all three of these tactics before exam day — not just on the
+                actual exam. Run through index lookups during your study sessions.
+                Drill the key ampacity and conductor values until they're automatic. And in
+                every timed practice session, skip calculation questions on the first pass.
+                By exam day, these should be reflexes.
+              </CallOut>
+
+            </Section>
+
             <Section id="testday" title="Test Day Strategy">
               <P>
                 A few things that make a real difference on exam day:
@@ -471,18 +577,91 @@ function TipBlock({ icon, color, title, children }) {
   )
 }
 
-function BlogNav({ onHome, onLaunchApp }) {
+function SiteNav({ onHome, onLaunchApp, onNavigate }) {
+  const [menuOpen, setMenuOpen] = React.useState(false)
+  React.useEffect(() => {
+    if (!menuOpen) return
+    const close = () => setMenuOpen(false)
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [menuOpen])
+  const nav = (label, page) => (
+    <button key={page} style={{display:'block',width:'100%',background:'none',border:'none',textAlign:'left',padding:'10px 4px',color:'#aabbcc',fontSize:'14px',cursor:'pointer',borderBottom:'1px solid rgba(255,255,255,0.04)',fontFamily:"'Segoe UI',Arial,sans-serif"}}
+      onMouseEnter={e=>e.currentTarget.style.color='#c8a84b'} onMouseLeave={e=>e.currentTarget.style.color='#aabbcc'}
+      onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>{label}</button>
+  )
   return (
-    <nav style={{position:'sticky', top:0, zIndex:100, padding:'12px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
-      <button onClick={onHome} style={{display:'flex', alignItems:'center', gap:'8px', background:'none', border:'none', cursor:'pointer', padding:0}}>
-        <span style={{fontSize:'20px'}}>⚡</span>
-        <span style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'18px', color:'#c8a84b', textTransform:'uppercase', letterSpacing:'1px'}}>
-          West Coast <span style={{color:'#d8e0e8', fontWeight:'400'}}>Wire Pro</span>
-        </span>
-      </button>
-      <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'13px', padding:'8px 18px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px'}}
-        onClick={onLaunchApp}>Try Free ⚡</button>
-    </nav>
+    <>
+      <style>{`
+        @media (max-width: 768px) { .wcwp-snav-hamburger { display: flex !important; } }
+        .wcwp-snav-hamburger { display: none; align-items: center; gap: 10px; }
+        .wcwp-snav-bar { display:block; width:22px; height:2px; background:#c8a84b; border-radius:2px; transition:all 0.25s; }
+        .wcwp-snav-menu-item:hover { color: #c8a84b !important; background: rgba(200,168,75,0.06) !important; }
+      `}</style>
+      <nav style={{position:'sticky',top:0,zIndex:200,padding:'10px clamp(16px,4vw,40px)',display:'flex',alignItems:'center',justifyContent:'space-between',background:'rgba(10,16,22,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
+        <button onClick={onHome} style={{display:'flex',alignItems:'center',background:'none',border:'none',cursor:'pointer',padding:0}}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'34px',width:'auto'}}>
+            <defs>
+              <linearGradient id="snbolt" x1="0%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" style={{stopColor:'#FFD84D'}}/>
+                <stop offset="60%" style={{stopColor:'#C9A227'}}/>
+                <stop offset="100%" style={{stopColor:'#9B7A1A'}}/>
+              </linearGradient>
+              <linearGradient id="snline" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style={{stopColor:'#C9A227',stopOpacity:0}}/>
+                <stop offset="20%" style={{stopColor:'#C9A227'}}/>
+                <stop offset="80%" style={{stopColor:'#C9A227'}}/>
+                <stop offset="100%" style={{stopColor:'#C9A227',stopOpacity:0}}/>
+              </linearGradient>
+            </defs>
+            <rect x="32" y="38" width="3" height="124" fill="#C9A227" opacity="0.9" rx="1.5"/>
+            <g transform="translate(52,52)">
+              <polygon points="28,0 14,42 26,42 18,96 50,38 36,38 52,0" fill="#C9A227" opacity="0.15"/>
+              <polygon points="26,2 12,44 24,44 16,94 48,36 34,36 50,2" fill="url(#snbolt)"/>
+              <polygon points="26,2 20,22 30,22 26,2" fill="#FFE88A" opacity="0.6"/>
+            </g>
+            <line x1="118" y1="80" x2="135" y2="80" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
+            <line x1="118" y1="120" x2="135" y2="120" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
+            <g transform="translate(148,0)">
+              <text x="0" y="82" fontFamily="'Arial Black',Arial,sans-serif" fontSize="18" fontWeight="900" letterSpacing="8" fill="#CCCCCC">WEST COAST</text>
+              <text x="-2" y="128" fontFamily="'Arial Black',Arial,sans-serif" fontSize="52" fontWeight="900" letterSpacing="2" fill="#FFFFFF">WIRE <tspan fill="#C9A227">PRO</tspan></text>
+              <rect x="0" y="138" width="358" height="2" fill="url(#snline)" rx="1"/>
+              <text x="0" y="163" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="400" letterSpacing="10" fill="#C9A227">TRAINING</text>
+            </g>
+          </svg>
+        </button>
+        <div className="wcwp-snav-hamburger" onClick={e=>e.stopPropagation()}>
+          <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'12px',padding:'7px 14px',borderRadius:'4px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px'}} onClick={onLaunchApp}>Try Free ⚡</button>
+          <button style={{background:'none',border:'none',cursor:'pointer',padding:'4px',display:'flex',flexDirection:'column',gap:'5px'}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o)}} aria-label="Menu">
+            <span className="wcwp-snav-bar" style={menuOpen?{transform:'rotate(45deg) translate(5px,5px)'}:{}}/>
+            <span className="wcwp-snav-bar" style={menuOpen?{opacity:0}:{}}/>
+            <span className="wcwp-snav-bar" style={menuOpen?{transform:'rotate(-45deg) translate(5px,-5px)'}:{}}/>
+          </button>
+        </div>
+        <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'13px',padding:'8px 18px',borderRadius:'4px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px'}} onClick={onLaunchApp}>Try Free ⚡</button>
+      </nav>
+      {menuOpen && (
+        <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+          <div style={{padding:'12px 20px 4px'}}>
+            <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
+            {[['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+          </div>
+          <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
+          <div style={{padding:'12px 20px 4px'}}>
+            <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+          </div>
+          <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
+          <div style={{padding:'12px 20px 4px'}}>
+            <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>🔧 Company</div>
+            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
+          </div>
+          <div style={{padding:'16px 20px'}}>
+            <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px',width:'100%'}} onClick={()=>{onLaunchApp();setMenuOpen(false)}}>⚡ Start Studying Free</button>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -516,8 +695,8 @@ const s = {
   metaItem: { fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#4a5a6a' },
   metaDot: { color:'#2a3a4a' },
   heroSub: { fontSize:'16px', color:'#7a8a9a', lineHeight:1.7, maxWidth:'640px', margin:0, fontFamily:"'Georgia', serif" },
-  layout: { display:'flex', gap:'48px', padding:'48px 40px 80px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start' },
-  main: { flex:'1', minWidth:0 },
+  layout: { display:'flex', gap:'48px', padding:'48px 40px 80px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start', flexWrap:'wrap' },
+  main: { flex:'1', minWidth:'280px' },
   sidebar: { width:'260px', flexShrink:0, position:'sticky', top:'80px', display:'flex', flexDirection:'column', gap:'16px' },
   toc: { background:'#111820', border:'1px solid rgba(200,168,75,0.1)', borderRadius:'6px', padding:'18px', marginBottom:'36px', display:'flex', flexDirection:'column', gap:'2px' },
   tocTitle: { fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'11px', fontWeight:'900', textTransform:'uppercase', color:'#c8a84b', letterSpacing:'1px', marginBottom:'8px' },
@@ -526,9 +705,9 @@ const s = {
   timelineGrid: { display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(200px,1fr))', gap:'2px', background:'rgba(200,168,75,0.07)', margin:'16px 0 20px', border:'1px solid rgba(200,168,75,0.07)' },
   timelineCard: { background:'#0a1016', padding:'20px 18px' },
   moduleGrid: { display:'flex', flexDirection:'column', gap:'1px', background:'rgba(200,168,75,0.07)', margin:'16px 0' },
-  moduleRow: { background:'#0a1016', padding:'14px 16px', display:'flex', gap:'16px', justifyContent:'space-between', alignItems:'flex-start' },
+  moduleRow: { background:'#0a1016', padding:'14px 16px', display:'flex', gap:'16px', justifyContent:'space-between', alignItems:'flex-start', flexWrap:'wrap' },
   methodSteps: { display:'flex', flexDirection:'column', gap:'2px', background:'rgba(200,168,75,0.07)', margin:'16px 0' },
-  methodStep: { background:'#0a1016', padding:'18px', display:'flex', gap:'20px', alignItems:'flex-start' },
+  methodStep: { background:'#0a1016', padding:'18px', display:'flex', gap:'20px', alignItems:'flex-start', flexWrap:'wrap' },
   methodStepNum: { fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'1px', flexShrink:0, marginTop:'2px', width:'72px' },
   methodStepTitle: { fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'14px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'6px' },
   methodStepBody: { fontSize:'13px', color:'#aabbcc', lineHeight:1.7, fontFamily:"'Georgia', serif" },

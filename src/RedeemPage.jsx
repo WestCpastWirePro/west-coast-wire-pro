@@ -161,9 +161,9 @@ export default function RedeemPage({ onEnterApp, onHome }) {
 
           <div style={s.supportRow}>
             <span style={{fontSize:'13px', color:'#4a5a6a'}}>Still can't find it?</span>
-            <a href="mailto:wirereadypro@gmail.com" style={s.supportLink}>
-              Email support →
-            </a>
+            <button onClick={() => onHome && onHome('contact')} style={{...s.supportLink, background:'none', border:'none', cursor:'pointer', padding:0}}>
+              Contact support →
+            </button>
           </div>
 
         </div>
@@ -202,7 +202,7 @@ function RedeemNav({ onHome }) {
 const styles = {
   root: { minHeight:'100vh', background:'#0a1016', color:'#d8e0e8', fontFamily:"'Segoe UI', Arial, sans-serif" },
   centerWrap: { display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'48px 20px', minHeight:'calc(100vh - 60px)' },
-  card: { background:'#111820', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'12px', padding:'48px 40px', maxWidth:'460px', width:'100%', textAlign:'center' },
+  card: { background:'#111820', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'12px', padding:'48px clamp(20px,5vw,40px)', maxWidth:'460px', width:'100%', textAlign:'center' },
   iconWrap: { fontSize:'48px', marginBottom:'12px' },
   title: { fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'26px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'12px' },
   tierBadge: { display:'inline-block', background:'rgba(200,168,75,0.12)', border:'1px solid rgba(200,168,75,0.3)', color:'#c8a84b', fontFamily:"'Courier New', monospace", fontSize:'12px', letterSpacing:'2px', padding:'5px 14px', borderRadius:'3px', marginBottom:'16px' },

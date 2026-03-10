@@ -14,6 +14,7 @@ import StudyTipsPage        from './StudyTipsPage.jsx'
 import ContactPage             from './ContactPage.jsx'
 import NotFoundPage            from './NotFoundPage.jsx'
 import ProgressDashboard       from './ProgressDashboard.jsx'
+import TableMasteryPage        from './TableMasteryPage.jsx'
 import GlossaryPage            from './GlossaryPage.jsx'
 import ExamDayPage             from './ExamDayPage.jsx'
 import SalaryPage              from './SalaryPage.jsx'
@@ -51,6 +52,7 @@ const ROUTES = {
   '/nec-reference': 'nec-ref',       '/nec-tables': 'nec-ref',     '/reference': 'nec-ref',
   '/calculations': 'calculations',   '/calc': 'calculations',      '/math': 'calculations',
   '/planner': 'planner',             '/study-planner': 'planner',  '/schedule': 'planner',
+  '/mastery': 'mastery',             '/table-mastery': 'mastery',  '/table-games': 'mastery',
   '/faq': 'faq',                     '/faqs': 'faq',               '/questions': 'faq',
   '/testimonials': 'testimonials',   '/pass-stories': 'testimonials','/reviews': 'testimonials',
 }
@@ -74,6 +76,7 @@ const PAGE_PATHS = {
   'nec-ref': '/nec-reference',
   calculations: '/calculations',
   planner: '/planner',
+  mastery: '/mastery',
   faq: '/faq',
   testimonials: '/testimonials',
 }
@@ -149,6 +152,7 @@ export default function App() {
   if (view === 'salary')       return <SalaryPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'contractor-vs-electrician') return <ContractorVsElectricianPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
   if (view === 'progress')     return <ProgressDashboard onHome={goHome} />
+  if (view === 'mastery')      return <TableMasteryPage onHome={goHome} access={getAccess()} />
 
   return <LandingPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
 }

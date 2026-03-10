@@ -29,13 +29,22 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalTier, setModalTier] = useState('standard')
   const [scrolled, setScrolled] = useState(false)
-  const [loading, setLoading] = useState(null)   // tracks which tier is mid-checkout
+  const [loading, setLoading] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Close menu on outside click
+  useEffect(() => {
+    if (!menuOpen) return
+    const close = () => setMenuOpen(false)
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [menuOpen])
 
   const openModal = (tier) => { setModalTier(tier); setModalOpen(true) }
   const handlePurchase = (tier) => startCheckout(tier, setLoading)
@@ -45,31 +54,121 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   return (
     <div style={s.root}>
 
+      {/* RESPONSIVE NAV CSS */}
+      <style>{`
+        .wcwp-nav-desktop { display: flex !important; }
+        .wcwp-hamburger { display: none !important; }
+        .wcwp-mobile-cta { display: none !important; }
+        @media (max-width: 768px) {
+          .wcwp-nav-desktop { display: none !important; }
+          .wcwp-hamburger { display: flex !important; }
+          .wcwp-mobile-cta { display: inline-flex !important; }
+        }
+        .wcwp-menu-item:hover { color: #c8a84b !important; background: rgba(200,168,75,0.06) !important; }
+      `}</style>
+
       {/* NAV */}
       <nav style={{...s.nav, ...(scrolled ? s.navScrolled : {})}}>
-        <div style={s.navLogo}>
-          <span style={s.bolt}>⚡</span>
-          <span style={s.wordmark}>West Coast <span style={s.wordmarkThin}>Wire Pro</span></span>
+        {/* LOGO */}
+        <div style={s.navLogo} onClick={() => onNavigate && onNavigate('landing')}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'36px', width:'auto'}}>
+            <defs>
+              <linearGradient id="nb" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{stopColor:'transparent',stopOpacity:1}} />
+                <stop offset="100%" style={{stopColor:'transparent',stopOpacity:1}} />
+              </linearGradient>
+              <linearGradient id="nbolt" x1="0%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" style={{stopColor:'#FFD84D',stopOpacity:1}} />
+                <stop offset="60%" style={{stopColor:'#C9A227',stopOpacity:1}} />
+                <stop offset="100%" style={{stopColor:'#9B7A1A',stopOpacity:1}} />
+              </linearGradient>
+              <linearGradient id="nline" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style={{stopColor:'#C9A227',stopOpacity:0}} />
+                <stop offset="20%" style={{stopColor:'#C9A227',stopOpacity:1}} />
+                <stop offset="80%" style={{stopColor:'#C9A227',stopOpacity:1}} />
+                <stop offset="100%" style={{stopColor:'#C9A227',stopOpacity:0}} />
+              </linearGradient>
+            </defs>
+            <rect x="32" y="38" width="3" height="124" fill="#C9A227" opacity="0.9" rx="1.5"/>
+            <g transform="translate(52, 52)">
+              <polygon points="28,0 14,42 26,42 18,96 50,38 36,38 52,0" fill="#C9A227" opacity="0.15"/>
+              <polygon points="26,2 12,44 24,44 16,94 48,36 34,36 50,2" fill="url(#nbolt)"/>
+              <polygon points="26,2 20,22 30,22 26,2" fill="#FFE88A" opacity="0.6"/>
+            </g>
+            <line x1="118" y1="80" x2="135" y2="80" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
+            <line x1="118" y1="120" x2="135" y2="120" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
+            <g transform="translate(148, 0)">
+              <text x="0" y="82" fontFamily="'Arial Black', Arial, sans-serif" fontSize="18" fontWeight="900" letterSpacing="8" fill="#CCCCCC">WEST COAST</text>
+              <text x="-2" y="128" fontFamily="'Arial Black', Arial, sans-serif" fontSize="52" fontWeight="900" letterSpacing="2" fill="#FFFFFF">WIRE <tspan fill="#C9A227">PRO</tspan></text>
+              <rect x="0" y="138" width="358" height="2" fill="url(#nline)" rx="1"/>
+              <text x="0" y="163" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="400" letterSpacing="10" fill="#C9A227">TRAINING</text>
+            </g>
+          </svg>
         </div>
-        <div style={s.navRight}>
+
+        {/* DESKTOP LINKS */}
+        <div style={s.navRight} className="wcwp-nav-desktop">
           <NavLink href="#how-it-works">How It Works</NavLink>
           <NavLink href="#modules">Modules</NavLink>
           <NavLink href="#pricing">Pricing</NavLink>
-          <button style={{background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'}}
-            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}
-            onClick={() => onNavigate && onNavigate('exam-info')}>Exam Guide</button>
-          <button style={{background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'}}
-            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}
-            onClick={() => onNavigate && onNavigate('testimonials')}>Reviews</button>
-          <button style={{background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'}}
-            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}
-            onClick={() => onNavigate && onNavigate('faq')}>FAQ</button>
-          <button style={{background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'}}
-            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}
-            onClick={() => onNavigate && onNavigate('demo')}>Try Demo</button>
+          <button style={s.navBtn} onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'} onClick={() => onNavigate && onNavigate('exam-info')}>Exam Guide</button>
+          <button style={s.navBtn} onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'} onClick={() => onNavigate && onNavigate('testimonials')}>Reviews</button>
+          <button style={s.navBtn} onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'} onClick={() => onNavigate && onNavigate('faq')}>FAQ</button>
           <button style={s.navCta} onClick={onLaunchApp}>Try Free ⚡</button>
         </div>
+
+        {/* MOBILE RIGHT: CTA + HAMBURGER */}
+        <div style={s.mobileNavRight} className="wcwp-hamburger">
+          <button style={{...s.navCta, fontSize:'12px', padding:'7px 14px'}} className="wcwp-mobile-cta" onClick={onLaunchApp}>Try Free ⚡</button>
+          <button style={s.hamburger} onClick={e => { e.stopPropagation(); setMenuOpen(o => !o) }} aria-label="Menu">
+            <span style={{...s.bar, ...(menuOpen ? {transform:'rotate(45deg) translate(5px,5px)'} : {})}} />
+            <span style={{...s.bar, ...(menuOpen ? {opacity:0} : {})}} />
+            <span style={{...s.bar, ...(menuOpen ? {transform:'rotate(-45deg) translate(5px,-5px)'} : {})}} />
+          </button>
+        </div>
       </nav>
+
+      {/* MOBILE MENU DRAWER */}
+      {menuOpen && (
+        <div style={s.mobileMenu} onClick={e => e.stopPropagation()}>
+          {/* Study App Tools */}
+          <div style={s.menuSection}>
+            <div style={s.menuSectionTitle}>⚡ Study App</div>
+            {[['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([label, page]) => (
+              <button key={page} style={s.menuItem} className="wcwp-menu-item" onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <div style={s.menuDivider} />
+          {/* Exam Resources */}
+          <div style={s.menuSection}>
+            <div style={s.menuSectionTitle}>📋 Exam Resources</div>
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([label, page]) => (
+              <button key={page} style={s.menuItem} className="wcwp-menu-item" onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <div style={s.menuDivider} />
+          {/* Company */}
+          <div style={s.menuSection}>
+            <div style={s.menuSectionTitle}>🔧 Company</div>
+            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([label, page]) => (
+              <button key={page} style={s.menuItem} className="wcwp-menu-item" onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <div style={s.menuDivider} />
+          {/* CTA */}
+          <div style={{padding:'16px 20px'}}>
+            <button style={{...s.navCta, width:'100%', padding:'14px', fontSize:'15px', borderRadius:'6px'}} onClick={() => { onLaunchApp(); setMenuOpen(false) }}>
+              ⚡ Start Studying Free
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* HERO */}
       <header style={s.hero}>
@@ -200,15 +299,16 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           />
           <PlanCard
             name="Pro"
-            price="$49.99"
+            price="$59.99"
             priceSub="One-time · Instant access"
             features={[
               {text:'Everything in Standard', locked:false},
               {text:'Progress saved across sessions', locked:false},
               {text:'Missed question review deck', locked:false},
               {text:'Full exam simulation mode (100Q, timed)', locked:false},
+              {text:'Table Mastery drills — 10 NEC tables, 113 flashcards', locked:false},
               {text:'Weak module targeting', locked:false},
-              {text:'Print-ready study sheets', locked:false},
+              {text:'Study Planner', locked:false},
               {text:'Email support', locked:false},
               {text:'Future question updates included', locked:false},
             ]}
@@ -318,7 +418,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           <div style={s.modal} onClick={e => e.stopPropagation()}>
             <button style={s.modalClose} onClick={() => setModalOpen(false)}>✕</button>
             <div style={s.modalTitle}>
-              {modalTier === 'standard' ? 'Standard Access — $29.99' : 'Pro Access — $49.99'}
+              {modalTier === 'standard' ? 'Standard Access — $29.99' : 'Pro Access — $59.99'}
             </div>
             <div style={s.modalSub}>
               One-time payment — no subscription, no expiration date.
@@ -328,7 +428,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
                 <ModalOption
                   name="Pro — Full Suite"
                   desc="Everything in Standard + saved progress + exam sim mode"
-                  price="$49.99"
+                  price="$59.99"
                   onClick={() => handlePurchase('pro')}
                 />
               )}
@@ -445,33 +545,42 @@ const MODULES_DATA = [
 
 const styles = {
   root: {fontFamily:"'Segoe UI', Arial, sans-serif", background:'#0a1016', color:'#d8e0e8', overflowX:'hidden'},
-  nav: {position:'fixed', top:0, left:0, right:0, zIndex:100, padding:'14px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.7)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.1)', transition:'all 0.3s'},
+  nav: {position:'fixed', top:0, left:0, right:0, zIndex:200, padding:'10px clamp(16px,4vw,40px)', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.7)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.1)', transition:'all 0.3s'},
   navScrolled: {background:'rgba(10,16,22,0.97)', borderBottomColor:'rgba(200,168,75,0.25)'},
-  navLogo: {display:'flex', alignItems:'center', gap:'8px', textDecoration:'none'},
+  navLogo: {display:'flex', alignItems:'center', cursor:'pointer'},
   bolt: {fontSize:'22px'},
   wordmark: {fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'20px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase'},
   wordmarkThin: {color:'#d8e0e8', fontWeight:'400'},
-  navRight: {display:'flex', alignItems:'center', gap:'28px'},
+  navRight: {display:'flex', alignItems:'center', gap:'28px', '@media(maxWidth:768px)':{display:'none'}},
+  navBtn: {background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'},
   navCta: {background:'#c8a84b', color:'#0a1016', fontWeight:'800', fontSize:'13px', padding:'8px 18px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px', fontFamily:"'Arial Black', Arial, sans-serif"},
-  hero: {minHeight:'100vh', display:'flex', flexDirection:'column', justifyContent:'center', padding:'120px 40px 80px', position:'relative', overflow:'hidden', background:'#0a1016'},
+  mobileNavRight: {display:'flex', alignItems:'center', gap:'12px'},
+  hamburger: {display:'none', flexDirection:'column', gap:'5px', background:'none', border:'none', cursor:'pointer', padding:'4px', '@media(maxWidth:768px)':{display:'flex'}},
+  bar: {display:'block', width:'22px', height:'2px', background:'#c8a84b', borderRadius:'2px', transition:'all 0.25s ease'},
+  mobileMenu: {position:'fixed', top:'58px', left:0, right:0, zIndex:199, background:'#0d1520', borderBottom:'2px solid #c8a84b', boxShadow:'0 8px 32px rgba(0,0,0,0.7)', maxHeight:'calc(100vh - 58px)', overflowY:'auto'},
+  menuSection: {padding:'12px 20px 4px'},
+  menuSectionTitle: {fontFamily:"'Courier New', monospace", fontSize:'10px', color:'#c8a84b', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'8px', paddingLeft:'4px'},
+  menuItem: {display:'block', width:'100%', background:'none', border:'none', textAlign:'left', padding:'10px 4px', color:'#aabbcc', fontSize:'14px', cursor:'pointer', borderBottom:'1px solid rgba(255,255,255,0.04)', fontFamily:"'Segoe UI', Arial, sans-serif"},
+  menuDivider: {height:'1px', background:'rgba(200,168,75,0.15)', margin:'4px 20px'},
+  hero: {minHeight:'100vh', display:'flex', flexDirection:'column', justifyContent:'center', padding:'120px clamp(20px,5vw,40px) 80px', position:'relative', overflow:'hidden', background:'#0a1016'},
   heroGlow: {position:'absolute', top:'20%', left:'50%', transform:'translateX(-50%)', width:'700px', height:'700px', background:'radial-gradient(circle, rgba(200,168,75,0.07) 0%, transparent 70%)', pointerEvents:'none'},
   heroGrid: {position:'absolute', inset:0, opacity:0.05, backgroundImage:'linear-gradient(rgba(200,168,75,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,1) 1px, transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none'},
   heroContent: {maxWidth:'880px', position:'relative', zIndex:1},
   heroBadge: {display:'inline-flex', alignItems:'center', gap:'8px', background:'rgba(200,168,75,0.1)', border:'1px solid rgba(200,168,75,0.35)', color:'#c8a84b', fontFamily:"'Courier New', monospace", fontSize:'12px', padding:'6px 14px', borderRadius:'2px', marginBottom:'28px', letterSpacing:'0.5px'},
   badgeDot: {width:'6px', height:'6px', background:'#27ae60', borderRadius:'50%', boxShadow:'0 0 6px #27ae60'},
   h1: {fontFamily:"'Arial Black', Arial, sans-serif", lineHeight:'0.9', textTransform:'uppercase', letterSpacing:'-1px', marginBottom:'8px'},
-  h1Line1: {fontSize:'clamp(52px, 9vw, 108px)', fontWeight:'900', color:'#d8e0e8'},
-  h1Line2: {fontSize:'clamp(52px, 9vw, 108px)', fontWeight:'900', color:'#c8a84b'},
-  h1Line3: {fontSize:'clamp(52px, 9vw, 108px)', fontWeight:'900', color:'transparent', WebkitTextStroke:'1px rgba(200,168,75,0.35)'},
+  h1Line1: {fontSize:'clamp(38px, 9vw, 108px)', fontWeight:'900', color:'#d8e0e8'},
+  h1Line2: {fontSize:'clamp(38px, 9vw, 108px)', fontWeight:'900', color:'#c8a84b'},
+  h1Line3: {fontSize:'clamp(38px, 9vw, 108px)', fontWeight:'900', color:'transparent', WebkitTextStroke:'1px rgba(200,168,75,0.35)'},
   heroSub: {fontSize:'clamp(15px, 1.8vw, 19px)', color:'#7a8a9a', maxWidth:'540px', lineHeight:'1.7', margin:'28px 0 36px', fontWeight:'300'},
   heroCtas: {display:'flex', gap:'16px', alignItems:'center', flexWrap:'wrap'},
   btnPrimary: {display:'inline-flex', alignItems:'center', gap:'8px', background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'17px', fontWeight:'900', letterSpacing:'0.5px', textTransform:'uppercase', padding:'15px 32px', borderRadius:'4px', border:'none', cursor:'pointer', boxShadow:'0 0 30px rgba(200,168,75,0.2)'},
   btnGhost: {color:'#7a8a9a', fontSize:'14px', textDecoration:'none', padding:'15px 0'},
-  heroStats: {display:'flex', gap:'44px', marginTop:'60px', paddingTop:'36px', borderTop:'1px solid rgba(200,168,75,0.12)', flexWrap:'wrap'},
+  heroStats: {display:'flex', gap:'clamp(20px,6vw,44px)', marginTop:'60px', paddingTop:'36px', borderTop:'1px solid rgba(200,168,75,0.12)', flexWrap:'wrap'},
   statNum: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'40px', fontWeight:'900', color:'#c8a84b', lineHeight:'1'},
   statLabel: {fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'4px'},
-  sectionDark: {padding:'80px 40px', background:'#0a1016'},
-  sectionDark2: {padding:'80px 40px', background:'#111820', borderTop:'1px solid rgba(200,168,75,0.08)', borderBottom:'1px solid rgba(200,168,75,0.08)'},
+  sectionDark: {padding:'80px clamp(20px,5vw,40px)', background:'#0a1016'},
+  sectionDark2: {padding:'80px clamp(20px,5vw,40px)', background:'#111820', borderTop:'1px solid rgba(200,168,75,0.08)', borderBottom:'1px solid rgba(200,168,75,0.08)'},
   steps: {display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(220px,1fr))', gap:'1px', marginTop:'50px', background:'rgba(200,168,75,0.08)'},
   step: {background:'#111820', padding:'36px 28px', transition:'background 0.2s'},
   stepNum: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'64px', fontWeight:'900', color:'rgba(200,168,75,0.08)', lineHeight:'1', marginBottom:'12px'},
@@ -494,15 +603,15 @@ const styles = {
   tQuote: {fontSize:'14px', lineHeight:'1.7', color:'#d8e0e8', marginBottom:'16px', fontStyle:'italic'},
   tName: {fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'1px'},
   tRole: {fontSize:'11px', color:'#7a8a9a', marginTop:'3px'},
-  faqGrid: {display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(380px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', marginTop:'50px'},
+  faqGrid: {display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', marginTop:'50px'},
   faqItem: {background:'#111820', padding:'28px'},
   faqQ: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'17px', fontWeight:'900', textTransform:'uppercase', color:'#c8a84b', marginBottom:'10px'},
   faqA: {fontSize:'13px', color:'#7a8a9a', lineHeight:'1.7'},
-  ctaBanner: {background:'linear-gradient(135deg,#111820,#1a2535)', borderTop:'2px solid #c8a84b', padding:'80px 40px', textAlign:'center', position:'relative', overflow:'hidden'},
+  ctaBanner: {background:'linear-gradient(135deg,#111820,#1a2535)', borderTop:'2px solid #c8a84b', padding:'80px clamp(20px,5vw,40px)', textAlign:'center', position:'relative', overflow:'hidden'},
   ctaBannerEmoji: {position:'absolute', fontSize:'260px', opacity:'0.03', top:'50%', left:'50%', transform:'translate(-50%,-50%)', pointerEvents:'none'},
   ctaH2: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'clamp(32px, 6vw, 68px)', fontWeight:'900', textTransform:'uppercase', lineHeight:'1', marginBottom:'16px'},
   ctaP: {fontSize:'17px', color:'#7a8a9a', maxWidth:'480px', margin:'0 auto 32px', lineHeight:'1.6'},
-  footer: {background:'#0a1016', borderTop:'1px solid rgba(200,168,75,0.1)', padding:'32px 40px', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'},
+  footer: {background:'#0a1016', borderTop:'1px solid rgba(200,168,75,0.1)', padding:'32px clamp(20px,5vw,40px)', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'},
   footerLogo: {fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'16px', color:'#c8a84b'},
   footerLinks: {display:'flex', gap:'20px', alignItems:'center'},
   footerLink: {fontSize:'12px', color:'#7a8a9a', textDecoration:'none'},

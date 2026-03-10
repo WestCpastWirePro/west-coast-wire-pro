@@ -70,7 +70,7 @@ const FAQS = [
       },
       {
         q: "Do I need to memorize the NEC?",
-        a: "Yes — the California General Electrician exam is open book. You can bring your NEC codebook. However, time is limited and you cannot look up every answer. You need to know the code well enough to find things fast. Focus on knowing the most-tested tables cold: 310.16, 250.66, 430.52, and conduit fill. Know the calculation formulas without having to search for them."
+        a: "Yes — the California General Electrician exam is open book. PSI provides an unmarked NEC codebook at the testing center. You cannot bring your own and no personal tabs or notes are permitted. Time is still the real challenge — you cannot look up every answer. Know the most-tested tables cold: 310.16, 250.66, 430.52, and conduit fill, and know the calculation formulas without having to search."
       },
       {
         q: "What modules are most heavily tested?",
@@ -103,15 +103,15 @@ const FAQS = [
       },
       {
         q: "What's the difference between Standard and Pro access?",
-        a: "Standard ($29.99) unlocks all 500 questions across all 12 modules, the full Exam Simulator, Missed Questions Deck, Diagnostic Quiz, NEC Reference, and Calculations tool. Pro ($49.99) adds the Study Planner and any future modules or content updates at no additional charge."
+        a: "Standard ($29.99) unlocks all 500 questions across all 12 modules, the full Exam Simulator, Missed Questions Deck, Diagnostic Quiz, NEC Reference, and Calculations tool. Pro ($59.99) adds the Table Mastery flashcard drills (10 NEC tables, 113 cards), the Study Planner, and any future modules or content updates at no additional charge."
       },
       {
         q: "I bought access but the app is locked. What do I do?",
-        a: "After purchase, you should be redirected to a success page that unlocks the app automatically. If that didn't happen, use the 'Enter Access Code' link on the paywall screen and enter your access code from your confirmation email. Still stuck? Email wirereadypro@gmail.com."
+        a: "After purchase, you should be redirected to a success page that unlocks the app automatically. If that didn't happen, use the 'Enter Access Code' link on the paywall screen and enter your access code from your confirmation email. Still stuck? use our contact form."
       },
       {
         q: "Is there a refund policy?",
-        a: "Yes. We offer a 7-day refund if you haven't completed more than 50 questions. Email wirereadypro@gmail.com with your order details. See our full Refund Policy for terms."
+        a: "Yes. We offer a 7-day refund if you haven't completed more than 50 questions. contact us via our support form with your order details. See our full Refund Policy for terms."
       },
     ]
   },
@@ -186,9 +186,9 @@ export default function FAQPage({ onHome }) {
         <div style={{...s.card, borderColor:"rgba(200,168,75,0.3)", margin:"12px 16px 0", textAlign:"center"}}>
           <div style={{fontSize:"14px", color:"#e8eaf0", fontWeight:"700", marginBottom:"6px"}}>Still have questions?</div>
           <div style={{fontSize:"13px", color:"#8899aa", marginBottom:"12px"}}>We typically respond within 24 hours.</div>
-          <a href="mailto:wirereadypro@gmail.com"
+          <a href="#" onClick={e => { e.preventDefault(); onHome && onHome('contact') }}
             style={{...s.btn, ...s.btnGold, textDecoration:"none", display:"inline-block", fontSize:"13px", padding:"10px 20px"}}>
-            Email wirereadypro@gmail.com
+            Use our contact form
           </a>
         </div>
       </div>

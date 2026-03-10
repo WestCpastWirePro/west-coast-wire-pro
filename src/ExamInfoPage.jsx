@@ -1,7 +1,8 @@
+import React from 'react'
 export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
   return (
     <div style={s.root}>
-      <ExamNav onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
+      <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       {/* HERO */}
       <header style={s.hero}>
@@ -32,7 +33,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
       <div style={s.quickFacts}>
         {[
           ['100', 'Questions'],
-          ['3.5 hrs', 'Time Limit'],
+          ['4.5 hrs', 'Time Limit'],
           ['70%', 'Passing Score'],
           ['$175', 'Exam Fee (approx)'],
           ['PSI', 'Testing Provider'],
@@ -117,8 +118,9 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
               </P>
               <P>
                 The exam is computer-based at PSI testing centers. You will be seated at a
-                testing station and work through questions on screen. No reference materials
-                are permitted.
+                testing station and work through questions on screen. The exam is open book —
+                PSI provides an unmarked NEC codebook at the testing center. You cannot bring
+                your own. No personal notes, annotations, or tabs are permitted.
               </P>
               <P>
                 A passing score is <strong style={s.strong}>70% or higher</strong> (77 correct out of 110 questions).
@@ -127,7 +129,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
                 of another examination fee.
               </P>
               <CallOut>
-                The 3.5-hour time limit works out to about 2 minutes per question. Most
+                The 4.5-hour time limit works out to about 2.5 minutes per question. Most
                 test-takers report the time is sufficient if you've prepared well — the real
                 challenge is knowledge, not speed.
               </CallOut>
@@ -292,7 +294,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
               ['Passing', '70% (77/110)'],
               ['Format', 'Computer-based'],
               ['Location', 'PSI Testing Centers'],
-              ['Reference', 'Not permitted'],
+              ['Reference', 'Open book — NEC permitted'],
               ['Calculator', 'Provided on-screen'],
               ['Code', '2020 NEC + CA amendments'],
             ].map(([k, v]) => (
@@ -360,18 +362,91 @@ function CallOut({ children }) {
   )
 }
 
-function ExamNav({ onHome, onLaunchApp }) {
+function SiteNav({ onHome, onLaunchApp, onNavigate }) {
+  const [menuOpen, setMenuOpen] = React.useState(false)
+  React.useEffect(() => {
+    if (!menuOpen) return
+    const close = () => setMenuOpen(false)
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [menuOpen])
+  const nav = (label, page) => (
+    <button key={page} style={{display:'block',width:'100%',background:'none',border:'none',textAlign:'left',padding:'10px 4px',color:'#aabbcc',fontSize:'14px',cursor:'pointer',borderBottom:'1px solid rgba(255,255,255,0.04)',fontFamily:"'Segoe UI',Arial,sans-serif"}}
+      onMouseEnter={e=>e.currentTarget.style.color='#c8a84b'} onMouseLeave={e=>e.currentTarget.style.color='#aabbcc'}
+      onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>{label}</button>
+  )
   return (
-    <nav style={{position:'sticky', top:0, zIndex:100, padding:'12px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
-      <button onClick={onHome} style={{display:'flex', alignItems:'center', gap:'8px', background:'none', border:'none', cursor:'pointer', padding:0}}>
-        <span style={{fontSize:'20px'}}>⚡</span>
-        <span style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'18px', color:'#c8a84b', textTransform:'uppercase', letterSpacing:'1px'}}>
-          West Coast <span style={{color:'#d8e0e8', fontWeight:'400'}}>Wire Pro</span>
-        </span>
-      </button>
-      <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'13px', padding:'8px 18px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px'}}
-        onClick={onLaunchApp}>Try Free ⚡</button>
-    </nav>
+    <>
+      <style>{`
+        @media (max-width: 768px) { .wcwp-snav-hamburger { display: flex !important; } }
+        .wcwp-snav-hamburger { display: none; align-items: center; gap: 10px; }
+        .wcwp-snav-bar { display:block; width:22px; height:2px; background:#c8a84b; border-radius:2px; transition:all 0.25s; }
+        .wcwp-snav-menu-item:hover { color: #c8a84b !important; background: rgba(200,168,75,0.06) !important; }
+      `}</style>
+      <nav style={{position:'sticky',top:0,zIndex:200,padding:'10px clamp(16px,4vw,40px)',display:'flex',alignItems:'center',justifyContent:'space-between',background:'rgba(10,16,22,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
+        <button onClick={onHome} style={{display:'flex',alignItems:'center',background:'none',border:'none',cursor:'pointer',padding:0}}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'34px',width:'auto'}}>
+            <defs>
+              <linearGradient id="snbolt" x1="0%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" style={{stopColor:'#FFD84D'}}/>
+                <stop offset="60%" style={{stopColor:'#C9A227'}}/>
+                <stop offset="100%" style={{stopColor:'#9B7A1A'}}/>
+              </linearGradient>
+              <linearGradient id="snline" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style={{stopColor:'#C9A227',stopOpacity:0}}/>
+                <stop offset="20%" style={{stopColor:'#C9A227'}}/>
+                <stop offset="80%" style={{stopColor:'#C9A227'}}/>
+                <stop offset="100%" style={{stopColor:'#C9A227',stopOpacity:0}}/>
+              </linearGradient>
+            </defs>
+            <rect x="32" y="38" width="3" height="124" fill="#C9A227" opacity="0.9" rx="1.5"/>
+            <g transform="translate(52,52)">
+              <polygon points="28,0 14,42 26,42 18,96 50,38 36,38 52,0" fill="#C9A227" opacity="0.15"/>
+              <polygon points="26,2 12,44 24,44 16,94 48,36 34,36 50,2" fill="url(#snbolt)"/>
+              <polygon points="26,2 20,22 30,22 26,2" fill="#FFE88A" opacity="0.6"/>
+            </g>
+            <line x1="118" y1="80" x2="135" y2="80" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
+            <line x1="118" y1="120" x2="135" y2="120" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
+            <g transform="translate(148,0)">
+              <text x="0" y="82" fontFamily="'Arial Black',Arial,sans-serif" fontSize="18" fontWeight="900" letterSpacing="8" fill="#CCCCCC">WEST COAST</text>
+              <text x="-2" y="128" fontFamily="'Arial Black',Arial,sans-serif" fontSize="52" fontWeight="900" letterSpacing="2" fill="#FFFFFF">WIRE <tspan fill="#C9A227">PRO</tspan></text>
+              <rect x="0" y="138" width="358" height="2" fill="url(#snline)" rx="1"/>
+              <text x="0" y="163" fontFamily="Arial,sans-serif" fontSize="13" fontWeight="400" letterSpacing="10" fill="#C9A227">TRAINING</text>
+            </g>
+          </svg>
+        </button>
+        <div className="wcwp-snav-hamburger" onClick={e=>e.stopPropagation()}>
+          <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'12px',padding:'7px 14px',borderRadius:'4px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px'}} onClick={onLaunchApp}>Try Free ⚡</button>
+          <button style={{background:'none',border:'none',cursor:'pointer',padding:'4px',display:'flex',flexDirection:'column',gap:'5px'}} onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o)}} aria-label="Menu">
+            <span className="wcwp-snav-bar" style={menuOpen?{transform:'rotate(45deg) translate(5px,5px)'}:{}}/>
+            <span className="wcwp-snav-bar" style={menuOpen?{opacity:0}:{}}/>
+            <span className="wcwp-snav-bar" style={menuOpen?{transform:'rotate(-45deg) translate(5px,-5px)'}:{}}/>
+          </button>
+        </div>
+        <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'13px',padding:'8px 18px',borderRadius:'4px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px'}} onClick={onLaunchApp}>Try Free ⚡</button>
+      </nav>
+      {menuOpen && (
+        <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+          <div style={{padding:'12px 20px 4px'}}>
+            <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
+            {[['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+          </div>
+          <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
+          <div style={{padding:'12px 20px 4px'}}>
+            <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+          </div>
+          <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
+          <div style={{padding:'12px 20px 4px'}}>
+            <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>🔧 Company</div>
+            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
+          </div>
+          <div style={{padding:'16px 20px'}}>
+            <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px',width:'100%'}} onClick={()=>{onLaunchApp();setMenuOpen(false)}}>⚡ Start Studying Free</button>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -413,8 +488,8 @@ const s = {
   factVal: { fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'26px', fontWeight:'900', color:'#c8a84b', lineHeight:1 },
   factLabel: { fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'6px', fontFamily:"'Courier New', monospace" },
 
-  layout: { display:'flex', gap:'48px', padding:'52px 40px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start' },
-  main: { flex:'1', minWidth:0 },
+  layout: { display:'flex', gap:'48px', padding:'52px 40px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start', flexWrap:'wrap' },
+  main: { flex:'1', minWidth:'280px' },
   sidebar: { width:'260px', flexShrink:0, position:'sticky', top:'80px', display:'flex', flexDirection:'column', gap:'16px' },
 
   toc: { background:'#111820', border:'1px solid rgba(200,168,75,0.12)', borderRadius:'6px', padding:'20px', marginBottom:'40px', display:'flex', flexDirection:'column', gap:'4px' },
