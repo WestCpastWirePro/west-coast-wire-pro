@@ -434,34 +434,14 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
   const [scores, setScores]   = useState({});  // tableId → last pct
 
   const isPro = access === "pro";
+  const isFree = !access || access === "free";
+
+  // Free users can try the two most essential tables as a preview
+  const FREE_TABLES = ["t310", "t_fill_pct"];
+  const canAccess = (id) => isPro || access === "standard" ? true : FREE_TABLES.includes(id);
 
   function handleComplete(tableId, pct) {
     setScores(prev => ({ ...prev, [tableId]: pct }));
-  }
-
-  if (!isPro) {
-    return (
-      <div style={s.app}>
-        <div style={s.header}>
-          <span style={{ fontSize:"24px" }}>🎯</span>
-          <div style={{ flex:1 }}>
-            <div style={s.logo}>Table Mastery</div>
-            <div style={{ fontSize:"11px", color:"#8899aa" }}>Pro Feature</div>
-          </div>
-          <button style={{ ...s.btn, ...s.btnGray, padding:"6px 14px", fontSize:"12px" }} onClick={onHome}>Menu</button>
-        </div>
-        <div style={{ ...s.card, textAlign:"center", padding:"48px 24px" }}>
-          <div style={{ fontSize:"40px", marginBottom:"12px" }}>🔒</div>
-          <div style={{ fontFamily:"'Arial Black',Arial,sans-serif", fontSize:"20px", fontWeight:"900", color:"#c8a84b", marginBottom:"8px" }}>Pro Feature</div>
-          <div style={{ fontSize:"14px", color:"#7a8a9a", lineHeight:"1.6", maxWidth:"280px", margin:"0 auto 20px" }}>
-            Table Mastery is available with the Pro plan — 10 NEC table drills covering every table that appears on the exam.
-          </div>
-          <button style={{ ...s.btn, ...s.btnGold, fontSize:"15px", padding:"12px 28px" }} onClick={onHome}>
-            View Plans →
-          </button>
-        </div>
-      </div>
-    );
   }
 
   if (active) {
@@ -476,7 +456,7 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
   }
 
   // Hub
-  const allScored  = Object.keys(scores).length;
+  const allScored   = Object.keys(scores).length;
   const allMastered = Object.values(scores).filter(p => p >= 90).length;
   const totalTables = Object.keys(CARD_DATA).length;
 
@@ -486,7 +466,9 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
         <span style={{ fontSize:"24px" }}>🎯</span>
         <div style={{ flex:1 }}>
           <div style={s.logo}>Table Mastery</div>
-          <div style={{ fontSize:"11px", color:"#8899aa" }}>10 NEC tables — flashcard drills</div>
+          <div style={{ fontSize:"11px", color:"#8899aa" }}>
+            {isPro ? "10 NEC tables — flashcard drills" : "2 free tables · 8 more with Pro"}
+          </div>
         </div>
         <button style={{ ...s.btn, ...s.btnGray, padding:"6px 14px", fontSize:"12px" }} onClick={onHome}>Menu</button>
       </div>
@@ -509,19 +491,22 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
       {/* Flat linear table list */}
       {TABLE_ORDER.map((id, idx) => {
         const d = CARD_DATA[id];
+        const locked = !canAccess(id);
         const lastPct = scores[id] ?? null;
         const mastered = lastPct != null && lastPct >= 90;
         const pctColor = lastPct == null ? "#5a6a7a" : lastPct >= 90 ? "#2ecc71" : lastPct >= 70 ? "#c8a84b" : "#e74c3c";
         return (
-          <div key={id} style={{ ...s.card, marginTop:"0", marginBottom:"8px", cursor:"pointer", padding:"14px 16px",
+          <div key={id} style={{ ...s.card, marginTop:"0", marginBottom:"8px",
+            cursor: locked ? "default" : "pointer", padding:"14px 16px",
+            opacity: locked ? 0.5 : 1,
             borderColor: mastered ? "rgba(39,174,96,0.3)" : "rgba(255,255,255,0.06)" }}
-            onClick={() => setActive(id)}>
+            onClick={() => !locked && setActive(id)}>
             <div style={{ display:"flex", alignItems:"center", gap:"12px" }}>
               {/* Step number */}
               <div style={{ width:"28px", height:"28px", borderRadius:"50%", background: mastered ? "rgba(39,174,96,0.15)" : "#0a1016",
                 border:`1px solid ${mastered?"#27ae60":"#2a3a54"}`, display:"flex", alignItems:"center", justifyContent:"center",
                 fontSize:"12px", fontWeight:"800", color: mastered?"#2ecc71":"#5a6a7a", flexShrink:0 }}>
-                {idx+1}
+                {locked ? "🔒" : idx+1}
               </div>
               {/* Icon */}
               <div style={{ fontSize:"22px", flexShrink:0 }}>{d.icon}</div>
@@ -530,9 +515,11 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
                 <div style={{ fontWeight:"800", fontSize:"14px", color:"#e8eaf0" }}>{d.title}</div>
                 <div style={{ fontSize:"12px", color:"#7a8a9a", marginTop:"2px" }}>{d.subtitle}</div>
               </div>
-              {/* Mastery % or start prompt */}
+              {/* Mastery % or start/locked prompt */}
               <div style={{ textAlign:"right", flexShrink:0 }}>
-                {lastPct != null ? (
+                {locked ? (
+                  <div style={{ fontSize:"11px", color:"#3a4a5a" }}>Pro →</div>
+                ) : lastPct != null ? (
                   <>
                     <div style={{ fontSize:"18px", fontWeight:"900", color:pctColor, fontFamily:"'Courier New',monospace" }}>
                       {lastPct}%
@@ -549,6 +536,19 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
           </div>
         );
       })}
+
+      {/* Upsell nudge for non-Pro */}
+      {!isPro && (
+        <div style={{ ...s.card, background:"linear-gradient(135deg,rgba(142,68,173,0.12),rgba(142,68,173,0.04))",
+          borderColor:"rgba(142,68,173,0.4)", textAlign:"center", padding:"20px" }}>
+          <div style={{ fontSize:"13px", color:"#a855f7", fontWeight:"700", marginBottom:"6px" }}>🏆 Unlock all 10 tables with Pro</div>
+          <div style={{ fontSize:"12px", color:"#7a8a9a", marginBottom:"12px" }}>8 more drills covering motor FLA, conduit sizing, load calculations &amp; more</div>
+          <button style={{ ...s.btn, background:"linear-gradient(135deg,#8e44ad,#a855f7)", color:"#fff", fontSize:"13px", padding:"8px 20px" }}
+            onClick={onHome}>
+            Upgrade to Pro — $30 →
+          </button>
+        </div>
+      )}
 
       <div style={{ height:"20px" }} />
     </div>

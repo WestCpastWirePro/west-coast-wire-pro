@@ -53,20 +53,22 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
           <h2 style={s.h2}>The Problem I Couldn't Ignore</h2>
           <p style={s.p}>
             The California General Electrician exam has one of the lowest pass rates of any
-            skilled trades license in the state. When I sat down to study for it, I went looking
-            for resources — and found the same two or three options everyone gets pointed to.
-            I tried them. They weren't bad. But they didn't work the way I needed them to work.
+            skilled trades license in the state. There are study resources out there — some of
+            them solid, well-established tools. But most are built around a particular kind of
+            studying: sit-down, scheduled, organized. A textbook. A printed practice set.
+            A dedicated block of time at a desk.
           </p>
           <p style={s.p}>
-            I was studying by printing out papers, timing myself on my iPhone, and working
-            through questions with a pen and a book. I needed to pick up questions on a 15-minute
-            break between jobs, see the exact NEC article number tied to every answer, and have
-            a timer running automatically — not one I had to manage on a separate device. I needed
-            something built for the way a working electrician actually studies: in short bursts,
-            on a phone, without a stack of papers.
+            That's not how most working electricians actually find time to study. I was picking
+            up 15 minutes between jobs. Studying on my phone during lunch in a truck. I needed
+            a built-in timer that started automatically, not one I had to manage on a separate
+            device. I needed to see the exact NEC article behind every answer right there on the
+            screen — not look it up in a book afterward. I needed to drill the NEC tables that
+            show up on the exam until they were second nature, with a tool that tracked where
+            I was weak. I needed a calculator that handled the trade math without switching apps.
           </p>
           <p style={s.p}>
-            Nothing like that existed. So I built it.
+            I needed something that worked the way my actual life worked. So I built it.
           </p>
 
           <h2 style={s.h2}>14 Years in the Field</h2>
@@ -134,23 +136,26 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
 
           <h2 style={s.h2}>What West Coast Wire Pro Is</h2>
           <p style={s.p}>
-            It's the study tool I wish I'd had when I was sitting at my kitchen table with printed
-            papers and an iPhone timer. It's what I recommend to every student I teach who is
-            preparing for the journeyman exam. It's built for the 15-minute break, the commute,
-            the lunch hour — for the way real electricians actually find time to study.
+            It's the study tool I wish I'd had when I was coming up in this trade. It lives on
+            your phone. It runs in the time you actually have — a break between pulls, a commute,
+            ten minutes before a job starts. No setup, no papers, no separate timer.
           </p>
           <p style={s.p}>
-            I built it for the person who doesn't have anyone in their corner telling them exactly
-            what to study. The person who is figuring it out on their own, the way I had to.
-            Nobody should have to drive seven hours to Oakland just to find out how to get started in this industry.
+            Every question is tied to the exact NEC or California code section. The NEC tables
+            that show up on the exam have their own dedicated flashcard module so you can drill
+            them until they're automatic. The calculations tool handles the trade math the exam
+            tests. Timed mode is built in. Your missed questions build their own review deck
+            automatically. You can see by module exactly where you're strong and where you need
+            more reps.
           </p>
           <p style={s.p}>
-            512 questions. 12 modules. Every answer tied to the exact NEC or California code
-            section. Timed mode built in. Module 1 always free.
+            It's what I recommend to every student I teach who is preparing for the journeyman
+            exam. It's built for the person who is figuring it out on their own — with or without
+            a mentor, with or without connections — and needs a tool that fits into a working
+            electrician's life, not the other way around.
           </p>
           <p style={s.p}>
-            If you're an apprentice in California working toward your journeyman license —
-            with or without a mentor, with or without connections — this was built for you.
+            512 questions. 12 modules. Module 1 always free.
           </p>
 
           {/* CTA */}

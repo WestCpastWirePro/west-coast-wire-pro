@@ -62,13 +62,12 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <h1 style={s.h1}>
             <div style={s.h1Line1}>Pass The</div>
-            <div style={s.h1Line2}>Journeyman</div>
+            <div style={s.h1Line2}>Journeyman Exam</div>
             <div style={s.h1Line3}>First Try.</div>
           </h1>
           <p style={s.heroSub}>
             <strong style={{color:'#d8e0e8'}}>512 exam-style practice questions</strong> covering every module
-            of the California General Electrician certification exam. Written by working electricians.
-            Referenced to the exact NEC section.
+            of the California General Electrician exam. Every answer referenced to the exact NEC article.
           </p>
           <div style={s.heroCtas}>
             <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Module 1</button>
