@@ -140,7 +140,7 @@ function ScrollButtons() {
 export default function App() {
   const [view, setView] = useState('loading')
 
-  useEffect(() => {
+  const resolveView = () => {
     const params = new URLSearchParams(window.location.search)
     const path   = window.location.pathname
 
@@ -151,6 +151,12 @@ export default function App() {
     if (path !== '/' && path !== '') { setView('404'); return }
     setPageMeta('landing')
     setView('landing')
+  }
+
+  useEffect(() => {
+    resolveView()
+    window.addEventListener('popstate', resolveView)
+    return () => window.removeEventListener('popstate', resolveView)
   }, [])
 
   const navigate = (to) => {
