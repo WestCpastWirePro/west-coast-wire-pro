@@ -513,7 +513,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
 function NavLink({ href, children }) {
   return (
-    <a href={href} style={{color:'#7a8a9a', textDecoration:'none', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s'}}
+    <a href={href} style={{color:'#7a8a9a', textDecoration:'none', fontSize:'13px', fontWeight:'600', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s', fontFamily:"'Segoe UI', Arial, sans-serif"}}
       onMouseEnter={e => e.target.style.color='#c8a84b'}
       onMouseLeave={e => e.target.style.color='#7a8a9a'}>
       {children}
@@ -534,7 +534,7 @@ function NavDropdown({ label, items, onNavigate }) {
   return (
     <div ref={ref} style={{position:'relative', display:'inline-block'}}>
       <button
-        style={{color: open ? '#c8a84b' : '#7a8a9a', background:'none', border:'none', cursor:'pointer', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s', display:'flex', alignItems:'center', gap:'4px', padding:'4px 0'}}
+        style={{color: open ? '#c8a84b' : '#7a8a9a', background:'none', border:'none', cursor:'pointer', fontSize:'13px', fontWeight:'600', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s', display:'flex', alignItems:'center', gap:'4px', padding:'4px 0', fontFamily:"'Segoe UI', Arial, sans-serif"}}
         onMouseEnter={e => e.currentTarget.style.color='#c8a84b'}
         onMouseLeave={e => { if (!open) e.currentTarget.style.color='#7a8a9a' }}
         onClick={() => setOpen(o => !o)}
