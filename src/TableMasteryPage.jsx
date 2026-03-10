@@ -281,22 +281,32 @@ function Stars({ n, size=16 }) {
 // FLASHCARD DRILL ENGINE
 // ═══════════════════════════════════════════════════════════════════════════════
 function Drill({ tableId, data, onBack, onComplete }) {
-  const deck = shuffle(data.cards);
+  const [deck]                 = useState(() => shuffle(data.cards));
   const [idx, setIdx]         = useState(0);
   const [revealed, setRevealed] = useState(false);
-  const [got, setGot]         = useState(0);   // correct count
+  const [gradeReady, setGradeReady] = useState(false); // prevents tap bleed-through
+  const [got, setGot]         = useState(0);
   const [total, setTotal]     = useState(0);
   const [done, setDone]       = useState(false);
 
   const card = deck[idx];
   const progress = idx / deck.length;
 
+  function reveal() {
+    setRevealed(true);
+    setGradeReady(false);
+    // Short delay before grade buttons become tappable — prevents finger-up from auto-grading
+    setTimeout(() => setGradeReady(true), 400);
+  }
+
   function grade(correct) {
+    if (!gradeReady) return; // safety guard
     const newTotal = total + 1;
     const newGot   = got + (correct ? 1 : 0);
     setTotal(newTotal);
     setGot(newGot);
     setRevealed(false);
+    setGradeReady(false);
     if (idx + 1 >= deck.length) {
       setDone(true);
       onComplete(tableId, Math.round(newGot / newTotal * 100));
@@ -330,7 +340,7 @@ function Drill({ tableId, data, onBack, onComplete }) {
              "Keep drilling — this table takes repetition."}
           </div>
           <button style={{ ...s.btn, ...s.btnGold, width:"100%", fontSize:"15px", padding:"13px", marginBottom:"8px" }}
-            onClick={() => { setIdx(0); setRevealed(false); setGot(0); setTotal(0); setDone(false); }}>
+            onClick={() => { setIdx(0); setRevealed(false); setGot(0); setTotal(0); setDone(false); deck.sort(() => Math.random() - 0.5); }}>
             Run Again
           </button>
           <button style={{ ...s.btn, ...s.btnGray, width:"100%" }} onClick={onBack}>
@@ -378,7 +388,7 @@ function Drill({ tableId, data, onBack, onComplete }) {
         {!revealed ? (
           <button
             style={{ ...s.btn, ...s.btnGold, width:"100%", fontSize:"15px", padding:"14px" }}
-            onClick={() => setRevealed(true)}>
+            onClick={reveal}>
             Reveal Answer
           </button>
         ) : (
@@ -394,15 +404,17 @@ function Drill({ tableId, data, onBack, onComplete }) {
             <div style={{ fontSize:"12px", color:"#7a8a9a", textAlign:"center", marginBottom:"18px", lineHeight:"1.5" }}>
               💡 {card.hint}
             </div>
-            {/* Grade buttons */}
+            {/* Grade buttons — disabled briefly to prevent tap bleed-through */}
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px" }}>
               <button
-                style={{ ...s.btn, background:"rgba(231,76,60,0.15)", border:"2px solid #e74c3c", color:"#e74c3c", fontSize:"15px", padding:"13px" }}
+                disabled={!gradeReady}
+                style={{ ...s.btn, background: gradeReady ? "rgba(231,76,60,0.15)" : "rgba(231,76,60,0.05)", border:`2px solid ${gradeReady?"#e74c3c":"rgba(231,76,60,0.2)"}`, color: gradeReady ? "#e74c3c" : "rgba(231,76,60,0.3)", fontSize:"15px", padding:"13px", transition:"all 0.3s", cursor: gradeReady ? "pointer" : "default" }}
                 onClick={() => grade(false)}>
                 ✗ Missed it
               </button>
               <button
-                style={{ ...s.btn, background:"rgba(39,174,96,0.15)", border:"2px solid #27ae60", color:"#2ecc71", fontSize:"15px", padding:"13px" }}
+                disabled={!gradeReady}
+                style={{ ...s.btn, background: gradeReady ? "rgba(39,174,96,0.15)" : "rgba(39,174,96,0.05)", border:`2px solid ${gradeReady?"#27ae60":"rgba(39,174,96,0.2)"}`, color: gradeReady ? "#2ecc71" : "rgba(39,174,96,0.3)", fontSize:"15px", padding:"13px", transition:"all 0.3s", cursor: gradeReady ? "pointer" : "default" }}
                 onClick={() => grade(true)}>
                 ✓ Got it
               </button>
@@ -483,10 +495,31 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
         </div>
       )}
 
-      {/* Intro blurb */}
-      <div style={{ padding:"12px 16px 4px", fontSize:"13px", color:"#7a8a9a", lineHeight:"1.6" }}>
-        PSI provides an unmarked codebook — no personal tabs or notes. These drills build the table knowledge that lets you navigate it fast. See the prompt, recall the answer, then reveal and self-grade.
+      {/* How it works */}
+      <div style={{ margin:"12px 16px 4px", background:"linear-gradient(135deg,rgba(200,168,75,0.06),rgba(200,168,75,0.02))", border:"1px solid rgba(200,168,75,0.15)", borderRadius:"10px", padding:"14px 16px" }}>
+        <div style={{ fontSize:"12px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px", letterSpacing:"0.5px" }}>📖 HOW THIS WORKS</div>
+        <div style={{ fontSize:"12px", color:"#8899aa", lineHeight:"1.7" }}>
+          The PSI exam gives you an <strong style={{color:"#d8e0e8"}}>unmarked codebook</strong> — no tabs, no highlights, no personal notes. These drills train you to recall critical table values from memory so you can navigate the book fast under exam pressure.
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:"8px", marginTop:"12px" }}>
+          {[
+            ["1. See the prompt","A wire size or condition — just like the exam question"],
+            ["2. Recall the value","Think before you tap. That effort is what makes it stick"],
+            ["3. Self-grade honestly","✓ Got it or ✗ Missed it — no one's watching, be accurate"],
+          ].map(([title, desc]) => (
+            <div key={title} style={{ background:"rgba(0,0,0,0.2)", borderRadius:"6px", padding:"10px 8px", textAlign:"center" }}>
+              <div style={{ fontSize:"11px", fontWeight:"700", color:"#c8a84b", marginBottom:"4px" }}>{title}</div>
+              <div style={{ fontSize:"11px", color:"#7a8a9a", lineHeight:"1.5" }}>{desc}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize:"11px", color:"#5a6a7a", marginTop:"10px", lineHeight:"1.6", borderTop:"1px solid rgba(255,255,255,0.05)", paddingTop:"8px" }}>
+          <strong style={{color:"#8899aa"}}>Why it works:</strong> This is active recall — the most effective study method proven by memory research. Re-reading feels productive but doesn't build retrieval speed. Forcing yourself to recall before seeing the answer does.
+        </div>
       </div>
+
+      {/* Table list label */}
+      <div style={{ padding:"8px 16px 4px", fontSize:"11px", color:"#5a6a7a", textTransform:"uppercase", letterSpacing:"1px", fontWeight:"700" }}>Select a table to drill</div>
 
       {/* Flat linear table list */}
       {TABLE_ORDER.map((id, idx) => {
