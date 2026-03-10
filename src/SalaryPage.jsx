@@ -214,7 +214,7 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
               <div style={s.ctaTitle}>Ready to Earn It?</div>
               <div style={s.ctaBody}>
                 512 NEC-referenced practice questions across all 12 exam modules.
-                Module 1 free — no account required.
+                Modules 1 & 2 + 2 Table Mastery drills free — no account required.
               </div>
               <div style={s.ctaBtns}>
                 <button style={s.btnGold} onClick={onLaunchApp}>Start Free Practice</button>
@@ -264,7 +264,7 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Start Studying</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, margin:'0 0 12px', fontFamily:"'Georgia', serif"}}>
-              512 practice questions. Module 1 free.
+              512 practice questions. Modules 1 & 2 + Table Mastery free.
             </p>
             <button style={s.btnGold} onClick={onLaunchApp}>Try Free ⚡</button>
           </div>

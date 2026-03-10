@@ -117,7 +117,7 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             <CredItem num="14" label="Years in the Trade" />
             <CredItem num="4" label="Years Teaching Electricians" />
             <CredItem num="100s" label="Students Per Semester" />
-            <CredItem num="512" label="Questions Written" />
+            <CredItem num="512" label="Practice Questions" />
           </div>
 
           <h2 style={s.h2}>Why I Built This for California Specifically</h2>
@@ -155,13 +155,13 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             electrician's life, not the other way around.
           </p>
           <p style={s.p}>
-            512 questions. 12 modules. Modules 1 & 2 always free.
+            512 questions. 12 modules. Modules 1 & 2 + 2 Table Mastery drills always free.
           </p>
 
           {/* CTA */}
           <div style={s.ctaBlock}>
             <div style={s.ctaTitle}>Ready to Start?</div>
-            <div style={s.ctaSub}>Modules 1 & 2 are free. No account, no credit card.</div>
+            <div style={s.ctaSub}>Modules 1 & 2 + 2 Table Mastery drills — free. No account, no credit card.</div>
             <div style={s.ctaBtns}>
               <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
               <button style={s.btnGhost} onClick={() => onLaunchApp()}>Start Free — No Account Needed</button>
@@ -285,7 +285,7 @@ function PageFooter({ onNavigate }) {
       <div style={{display:'flex', gap:'20px'}}>
         {link('Home', 'landing')}
         {link('Exam Info', 'exam-info')}
-        {link('Demo', 'demo')}
+        {link('Start Free', 'landing')}
         {link('Privacy', 'privacy')}
         {link('Terms', 'terms')}
       </div>
