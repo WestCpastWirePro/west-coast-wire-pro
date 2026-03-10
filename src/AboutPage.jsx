@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 export default function AboutPage({ onLaunchApp, onNavigate }) {
   return (
     <div style={s.root}>
-      <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       {/* HERO */}
       <header style={s.hero}>

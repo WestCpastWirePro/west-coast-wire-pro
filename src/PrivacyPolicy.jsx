@@ -3,7 +3,7 @@ import LegalLayout, { Section, P, Ul, Highlight, Placeholder } from './LegalLayo
 export default function PrivacyPolicy({ onHome , onNavigate }) {
   return (
     <LegalLayout
-      title="Privacy Policy"
+onNavigate={onNavigate}       title="Privacy Policy"
       subtitle="We collect as little as possible and never sell your data."
       lastUpdated="January 1, 2026"
       onHome={onHome}

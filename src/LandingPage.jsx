@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // ── Stripe checkout ───────────────────────────────────────────────────────────
 // Calls the /api/create-checkout serverless function, which creates a
@@ -27,39 +27,11 @@ async function startCheckout(tier, setLoading) {
 
 
 // ── Scroll Buttons ────────────────────────────────────────────────────────
-function ScrollButtons() {
-  const [show, setShow] = useState(false)
-  const [atBottom, setAtBottom] = useState(false)
-  useEffect(() => {
-    const onScroll = () => {
-      setShow(window.scrollY > 300)
-      setAtBottom(window.innerHeight + window.scrollY >= document.body.scrollHeight - 100)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-  const btnStyle = {
-    width:'40px', height:'40px', borderRadius:'50%',
-    background:'rgba(200,168,75,0.15)', border:'1px solid rgba(200,168,75,0.4)',
-    color:'#c8a84b', fontSize:'18px', cursor:'pointer',
-    display:'flex', alignItems:'center', justifyContent:'center',
-    backdropFilter:'blur(8px)', transition:'all 0.2s',
-  }
-  if (!show) return null
-  return (
-    <div style={{position:'fixed', bottom:'24px', right:'20px', zIndex:999, display:'flex', flexDirection:'column', gap:'8px'}}>
-      <button style={btnStyle} onClick={() => window.scrollTo({top:0,behavior:'smooth'})} title="Back to top">↑</button>
-      {!atBottom && <button style={btnStyle} onClick={() => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})} title="Jump to bottom">↓</button>}
-    </div>
-  )
-}
 
 export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalTier, setModalTier] = useState('standard')
-  const [scrolled, setScrolled] = useState(false)
   const [loading, setLoading] = useState(null)
-  const [menuOpen, setMenuOpen] = useState(false)
   const [payError, setPayError] = useState('')
 
   useEffect(() => {
@@ -69,12 +41,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   }, [])
 
   // Close menu on outside click
-  useEffect(() => {
-    if (!menuOpen) return
-    const close = () => setMenuOpen(false)
-    document.addEventListener('click', close)
-    return () => document.removeEventListener('click', close)
-  }, [menuOpen])
+
 
   const openModal = (tier) => { setModalTier(tier); setModalOpen(true) }
   const handlePurchase = (tier) => startCheckout(tier, setLoading)
@@ -83,151 +50,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
   return (
     <div style={s.root}>
-      <ScrollButtons />
-
-      {/* RESPONSIVE NAV CSS */}
-      <style>{`
-        .wcwp-nav-desktop { display: flex !important; }
-        .wcwp-hamburger { display: none !important; }
-        .wcwp-mobile-cta { display: none !important; }
-        @media (max-width: 768px) {
-          .wcwp-nav-desktop { display: none !important; }
-          .wcwp-hamburger { display: flex !important; }
-          .wcwp-mobile-cta { display: inline-flex !important; }
-        }
-        .wcwp-menu-item:hover { color: #c8a84b !important; background: rgba(200,168,75,0.06) !important; }
-      `}</style>
-
-      {/* NAV */}
-      <nav style={{...s.nav, ...(scrolled ? s.navScrolled : {})}}>
-        {/* LOGO */}
-        <div style={s.navLogo} onClick={() => onNavigate && onNavigate('landing')}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'104px', width:'auto'}}>
-            <defs>
-              <linearGradient id="nb" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor:'transparent',stopOpacity:1}} />
-                <stop offset="100%" style={{stopColor:'transparent',stopOpacity:1}} />
-              </linearGradient>
-              <linearGradient id="nbolt" x1="0%" y1="0%" x2="50%" y2="100%">
-                <stop offset="0%" style={{stopColor:'#FFD84D',stopOpacity:1}} />
-                <stop offset="60%" style={{stopColor:'#C9A227',stopOpacity:1}} />
-                <stop offset="100%" style={{stopColor:'#9B7A1A',stopOpacity:1}} />
-              </linearGradient>
-              <linearGradient id="nline" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style={{stopColor:'#C9A227',stopOpacity:0}} />
-                <stop offset="20%" style={{stopColor:'#C9A227',stopOpacity:1}} />
-                <stop offset="80%" style={{stopColor:'#C9A227',stopOpacity:1}} />
-                <stop offset="100%" style={{stopColor:'#C9A227',stopOpacity:0}} />
-              </linearGradient>
-            </defs>
-            <rect x="32" y="38" width="3" height="124" fill="#C9A227" opacity="0.9" rx="1.5"/>
-            <g transform="translate(52, 52)">
-              <polygon points="28,0 14,42 26,42 18,96 50,38 36,38 52,0" fill="#C9A227" opacity="0.15"/>
-              <polygon points="26,2 12,44 24,44 16,94 48,36 34,36 50,2" fill="url(#nbolt)"/>
-              <polygon points="26,2 20,22 30,22 26,2" fill="#FFE88A" opacity="0.6"/>
-            </g>
-            <line x1="118" y1="80" x2="135" y2="80" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
-            <line x1="118" y1="120" x2="135" y2="120" stroke="#C9A227" strokeWidth="1" opacity="0.5"/>
-            <g transform="translate(148, 0)">
-              <text x="0" y="82" fontFamily="'Arial Black', Arial, sans-serif" fontSize="18" fontWeight="900" letterSpacing="8" fill="#CCCCCC">WEST COAST</text>
-              <text x="-2" y="128" fontFamily="'Arial Black', Arial, sans-serif" fontSize="52" fontWeight="900" letterSpacing="2" fill="#FFFFFF">WIRE <tspan fill="#C9A227">PRO</tspan></text>
-              <rect x="0" y="138" width="358" height="2" fill="url(#nline)" rx="1"/>
-              <text x="0" y="163" fontFamily="Arial, sans-serif" fontSize="13" fontWeight="400" letterSpacing="10" fill="#C9A227">TRAINING</text>
-            </g>
-          </svg>
-        </div>
-
-        {/* DESKTOP LINKS */}
-        <div style={s.navRight} className="wcwp-nav-desktop">
-          <NavLink href="#how-it-works">How It Works</NavLink>
-          <NavLink href="#pricing">Pricing</NavLink>
-
-          {/* STUDY TOOLS DROPDOWN */}
-          <NavDropdown label="Study Tools" onNavigate={onNavigate} items={[
-            {label:'Try 5 Demo Questions', page:'demo'},
-            {label:'Diagnostic Test', page:'diagnostic'},
-            {label:'Exam Simulator', page:'simulator'},
-            {label:'Missed Questions', page:'missed'},
-            {label:'Study Planner', page:'planner'},
-            {label:'NEC Reference Guide', page:'nec-ref'},
-            {label:'Calculations Helper', page:'calculations'},
-            {label:'Progress Dashboard', page:'progress'},
-            {label:'Glossary', page:'glossary'},
-          ]} />
-
-          {/* RESOURCES DROPDOWN */}
-          <NavDropdown label="Resources" onNavigate={onNavigate} items={[
-            {label:'CA Journeyman Exam Guide', page:'exam-info'},
-            {label:'How to Pass — Study Tips', page:'study-tips'},
-            {label:'Exam Day Guide', page:'exam-day'},
-            {label:'NEC 2020 Changes for CA', page:'nec-2020-changes'},
-            {label:'Electrician Salary in CA', page:'salary'},
-            {label:'Contractor vs. Electrician', page:'contractor-vs-electrician'},
-          ]} />
-
-          {/* COMPANY DROPDOWN */}
-          <NavDropdown label="Company" onNavigate={onNavigate} items={[
-            {label:'About', page:'about'},
-            {label:'Reviews', page:'testimonials'},
-            {label:'FAQ', page:'faq'},
-            {label:'Contact & Support', page:'contact'},
-          ]} />
-
-          <button style={s.navCta} onClick={onLaunchApp}>Try Free ⚡</button>
-        </div>
-
-        {/* MOBILE RIGHT: CTA + HAMBURGER */}
-        <div style={s.mobileNavRight} className="wcwp-hamburger">
-          <button style={{...s.navCta, fontSize:'12px', padding:'7px 14px'}} className="wcwp-mobile-cta" onClick={onLaunchApp}>Try Free ⚡</button>
-          <button style={s.hamburger} onClick={e => { e.stopPropagation(); setMenuOpen(o => !o) }} aria-label="Menu">
-            <span style={{...s.bar, ...(menuOpen ? {transform:'rotate(45deg) translate(5px,5px)'} : {})}} />
-            <span style={{...s.bar, ...(menuOpen ? {opacity:0} : {})}} />
-            <span style={{...s.bar, ...(menuOpen ? {transform:'rotate(-45deg) translate(5px,-5px)'} : {})}} />
-          </button>
-        </div>
-      </nav>
-
-      {/* MOBILE MENU DRAWER */}
-      {menuOpen && (
-        <div style={s.mobileMenu} onClick={e => e.stopPropagation()}>
-          {/* Study App Tools */}
-          <div style={s.menuSection}>
-            <div style={s.menuSectionTitle}>⚡ Study App</div>
-            {[['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([label, page]) => (
-              <button key={page} style={s.menuItem} className="wcwp-menu-item" onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>
-                {label}
-              </button>
-            ))}
-          </div>
-          <div style={s.menuDivider} />
-          {/* Exam Resources */}
-          <div style={s.menuSection}>
-            <div style={s.menuSectionTitle}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([label, page]) => (
-              <button key={page} style={s.menuItem} className="wcwp-menu-item" onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>
-                {label}
-              </button>
-            ))}
-          </div>
-          <div style={s.menuDivider} />
-          {/* Company */}
-          <div style={s.menuSection}>
-            <div style={s.menuSectionTitle}>🔧 Company</div>
-            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([label, page]) => (
-              <button key={page} style={s.menuItem} className="wcwp-menu-item" onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}>
-                {label}
-              </button>
-            ))}
-          </div>
-          <div style={s.menuDivider} />
-          {/* CTA */}
-          <div style={{padding:'16px 20px'}}>
-            <button style={{...s.navCta, width:'100%', padding:'14px', fontSize:'15px', borderRadius:'6px'}} onClick={() => { onLaunchApp(); setMenuOpen(false) }}>
-              ⚡ Start Studying Free
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* HERO */}
       <header style={s.hero}>
@@ -244,7 +66,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <div style={s.h1Line3}>First Try.</div>
           </h1>
           <p style={s.heroSub}>
-            <strong style={{color:'#d8e0e8'}}>512 original exam questions</strong> covering every module
+            <strong style={{color:'#d8e0e8'}}>512 exam-style practice questions</strong> covering every module
             of the California General Electrician certification exam. Written by working electricians.
             Referenced to the exact NEC section.
           </p>
@@ -512,55 +334,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 }
 
 // ── Sub-components ──────────────────────────────────────────
-
-function NavLink({ href, children }) {
-  return (
-    <a href={href} style={{color:'#7a8a9a', textDecoration:'none', fontSize:'13px', fontWeight:'600', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s', fontFamily:"'Segoe UI', Arial, sans-serif"}}
-      onMouseEnter={e => e.target.style.color='#c8a84b'}
-      onMouseLeave={e => e.target.style.color='#7a8a9a'}>
-      {children}
-    </a>
-  )
-}
-
-function NavDropdown({ label, items, onNavigate }) {
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
-
-  return (
-    <div ref={ref} style={{position:'relative', display:'inline-block'}}>
-      <button
-        style={{color: open ? '#c8a84b' : '#7a8a9a', background:'none', border:'none', cursor:'pointer', fontSize:'13px', fontWeight:'600', letterSpacing:'0.5px', textTransform:'uppercase', transition:'color 0.2s', display:'flex', alignItems:'center', gap:'4px', padding:'4px 0', fontFamily:"'Segoe UI', Arial, sans-serif"}}
-        onMouseEnter={e => e.currentTarget.style.color='#c8a84b'}
-        onMouseLeave={e => { if (!open) e.currentTarget.style.color='#7a8a9a' }}
-        onClick={() => setOpen(o => !o)}
-      >
-        {label} <span style={{fontSize:'9px', opacity:0.7}}>{open ? '▲' : '▼'}</span>
-      </button>
-      {open && (
-        <div style={{position:'absolute', top:'calc(100% + 10px)', left:'50%', transform:'translateX(-50%)', background:'#1a2840', border:'1px solid rgba(200,168,75,0.25)', borderRadius:'10px', padding:'8px 0', minWidth:'220px', zIndex:999, boxShadow:'0 12px 40px rgba(0,0,0,0.5)'}}>
-          <div style={{position:'absolute', top:'-6px', left:'50%', transform:'translateX(-50%)', width:'10px', height:'10px', background:'#1a2840', border:'1px solid rgba(200,168,75,0.25)', borderBottom:'none', borderRight:'none', transform:'translateX(-50%) rotate(45deg)'}} />
-          {items.map(({label, page}) => (
-            <button key={page}
-              style={{display:'block', width:'100%', textAlign:'left', padding:'9px 18px', background:'none', border:'none', color:'#b0bec5', fontSize:'13px', cursor:'pointer', transition:'all 0.15s', fontWeight:'500'}}
-              onMouseEnter={e => { e.currentTarget.style.color='#c8a84b'; e.currentTarget.style.background='rgba(200,168,75,0.07)' }}
-              onMouseLeave={e => { e.currentTarget.style.color='#b0bec5'; e.currentTarget.style.background='none' }}
-              onClick={() => { onNavigate && onNavigate(page); setOpen(false) }}
-            >{label}</button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
-
 function SectionLabel({ children }) {
   return <div style={{fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'16px'}}>{children}</div>
 }
@@ -643,23 +416,10 @@ const MODULES_DATA = [
 
 const styles = {
   root: {fontFamily:"'Segoe UI', Arial, sans-serif", background:'#0a1016', color:'#d8e0e8', overflowX:'hidden'},
-  nav: {position:'fixed', top:0, left:0, right:0, zIndex:200, padding:'10px clamp(16px,4vw,40px)', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.7)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.1)', transition:'all 0.3s'},
-  navScrolled: {background:'rgba(10,16,22,0.97)', borderBottomColor:'rgba(200,168,75,0.25)'},
-  navLogo: {display:'flex', alignItems:'center', cursor:'pointer'},
   bolt: {fontSize:'22px'},
   wordmark: {fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'20px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase'},
   wordmarkThin: {color:'#d8e0e8', fontWeight:'400'},
-  navRight: {display:'flex', alignItems:'center', gap:'28px', '@media(maxWidth:768px)':{display:'none'}},
   navBtn: {background:'none', border:'none', cursor:'pointer', color:'#7a8a9a', fontSize:'13px', fontWeight:'500', letterSpacing:'0.5px', textTransform:'uppercase', padding:0, transition:'color 0.2s'},
-  navCta: {background:'#c8a84b', color:'#0a1016', fontWeight:'800', fontSize:'13px', padding:'8px 18px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px', fontFamily:"'Arial Black', Arial, sans-serif"},
-  mobileNavRight: {display:'flex', alignItems:'center', gap:'12px'},
-  hamburger: {flexDirection:'column', gap:'5px', background:'none', border:'none', cursor:'pointer', padding:'4px', display:'flex'},
-  bar: {display:'block', width:'22px', height:'2px', background:'#c8a84b', borderRadius:'2px', transition:'all 0.25s ease'},
-  mobileMenu: {position:'fixed', top:'58px', left:0, right:0, zIndex:199, background:'#0d1520', borderBottom:'2px solid #c8a84b', boxShadow:'0 8px 32px rgba(0,0,0,0.7)', maxHeight:'calc(100vh - 58px)', overflowY:'auto'},
-  menuSection: {padding:'12px 20px 4px'},
-  menuSectionTitle: {fontFamily:"'Courier New', monospace", fontSize:'10px', color:'#c8a84b', letterSpacing:'3px', textTransform:'uppercase', marginBottom:'8px', paddingLeft:'4px'},
-  menuItem: {display:'block', width:'100%', background:'none', border:'none', textAlign:'left', padding:'10px 4px', color:'#aabbcc', fontSize:'14px', cursor:'pointer', borderBottom:'1px solid rgba(255,255,255,0.04)', fontFamily:"'Segoe UI', Arial, sans-serif"},
-  menuDivider: {height:'1px', background:'rgba(200,168,75,0.15)', margin:'4px 20px'},
   hero: {minHeight:'100vh', display:'flex', flexDirection:'column', justifyContent:'center', padding:'120px clamp(20px,5vw,40px) 80px', position:'relative', overflow:'hidden', background:'#0a1016'},
   heroGlow: {position:'absolute', top:'20%', left:'50%', transform:'translateX(-50%)', width:'700px', height:'700px', background:'radial-gradient(circle, rgba(200,168,75,0.07) 0%, transparent 70%)', pointerEvents:'none'},
   heroGrid: {position:'absolute', inset:0, opacity:0.05, backgroundImage:'linear-gradient(rgba(200,168,75,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,168,75,1) 1px, transparent 1px)', backgroundSize:'50px 50px', pointerEvents:'none'},

@@ -63,10 +63,6 @@ export default function MissedQuestionsPage({ onHome, access , onNavigate }) {
   if (deck.length === 0 && missedIds.length === 0) {
     return (
       <div style={s.app}>
-        <div style={s.header}>
-          <span style={{fontSize:"28px"}}>⚡</span>
-          <div><div style={s.logo}>Missed Questions</div></div>
-        </div>
         <div style={{padding:"32px 16px", textAlign:"center"}}>
           <div style={{fontSize:"48px", marginBottom:"16px"}}>🎯</div>
           <div style={{fontSize:"20px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px"}}>No Missed Questions Yet</div>

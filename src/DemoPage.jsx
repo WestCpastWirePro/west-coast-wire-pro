@@ -128,7 +128,6 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
     const pct = Math.round((totalCorrect / DEMO_QUESTIONS.length) * 100)
     return (
       <div style={s.root}>
-        <DemoNav onHome={() => onNavigate && onNavigate('landing')} onLaunchApp={onLaunchApp} />
         <div style={s.resultsWrap}>
           <div style={s.resultsCard}>
             <div style={s.resultsBolt}>⚡</div>
@@ -180,7 +179,6 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
   // ── QUESTION SCREEN ────────────────────────────────────────
   return (
     <div style={s.root}>
-      <DemoNav onHome={() => onNavigate && onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       {/* Hero intro — only shown before first answer on Q1 */}
       {current === 0 && selected === null && (

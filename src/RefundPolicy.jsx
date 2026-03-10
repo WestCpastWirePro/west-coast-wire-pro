@@ -3,7 +3,7 @@ import LegalLayout, { Section, P, Ul, Highlight, Placeholder } from './LegalLayo
 export default function RefundPolicy({ onHome , onNavigate }) {
   return (
     <LegalLayout
-      title="Refund Policy"
+onNavigate={onNavigate}       title="Refund Policy"
       subtitle="We want you to feel confident purchasing West Coast Wire Pro."
       lastUpdated="January 1, 2026"
       onHome={onHome}

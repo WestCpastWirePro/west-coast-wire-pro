@@ -92,14 +92,6 @@ export default function TestimonialsPage({ onNavigate, onHome }) {
 
   return (
     <div style={s.app}>
-      <div style={s.header}>
-        <span style={{fontSize:"28px"}}>⚡</span>
-        <div style={{flex:1}}>
-          <div style={s.logo}>Pass Stories</div>
-          <div style={{fontSize:"12px", color:"#8899aa"}}>Real results from real electricians</div>
-        </div>
-        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
-      </div>
 
       {/* Stats bar */}
       <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))", gap:"1px", background:"#2a3a54", margin:"12px 16px", borderRadius:"10px", overflow:"hidden"}}>

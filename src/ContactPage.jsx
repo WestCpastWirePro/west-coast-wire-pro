@@ -42,14 +42,6 @@ export default function ContactPage({ onHome, onNavigate }) {
 
   return (
     <div style={s.root}>
-      <div style={s.header}>
-        <span style={{ fontSize: '28px' }}>⚡</span>
-        <div style={{ flex: 1 }}>
-          <div style={s.logo}>Contact & Support</div>
-          <div style={{ fontSize: '12px', color: '#8899aa' }}>West Coast Wire Pro Training</div>
-        </div>
-        <button style={s.btnGray} onClick={onHome}>← Back</button>
-      </div>
 
       <div style={s.body}>
 

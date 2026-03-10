@@ -3,7 +3,7 @@ import LegalLayout, { Section, P, Ul, Highlight, Placeholder } from './LegalLayo
 export default function TermsOfService({ onHome , onNavigate }) {
   return (
     <LegalLayout
-      title="Terms of Service"
+onNavigate={onNavigate}       title="Terms of Service"
       subtitle="Please read these terms before purchasing or using West Coast Wire Pro."
       lastUpdated="January 1, 2026"
       onHome={onHome}

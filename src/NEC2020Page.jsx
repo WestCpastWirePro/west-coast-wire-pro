@@ -8,7 +8,6 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate }) {
   }, [])
   return (
     <div style={s.root}>
-      <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       <header style={s.hero}>
         <div style={s.heroGrid} />

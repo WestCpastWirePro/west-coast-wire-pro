@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import GlobalNav            from './GlobalNav.jsx'
 import LandingPage          from './LandingPage.jsx'
 import WestCoastWirePro         from './WestCoastWirePro.jsx'
 import SuccessPage          from './SuccessPage.jsx'
@@ -164,37 +165,50 @@ export default function App() {
   React.useEffect(() => { window.__navigateTo = navigate }, [view])
   const getAccess = () => { try { return localStorage.getItem('wrp_access') || 'free' } catch(e) { return 'free' } }
 
-  if (view === 'loading')          return <Splash />
-  if (view === '404')              return <NotFoundPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'success')          return <SuccessPage onEnterApp={() => navigate('app')} />
-  if (view === 'app')              return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
-  if (view === 'privacy')          return <PrivacyPolicy onHome={goHome} onNavigate={navigate} />
-  if (view === 'terms')            return <TermsOfService onHome={goHome} onNavigate={navigate} />
-  if (view === 'refund')           return <RefundPolicy onHome={goHome} onNavigate={navigate} />
-  if (view === 'demo')             return <DemoPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'redeem')           return <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
-  if (view === 'about')            return <AboutPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'exam-info')        return <ExamInfoPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'nec-2020-changes') return <NEC2020Page onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'study-tips')       return <StudyTipsPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'missed')           return <MissedQuestionsPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
-  if (view === 'diagnostic')       return <DiagnosticPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
-  if (view === 'simulator')        return <ExamSimulatorPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
-  if (view === 'nec-ref')          return <NECReferencePage onHome={goHome} onNavigate={navigate} />
-  if (view === 'calculations')     return <CalculationsPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'planner')          return <StudyPlannerPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
-  if (view === 'faq')              return <FAQPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'testimonials')     return <TestimonialsPage onHome={goHome} onNavigate={navigate} />
+  if (view === 'loading') return <Splash />
+  // Study app has its own internal navigation — render without global nav wrapper
+  if (view === 'app') return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
 
-  if (view === 'contact')      return <ContactPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'glossary')     return <GlossaryPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'exam-day')     return <ExamDayPage onHome={goHome} onNavigate={navigate} />
-  if (view === 'salary')       return <SalaryPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'contractor-vs-electrician') return <ContractorVsElectricianPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
-  if (view === 'progress')     return <ProgressDashboard onHome={goHome} onNavigate={navigate} />
-  if (view === 'mastery')      return <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  // All other views get the persistent GlobalNav
+  const launchApp = () => navigate('app')
+  const globalNav = <GlobalNav onHome={goHome} onNavigate={navigate} onLaunchApp={launchApp} />
 
-  return <LandingPage onLaunchApp={() => navigate('app')} onNavigate={navigate} />
+  let pageContent
+  if (view === '404')              pageContent = <NotFoundPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'success')     pageContent = <SuccessPage onEnterApp={() => navigate('app')} />
+  else if (view === 'privacy')     pageContent = <PrivacyPolicy onHome={goHome} onNavigate={navigate} />
+  else if (view === 'terms')       pageContent = <TermsOfService onHome={goHome} onNavigate={navigate} />
+  else if (view === 'refund')      pageContent = <RefundPolicy onHome={goHome} onNavigate={navigate} />
+  else if (view === 'demo')        pageContent = <DemoPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'redeem')      pageContent = <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
+  else if (view === 'about')       pageContent = <AboutPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'exam-info')   pageContent = <ExamInfoPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'nec-2020-changes') pageContent = <NEC2020Page onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'study-tips')  pageContent = <StudyTipsPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'missed')      pageContent = <MissedQuestionsPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else if (view === 'diagnostic')  pageContent = <DiagnosticPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else if (view === 'simulator')   pageContent = <ExamSimulatorPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else if (view === 'nec-ref')     pageContent = <NECReferencePage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'calculations') pageContent = <CalculationsPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'planner')     pageContent = <StudyPlannerPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else if (view === 'faq')         pageContent = <FAQPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'testimonials') pageContent = <TestimonialsPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'contact')     pageContent = <ContactPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'glossary')    pageContent = <GlossaryPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'exam-day')    pageContent = <ExamDayPage onHome={goHome} onNavigate={navigate} />
+  else if (view === 'salary')      pageContent = <SalaryPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'contractor-vs-electrician') pageContent = <ContractorVsElectricianPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} />
+  else if (view === 'mastery')     pageContent = <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else                             pageContent = <LandingPage onLaunchApp={launchApp} onNavigate={navigate} />
+
+  return (
+    <>
+      {globalNav}
+      <ScrollButtons />
+      {pageContent}
+    </>
+  )
 }
 
 function Splash() {

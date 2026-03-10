@@ -127,14 +127,6 @@ export default function GlossaryPage({ onHome , onNavigate }) {
 
   return (
     <div style={s.app}>
-      <div style={s.header}>
-        <span style={{fontSize:"28px"}}>⚡</span>
-        <div style={{flex:1}}>
-          <div style={s.logo}>Electrical Glossary</div>
-          <div style={{fontSize:"12px", color:"#8899aa"}}>{TERMS.length} NEC definitions</div>
-        </div>
-        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
-      </div>
 
       <div style={{padding:"12px 16px 0"}}>
         <input style={s.input} placeholder="Search terms or definitions..." value={search} onChange={e=>{setSearch(e.target.value); setLetter("All");}}/>

@@ -82,11 +82,6 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
   if (phase === "intro") {
     return (
       <div style={s.app}>
-        <div style={s.header}>
-          <span style={{fontSize:"28px"}}>⚡</span>
-          <div style={{flex:1}}><div style={s.logo}>Am I Ready?</div></div>
-          <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Back</button>
-        </div>
         <div style={{padding:"16px"}}>
           <div style={{...s.card, borderColor:"#c8a84b", textAlign:"center"}}>
             <div style={{fontSize:"40px", marginBottom:"12px"}}>🎯</div>

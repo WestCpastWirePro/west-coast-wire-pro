@@ -311,14 +311,6 @@ function Drill({ tableId, data, onBack, onComplete }) {
   if (done) {
     return (
       <div style={s.app}>
-        <div style={s.header}>
-          <span style={{ fontSize:"24px" }}>{data.icon}</span>
-          <div style={{ flex:1 }}>
-            <div style={s.logo}>{data.title}</div>
-            <div style={{ fontSize:"11px", color:"#8899aa" }}>Round complete</div>
-          </div>
-          <button style={{ ...s.btn, ...s.btnGray, padding:"6px 14px", fontSize:"12px" }} onClick={onBack}>← Tables</button>
-        </div>
 
         <div style={{ ...s.card, textAlign:"center", padding:"36px 24px" }}>
           <div style={{ fontSize:"48px", marginBottom:"8px" }}>

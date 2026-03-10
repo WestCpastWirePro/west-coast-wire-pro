@@ -8,7 +8,6 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
   }, [])
   return (
     <div style={s.root}>
-      <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       {/* HERO */}
       <header style={s.hero}>

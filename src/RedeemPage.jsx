@@ -71,7 +71,6 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
   // ── SUCCESS STATE ─────────────────────────────────────────
   if (status === 'success') return (
     <div style={s.root}>
-      <RedeemNav onHome={onHome} />
       <div style={s.centerWrap}>
         <div style={s.card}>
           <div style={{fontSize:'52px', marginBottom:'12px'}}>⚡</div>
@@ -95,7 +94,6 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
   // ── ENTRY STATE ───────────────────────────────────────────
   return (
     <div style={s.root}>
-      <RedeemNav onHome={onHome} />
 
       <div style={s.centerWrap}>
         <div style={s.card}>

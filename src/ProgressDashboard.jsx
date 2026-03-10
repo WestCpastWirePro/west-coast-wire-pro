@@ -42,11 +42,6 @@ export default function ProgressDashboard({ onHome, onNavigate }) {
   if (!history.length) {
     return (
       <div style={s.app}>
-        <div style={s.header}>
-          <span style={{fontSize:"28px"}}>⚡</span>
-          <div style={{flex:1}}><div style={s.logo}>Progress Dashboard</div></div>
-          <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
-        </div>
         <div style={{padding:"40px 16px", textAlign:"center"}}>
           <div style={{fontSize:"48px", marginBottom:"16px"}}>📊</div>
           <div style={{fontSize:"18px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px"}}>No Data Yet</div>

@@ -152,14 +152,6 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
 
   return (
     <div style={s.app}>
-      <div style={s.header}>
-        <span style={{fontSize:"28px"}}>⚡</span>
-        <div style={{flex:1}}>
-          <div style={s.logo}>Study Planner</div>
-          <div style={{fontSize:"12px", color:"#8899aa"}}>Week-by-week exam prep schedule</div>
-        </div>
-        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
-      </div>
 
       <div style={{padding:"12px 0"}}>
         <div style={s.card}>

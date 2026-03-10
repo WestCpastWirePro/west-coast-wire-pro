@@ -370,16 +370,6 @@ export default function CalculationsPage({ onHome , onNavigate }) {
 
   return (
     <div style={s.app}>
-      <div style={s.header}>
-        <span style={{fontSize:"28px"}}>⚡</span>
-        <div style={{flex:1}}>
-          <div style={s.logo}>Calculation Practice</div>
-          <div style={{fontSize:"12px", color:"#8899aa"}}>Step-by-step worked solutions</div>
-        </div>
-        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={active ? ()=>setActive(null) : onHome}>
-          {active ? "← Back" : "Menu"}
-        </button>
-      </div>
 
       {!active && (
         <div style={{padding:"12px 0 32px"}}>

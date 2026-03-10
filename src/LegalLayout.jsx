@@ -1,18 +1,8 @@
 // Shared wrapper for all legal pages — consistent with site branding
 // Used by: PrivacyPolicy.jsx, TermsOfService.jsx, RefundPolicy.jsx
 
-export default function LegalLayout({ title, subtitle, lastUpdated, children, onHome }) {
+export default function LegalLayout({ title, subtitle, lastUpdated, children, onHome, onNavigate }) {
   return (
-    <div style={s.root}>
-
-      {/* NAV */}
-      <nav style={s.nav}>
-        <button style={s.navLogo} onClick={onHome}>
-          <span style={s.bolt}>⚡</span>
-          <span style={s.wordmark}>West Coast <span style={s.wordmarkThin}>Wire Pro</span></span>
-        </button>
-        <button style={s.backBtn} onClick={onHome}>← Back to Home</button>
-      </nav>
 
       {/* HEADER */}
       <header style={s.header}>
