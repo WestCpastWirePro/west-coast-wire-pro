@@ -140,20 +140,19 @@ function ScrollButtons() {
 export default function App() {
   const [view, setView] = useState('loading')
 
-  const resolveView = () => {
-    const params = new URLSearchParams(window.location.search)
-    const path   = window.location.pathname
-
-    if (params.get('success') === 'true')   { setView('success'); return }
-    if (params.get('cancelled') === 'true') { window.history.replaceState({}, '', '/'); setView('landing'); return }
-    if (params.has('app') || params.has('quiz') || window.location.hash === '#app') { setView('app'); return }
-    if (ROUTES[path]) { const v = ROUTES[path]; setPageMeta(v); setView(v); return }
-    if (path !== '/' && path !== '') { setView('404'); return }
-    setPageMeta('landing')
-    setView('landing')
-  }
-
   useEffect(() => {
+    const resolveView = () => {
+      const params = new URLSearchParams(window.location.search)
+      const path   = window.location.pathname
+      if (params.get('success') === 'true')   { setView('success'); return }
+      if (params.get('cancelled') === 'true') { window.history.replaceState({}, '', '/'); setView('landing'); return }
+      if (params.has('app') || params.has('quiz') || window.location.hash === '#app') { setView('app'); return }
+      if (ROUTES[path]) { const v = ROUTES[path]; setPageMeta(v); setView(v); return }
+      if (path !== '/' && path !== '') { setView('404'); return }
+      setPageMeta('landing')
+      setView('landing')
+    }
+
     resolveView()
     window.addEventListener('popstate', resolveView)
     return () => window.removeEventListener('popstate', resolveView)
