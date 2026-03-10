@@ -60,6 +60,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [scrolled, setScrolled] = useState(false)
   const [loading, setLoading] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [payError, setPayError] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
