@@ -191,7 +191,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Full Table Mastery — 10 NEC tables, 113 flashcards', locked:false},
               {text:'Progress saved across sessions', locked:false},
               {text:'Missed question review deck', locked:false},
-              {text:'Full exam simulation mode (100Q, timed)', locked:false},
+              {text:'Full exam simulation mode (110Q, 4.5 hrs)', locked:false},
               {text:'Weak module targeting', locked:false},
               {text:'Study Planner', locked:false},
               {text:'Email support', locked:false},
