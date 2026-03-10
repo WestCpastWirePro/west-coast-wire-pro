@@ -90,8 +90,8 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={s.tierBadge}>{tier === 'pro' ? 'PRO ACCESS' : 'STANDARD ACCESS'} UNLOCKED</div>
         <div style={s.sub}>
           {tier === 'pro'
-            ? 'All 500 questions, exam simulation mode, saved progress, and future updates — all yours.'
-            : 'All 500 questions across all 12 modules are now unlocked.'}
+            ? 'All 512 questions, exam simulation mode, saved progress, and future updates — all yours.'
+            : 'All 512 questions across all 12 modules are now unlocked.'}
         </div>
         <div style={s.divider} />
         <div style={s.noteTitle}>Your access is saved on this device.</div>

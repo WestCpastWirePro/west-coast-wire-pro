@@ -109,7 +109,7 @@ const s = {
   subtitle: { fontSize:'16px', color:'#7a8a9a', lineHeight:'1.6', maxWidth:'560px', marginBottom:'20px' },
   meta: { display:'flex', gap:'12px', flexWrap:'wrap' },
   metaBadge: { fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#4a5a6a', background:'#111820', border:'1px solid rgba(200,168,75,0.1)', padding:'4px 10px', borderRadius:'2px', letterSpacing:'0.5px' },
-  notice: { background:'rgba(232,200,120,0.07)', borderLeft:'3px solid #c8a84b', margin:'0 40px', padding:'14px 20px', display:'flex', gap:'12px', alignItems:'flex-start', fontSize:'13px', color:'#aabbcc', lineHeight:'1.6' },
+  notice: { background:'rgba(232,200,120,0.07)', borderLeft:'3px solid #c8a84b', margin:'0 clamp(16px,4vw,40px)', padding:'14px 20px', display:'flex', gap:'12px', alignItems:'flex-start', fontSize:'13px', color:'#aabbcc', lineHeight:'1.6' },
   noticeIcon: { fontSize:'16px', flexShrink:0, marginTop:'1px' },
   code: { fontFamily:"'Courier New', monospace", background:'rgba(200,168,75,0.15)', color:'#c8a84b', padding:'1px 6px', borderRadius:'3px', fontSize:'12px' },
   main: { padding:'48px clamp(20px,5vw,40px) 80px' },

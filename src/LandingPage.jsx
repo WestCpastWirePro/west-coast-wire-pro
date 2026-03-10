@@ -185,7 +185,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <div style={s.h1Line3}>First Try.</div>
           </h1>
           <p style={s.heroSub}>
-            <strong style={{color:'#d8e0e8'}}>500 original exam questions</strong> covering every module
+            <strong style={{color:'#d8e0e8'}}>512 original exam questions</strong> covering every module
             of the California General Electrician certification exam. Written by working electricians.
             Referenced to the exact NEC section.
           </p>
@@ -282,7 +282,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             priceSub="One-time · Instant access"
             featured
             features={[
-              {text:'All 12 modules — 500 questions', locked:false},
+              {text:'All 12 modules — 512 questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Exact code section references', locked:false},
               {text:'Timed & untimed modes', locked:false},
@@ -434,7 +434,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               )}
               <ModalOption
                 name={modalTier === 'standard' ? 'Standard — All 12 Modules' : 'Standard instead'}
-                desc="500 questions · Timed mode · Score tracking"
+                desc="512 questions · Timed mode · Score tracking"
                 price="$29.99"
                 onClick={() => handlePurchase('standard')}
                 dim={modalTier === 'pro'}

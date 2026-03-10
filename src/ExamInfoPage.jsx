@@ -268,7 +268,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
                 <div style={s.ctaBolt}>⚡</div>
                 <div style={s.ctaTitle}>West Coast Wire Pro is built for this exam.</div>
                 <div style={s.ctaBody}>
-                  500 questions across all 12 modules. Every answer tied to the exact NEC or
+                  512 questions across all 12 modules. Every answer tied to the exact NEC or
                   California code section. Timed mode, module filtering, difficulty levels.
                   Built by a California journeyman electrician and trade school instructor.
                 </div>
@@ -308,7 +308,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, background:'linear-gradient(135deg, rgba(200,168,75,0.08), rgba(200,168,75,0.03))', border:'1px solid rgba(200,168,75,0.3)'}}>
             <div style={s.sideTitle}>Start Preparing</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'16px'}}>
-              500 questions. 12 modules. Every answer NEC-referenced. Module 1 always free.
+              512 questions. 12 modules. Every answer NEC-referenced. Module 1 always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'11px 16px', width:'100%'}} onClick={onLaunchApp}>
               ⚡ Try Free Now
@@ -456,7 +456,7 @@ function PageFooter({ onNavigate }) {
       onClick={() => onNavigate(to)}>{label}</button>
   )
   return (
-    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px 40px', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
+    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px clamp(16px,4vw,40px)', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'16px', color:'#c8a84b'}}>⚡ West Coast Wire Pro</div>
       <div style={{display:'flex', gap:'20px', flexWrap:'wrap'}}>
         {link('Home', 'landing')}

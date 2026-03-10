@@ -150,16 +150,16 @@ export default function ContactPage({ onHome, onNavigate }) {
               steps: [
                 'Check your email for a confirmation from Stripe with your access code.',
                 "Go to the app and tap 'Enter Access Code →' on the paywall screen.",
-                'Enter the code exactly as shown — it's formatted XXXX-XXXX-XXXX.',
-                'Still not working? Use the contact form above and we'll fix it within 24 hours.',
+                "Enter the code exactly as shown — it's formatted XXXX-XXXX-XXXX.",
+                "Still not working? Use the contact form above and we'll fix it within 24 hours.",
               ]
             },
             {
-              title: 'I can't find my access code email',
+              title: "I can't find my access code email",
               steps: [
                 'Check your spam/junk folder — Stripe confirmation emails sometimes land there.',
                 "Search your inbox for 'West Coast Wire Pro' or 'receipt' from around the time you purchased.",
-                'Still can't find it? Use the contact form above with the email you purchased with and we'll resend it.',
+                "Still can't find it? Use the contact form above with the email you purchased with and we'll resend it.",
               ]
             },
             {

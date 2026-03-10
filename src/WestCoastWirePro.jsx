@@ -691,7 +691,7 @@ export default function WestCoastWirePro() {
         <div style={{...styles.card, background:"linear-gradient(135deg,#1a2840,#162030)", borderColor:"#c8a84b"}}>
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📋 EXAM COVERAGE</div>
           <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>
-            500 original questions covering all 12 modules of the California General Electrician (Journeyman) exam. Based on the 2020 NEC and California-specific requirements.
+            512 original questions covering all 12 modules of the California General Electrician (Journeyman) exam. Based on the 2020 NEC and California-specific requirements.
           </div>
         </div>
 
@@ -700,7 +700,7 @@ export default function WestCoastWirePro() {
             <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
               <div>
                 <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px"}}>⚡ FREE TIER — Module 1 Only</div>
-                <div style={{fontSize:"12px", color:"#8899aa"}}>Unlock all 500 questions across 12 modules</div>
+                <div style={{fontSize:"12px", color:"#8899aa"}}>Unlock all 512 questions across 12 modules</div>
               </div>
               <button style={{...styles.btn, ...styles.btnGold, fontSize:"13px", padding:"8px 16px"}}
                 onClick={() => setScreen("paywall")}>
@@ -816,7 +816,7 @@ export default function WestCoastWirePro() {
         {[
           {
             name:"Standard", price:"$29.99", tag:"Most Popular",
-            features:["All 12 modules — 500 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Unlimited retakes"],
+            features:["All 12 modules — 512 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Unlimited retakes"],
             accent:"#c8a84b", tier:"standard"
           },
           {
@@ -842,10 +842,18 @@ export default function WestCoastWirePro() {
             </ul>
             <button
               style={{...styles.btn, ...(plan.tier==="standard"?styles.btnGold:{background:"#2a3a54",color:"#c8a84b"}), width:"100%", fontSize:"16px"}}
-              onClick={() => {
-                // REPLACE with your Gumroad/Stripe URL:
-                // window.location.href = "https://yourstore.gumroad.com/l/west-coast-wire-pro-" + plan.tier;
-                alert("Payment link goes here!\n\nReplace this alert() in WestCoastWirePro.jsx with your Gumroad or Stripe checkout URL.\n\nTier: " + plan.tier);
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tier: plan.tier })
+                  });
+                  const data = await res.json();
+                  if (data.url) window.location.href = data.url;
+                } catch (err) {
+                  alert('Something went wrong. Please try again.');
+                }
               }}>
               Get {plan.name} Access — {plan.price}
             </button>

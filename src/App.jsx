@@ -82,7 +82,7 @@ const PAGE_PATHS = {
 }
 
 const PAGE_META = {
-  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '500 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC-referenced answers, timed mode. Module 1 free.' },
+  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC-referenced answers, timed mode. Module 1 free.' },
   'exam-info':       { title: 'California Journeyman Electrician Exam — Complete Guide | West Coast Wire Pro', desc: 'Everything about the California General Electrician (Journeyman) exam: eligibility, format, pass rate, what codes to study, and how to prepare.' },
   about:             { title: 'About West Coast Wire Pro — Built by a California Electrician', desc: 'Built by a 14-year electrician and trade school instructor who studied for the CA journeyman exam the hard way. No connections, no shortcuts.' },
   demo:              { title: 'Try 5 Free Sample Questions | West Coast Wire Pro', desc: 'Test yourself with 5 real-style California journeyman electrician exam practice questions. No account required.' },

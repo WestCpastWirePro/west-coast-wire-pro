@@ -26,7 +26,7 @@ export default function RefundPolicy({ onHome }) {
           To request a refund within the 7-day window:
         </P>
         <Ul items={[
-          'Email us at: [wirereadypro@gmail.com]',
+          'Email us via our contact form at westcoastwirepro.com/contact',
           'Include the email address you used at checkout',
           'Include your Stripe receipt number (found in the receipt email Stripe sends)',
           'We will process your refund within 2 business days',
@@ -81,7 +81,7 @@ export default function RefundPolicy({ onHome }) {
       <Section title="Chargebacks">
         <P>
           We strongly prefer to resolve any payment disputes directly. If you have a concern 
-          about a charge, please email us at <Placeholder label="wirereadypro@gmail.com" /> 
+          about a charge, please email us at our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a> 
           before initiating a chargeback with your bank or credit card company.
         </P>
         <P>
@@ -100,7 +100,7 @@ export default function RefundPolicy({ onHome }) {
         </P>
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Technical support:</strong>{' '}
-          <Placeholder label="wirereadypro@gmail.com" /><br />
+          our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a><br />
           We aim to respond to all support emails within 1 business day.
         </Highlight>
       </Section>
@@ -109,7 +109,7 @@ export default function RefundPolicy({ onHome }) {
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Refund requests and questions:</strong><br />
           <Placeholder label="West Coast Wire Pro Training" /><br />
-          Email: <Placeholder label="wirereadypro@gmail.com" /><br />
+          Email: our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a><br />
           Response time: within 2 business days<br />
           <Placeholder label="CITY, STATE, ZIP" />
         </Highlight>

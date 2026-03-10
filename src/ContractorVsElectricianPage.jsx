@@ -1,7 +1,14 @@
+import React, { useState, useEffect } from 'react'
 export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate }) {
+  const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
+  React.useEffect(() => {
+    const h = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener("resize", h)
+    return () => window.removeEventListener("resize", h)
+  }, [])
   return (
     <div style={s.root}>
-      <BlogNav onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
+      <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
 
       <header style={s.hero}>
         <div style={s.heroGrid} />
@@ -29,8 +36,8 @@ export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate })
         </div>
       </header>
 
-      <div style={s.layout}>
-        <main style={s.main}>
+      <div style={{...s.layout, flexDirection: isMobile ? "column" : "row", padding: isMobile ? "32px 20px 60px" : "48px 40px 80px"}}>
+        <main style={{...s.main, width: isMobile ? "100%" : undefined}}>
 
           <div style={s.toc}>
             <div style={s.tocTitle}>In This Article</div>
@@ -236,7 +243,7 @@ export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate })
           </Article>
         </main>
 
-        <aside style={s.sidebar}>
+        <aside style={{...s.sidebar, display: isMobile ? "none" : "flex"}}>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>License Issuer</div>
             {[
@@ -250,7 +257,7 @@ export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate })
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Start Studying</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, margin:'0 0 12px', fontFamily:"'Georgia', serif"}}>
-              500 practice questions. Module 1 free.
+              512 practice questions. Module 1 free.
             </p>
             <button style={s.btnGold} onClick={onLaunchApp}>Try Free ⚡</button>
           </div>
@@ -273,21 +280,10 @@ function Section({ id, title, children }) {
 }
 function P({ children }) { return <p style={{marginBottom:'16px', marginTop:0}}>{children}</p>; }
 function Strong({ children }) { return <strong style={{color:'#d8e0e8', fontWeight:'700'}}>{children}</strong>; }
-function BlogNav({ onHome, onLaunchApp }) {
-  return (
-    <nav style={{position:'sticky', top:0, zIndex:100, padding:'12px 40px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
-      <button onClick={onHome} style={{display:'flex', alignItems:'center', gap:'8px', background:'none', border:'none', cursor:'pointer', padding:0}}>
-        <span style={{fontSize:'20px'}}>⚡</span>
-        <span style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'18px', color:'#c8a84b', textTransform:'uppercase', letterSpacing:'1px'}}>West Coast <span style={{color:'#d8e0e8', fontWeight:'400'}}>Wire Pro</span></span>
-      </button>
-      <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'13px', padding:'8px 18px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px'}} onClick={onLaunchApp}>Try Free ⚡</button>
-    </nav>
-  );
-}
 function PageFooter({ onNavigate }) {
   const btn = (label, to) => <button key={to} style={{background:'none', border:'none', color:'#4a5a6a', fontSize:'12px', cursor:'pointer', padding:0}} onClick={() => onNavigate(to)}>{label}</button>;
   return (
-    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px 40px', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
+    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px clamp(16px,4vw,40px)', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'16px', color:'#c8a84b'}}>⚡ West Coast Wire Pro</div>
       <div style={{display:'flex', gap:'20px', flexWrap:'wrap'}}>{btn('Home','landing')}{btn('Exam Guide','exam-info')}{btn('About','about')}{btn('Privacy','privacy')}</div>
       <div style={{fontSize:'11px', color:'#4a5a6a'}}>© 2026 West Coast Wire Pro Training</div>
@@ -311,7 +307,7 @@ const s = {
   metaDot:{color:'#2a3a4a'},
   heroSub:{fontSize:'16px',color:'#7a8a9a',lineHeight:1.7,maxWidth:'640px',margin:0},
   layout:{display:'flex',gap:'48px',padding:'48px 40px 80px',maxWidth:'1100px',margin:'0 auto',alignItems:'flex-start'},
-  main:{flex:'1',minWidth:0},
+  main:{flex:'1',minWidth:'280px'},
   sidebar:{width:'260px',flexShrink:0,position:'sticky',top:'80px',display:'flex',flexDirection:'column',gap:'16px'},
   toc:{background:'#111820',border:'1px solid rgba(200,168,75,0.1)',borderRadius:'6px',padding:'18px',marginBottom:'36px',display:'flex',flexDirection:'column',gap:'2px'},
   tocTitle:{fontFamily:"'Arial Black', Arial, sans-serif",fontSize:'11px',fontWeight:'900',textTransform:'uppercase',color:'#c8a84b',letterSpacing:'1px',marginBottom:'8px'},

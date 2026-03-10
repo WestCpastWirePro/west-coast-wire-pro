@@ -1,5 +1,11 @@
 import React from 'react'
 export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
+  const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
+  React.useEffect(() => {
+    const h = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener("resize", h)
+    return () => window.removeEventListener("resize", h)
+  }, [])
   return (
     <div style={s.root}>
       <SiteNav onNavigate={onNavigate} onHome={() => onNavigate('landing')} onLaunchApp={onLaunchApp} />
@@ -33,8 +39,8 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
         </div>
       </header>
 
-      <div style={s.layout}>
-        <main style={s.main}>
+      <div style={{...s.layout, flexDirection: isMobile ? "column" : "row", padding: isMobile ? "32px 20px 60px" : "48px 40px 80px"}}>
+        <main style={{...s.main, width: isMobile ? "100%" : undefined}}>
 
           <div style={s.toc}>
             <div style={s.tocTitle}>In This Guide</div>
@@ -472,7 +478,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
             <div style={s.ctaBolt}>⚡</div>
             <div style={s.ctaTitle}>Start Practicing Today</div>
             <div style={s.ctaBody}>
-              500 questions. 12 modules. Every answer tied to the exact NEC section.
+              512 questions. 12 modules. Every answer tied to the exact NEC section.
               Built by the instructor who wrote this guide. Module 1 always free.
             </div>
             <div style={s.ctaBtns}>
@@ -501,7 +507,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
         </main>
 
         {/* SIDEBAR */}
-        <aside style={s.sidebar}>
+        <aside style={{...s.sidebar, display: isMobile ? "none" : "flex"}}>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Quick Stats</div>
             {[['Questions','110'],['Time','4.5 hours'],['Passing','70%'],['Edition','2020 NEC'],['Pass rate','Low']].map(([k,v]) => (
@@ -519,7 +525,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, borderColor:'rgba(200,168,75,0.3)', background:'rgba(200,168,75,0.04)'}}>
             <div style={s.sideTitle}>Practice the Exam</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'14px'}}>
-              500 questions covering everything in this guide. Module 1 always free.
+              512 questions covering everything in this guide. Module 1 always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'10px', width:'100%'}} onClick={onLaunchApp}>
               Try Free ⚡
@@ -668,7 +674,7 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
 function PageFooter({ onNavigate }) {
   const btn = (label, to) => <button key={to} style={{background:'none', border:'none', color:'#4a5a6a', fontSize:'12px', cursor:'pointer', padding:0}} onClick={() => onNavigate(to)}>{label}</button>
   return (
-    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px 40px', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
+    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px clamp(16px,4vw,40px)', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'16px', color:'#c8a84b'}}>⚡ West Coast Wire Pro</div>
       <div style={{display:'flex', gap:'20px', flexWrap:'wrap'}}>
         {btn('Home','landing')}{btn('Exam Guide','exam-info')}{btn('About','about')}{btn('Privacy','privacy')}
@@ -695,7 +701,7 @@ const s = {
   metaItem: { fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#4a5a6a' },
   metaDot: { color:'#2a3a4a' },
   heroSub: { fontSize:'16px', color:'#7a8a9a', lineHeight:1.7, maxWidth:'640px', margin:0, fontFamily:"'Georgia', serif" },
-  layout: { display:'flex', gap:'48px', padding:'48px 40px 80px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start', flexWrap:'wrap' },
+  layout: { display:'flex', gap:'48px', padding:'48px 40px 80px', maxWidth:'1100px', margin:'0 auto', alignItems:'flex-start' },
   main: { flex:'1', minWidth:'280px' },
   sidebar: { width:'260px', flexShrink:0, position:'sticky', top:'80px', display:'flex', flexDirection:'column', gap:'16px' },
   toc: { background:'#111820', border:'1px solid rgba(200,168,75,0.1)', borderRadius:'6px', padding:'18px', marginBottom:'36px', display:'flex', flexDirection:'column', gap:'2px' },

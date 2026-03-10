@@ -146,7 +146,7 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             Nobody should have to drive seven hours to Oakland just to find out how to get started in this industry.
           </p>
           <p style={s.p}>
-            500 questions. 12 modules. Every answer tied to the exact NEC or California code
+            512 questions. 12 modules. Every answer tied to the exact NEC or California code
             section. Timed mode built in. Module 1 always free.
           </p>
           <p style={s.p}>
@@ -276,7 +276,7 @@ function PageFooter({ onNavigate }) {
       onClick={() => onNavigate(to)}>{label}</button>
   )
   return (
-    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px 40px', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
+    <footer style={{borderTop:'1px solid rgba(200,168,75,0.1)', padding:'28px clamp(16px,4vw,40px)', background:'#0a1016', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'16px'}}>
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'16px', color:'#c8a84b'}}>⚡ West Coast Wire Pro</div>
       <div style={{display:'flex', gap:'20px'}}>
         {link('Home', 'landing')}

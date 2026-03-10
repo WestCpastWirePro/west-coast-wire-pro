@@ -153,9 +153,9 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
 
             <div style={s.resultsMsg}>
               {pct === 100
-                ? "Perfect score — you're ready for the real thing. Unlock all 500 questions."
+                ? "Perfect score — you're ready for the real thing. Unlock all 512 questions."
                 : pct >= 60
-                ? "Solid start. The full app covers 500 questions across all 12 modules with detailed code explanations."
+                ? "Solid start. The full app covers 512 questions across all 12 modules with detailed code explanations."
                 : "These questions get harder. The full app builds you up module by module with explanations that teach, not just reveal answers."}
             </div>
 
@@ -204,9 +204,10 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
               <div key={i} style={{
                 ...s.pip,
                 background: i < results.length
-                  ? (results[i].correct ? '#27ae60' : '#e74c3c')
+                  ? (results[i]?.correct ? '#27ae60' : '#e74c3c')
                   : i === current ? '#c8a84b' : '#1a2535',
                 border: i === current ? '2px solid #c8a84b' : '2px solid transparent',
+
               }} />
             ))}
           </div>
@@ -268,7 +269,7 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
 
         <div style={s.footerNudge}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
-            This is a sample — the full app has 500 questions across 12 modules.
+            This is a sample — the full app has 512 questions across 12 modules.
           </span>
           <button style={s.nudgeBtn} onClick={onLaunchApp}>Unlock Free Module 1 →</button>
         </div>

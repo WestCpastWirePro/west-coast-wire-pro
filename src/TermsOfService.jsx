@@ -155,7 +155,7 @@ export default function TermsOfService({ onHome }) {
         </P>
         <P>
           Any dispute arising out of or relating to these Terms or West Coast Wire Pro shall first 
-          be addressed by contacting us at <Placeholder label="wirereadypro@gmail.com" />. 
+          be addressed by contacting us at our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a>. 
           We will make a good-faith effort to resolve any dispute informally within 30 days.
         </P>
         <P>
@@ -178,7 +178,7 @@ export default function TermsOfService({ onHome }) {
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Questions about these Terms:</strong><br />
           <Placeholder label="West Coast Wire Pro Training" /><br />
-          Email: <Placeholder label="wirereadypro@gmail.com" /><br />
+          Email: our <a href="/contact" style={{color:'#c8a84b'}}>contact form</a><br />
           <Placeholder label="CITY, STATE, ZIP" />
         </Highlight>
       </Section>
