@@ -34,11 +34,11 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
         .gn-menu-item:hover { color: #c8a84b !important; background: rgba(200,168,75,0.07) !important; }
       `}</style>
 
-      <nav style={{position:'sticky',top:0,zIndex:500,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 clamp(16px,4vw,40px)',background:'rgba(10,16,22,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(200,168,75,0.15)',height:'72px'}}>
+      <nav style={{position:'sticky',top:0,zIndex:500,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 clamp(16px,4vw,40px)',background:'rgba(10,16,22,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(200,168,75,0.15)',height:'120px'}}>
 
         {/* LOGO */}
         <button onClick={goHome} style={{display:'flex',alignItems:'center',background:'none',border:'none',cursor:'pointer',padding:0,flexShrink:0}}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'52px',width:'auto'}}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'104px',width:'auto'}}>
             <defs>
               <linearGradient id="gnbolt" x1="0%" y1="0%" x2="50%" y2="100%">
                 <stop offset="0%" style={{stopColor:'#FFD84D'}}/>
@@ -71,6 +71,10 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
 
         {/* DESKTOP NAV */}
         <div className="gn-desktop" style={{alignItems:'center',gap:'28px'}}>
+          <a href="/#how-it-works" style={{color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",transition:'color 0.2s'}}
+            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>How It Works</a>
+          <a href="/#pricing" style={{color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",transition:'color 0.2s'}}
+            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>Pricing</a>
           <GnDropdown label="Study Tools" onNavigate={nav} items={[
             {label:'Try 5 Demo Questions', page:'demo'},
             {label:'Diagnostic Test', page:'diagnostic'},
@@ -120,7 +124,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
 
       {/* MOBILE DRAWER */}
       {menuOpen && (
-        <div style={{position:'fixed',top:'72px',left:0,right:0,zIndex:499,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 72px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+        <div style={{position:'fixed',top:'120px',left:0,right:0,zIndex:499,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 120px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <MobileSection title="⚡ Study App" items={[
             ['Start Studying — Free','landing'],['Try 5 Demo Questions','demo'],
             ['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
