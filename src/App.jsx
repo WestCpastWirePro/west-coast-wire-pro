@@ -27,11 +27,13 @@ import StudyPlannerPage     from './StudyPlannerPage.jsx'
 import FAQPage              from './FAQPage.jsx'
 import TestimonialsPage     from './TestimonialsPage.jsx'
 import MissedQuestionsPage  from './MissedQuestionsPage.jsx'
+import AdminGrantPage       from './AdminGrantPage.jsx'
 
 const ROUTES = {
   '/privacy': 'privacy',              '/privacy-policy': 'privacy',
   '/terms': 'terms',                  '/terms-of-service': 'terms',
   '/refund': 'refund',               '/refund-policy': 'refund',
+  '/admin-grant': 'admin-grant',
   '/try': 'landing',
   '/redeem': 'redeem',               '/activate': 'redeem',        '/unlock': 'redeem',
   '/about': 'about',                 '/about-us': 'about',
@@ -229,6 +231,7 @@ export default function App() {
   else if (view === 'contractor-vs-electrician') pageContent = <ContractorVsElectricianPage onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} />
   else if (view === 'mastery')     pageContent = <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else if (view === 'admin-grant')  pageContent = <AdminGrantPage />
   else                             pageContent = <LandingPage onLaunchApp={launchApp} onNavigate={navigate} />
 
   return (
