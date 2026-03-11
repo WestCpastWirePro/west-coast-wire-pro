@@ -169,10 +169,10 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
         {/* Already free tip */}
         <div style={s.freeTip}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
-            Module 1 is always free — no code needed.
+            Modules 1 & 2 + 2 Table Mastery drills are always free — no code needed.
           </span>
           <button style={s.freeTipBtn} onClick={onEnterApp}>
-            Try Module 1 Free →
+            Try Free — Modules 1 & 2 →
           </button>
         </div>
 
