@@ -256,7 +256,7 @@ export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate })
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Start Studying</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, margin:'0 0 12px', fontFamily:"'Georgia', serif"}}>
-              512 practice questions. Module 1 free.
+              512 practice questions. Modules 1 & 2 + Table Mastery free.
             </p>
             <button style={s.btnGold} onClick={onLaunchApp}>Try Free ⚡</button>
           </div>

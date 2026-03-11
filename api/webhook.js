@@ -92,31 +92,70 @@ export default async function handler(req, res) {
     });
 
     // ── EMAIL THE ACCESS CODE TO THE BUYER ──────────────────────────────
-    //
-    // RIGHT NOW: The access code is logged above and shown on the success
-    // page (the app reads it from the URL after Stripe redirects back).
-    //
-    // TO SEND EMAIL: Add one of these services (all have free tiers):
-    //   - Resend (resend.com) — easiest, 3,000 emails/month free
-    //   - SendGrid — reliable, 100/day free
-    //   - Postmark — excellent deliverability
-    //
-    // Example with Resend (uncomment when ready):
-    //
-    // import { Resend } from 'resend';
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.emails.send({
-    //   from: 'West Coast Wire Pro <noreply@westcoastwirepro.com>',
-    //   to: email,
-    //   subject: 'Your West Coast Wire Pro Access Code',
-    //   html: `
-    //     <h2>You're in! ⚡</h2>
-    //     <p>Your West Coast Wire Pro ${tier} access code is:</p>
-    //     <h1 style="letter-spacing:4px;font-family:monospace">${accessCode}</h1>
-    //     <p>Enter this code at westcoastwirepro.com to unlock all ${tier === 'pro' ? '500' : '500'} questions.</p>
-    //     <p>Questions? Reply to this email.</p>
-    //   `,
-    // });
+    if (email && process.env.RESEND_API_KEY) {
+      try {
+        const tierLabel = tier === 'pro' ? 'Pro' : 'Standard';
+        const tierFeatures = tier === 'pro'
+          ? 'All 512 questions, exam simulation mode, missed question review, and saved progress across sessions.'
+          : 'All 512 questions across all 12 modules, timed & untimed modes, and difficulty filtering.';
+
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'West Coast Wire Pro <noreply@westcoastwirepro.com>',
+            to: email,
+            subject: `⚡ Your West Coast Wire Pro ${tierLabel} Access Code`,
+            html: `
+              <div style="background:#0a1016;padding:40px 20px;font-family:'Segoe UI',Arial,sans-serif;max-width:520px;margin:0 auto;">
+                <div style="text-align:center;margin-bottom:32px;">
+                  <span style="font-size:40px;">⚡</span>
+                  <h1 style="color:#c8a84b;font-family:'Arial Black',Arial,sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:2px;margin:12px 0 4px;">West Coast Wire Pro</h1>
+                  <div style="color:#7a8a9a;font-size:13px;">California Journeyman Exam Prep</div>
+                </div>
+
+                <div style="background:#111820;border:1px solid rgba(200,168,75,0.3);border-radius:12px;padding:32px;margin-bottom:24px;text-align:center;">
+                  <div style="color:#27ae60;font-size:28px;font-weight:900;font-family:'Arial Black',Arial,sans-serif;text-transform:uppercase;margin-bottom:8px;">You're In!</div>
+                  <div style="display:inline-block;background:rgba(200,168,75,0.12);border:1px solid rgba(200,168,75,0.3);color:#c8a84b;font-family:'Courier New',monospace;font-size:12px;letter-spacing:2px;padding:5px 14px;border-radius:3px;margin-bottom:20px;">${tierLabel.toUpperCase()} ACCESS UNLOCKED</div>
+                  <p style="color:#7a8a9a;font-size:14px;line-height:1.7;margin-bottom:24px;">${tierFeatures}</p>
+
+                  <div style="background:#0a1016;border:2px solid rgba(200,168,75,0.4);border-radius:8px;padding:20px;margin-bottom:8px;">
+                    <div style="color:#7a8a9a;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Your Access Code</div>
+                    <div style="color:#c8a84b;font-family:'Courier New',monospace;font-size:28px;font-weight:700;letter-spacing:6px;">${accessCode}</div>
+                  </div>
+                  <div style="color:#4a5a6a;font-size:11px;margin-bottom:24px;">Save this email — you'll need this code to access your account on any device.</div>
+
+                  <a href="https://westcoastwirepro.com/redeem" style="display:block;background:linear-gradient(135deg,#c8a84b,#e8c878);color:#0a1016;font-family:'Arial Black',Arial,sans-serif;font-weight:900;font-size:16px;text-transform:uppercase;text-decoration:none;padding:16px;border-radius:6px;letter-spacing:0.5px;">
+                    Start Studying Now ⚡
+                  </a>
+                </div>
+
+                <div style="background:#111820;border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:20px;margin-bottom:24px;">
+                  <div style="color:#d8e0e8;font-size:13px;font-weight:700;margin-bottom:12px;">How to access on a new device:</div>
+                  <div style="color:#7a8a9a;font-size:13px;line-height:1.8;">
+                    1. Go to <a href="https://westcoastwirepro.com" style="color:#c8a84b;">westcoastwirepro.com</a><br>
+                    2. Tap <strong style="color:#d8e0e8;">I Already Paid</strong> or <strong style="color:#d8e0e8;">Enter Access Code</strong><br>
+                    3. Enter the code above: <strong style="color:#c8a84b;font-family:'Courier New',monospace;">${accessCode}</strong>
+                  </div>
+                </div>
+
+                <div style="text-align:center;color:#4a5a6a;font-size:12px;line-height:1.8;">
+                  Questions? Email us at <a href="mailto:noreply@westcoastwirepro.com" style="color:#c8a84b;">noreply@westcoastwirepro.com</a><br>
+                  West Coast Wire Pro · California Journeyman Exam Prep
+                </div>
+              </div>
+            `,
+          }),
+        });
+        console.log(`✅ Access code email sent to ${email}`);
+      } catch (emailErr) {
+        // Don't fail the webhook if email fails — payment was still processed
+        console.error('Email send failed:', emailErr.message);
+      }
+    }
     // ────────────────────────────────────────────────────────────────────
 
     // Acknowledge to Stripe immediately (must respond within 30 seconds)

@@ -274,7 +274,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate }) {
             <div style={s.ctaTitle}>Practice 2020 NEC Questions</div>
             <div style={s.ctaBody}>
               Every question in West Coast Wire Pro is written to the 2020 NEC and California
-              amendments. Modules 1 & 2 are free — no account needed.
+              amendments. Modules 1 & 2 + 2 Table Mastery drills free — no account needed.
             </div>
             <div style={s.ctaBtns}>
               <button style={s.btnGold} onClick={onLaunchApp}>Start Free — Modules 1 & 2 ⚡</button>

@@ -478,7 +478,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
             <div style={s.ctaTitle}>Start Practicing Today</div>
             <div style={s.ctaBody}>
               512 questions. 12 modules. Every answer tied to the exact NEC section.
-              Built by the instructor who wrote this guide. Modules 1 & 2 always free.
+              Built by the instructor who wrote this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
             </div>
             <div style={s.ctaBtns}>
               <button style={s.btnGold} onClick={onLaunchApp}>Start Free — Modules 1 & 2 ⚡</button>
@@ -524,7 +524,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, borderColor:'rgba(200,168,75,0.3)', background:'rgba(200,168,75,0.04)'}}>
             <div style={s.sideTitle}>Practice the Exam</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'14px'}}>
-              512 questions covering everything in this guide. Modules 1 & 2 always free.
+              512 questions covering everything in this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'10px', width:'100%'}} onClick={onLaunchApp}>
               Try Free ⚡

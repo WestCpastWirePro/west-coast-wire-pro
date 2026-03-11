@@ -613,6 +613,54 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
   const [timeExpired, setTimeExpired] = useState(false);
   const timerRef = useRef(null);
 
+  // ── SAVE & RESUME ─────────────────────────────────────────────────────────
+  const [savedSession, setSavedSession] = useState(() => {
+    try {
+      const s = localStorage.getItem('wrp_saved_session');
+      return s ? JSON.parse(s) : null;
+    } catch(e) { return null; }
+  });
+
+  const saveSession = () => {
+    if (access !== 'pro') return;
+    try {
+      const session = {
+        quizQuestions,
+        qIndex,
+        answered,
+        score,
+        selectedMods,
+        selectedDiffs,
+        timedMode,
+        savedAt: new Date().toISOString(),
+      };
+      localStorage.setItem('wrp_saved_session', JSON.stringify(session));
+      setSavedSession(session);
+    } catch(e) {}
+  };
+
+  const clearSession = () => {
+    try { localStorage.removeItem('wrp_saved_session'); } catch(e) {}
+    setSavedSession(null);
+  };
+
+  const resumeSession = () => {
+    if (!savedSession) return;
+    setQuizQuestions(savedSession.quizQuestions);
+    setQIndex(savedSession.qIndex);
+    setAnswered(savedSession.answered);
+    setScore(savedSession.score);
+    setSelectedMods(savedSession.selectedMods || []);
+    setSelectedDiffs(savedSession.selectedDiffs || []);
+    setTimedMode(false); // never resume in timed mode
+    setSelected(null);
+    setShowExp(false);
+    setTimeExpired(false);
+    clearSession();
+    setScreen('quiz');
+  };
+  // ──────────────────────────────────────────────────────────────────────────
+
   const modCounts = {};
   ALL_QUESTIONS.forEach(q => { modCounts[q.mod] = (modCounts[q.mod]||0)+1; });
 
@@ -659,6 +707,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     setScore({correct:0,wrong:0});
     setAnswered([]);
     setTimeExpired(false);
+    clearSession();
     setScreen("quiz");
   };
 
@@ -671,6 +720,22 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     const newAnswered = [...answered, {qid: quizQuestions[qIndex].id, selected: idx, correct}];
     setAnswered(newAnswered);
     setShowExp(true);
+    // Auto-save progress for Pro users after every answer
+    if (access === 'pro') {
+      try {
+        const session = {
+          quizQuestions,
+          qIndex,
+          answered: newAnswered,
+          score: {correct: score.correct+(correct?1:0), wrong: score.wrong+(correct?0:1)},
+          selectedMods,
+          selectedDiffs,
+          timedMode: false,
+          savedAt: new Date().toISOString(),
+        };
+        localStorage.setItem('wrp_saved_session', JSON.stringify(session));
+      } catch(e) {}
+    }
     // Show email capture after 10 answers on free tier
     if (access === 'free' && newAnswered.length === 10 && !emailDismissed) {
       setShowEmailCapture(true);
@@ -756,10 +821,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       <div style={{...styles.header, padding:"12px 16px"}}>
         {/* Hamburger — LEFT, large tap target */}
         <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
-          style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0}}>
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px",transition:"all 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,6px)":"none"}} />
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px",transition:"all 0.2s",opacity:menuOpen?0:1}} />
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px",transition:"all 0.2s",transform:menuOpen?"rotate(-45deg) translate(5px,-6px)":"none"}} />
+          style={{background:"#c8a84b",border:"none",borderRadius:"8px",cursor:"pointer",padding:"11px 13px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,boxShadow:"0 2px 8px rgba(200,168,75,0.4)"}}>
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px",transition:"all 0.2s",transform:menuOpen?"rotate(45deg) translate(5px,6px)":"none"}} />
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px",transition:"all 0.2s",opacity:menuOpen?0:1}} />
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px",transition:"all 0.2s",transform:menuOpen?"rotate(-45deg) translate(5px,-6px)":"none"}} />
         </button>
         <span style={{fontSize:"24px", marginLeft:"10px"}}>⚡</span>
         <div style={{marginLeft:"6px"}}>
@@ -772,6 +837,31 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       </div>
 
       <div style={{padding:"16px"}}>
+
+        {/* ── RESUME BANNER (Pro only) ── */}
+        {savedSession && access === 'pro' && (
+          <div style={{background:"linear-gradient(135deg,rgba(200,168,75,0.12),rgba(200,168,75,0.06))", border:"1px solid rgba(200,168,75,0.4)", borderRadius:"10px", padding:"16px", marginBottom:"16px"}}>
+            <div style={{display:"flex", alignItems:"center", gap:"10px", marginBottom:"10px"}}>
+              <span style={{fontSize:"22px"}}>📍</span>
+              <div>
+                <div style={{fontSize:"14px", fontWeight:"700", color:"#d8e0e8"}}>Resume where you left off</div>
+                <div style={{fontSize:"12px", color:"#7a8a9a"}}>
+                  Question {savedSession.qIndex + 1} of {savedSession.quizQuestions?.length} · {savedSession.answered?.filter(a=>a.correct).length || 0} correct
+                  {savedSession.savedAt && (' · Saved ' + new Date(savedSession.savedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}))}
+                </div>
+              </div>
+            </div>
+            <div style={{display:"flex", gap:"8px"}}>
+              <button style={{...styles.btn, ...styles.btnGold, flex:2, fontSize:"14px", padding:"11px"}} onClick={resumeSession}>
+                ▶ Resume Session
+              </button>
+              <button style={{...styles.btn, ...styles.btnGray, flex:1, fontSize:"13px", padding:"11px"}} onClick={clearSession}>
+                Start Fresh
+              </button>
+            </div>
+          </div>
+        )}
+
         <div style={{...styles.card, background:"linear-gradient(135deg,#1a2840,#162030)", borderColor:"#c8a84b"}}>
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📋 EXAM COVERAGE</div>
           <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>
@@ -900,10 +990,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       {GlobalMenu}
       <div style={{...styles.header, padding:"12px 16px"}}>
         <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
-          style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0}}>
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+          style={{background:"#c8a84b",border:"none",borderRadius:"8px",cursor:"pointer",padding:"11px 13px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,boxShadow:"0 2px 8px rgba(200,168,75,0.4)"}}>
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
         </button>
         <span style={{fontSize:"24px", marginLeft:"10px"}}>⚡</span>
         <div style={{marginLeft:"6px"}}>
@@ -972,26 +1062,20 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </div>
         ))}
 
-        {/* Dev/Demo unlock */}
-        {/* Redeem access code link */}
-        <div style={{textAlign:"center", padding:"8px 0 16px"}}>
-          <div style={{fontSize:"13px", color:"#8899aa", marginBottom:"8px"}}>Already purchased on another device?</div>
-          <a href="/redeem" style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", textDecoration:"none"}}>
-            Enter Access Code →
+
+
+        {/* Already paid — restore access */}
+        <div style={{background:"rgba(200,168,75,0.06)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"8px", padding:"16px", marginBottom:"12px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"12px", flexWrap:"wrap"}}>
+          <div>
+            <div style={{fontSize:"13px", fontWeight:"700", color:"#d8e0e8", marginBottom:"2px"}}>Already purchased?</div>
+            <div style={{fontSize:"12px", color:"#7a8a9a"}}>Restore your access on this device</div>
+          </div>
+          <a href="/redeem" style={{background:"transparent", border:"1px solid #c8a84b", color:"#c8a84b", fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:"900", fontSize:"12px", textTransform:"uppercase", letterSpacing:"0.5px", padding:"10px 16px", borderRadius:"6px", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0}}>
+            I Already Paid →
           </a>
         </div>
 
-        <div style={{textAlign:"center", padding:"0 0 24px"}}>
-          <div style={{fontSize:"11px", color:"#4a5a6a", marginBottom:"6px"}}>— Demo / Testing —</div>
-          <button style={{fontSize:"12px", color:"#4a5a6a", background:"none", border:"none", cursor:"pointer", textDecoration:"underline"}}
-            onClick={() => {
-              try { localStorage.setItem("wrp_access","paid"); } catch(e) {}
-              setAccess("paid");
-              setScreen("home");
-            }}>
-            Simulate paid access (dev only)
-          </button>
-        </div>
+
 
         <div style={{...styles.card, background:"rgba(39,174,96,0.06)", borderColor:"rgba(39,174,96,0.2)", textAlign:"center"}}>
           <div style={{fontSize:"13px", color:"#27ae60", fontWeight:"700", marginBottom:"4px"}}>🔒 One-Time Payment · No Subscription</div>
@@ -1007,10 +1091,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       {GlobalMenu}
       <div style={{...styles.header, padding:"12px 16px"}}>
         <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
-          style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0}}>
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-          <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+          style={{background:"#c8a84b",border:"none",borderRadius:"8px",cursor:"pointer",padding:"11px 13px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,boxShadow:"0 2px 8px rgba(200,168,75,0.4)"}}>
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+          <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
         </button>
         <span style={{fontSize:"24px", marginLeft:"10px"}}>⚡</span>
         <div style={{marginLeft:"6px"}}>
@@ -1106,10 +1190,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         <div style={{...styles.header, padding:"10px 16px"}}>
           {/* Hamburger — LEFT */}
           <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
-            style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"9px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0}}>
-            <span style={{display:"block",width:"20px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-            <span style={{display:"block",width:"20px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-            <span style={{display:"block",width:"20px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+            style={{background:"#c8a84b",border:"none",borderRadius:"8px",cursor:"pointer",padding:"10px 12px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,boxShadow:"0 2px 8px rgba(200,168,75,0.4)"}}>
+            <span style={{display:"block",width:"20px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"20px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"20px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
           </button>
           {/* Progress in center */}
           <div style={{flex:1, margin:"0 12px"}}>
@@ -1118,12 +1202,26 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
               <div style={{...styles.progressBar, width:`${progress*100}%`}}/>
             </div>
           </div>
-          {/* Score + timer on RIGHT */}
-          <div style={{display:"flex", gap:"10px", alignItems:"center", flexShrink:0}}>
+          {/* Score + timer + save on RIGHT */}
+          <div style={{display:"flex", gap:"8px", alignItems:"center", flexShrink:0}}>
             <span style={{fontSize:"14px", color:"#27ae60", fontWeight:"700"}}>✓ {score.correct}</span>
             <span style={{fontSize:"14px", color:"#e74c3c", fontWeight:"700"}}>✗ {score.wrong}</span>
             {timedMode && (
               <span style={{...styles.timer, color: timeLeft<=10?"#e74c3c":timeLeft<=20?"#f39c12":"#c8a84b"}}>{timeLeft}s</span>
+            )}
+            {access === 'pro' ? (
+              <button
+                style={{background:"rgba(200,168,75,0.15)", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"6px 10px", borderRadius:"6px", cursor:"pointer", letterSpacing:"0.3px", whiteSpace:"nowrap"}}
+                onClick={() => { saveSession(); setScreen("home"); }}>
+                💾 Save
+              </button>
+            ) : (
+              <button
+                style={{background:"rgba(200,168,75,0.08)", border:"1px solid rgba(200,168,75,0.2)", color:"#7a8a9a", fontSize:"11px", fontWeight:"700", padding:"6px 10px", borderRadius:"6px", cursor:"pointer", whiteSpace:"nowrap"}}
+                onClick={() => setScreen("upgrade")}
+                title="Upgrade to Pro to save progress">
+                💾 Pro
+              </button>
             )}
           </div>
         </div>
@@ -1195,6 +1293,9 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     // Save performance to localStorage on first render of results
     useEffect(() => {
       try {
+        // Clear any saved session — quiz is complete
+        localStorage.removeItem('wrp_saved_session');
+
         // Save wrong question IDs for Missed Questions Deck
         const wrongIds = answered.filter(a=>!a.correct).map(a=>a.qid);
         const prev = JSON.parse(localStorage.getItem("wrp_missed") || "[]");
@@ -1226,10 +1327,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         {GlobalMenu}
         <div style={styles.header}>
           <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
-            style={{background:"rgba(200,168,75,0.12)",border:"1px solid rgba(200,168,75,0.3)",borderRadius:"8px",cursor:"pointer",padding:"10px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,marginRight:"12px"}}>
-            <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-            <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
-            <span style={{display:"block",width:"22px",height:"3px",background:"#c8a84b",borderRadius:"2px"}} />
+            style={{background:"#c8a84b",border:"none",borderRadius:"8px",cursor:"pointer",padding:"11px 13px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,boxShadow:"0 2px 8px rgba(200,168,75,0.4)"}}>
+            <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
           </button>
           <span style={{fontSize:"28px"}}>⚡</span>
           <div style={styles.logo}>Quiz Results</div>
