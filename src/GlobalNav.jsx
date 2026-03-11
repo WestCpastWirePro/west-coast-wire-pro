@@ -105,10 +105,16 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
               Try Free ⚡
             </button>
           )}
+          <button onClick={() => onNavigate && onNavigate('redeem')} style={{background:'none',border:'1px solid rgba(200,168,75,0.4)',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'700',fontSize:'12px',padding:'8px 16px',borderRadius:'4px',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px',whiteSpace:'nowrap'}}>
+            Restore Access
+          </button>
         </div>
 
         {/* MOBILE HAMBURGER */}
-        <div className="gn-hamburger" ref={menuRef} style={{alignItems:'center',gap:'10px'}}>
+        <div className="gn-hamburger" ref={menuRef} style={{alignItems:'center',gap:'8px'}}>
+          <button onClick={() => { onNavigate && onNavigate('redeem'); setMenuOpen(false) }} style={{background:'none',border:'1px solid rgba(200,168,75,0.5)',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'700',fontSize:'11px',padding:'7px 10px',borderRadius:'4px',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.3px',whiteSpace:'nowrap'}}>
+            🔓 Restore
+          </button>
           {onLaunchApp && (
             <button onClick={onLaunchApp} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'12px',padding:'7px 14px',borderRadius:'4px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px'}}>
               Try Free ⚡
@@ -144,7 +150,14 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
             ['FAQ','faq'],['Contact & Support','contact'],
           ]} onNav={nav}/>
           {onLaunchApp && (
-            <div style={{padding:'16px 20px'}}>
+            <div style={{padding:'16px 20px 8px'}}>
+              <button onClick={()=>{onNavigate && onNavigate('redeem');setMenuOpen(false)}} style={{background:'none',border:'2px solid #c8a84b',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'14px',padding:'13px',borderRadius:'6px',cursor:'pointer',textTransform:'uppercase',width:'100%',letterSpacing:'0.5px'}}>
+                🔓 Already Paid? Restore Access
+              </button>
+            </div>
+          )}
+          {onLaunchApp && (
+            <div style={{padding:'4px 20px 16px'}}>
               <button onClick={()=>{onLaunchApp();setMenuOpen(false)}} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',width:'100%'}}>
                 ⚡ Start Studying Free
               </button>

@@ -74,6 +74,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <button style={{...s.btnGhost, background:'none', border:'none', cursor:'pointer', fontFamily:'inherit'}}
               onClick={() => onLaunchApp()}>Start Free — No Account Needed →</button>
           </div>
+          <div style={{marginTop:'16px'}}>
+            <button
+              onClick={() => onNavigate && onNavigate('redeem')}
+              style={{background:'none', border:'1px solid rgba(200,168,75,0.4)', color:'#c8a84b', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'700', fontSize:'13px', textTransform:'uppercase', letterSpacing:'0.5px', padding:'10px 20px', borderRadius:'4px', cursor:'pointer'}}>
+              Already Purchased? Restore Access →
+            </button>
+          </div>
           <div style={s.heroStats}>
             {[
               ['512','Practice Questions'],
@@ -259,6 +266,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <h2 style={s.ctaH2}>Ready to <span style={{color:'#c8a84b'}}>Wire Up</span><br/>Your Future?</h2>
         <p style={s.ctaP}>Modules 1 & 2 + 2 Table Mastery drills — free. No account, no credit card.</p>
         <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Studying Free</button>
+        <div style={{marginTop:'16px'}}>
+          <button
+            onClick={() => onNavigate && onNavigate('redeem')}
+            style={{background:'none', border:'1px solid rgba(200,168,75,0.4)', color:'#c8a84b', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'700', fontSize:'13px', textTransform:'uppercase', letterSpacing:'0.5px', padding:'10px 20px', borderRadius:'4px', cursor:'pointer'}}>
+            Already Purchased? Restore Access →
+          </button>
+        </div>
       </section>
 
       {/* FOOTER */}
