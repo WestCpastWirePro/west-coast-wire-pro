@@ -1006,6 +1006,18 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       </div>
 
       <div style={{padding:"16px"}}>
+
+        {/* Already paid — restore access — TOP of paywall */}
+        <div style={{background:"rgba(200,168,75,0.1)", border:"2px solid rgba(200,168,75,0.5)", borderRadius:"8px", padding:"14px 16px", marginBottom:"16px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"12px", flexWrap:"wrap"}}>
+          <div>
+            <div style={{fontSize:"14px", fontWeight:"700", color:"#d8e0e8", marginBottom:"2px"}}>Already purchased?</div>
+            <div style={{fontSize:"12px", color:"#7a8a9a"}}>Restore your access on this device</div>
+          </div>
+          <a href="/redeem" style={{background:"#c8a84b", color:"#0f1923", fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:"900", fontSize:"12px", textTransform:"uppercase", letterSpacing:"0.5px", padding:"10px 16px", borderRadius:"6px", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0}}>
+            I Already Paid →
+          </a>
+        </div>
+
         <div style={{textAlign:"center", padding:"24px 16px 16px"}}>
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock All 512 Questions</div>
@@ -1064,16 +1076,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
 
 
-        {/* Already paid — restore access */}
-        <div style={{background:"rgba(200,168,75,0.06)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"8px", padding:"16px", marginBottom:"12px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"12px", flexWrap:"wrap"}}>
-          <div>
-            <div style={{fontSize:"13px", fontWeight:"700", color:"#d8e0e8", marginBottom:"2px"}}>Already purchased?</div>
-            <div style={{fontSize:"12px", color:"#7a8a9a"}}>Restore your access on this device</div>
-          </div>
-          <a href="/redeem" style={{background:"transparent", border:"1px solid #c8a84b", color:"#c8a84b", fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:"900", fontSize:"12px", textTransform:"uppercase", letterSpacing:"0.5px", padding:"10px 16px", borderRadius:"6px", textDecoration:"none", whiteSpace:"nowrap", flexShrink:0}}>
-            I Already Paid →
-          </a>
-        </div>
+
 
 
 
