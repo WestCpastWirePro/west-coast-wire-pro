@@ -34,11 +34,11 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
         .gn-menu-item:hover { color: #c8a84b !important; background: rgba(200,168,75,0.07) !important; }
       `}</style>
 
-      <nav style={{position:'sticky',top:0,zIndex:500,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 clamp(16px,4vw,40px)',background:'rgba(10,16,22,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(200,168,75,0.15)',height:'120px'}}>
+      <nav style={{position:'sticky',top:0,zIndex:500,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 clamp(12px,4vw,40px)',background:'rgba(10,16,22,0.97)',backdropFilter:'blur(12px)',borderBottom:'1px solid rgba(200,168,75,0.15)',height:'clamp(64px,12vw,120px)'}}>
 
         {/* LOGO */}
         <button onClick={goHome} style={{display:'flex',alignItems:'center',background:'none',border:'none',cursor:'pointer',padding:0,flexShrink:0}}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'104px',width:'auto'}}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" style={{height:'clamp(52px,10vw,104px)',width:'auto'}}>
             <defs>
               <linearGradient id="gnbolt" x1="0%" y1="0%" x2="50%" y2="100%">
                 <stop offset="0%" style={{stopColor:'#FFD84D'}}/>
@@ -110,27 +110,33 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           </button>
         </div>
 
-        {/* MOBILE HAMBURGER */}
-        <div className="gn-hamburger" ref={menuRef} style={{alignItems:'center',gap:'8px'}}>
-          <button onClick={() => { onNavigate && onNavigate('redeem'); setMenuOpen(false) }} style={{background:'none',border:'1px solid rgba(200,168,75,0.5)',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'700',fontSize:'11px',padding:'7px 10px',borderRadius:'4px',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.3px',whiteSpace:'nowrap'}}>
-            🔓 Restore
-          </button>
-          {onLaunchApp && (
-            <button onClick={onLaunchApp} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'12px',padding:'7px 14px',borderRadius:'4px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px'}}>
-              Try Free ⚡
-            </button>
-          )}
-          <button onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o)}} style={{background:'none',border:'none',cursor:'pointer',padding:'4px',display:'flex',flexDirection:'column',gap:'5px'}} aria-label="Menu">
-            <span style={{display:'block',width:'22px',height:'2px',background:'#c8a84b',borderRadius:'2px',transition:'all 0.25s',transform:menuOpen?'rotate(45deg) translate(5px,5px)':'none'}}/>
-            <span style={{display:'block',width:'22px',height:'2px',background:'#c8a84b',borderRadius:'2px',transition:'all 0.25s',opacity:menuOpen?0:1}}/>
-            <span style={{display:'block',width:'22px',height:'2px',background:'#c8a84b',borderRadius:'2px',transition:'all 0.25s',transform:menuOpen?'rotate(-45deg) translate(5px,-5px)':'none'}}/>
+        {/* MOBILE — just the hamburger button, clean and simple */}
+        <div className="gn-hamburger" ref={menuRef} style={{alignItems:'center'}}>
+          <button onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o)}} style={{background:'#c8a84b',border:'none',cursor:'pointer',padding:'10px 12px',borderRadius:'6px',display:'flex',flexDirection:'column',gap:'5px',flexShrink:0,boxShadow:'0 2px 8px rgba(200,168,75,0.4)'}} aria-label="Menu">
+            <span style={{display:'block',width:'22px',height:'3px',background:'#0a1016',borderRadius:'2px',transition:'all 0.25s',transform:menuOpen?'rotate(45deg) translate(5px,6px)':'none'}}/>
+            <span style={{display:'block',width:'22px',height:'3px',background:'#0a1016',borderRadius:'2px',transition:'all 0.25s',opacity:menuOpen?0:1}}/>
+            <span style={{display:'block',width:'22px',height:'3px',background:'#0a1016',borderRadius:'2px',transition:'all 0.25s',transform:menuOpen?'rotate(-45deg) translate(5px,-6px)':'none'}}/>
           </button>
         </div>
       </nav>
 
       {/* MOBILE DRAWER */}
       {menuOpen && (
-        <div style={{position:'fixed',top:'120px',left:0,right:0,zIndex:499,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 120px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+        <div style={{position:'fixed',top:'clamp(64px,12vw,120px)',left:0,right:0,zIndex:499,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - clamp(64px,12vw,120px))',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+
+          {/* Action buttons at TOP of drawer */}
+          <div style={{padding:'16px 20px 0', display:'flex', flexDirection:'column', gap:'10px'}}>
+            <button onClick={()=>{onNavigate && onNavigate('redeem');setMenuOpen(false)}} style={{background:'none',border:'2px solid #c8a84b',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'14px',padding:'13px',borderRadius:'6px',cursor:'pointer',textTransform:'uppercase',width:'100%',letterSpacing:'0.5px'}}>
+              🔓 Already Paid? Restore Access
+            </button>
+            {onLaunchApp && (
+              <button onClick={()=>{onLaunchApp();setMenuOpen(false)}} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'14px',padding:'13px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',width:'100%'}}>
+                ⚡ Start Studying Free
+              </button>
+            )}
+          </div>
+          <div style={{height:'1px',background:'rgba(200,168,75,0.2)',margin:'16px 20px 4px'}}/>
+
           <MobileSection title="⚡ Study App" items={[
             ['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],
             ['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
@@ -149,20 +155,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
             ['About','about'],['Reviews & Testimonials','testimonials'],
             ['FAQ','faq'],['Contact & Support','contact'],
           ]} onNav={nav}/>
-          {onLaunchApp && (
-            <div style={{padding:'16px 20px 8px'}}>
-              <button onClick={()=>{onNavigate && onNavigate('redeem');setMenuOpen(false)}} style={{background:'none',border:'2px solid #c8a84b',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'14px',padding:'13px',borderRadius:'6px',cursor:'pointer',textTransform:'uppercase',width:'100%',letterSpacing:'0.5px'}}>
-                🔓 Already Paid? Restore Access
-              </button>
-            </div>
-          )}
-          {onLaunchApp && (
-            <div style={{padding:'4px 20px 16px'}}>
-              <button onClick={()=>{onLaunchApp();setMenuOpen(false)}} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',width:'100%'}}>
-                ⚡ Start Studying Free
-              </button>
-            </div>
-          )}
+          <div style={{height:'16px'}}/>
         </div>
       )}
     </>
