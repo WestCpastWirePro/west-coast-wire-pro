@@ -29,6 +29,7 @@ import TestimonialsPage     from './TestimonialsPage.jsx'
 import MissedQuestionsPage  from './MissedQuestionsPage.jsx'
 import AdminGrantPage       from './AdminGrantPage.jsx'
 import BlogPage             from './BlogPage.jsx'
+import CodeSprintPage       from './CodeSprintPage.jsx'
 import BlogPostPage         from './BlogPostPage.jsx'
 import { blogPosts }        from './blogPosts.js'
 
@@ -38,6 +39,7 @@ const ROUTES = {
   '/refund': 'refund',               '/refund-policy': 'refund',
   '/admin-grant': 'admin-grant',
   '/blog': 'blog',
+  '/code-sprint': 'code-sprint',  '/article-finder': 'code-sprint',
   '/try': 'landing',
   '/redeem': 'redeem',               '/activate': 'redeem',        '/unlock': 'redeem',
   '/about': 'about',                 '/about-us': 'about',
@@ -87,6 +89,7 @@ const PAGE_PATHS = {
   faq: '/faq',
   testimonials: '/testimonials',
   blog: '/blog',
+  'code-sprint': '/code-sprint',
 }
 
 const PAGE_META = {
@@ -103,6 +106,7 @@ const PAGE_META = {
   glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms, electrical concepts, and California-specific licensing terminology — built for journeyman exam prep.' },
   testimonials:      { title: 'Pass Stories — Electricians Who Passed with West Coast Wire Pro', desc: 'Real stories from California electricians who used West Coast Wire Pro to pass the journeyman exam. See how they studied and what finally made it click.' },
   diagnostic:        { title: 'Readiness Diagnostic — Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
+  'code-sprint':     { title: 'Code Sprint — NEC Article Navigator Game | West Coast Wire Pro', desc: 'Race the clock to find any NEC article. Builds the spatial memory you need to navigate the code book fast on the California Journeyman exam.' },
   blog:              { title: 'Blog — Industry News & Study Tips for California Electricians | West Coast Wire Pro', desc: 'Industry news, exam strategy, and career insights for California electricians preparing for the Journeyman license exam.' },
   simulator:         { title: 'Full Exam Simulator — 110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 12 modules weighted proportionally. Practice under real test conditions.' },
   'nec-ref':         { title: 'NEC 2020 Quick Reference Guide | West Coast Wire Pro', desc: 'Fast-access NEC 2020 tables, key code sections, and calculation formulas for the California journeyman exam — without flipping through the whole codebook.' },
@@ -282,6 +286,7 @@ export default function App() {
   else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} />
   else if (view === 'mastery')     pageContent = <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'admin-grant')  pageContent = <AdminGrantPage />
+  else if (view === 'code-sprint')   pageContent = <CodeSprintPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'blog')          pageContent = <BlogPage onNavigate={navigate} />
   else if (view === 'blog-post') {
     const slug = window.location.pathname.replace('/blog/', '').replace(/^\//, '')
