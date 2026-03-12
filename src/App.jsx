@@ -161,6 +161,13 @@ function resolveViewFromURL() {
   const path   = window.location.pathname
   if (params.get('success') === 'true')   return 'success'
   if (params.get('cancelled') === 'true') return 'landing'
+  const grantTier = params.get('grant'); const grantKey = params.get('key');
+  if (grantTier && grantKey === 'wcwp2026admin' && ['standard','pro'].includes(grantTier)) {
+    try { localStorage.setItem('wrp_access', grantTier) } catch(e) {}
+    window.history.replaceState({}, '', '/?app'); return 'app'
+  }
+  // Magic link: ?grant=pro&token=XXXX-XXXX-XXXX
+  if (params.get('token') && params.get('grant')) return 'verifying'
   if (params.has('app') || params.has('quiz') || window.location.hash === '#app') return 'app'
   if (ROUTES[path]) { setPageMeta(ROUTES[path]); return ROUTES[path] }
   if (path !== '/' && path !== '') return '404'
@@ -170,6 +177,31 @@ function resolveViewFromURL() {
 
 export default function App() {
   const [view, setView] = useState(() => resolveViewFromURL())
+
+  // Handle magic link token verification on mount
+  useEffect(() => {
+    if (view !== 'verifying') return
+    const params = new URLSearchParams(window.location.search)
+    const token = params.get('token')
+    const tier  = params.get('grant')
+    fetch('/api/verify-code', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: token }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (data.valid) {
+          try { localStorage.setItem('wrp_access', data.tier || tier) } catch(e) {}
+          window.history.replaceState({}, '', '/?app')
+          setView('app')
+        } else {
+          window.history.replaceState({}, '', '/')
+          setView('landing')
+        }
+      })
+      .catch(() => { window.history.replaceState({}, '', '/'); setView('landing') })
+  }, [view])
 
   useEffect(() => {
     const onPopState = () => {
@@ -199,6 +231,7 @@ export default function App() {
   React.useEffect(() => { window.__navigateTo = navigate }, [view])
   const getAccess = () => { try { return localStorage.getItem('wrp_access') || 'free' } catch(e) { return 'free' } }
 
+  if (view === 'verifying') return <div style={{minHeight:'100vh',background:'#0a1016',display:'flex',alignItems:'center',justifyContent:'center',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontSize:'18px',textTransform:'uppercase',letterSpacing:'2px'}}>⚡ Unlocking Access...</div>
   if (view === 'app') return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
 
   // All other views get the persistent GlobalNav
