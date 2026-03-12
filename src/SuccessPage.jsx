@@ -31,28 +31,22 @@ export default function SuccessPage({ onEnterApp }) {
     })
       .then(r => r.json())
       .then(data => {
-        // The verify endpoint returns the code on successful session verification
-        // For success page we just need to confirm payment went through
-        // We generate the display code client-side from the session
+        if (!data || data.error === 'Code does not match this session') {
+          // Session ID is present but code check failed — don't grant access
+          setStatus('error')
+          return
+        }
         setTier(data.tier || tierParam)
         setStatus('success')
-
-        // Store access level in localStorage so app knows user has paid
         try {
           localStorage.setItem('wrp_access', data.tier || tierParam)
           localStorage.setItem('wrp_session', sessionId)
         } catch(e) {}
-
-        // Clean up URL (remove Stripe params) without reloading
         window.history.replaceState({}, '', '/?app')
       })
       .catch(() => {
-        // Even if verify fails, payment was confirmed by Stripe redirect
-        // Set access from URL param as fallback
-        setTier(tierParam)
-        setStatus('success')
-        try { localStorage.setItem('wrp_access', tierParam) } catch(e) {}
-        window.history.replaceState({}, '', '/?app')
+        // Network error — show error, do NOT grant access from URL params alone
+        setStatus('error')
       })
   }, [])
 
@@ -90,14 +84,13 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={s.tierBadge}>{tier === 'pro' ? 'PRO ACCESS' : 'STANDARD ACCESS'} UNLOCKED</div>
         <div style={s.sub}>
           {tier === 'pro'
-            ? 'All 512 questions, exam simulation mode, saved progress, and future updates — all yours.'
+            ? 'All 512 questions, exam simulation mode, Code Sprint article navigator, Table Mastery flashcards, saved progress, and future updates — all yours.'
             : 'All 512 questions across all 12 modules are now unlocked.'}
         </div>
         <div style={s.divider} />
         <div style={s.noteTitle}>Your access is saved on this device.</div>
         <div style={s.note}>
-          To use West Coast Wire Pro on another device, use the "Enter Access Code" option
-          in the app and enter the code from your Stripe receipt email.
+          Your access link was emailed to you. Bookmark it — click it any time to restore access on any device.
         </div>
         <button style={s.btn} onClick={onEnterApp}>
           Start Studying Now ⚡

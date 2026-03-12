@@ -427,9 +427,22 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           ))}
         </div>
 
-        <button style={{...s.btn, width:'100%', fontSize:'17px', padding:'16px'}} onClick={startGame}>
-          ⚡ Start Code Sprint
-        </button>
+        {isPro ? (
+          <button style={{...s.btn, width:'100%', fontSize:'17px', padding:'16px'}} onClick={startGame}>
+            ⚡ Start Code Sprint
+          </button>
+        ) : (
+          <div style={{background:'rgba(200,168,75,0.06)', border:'2px solid rgba(200,168,75,0.3)', borderRadius:'8px', padding:'24px', textAlign:'center'}}>
+            <div style={{fontSize:'28px', marginBottom:'12px'}}>🔒</div>
+            <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'16px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'8px'}}>Pro Feature</div>
+            <div style={{color:'#7a8a9a', fontSize:'14px', lineHeight:'1.6', marginBottom:'20px'}}>
+              Code Sprint is included with Pro access.<br/>Upgrade to unlock this game plus Table Mastery, Exam Simulator, Missed Questions, and more.
+            </div>
+            <button style={{...s.btn, width:'100%'}} onClick={() => onNavigate && onNavigate('landing')}>
+              Upgrade to Pro — $59.99
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

@@ -197,6 +197,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             priceSub="One-time · Instant access"
             features={[
               {text:'Everything in Standard', locked:false},
+              {text:'Code Sprint — NEC Article Navigator Game', locked:false},
               {text:'Full Table Mastery — 10 NEC tables, 113 flashcards', locked:false},
               {text:'Progress saved across sessions', locked:false},
               {text:'Missed question review deck', locked:false},

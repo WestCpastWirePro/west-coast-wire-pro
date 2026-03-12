@@ -81,6 +81,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
             {label:'Exam Simulator', page:'simulator'},
             {label:'Missed Questions', page:'missed'},
             {label:'Study Planner', page:'planner'},
+            {label:'Code Sprint — Article Navigator', page:'code-sprint'},
             {label:'NEC Reference Guide', page:'nec-ref'},
             {label:'Calculations Helper', page:'calculations'},
             {label:'Progress Dashboard', page:'progress'},
@@ -88,7 +89,6 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           ]}/>
           <GnDropdown label="Resources" onNavigate={nav} items={[
             {label:'Blog', page:'blog'},
-            {label:'Code Sprint — Article Finder', page:'code-sprint'},
             {label:'CA Journeyman Exam Guide', page:'exam-info'},
             {label:'How to Pass — Study Tips', page:'study-tips'},
             {label:'Exam Day Guide', page:'exam-day'},
@@ -141,14 +141,14 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
 
           <MobileSection title="⚡ Study App" items={[
             ['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],
-            ['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
+            ['Code Sprint','code-sprint'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
             ['Missed Questions Review','missed'],['Study Planner','planner'],
             ['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],
             ['Progress Dashboard','progress'],['Glossary','glossary'],
           ]} onNav={nav}/>
           <MobileDivider/>
           <MobileSection title="📋 Exam Resources" items={[
-            ['Blog','blog'],['Code Sprint','code-sprint'],['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
+            ['Blog','blog'],['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
             ['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],
             ['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician'],
           ]} onNav={nav}/>

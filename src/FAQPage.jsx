@@ -103,7 +103,7 @@ const FAQS = [
       },
       {
         q: "What's the difference between Standard and Pro access?",
-        a: "Standard ($29.99) unlocks all 512 questions across all 12 modules, the full Exam Simulator, Missed Questions Deck, Diagnostic Quiz, NEC Reference, and Calculations tool. Pro ($59.99) adds the Table Mastery flashcard drills (10 NEC tables, 113 cards), the Study Planner, and any future modules or content updates at no additional charge."
+        a: "Standard ($29.99) unlocks all 512 questions across all 12 modules, the full Exam Simulator, Missed Questions Deck, Diagnostic Quiz, NEC Reference, and Calculations tool. Pro ($59.99) adds Code Sprint (NEC article navigation game), Table Mastery flashcard drills (10 NEC tables, 113 cards), the Study Planner, and any future modules or content updates at no additional charge."
       },
       {
         q: "I bought access but the app is locked. What do I do?",

@@ -950,6 +950,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🛠 STUDY TOOLS</div>
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
             {[
+              { icon:"📖", label:"Code Sprint",        path:"/code-sprint"  },
               { icon:"🎯", label:"Am I Ready?",        path:"/diagnostic"   },
               { icon:"📋", label:"Full Exam Sim",       path:"/simulator"    },
               { icon:"🔁", label:"Missed Questions",    path:"/missed"       },
@@ -1131,6 +1132,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
           <div style={{fontSize:"12px", color:"#a855f7", fontWeight:"700", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"1px"}}>What you're adding:</div>
           {[
+            ["📖", "Code Sprint", "NEC article navigation game — train your brain to find any article fast under exam pressure"],
             ["🏆", "Table Mastery", "113 flashcards across 10 NEC tables — the most common exam calculation source"],
             ["📋", "Full Exam Simulator", "110-question, 270-minute timed simulation — real exam conditions"],
             ["🔁", "Missed Questions Deck", "Auto-builds a deck from every question you've gotten wrong"],
