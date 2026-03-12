@@ -222,7 +222,7 @@ const CHAPTERS = [
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5) }
 
-const QUESTION_TIME = 22
+const QUESTION_TIME = 12
 const ROUND_SIZE = 10
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -326,7 +326,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
       setWrongBucket(wb => [...wb, q])
     }
 
-    setResults(r => [...r, { article: q.article, title: q.title, scenario: q.scenario, hint: q.hint, correct, time: elapsed, pts }])
+    setResults(r => [...r, { article: q.article, title: q.title, correct, time: elapsed, pts }])
 
     // Auto-advance after 2.2s
     setTimeout(() => {
@@ -416,7 +416,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           {[
             ['📋', 'A scenario appears — something that would show up on the exam'],
             ['⚡', 'Pick the NEC Article where you\'d find the answer'],
-            ['⏱️', '22 seconds per question to read carefully and pick the right article'],
+            ['⏱️', '12 seconds per question — just like the pressure of the real exam'],
             ['🔁', 'Wrong answers come back in the next round (spaced repetition)'],
             ['🗺️', 'After each answer, see exactly where it lives in the NEC'],
           ].map(([icon, text]) => (
@@ -451,7 +451,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
   if (screen === 'game' && current) {
     const ch = CHAPTERS.find(c => c.num === current.chapter)
     const timerPct = (timeLeft / QUESTION_TIME) * 100
-    const timerColor = timeLeft > 12 ? '#27ae60' : timeLeft > 6 ? '#f39c12' : '#e74c3c'
+    const timerColor = timeLeft > 7 ? '#27ae60' : timeLeft > 4 ? '#f39c12' : '#e74c3c'
 
     return (
       <div style={s.page}>
@@ -597,29 +597,13 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           {/* Per-question breakdown */}
           <div style={{...s.card, marginBottom:'24px'}}>
             <div style={{color:'#7a8a9a', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>Question Breakdown</div>
-            <div style={{display:'flex', flexDirection:'column', gap:'0px'}}>
+            <div style={{display:'flex', flexDirection:'column', gap:'8px'}}>
               {results.map((r, i) => (
-                <div key={i} style={{padding:'14px 0', borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-                  {/* Top row: icon + article + time */}
-                  <div style={{display:'flex', alignItems:'center', gap:'10px', marginBottom:'8px'}}>
-                    <span style={{fontSize:'15px', flexShrink:0}}>{r.correct ? '✅' : '❌'}</span>
-                    <span style={{fontFamily:"'Courier New',monospace", fontSize:'14px', color:'#c8a84b', fontWeight:'700', flexShrink:0}}>Art. {r.article}</span>
-                    <span style={{fontSize:'13px', color:'#d8e0e8', fontWeight:'700', flex:1}}>{r.title}</span>
-                    <span style={{fontSize:'11px', color:'#4a5a6a', flexShrink:0}}>{r.time}s</span>
-                  </div>
-                  {/* Scenario */}
-                  <div style={{fontSize:'12px', color:'#7a8a9a', lineHeight:'1.6', marginLeft:'28px', marginBottom:'6px'}}>
-                    <span style={{color:'#4a5a6a', fontWeight:'700', textTransform:'uppercase', fontSize:'10px', letterSpacing:'1px'}}>Scenario: </span>
-                    {r.scenario}
-                  </div>
-                  {/* Answer / hint */}
-                  <div style={{fontSize:'12px', lineHeight:'1.6', marginLeft:'28px', background: r.correct ? 'rgba(39,174,96,0.06)' : 'rgba(231,76,60,0.06)', border: `1px solid ${r.correct ? 'rgba(39,174,96,0.15)' : 'rgba(231,76,60,0.15)'}`, borderRadius:'6px', padding:'8px 10px'}}>
-                    <span style={{color: r.correct ? '#2ecc71' : '#e74c3c', fontWeight:'700', fontSize:'10px', textTransform:'uppercase', letterSpacing:'1px'}}>
-                      {r.correct ? '✓ Correct — ' : '✗ Answer — '}
-                    </span>
-                    <span style={{color:'#c8a84b', fontWeight:'700'}}>Article {r.article} — {r.title}. </span>
-                    <span style={{color:'#8a9aaa'}}>{r.hint}</span>
-                  </div>
+                <div key={i} style={{display:'flex', alignItems:'center', gap:'10px', padding:'8px 0', borderBottom:'1px solid rgba(255,255,255,0.04)'}}>
+                  <span style={{fontSize:'14px'}}>{r.correct ? '✅' : '❌'}</span>
+                  <span style={{fontFamily:"'Courier New',monospace", fontSize:'13px', color:'#c8a84b', fontWeight:'700', flexShrink:0}}>Art. {r.article}</span>
+                  <span style={{fontSize:'12px', color:'#7a8a9a', flex:1, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{r.title}</span>
+                  <span style={{fontSize:'11px', color:'#4a5a6a', flexShrink:0}}>{r.time}s</span>
                 </div>
               ))}
             </div>
