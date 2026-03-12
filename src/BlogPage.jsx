@@ -24,7 +24,7 @@ export default function BlogPage({ onNavigate }) {
         <div style={{display:'flex', flexDirection:'column', gap:'24px'}}>
           {blogPosts.map(post => (
             <article key={post.slug}
-              onClick={() => nav('blog-' + post.slug)}
+              onClick={() => nav('blog-post:' + post.slug)}
               style={{background:'#111820', border:'1px solid rgba(200,168,75,0.15)', borderRadius:'8px', padding:'28px 32px', cursor:'pointer', transition:'border-color 0.2s'}}
               onMouseEnter={e => e.currentTarget.style.borderColor='rgba(200,168,75,0.4)'}
               onMouseLeave={e => e.currentTarget.style.borderColor='rgba(200,168,75,0.15)'}

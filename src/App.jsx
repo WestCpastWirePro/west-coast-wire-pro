@@ -103,6 +103,7 @@ const PAGE_META = {
   glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms, electrical concepts, and California-specific licensing terminology — built for journeyman exam prep.' },
   testimonials:      { title: 'Pass Stories — Electricians Who Passed with West Coast Wire Pro', desc: 'Real stories from California electricians who used West Coast Wire Pro to pass the journeyman exam. See how they studied and what finally made it click.' },
   diagnostic:        { title: 'Readiness Diagnostic — Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
+  blog:              { title: 'Blog — Industry News & Study Tips for California Electricians | West Coast Wire Pro', desc: 'Industry news, exam strategy, and career insights for California electricians preparing for the Journeyman license exam.' },
   simulator:         { title: 'Full Exam Simulator — 110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 12 modules weighted proportionally. Practice under real test conditions.' },
   'nec-ref':         { title: 'NEC 2020 Quick Reference Guide | West Coast Wire Pro', desc: 'Fast-access NEC 2020 tables, key code sections, and calculation formulas for the California journeyman exam — without flipping through the whole codebook.' },
   calculations:      { title: 'Electrical Calculations Helper | West Coast Wire Pro', desc: 'Step-by-step guides for load calculations, voltage drop, conduit fill, motor branch circuits, and more — the math section of the CA journeyman exam explained.' },
@@ -216,6 +217,7 @@ export default function App() {
       if (params.get('success') === 'true')   { setView('success'); return }
       if (params.get('cancelled') === 'true') { window.history.replaceState({}, '', '/'); setView('landing'); return }
       if (params.has('app') || params.has('quiz') || window.location.hash === '#app') { setView('app'); return }
+      if (path === '/blog') { setView('blog'); return }
       if (path.startsWith('/blog/')) { setView('blog-post'); return }
       if (ROUTES[path]) { const v = ROUTES[path]; setPageMeta(v); setView(v); return }
       if (path !== '/' && path !== '') { setView('404'); return }
@@ -227,6 +229,14 @@ export default function App() {
   }, [])
 
   const navigate = (to) => {
+    // Blog post navigation: 'blog-post:slug' or legacy 'blog-slug'
+    if (to.startsWith('blog-post:')) {
+      const slug = to.replace('blog-post:', '')
+      window.history.pushState({}, '', '/blog/' + slug)
+      setView('blog-post')
+      window.scrollTo(0, 0)
+      return
+    }
     window.history.pushState({}, '', PAGE_PATHS[to] || '/' + to)
     setPageMeta(to)
     setView(to)
@@ -274,7 +284,7 @@ export default function App() {
   else if (view === 'admin-grant')  pageContent = <AdminGrantPage />
   else if (view === 'blog')          pageContent = <BlogPage onNavigate={navigate} />
   else if (view === 'blog-post') {
-    const slug = window.location.pathname.replace('/blog/', '')
+    const slug = window.location.pathname.replace('/blog/', '').replace(/^\//, '')
     pageContent = <BlogPostPage slug={slug} onNavigate={navigate} onLaunchApp={launchApp} />
   }
   else                             pageContent = <LandingPage onLaunchApp={launchApp} onNavigate={navigate} />
