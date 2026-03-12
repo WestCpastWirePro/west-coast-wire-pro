@@ -88,10 +88,10 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             catch a lot of people off guard.
           </p>
           <p style={s.p}>
-            That breadth of experience shapes every question in West Coast Wire Pro. The questions aren't written by
-            someone who read the NEC once. They're written by someone who has applied it across
-            residential, commercial, industrial, and solar job sites for over a decade — and who
-            knows which sections actually show up in the field, and which ones trip people up on the exam.
+            That breadth of experience shapes every question in West Coast Wire Pro. Every question is
+            NEC-referenced and exam-style — built to reflect what actually shows up on the California
+            Journeyman exam. The focus throughout is on the sections that trip people up in the field
+            and on the test, drawn from over a decade of hands-on electrical work.
           </p>
 
           <h2 style={s.h2}>4 Years Teaching the Trade</h2>

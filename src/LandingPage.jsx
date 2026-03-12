@@ -56,18 +56,20 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={s.heroGlow} />
         <div style={s.heroGrid} />
         <div style={s.heroContent}>
+          <div style={{background:'rgba(200,168,75,0.08)',border:'1px solid rgba(200,168,75,0.3)',borderRadius:'4px',padding:'10px 16px',marginBottom:'20px',display:'inline-block'}}>
+            <span style={{color:'#c8a84b',fontSize:'12px',fontWeight:'700',letterSpacing:'1px',textTransform:'uppercase',fontFamily:"'Courier New',monospace"}}>⚡ BlackRock just committed $100M to electrician training — demand has never been higher</span>
+          </div>
           <div style={s.heroBadge}>
             <span style={s.badgeDot} />
             California Exam Prep · 2020 NEC · Updated 2025
           </div>
           <h1 style={s.h1}>
-            <div style={s.h1Line1}>Pass The</div>
-            <div style={s.h1Line2}>Journeyman Exam</div>
-            <div style={s.h1Line3}>First Try.</div>
+            <div style={s.h1Line1}>Electricians Are</div>
+            <div style={s.h1Line2}>Building The Future.</div>
+            <div style={s.h1Line3}>Get Licensed.</div>
           </h1>
           <p style={s.heroSub}>
-            <strong style={{color:'#d8e0e8'}}>512 exam-style practice questions</strong> covering every module
-            of the California General Electrician exam. Every answer referenced to the exact NEC article.
+            The world's largest asset manager says America is running out of electricians. <strong style={{color:'#d8e0e8'}}>Your California Journeyman license is your ticket in.</strong> 512 exam-style practice questions, every answer NEC referenced.
           </p>
           <div style={s.heroCtas}>
             <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>

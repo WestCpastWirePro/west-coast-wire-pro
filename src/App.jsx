@@ -28,12 +28,16 @@ import FAQPage              from './FAQPage.jsx'
 import TestimonialsPage     from './TestimonialsPage.jsx'
 import MissedQuestionsPage  from './MissedQuestionsPage.jsx'
 import AdminGrantPage       from './AdminGrantPage.jsx'
+import BlogPage             from './BlogPage.jsx'
+import BlogPostPage         from './BlogPostPage.jsx'
+import { blogPosts }        from './blogPosts.js'
 
 const ROUTES = {
   '/privacy': 'privacy',              '/privacy-policy': 'privacy',
   '/terms': 'terms',                  '/terms-of-service': 'terms',
   '/refund': 'refund',               '/refund-policy': 'refund',
   '/admin-grant': 'admin-grant',
+  '/blog': 'blog',
   '/try': 'landing',
   '/redeem': 'redeem',               '/activate': 'redeem',        '/unlock': 'redeem',
   '/about': 'about',                 '/about-us': 'about',
@@ -82,6 +86,7 @@ const PAGE_PATHS = {
   mastery: '/mastery',
   faq: '/faq',
   testimonials: '/testimonials',
+  blog: '/blog',
 }
 
 const PAGE_META = {
@@ -169,6 +174,7 @@ function resolveViewFromURL() {
   // Magic link: ?grant=pro&token=XXXX-XXXX-XXXX
   if (params.get('token') && params.get('grant')) return 'verifying'
   if (params.has('app') || params.has('quiz') || window.location.hash === '#app') return 'app'
+  if (path.startsWith('/blog/')) return 'blog-post'
   if (ROUTES[path]) { setPageMeta(ROUTES[path]); return ROUTES[path] }
   if (path !== '/' && path !== '') return '404'
   setPageMeta('landing')
@@ -210,6 +216,7 @@ export default function App() {
       if (params.get('success') === 'true')   { setView('success'); return }
       if (params.get('cancelled') === 'true') { window.history.replaceState({}, '', '/'); setView('landing'); return }
       if (params.has('app') || params.has('quiz') || window.location.hash === '#app') { setView('app'); return }
+      if (path.startsWith('/blog/')) { setView('blog-post'); return }
       if (ROUTES[path]) { const v = ROUTES[path]; setPageMeta(v); setView(v); return }
       if (path !== '/' && path !== '') { setView('404'); return }
       setPageMeta('landing')
@@ -265,6 +272,11 @@ export default function App() {
   else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} />
   else if (view === 'mastery')     pageContent = <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'admin-grant')  pageContent = <AdminGrantPage />
+  else if (view === 'blog')          pageContent = <BlogPage onNavigate={navigate} />
+  else if (view === 'blog-post') {
+    const slug = window.location.pathname.replace('/blog/', '')
+    pageContent = <BlogPostPage slug={slug} onNavigate={navigate} onLaunchApp={launchApp} />
+  }
   else                             pageContent = <LandingPage onLaunchApp={launchApp} onNavigate={navigate} />
 
   return (

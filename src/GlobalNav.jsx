@@ -87,6 +87,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
             {label:'Glossary', page:'glossary'},
           ]}/>
           <GnDropdown label="Resources" onNavigate={nav} items={[
+            {label:'Blog', page:'blog'},
             {label:'CA Journeyman Exam Guide', page:'exam-info'},
             {label:'How to Pass — Study Tips', page:'study-tips'},
             {label:'Exam Day Guide', page:'exam-day'},
@@ -146,7 +147,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           ]} onNav={nav}/>
           <MobileDivider/>
           <MobileSection title="📋 Exam Resources" items={[
-            ['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
+            ['Blog','blog'],['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
             ['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],
             ['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician'],
           ]} onNav={nav}/>
