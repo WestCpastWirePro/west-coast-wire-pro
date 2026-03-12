@@ -797,7 +797,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
               </button>
             ))}
             <div style={{padding:"8px 20px 4px",fontSize:"10px",fontWeight:"700",color:"#c8a84b",letterSpacing:"2px",textTransform:"uppercase",marginTop:"8px"}}>📋 Resources</div>
-            {[["CA Exam Guide","exam-info"],["Study Tips","study-tips"],["Exam Day Guide","exam-day"],["Electrician Salary","salary"],["FAQ","faq"],["Contact & Support","contact"]].map(([label, page]) => (
+            {[["Blog","blog"],["CA Exam Guide","exam-info"],["Study Tips","study-tips"],["Exam Day Guide","exam-day"],["Electrician Salary","salary"],["FAQ","faq"],["Contact & Support","contact"]].map(([label, page]) => (
               <button key={page} onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}
                 style={{display:"block",width:"100%",textAlign:"left",padding:"12px 20px",background:"none",border:"none",borderBottom:"1px solid rgba(255,255,255,0.05)",color:"#d8e0e8",fontSize:"14px",cursor:"pointer",fontFamily:"'Segoe UI',sans-serif"}}>
                 {label}
