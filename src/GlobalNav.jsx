@@ -140,7 +140,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           <div style={{height:'1px',background:'rgba(200,168,75,0.2)',margin:'16px 20px 4px'}}/>
 
           <MobileSection title="⚡ Study App" items={[
-            ['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],
+            ['Start Studying — Free','landing'],
             ['Code Sprint','code-sprint'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
             ['Missed Questions Review','missed'],['Study Planner','planner'],
             ['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],

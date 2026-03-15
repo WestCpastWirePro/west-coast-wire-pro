@@ -99,10 +99,31 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
         <div style={s.card}>
 
           <div style={s.iconWrap}>🔓</div>
-          <div style={s.title}>Enter Access Code</div>
+          <div style={s.title}>Restore Access</div>
           <div style={s.sub}>
-            Use this if you purchased West Coast Wire Pro on another device and want to
-            unlock it here. Your access code is in your Stripe receipt email.
+            Already purchased? Here's how to get back in on this device.
+          </div>
+
+          {/* Primary — magic link */}
+          <div style={{background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.25)', borderRadius:'8px', padding:'20px', marginBottom:'20px', textAlign:'left'}}>
+            <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b', textTransform:'uppercase', letterSpacing:'1px', marginBottom:'10px'}}>⚡ Easiest — Use Your Access Link</div>
+            <div style={{fontSize:'13px', color:'#8a9aaa', lineHeight:'1.7'}}>
+              When you purchased, we emailed you a one-click access link from <strong style={{color:'#d8e0e8'}}>no-reply@westcoastwirepro.com</strong>. Find that email and tap the link — it will restore your access instantly.<br/><br/>
+              <strong style={{color:'#d8e0e8'}}>Subject line:</strong> "Your West Coast Wire Pro Access — Click to Start Studying"<br/>
+              <strong style={{color:'#d8e0e8'}}>Also check:</strong> Spam, Promotions, or Junk folders.
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{display:'flex', alignItems:'center', gap:'12px', marginBottom:'20px'}}>
+            <div style={{flex:1, height:'1px', background:'rgba(255,255,255,0.07)'}}/> 
+            <span style={{fontSize:'11px', color:'#4a5a6a', textTransform:'uppercase', letterSpacing:'1px'}}>or enter a code</span>
+            <div style={{flex:1, height:'1px', background:'rgba(255,255,255,0.07)'}}/>
+          </div>
+
+          {/* Fallback — access code for older purchases */}
+          <div style={{fontSize:'12px', color:'#4a5a6a', marginBottom:'12px', textAlign:'left'}}>
+            If you purchased before March 2026 and have a code from your receipt:
           </div>
 
           {/* Code input */}
@@ -133,32 +154,13 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
             style={{...s.btnGold, opacity: status === 'loading' ? 0.7 : 1, cursor: status === 'loading' ? 'wait' : 'pointer'}}
             onClick={handleSubmit}
             disabled={status === 'loading'}>
-            {status === 'loading' ? 'Verifying...' : 'Unlock Access ⚡'}
+            {status === 'loading' ? 'Verifying...' : 'Unlock With Code ⚡'}
           </button>
-
-          {/* Help section */}
-          <div style={s.helpDivider} />
-
-          <div style={s.helpTitle}>Where is my access code?</div>
-          <div style={s.helpSteps}>
-            <div style={s.helpStep}>
-              <span style={s.helpNum}>1</span>
-              <span>Check your email for a receipt from <strong style={{color:'#d8e0e8'}}>Stripe</strong> — the subject line starts with "Your receipt from West Coast Wire Pro"</span>
-            </div>
-            <div style={s.helpStep}>
-              <span style={s.helpNum}>2</span>
-              <span>Also check your spam or promotions folder if you don't see it</span>
-            </div>
-            <div style={s.helpStep}>
-              <span style={s.helpNum}>3</span>
-              <span>The code is 12 characters formatted as XXXX-XXXX-XXXX</span>
-            </div>
-          </div>
 
           <div style={s.helpDivider} />
 
           <div style={s.supportRow}>
-            <span style={{fontSize:'13px', color:'#4a5a6a'}}>Still can't find it?</span>
+            <span style={{fontSize:'13px', color:'#4a5a6a'}}>Can't find your email?</span>
             <button onClick={() => onNavigate ? onNavigate('contact') : onHome && onHome()} style={{...s.supportLink, background:'none', border:'none', cursor:'pointer', padding:0}}>
               Contact support →
             </button>
@@ -166,7 +168,7 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
 
         </div>
 
-        {/* Already free tip */}
+        {/* Free tip */}
         <div style={s.freeTip}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
             Modules 1 & 2 + 2 Table Mastery drills are always free — no code needed.
