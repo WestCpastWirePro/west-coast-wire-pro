@@ -11,7 +11,7 @@ const s = {
 };
 
 const STATS = [
-  { value: "512", label: "Practice Questions" },
+  { value: "462", label: "Practice Questions" },
   { value: "12", label: "Exam Modules" },
   { value: "70%", label: "Passing Score" },
   { value: "2020", label: "NEC Edition" },
@@ -56,7 +56,7 @@ export default function TestimonialsPage({ onNavigate, onHome }) {
       <div style={{...s.card, background:"linear-gradient(135deg,rgba(200,168,75,0.08),rgba(200,168,75,0.02))", textAlign:"center", marginBottom:"32px"}}>
         <div style={{fontSize:"16px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Start Studying — Free</div>
         <div style={{fontSize:"13px", color:"#8899aa", marginBottom:"16px", lineHeight:"1.6"}}>
-          Modules 1 & 2 free. No account needed. 512 questions, all 12 modules, NEC 2020.
+          Modules 1 & 2 free. No account needed. 462 questions, all 11 modules, NEC 2020.
         </div>
         <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start Free →</button>
       </div>

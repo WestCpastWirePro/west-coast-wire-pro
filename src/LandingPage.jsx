@@ -234,7 +234,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               Did you pass using West Coast Wire Pro?
             </div>
           </div>
-        </div></div>
+        </div>
       </section>
 
       {/* FAQ */}

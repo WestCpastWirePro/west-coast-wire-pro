@@ -315,3 +315,12 @@ export default function Top25Page({ onHome, onNavigate, access }) {
           <div style={{display:'flex', flexDirection:'column', gap:'10px'}}>
             <button style={{...s.btn, width:'100%'}} onClick={restart}>🎯 Drill Again</button>
             <button style={{...s.btnGhost, width:'100%'}} onClick={onHome}>Back to Home
+          </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return null
+}
