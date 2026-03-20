@@ -446,11 +446,11 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
   const [scores, setScores]   = useState({});  // tableId → last pct
 
   const isPro = access === "pro";
-  const isFree = !access || access === "free";
+  const isFree = !access || access === "free" || access === "standard";
 
   // Free users can try the two most essential tables as a preview
   const FREE_TABLES = ["t310", "t_fill_pct"];
-  const canAccess = (id) => isPro || access === "standard" ? true : FREE_TABLES.includes(id);
+  const canAccess = (id) => isPro ? true : FREE_TABLES.includes(id);
 
   function handleComplete(tableId, pct) {
     setScores(prev => ({ ...prev, [tableId]: pct }));
@@ -479,7 +479,7 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
         <div style={{ flex:1 }}>
           <div style={s.logo}>Table Mastery</div>
           <div style={{ fontSize:"11px", color:"#8899aa" }}>
-            {isPro ? "10 NEC tables — flashcard drills" : "2 free tables · 8 more with Pro"}
+            {isPro ? "10 NEC tables — flashcard drills" : "2 free tables included · Upgrade to Pro for all 10"}
           </div>
         </div>
         <button style={{ ...s.btn, ...s.btnGray, padding:"6px 14px", fontSize:"12px" }} onClick={onHome}>Menu</button>

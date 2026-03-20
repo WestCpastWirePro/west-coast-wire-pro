@@ -46,10 +46,14 @@ const RECOMMENDATIONS = {
   ],
   high: [
     "Strong performance. Focus on Hard difficulty questions in your weakest modules.",
-    "Review the NEC 2020 changes at /nec-2020-changes — new AFCI/GFCI rules appear frequently.",
-    "Practice California-specific content (Module 11) — most candidates underestimate it.",
+    "Focus on Hard difficulty questions in your weakest modules for maximum score improvement.",
   ],
 };
+
+const DIAG_SAVE_KEY = 'wrp_diag_session';
+const saveLoad = (key) => { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(e) { return null; } };
+const savePut  = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {} };
+const saveClear = (key) => { try { localStorage.removeItem(key); } catch(e) {} };
 
 export default function DiagnosticPage({ onNavigate, onHome, access }) {
   const [phase, setPhase] = useState("intro"); // intro | quiz | results
@@ -57,12 +61,42 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState(null);
   const [answered, setAnswered] = useState([]);
+  const [savedSession, setSavedSession] = useState(() => saveLoad(DIAG_SAVE_KEY));
+
+  const inQuiz = phase === "quiz";
+
+  useEffect(() => {
+    if (!inQuiz) return;
+    const handler = (e) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [inQuiz]);
+
+  const safeNav = (fn) => (...args) => {
+    if (inQuiz && !window.confirm("Leave the diagnostic? Your progress will be saved — you can resume later.")) return;
+    fn(...args);
+  };
+  const safeHome = safeNav(onHome);
+  const safeNavigate = safeNav(onNavigate);
 
   const start = () => {
-    setDeck(buildDeck(access));
+    saveClear(DIAG_SAVE_KEY);
+    setSavedSession(null);
+    const newDeck = buildDeck(access);
+    setDeck(newDeck);
     setIdx(0);
     setSelected(null);
     setAnswered([]);
+    setPhase("quiz");
+  };
+
+  const resume = () => {
+    if (!savedSession) return;
+    setDeck(savedSession.deck);
+    setIdx(savedSession.idx);
+    setAnswered(savedSession.answered);
+    setSelected(null);
+    setSavedSession(null);
     setPhase("quiz");
   };
 
@@ -70,11 +104,20 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
     if (selected !== null) return;
     setSelected(i);
     const q = deck[idx];
-    setAnswered(a => [...a, { qid: q.id, mod: q.mod, correct: i === q.ans, locked: q.locked }]);
+    const newAnswered = [...answered, { qid: q.id, mod: q.mod, correct: i === q.ans, locked: q.locked }];
+    setAnswered(newAnswered);
+    // Auto-save after every answer
+    const save = { deck, idx, answered: newAnswered, savedAt: new Date().toISOString() };
+    savePut(DIAG_SAVE_KEY, save);
   };
 
   const next = () => {
-    if (idx + 1 >= deck.length) { setPhase("results"); return; }
+    if (idx + 1 >= deck.length) {
+      saveClear(DIAG_SAVE_KEY);
+      setSavedSession(null);
+      setPhase("results");
+      return;
+    }
     setIdx(i => i+1);
     setSelected(null);
   };
@@ -90,6 +133,26 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
               24 questions across all 12 exam modules. Takes about 10 minutes. You'll get a readiness score and a breakdown showing exactly where to focus your study time.
             </div>
           </div>
+
+          {savedSession && (
+            <div style={{...s.card, borderColor:"rgba(200,168,75,0.5)", background:"linear-gradient(135deg,rgba(200,168,75,0.1),rgba(200,168,75,0.04))"}}>
+              <div style={{display:"flex", alignItems:"center", gap:"10px", marginBottom:"12px"}}>
+                <span style={{fontSize:"22px"}}>📍</span>
+                <div>
+                  <div style={{fontWeight:"700", fontSize:"14px", color:"#d8e0e8"}}>Resume where you left off</div>
+                  <div style={{fontSize:"12px", color:"#7a8a9a"}}>
+                    Question {savedSession.idx + 1} of {savedSession.deck?.length} · {savedSession.answered?.filter(a=>a.correct).length || 0} correct
+                    {savedSession.savedAt && (' · ' + new Date(savedSession.savedAt).toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'}))}
+                  </div>
+                </div>
+              </div>
+              <div style={{display:"flex", gap:"8px"}}>
+                <button style={{...s.btn, ...s.btnGold, flex:2, fontSize:"14px", padding:"11px"}} onClick={resume}>▶ Resume</button>
+                <button style={{...s.btn, ...s.btnGray, flex:1, fontSize:"13px", padding:"11px"}} onClick={() => { saveClear(DIAG_SAVE_KEY); setSavedSession(null); }}>Start Over</button>
+              </div>
+            </div>
+          )}
+
           <div style={s.card}>
             {[
               ["📋","24 questions","2 per module, mixed difficulty"],
@@ -108,7 +171,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
           </div>
           <div style={{padding:"0 16px 32px"}}>
             <button style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"16px", padding:"16px"}} onClick={start}>
-              Start Diagnostic →
+              {savedSession ? "Start Fresh →" : "Start Diagnostic →"}
             </button>
           </div>
         </div>
@@ -146,7 +209,18 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
             <div style={{fontSize:"16px", fontWeight:"600", lineHeight:"1.5"}}>{q.q}</div>
           </div>
 
-          {q.opts.map((opt, i) => {
+          {q.locked ? (
+            <div style={{...s.card, borderColor:"rgba(200,168,75,0.4)", textAlign:"center", padding:"24px 16px"}}>
+              <div style={{fontSize:"28px", marginBottom:"10px"}}>🔒</div>
+              <div style={{fontSize:"14px", fontWeight:"700", color:"#c8a84b", marginBottom:"6px"}}>This module is locked</div>
+              <div style={{fontSize:"13px", color:"#7a8a9a", lineHeight:"1.6", marginBottom:"16px"}}>
+                Upgrade to Standard or Pro to see questions from all 11 modules in your diagnostic.
+              </div>
+              <button style={{...s.btn, ...s.btnGold, width:"100%"}} onClick={next}>
+                Skip → {idx+1 >= deck.length ? "See My Results" : "Next Question"}
+              </button>
+            </div>
+          ) : q.opts.map((opt, i) => {
             let style = {...s.opt};
             if (selected !== null) {
               if (i === q.ans) style = {...s.opt, ...s.optCorrect};
@@ -247,7 +321,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
 
         <div style={{display:"flex", gap:"12px", padding:"0 16px 32px", flexWrap:"wrap"}}>
           <button style={{...s.btn, ...s.btnGold, flex:1}} onClick={start}>Retake Diagnostic</button>
-          <button style={{...s.btn, ...s.btnGray, flex:1}} onClick={onHome}>Practice Mode</button>
+          <button style={{...s.btn, ...s.btnGray, flex:1}} onClick={safeHome}>Practice Mode</button>
         </div>
       </div>
     </div>

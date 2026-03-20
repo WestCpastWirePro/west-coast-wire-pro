@@ -127,7 +127,12 @@ export default async function handler(req, res) {
                   <a href="${magicLink}" style="display:block;background:linear-gradient(135deg,#c8a84b,#e8c878);color:#0a1016;font-family:'Arial Black',Arial,sans-serif;font-weight:900;font-size:18px;text-transform:uppercase;text-decoration:none;padding:20px;border-radius:6px;letter-spacing:0.5px;margin-bottom:16px;">
                     ⚡ Start Studying Now — One Click
                   </a>
-                  <div style="color:#4a5a6a;font-size:12px;">Bookmark this email — click the button any time to restore access on any device.</div>
+                  <div style="color:#4a5a6a;font-size:12px;margin-bottom:0;">Bookmark this email — click the button any time to restore access on any device.</div>
+                </div>
+
+                <div style="background:#1a0a0a;border:1px solid rgba(231,76,60,0.4);border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+                  <div style="color:#e74c3c;font-size:13px;font-weight:700;margin-bottom:6px;">⚠️ Save This Email — Don't Lose Access</div>
+                  <div style="color:#8899aa;font-size:12px;line-height:1.7;">Your access is stored in your browser. If you ever <strong style="color:#aabbcc;">clear your browser data, switch devices, or use a different browser</strong>, just click the button above to instantly restore access — no password needed. Keep this email somewhere safe.</div>
                 </div>
 
                 <div style="background:#111820;border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:20px;margin-bottom:24px;">

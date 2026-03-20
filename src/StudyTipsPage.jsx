@@ -49,7 +49,6 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
               ['#timeline',   'How Long to Study — Realistic Timelines'],
               ['#modules',    'Which Modules to Prioritize'],
               ['#calc',       'Trade Math — The Make-or-Break Section'],
-              ['#california', 'The California-Specific Content Nobody Prepares For'],
               ['#method',     'The Study Method That Actually Works'],
               ['#final',      'The Final 2 Weeks'],
               ['#openbooktactics', 'Open Book Exam Tactics That Actually Save Time'],
@@ -105,13 +104,6 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
                 you start.
               </TipBlock>
 
-              <TipBlock icon="✗" color="#e74c3c" title="Skipping the California-specific content">
-                Most exam prep tools focus exclusively on the NEC. The California exam also
-                tests Title 8 (Cal/OSHA), Title 24 (energy code), and California Electrical
-                Code amendments. This content is unique to the CA exam and accounts for a
-                meaningful portion of questions. It's easy to skip. Don't.
-              </TipBlock>
-
               <TipBlock icon="✗" color="#e74c3c" title="Memorizing answers instead of understanding rules">
                 If you study by memorizing which letter goes with which question, you'll be
                 lost when the exam paraphrases a question differently. You need to understand
@@ -145,7 +137,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
                     profile: 'Working journeyman, haven\'t studied in years',
                     time: '10–14 weeks',
                     color: '#c8a84b',
-                    detail: 'Need to relearn some rules, refresh 2020 NEC changes, and drill California-specific content.',
+                    detail: 'Need to relearn some rules and focus on the modules that need the most work.',
                   },
                   {
                     profile: 'Returning to the trade or studying part-time',
@@ -180,8 +172,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
                 {[
                   { mod:'Grounding & Bonding', priority:'🔴 High', note:'Article 250 is dense, frequently tested, and heavily calculation-based. Most candidates are weak here. Start early.', time:'Extra time' },
                   { mod:'Calculations & Trade Math', priority:'🔴 High', note:'10–15% of the exam is math. Conduit fill, load calcs, motor sizing. Can\'t wing it — needs practice.', time:'Extra time' },
-                  { mod:'Wiring & Overcurrent', priority:'🔴 High', note:'AFCI, GFCI, branch circuit rules. Lots of "2020 NEC changed this" traps. Know the current rules cold.', time:'Extra time' },
-                  { mod:'California-Specific Rules', priority:'🔴 High', note:'Title 8, Title 24, CEC. Often entirely skipped. If you skip it, you give up ~8–10% of questions for free.', time:'Extra time' },
+                  { mod:'Wiring & Overcurrent', priority:'🔴 High', note:'AFCI, GFCI, branch circuit rules. Frequently tested — know which spaces require AFCI and GFCI protection cold.', time:'Extra time' },
                   { mod:'Wiring', priority:'🟡 Medium', note:'Articles 300–392. Conduit types, fill rules, installation requirements. Broad but learnable.', time:'Standard' },
                   { mod:'Motors & Transformers', priority:'🟡 Medium', note:'430 and 450. Table-heavy. Know Table 430.52 (breaker sizing) and 430.22 (conductor sizing).', time:'Standard' },
                   { mod:'Services & Feeders', priority:'🟡 Medium', note:'Articles 215, 225, and 230. Service entrance rules, disconnects, clearances.', time:'Standard' },
@@ -189,7 +180,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
                   { mod:'Equipment General Use', priority:'🟡 Medium', note:'Articles 400–490. Receptacles, switches, panelboards, cords. Practical everyday material — don\'t overlook it.', time:'Standard' },
                   { mod:'Communications & Emergency', priority:'🟢 Lower', note:'Articles 700–820. Emergency systems and standby power. Lighter on the exam but worth knowing the basics.', time:'Light' },
                   { mod:'Special Occupancies', priority:'🟢 Lower', note:'Articles 500–590. Hazardous locations. Study the classification system but don\'t over-invest.', time:'Light' },
-                  { mod:'Safety, Maintenance & Repair', priority:'🟢 Lower', note:'NFPA 70E, Cal/OSHA. Arc flash, lockout/tagout, PPE. California-specific safety rules show up here.', time:'Light' },
+                  { mod:'Safety, Maintenance & Repair', priority:'🟢 Lower', note:'NFPA 70E, Cal/OSHA. Arc flash, lockout/tagout, PPE requirements.', time:'Light' },
                 ].map(m => (
                   <div key={m.mod} style={s.moduleRow}>
                     <div style={{flex:1}}>
@@ -232,41 +223,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
               </P>
             </Section>
 
-            <Section id="california" title="The California-Specific Content Nobody Prepares For">
-              <P>
-                This is the section where prepared candidates separate from unprepared ones.
-                California's exam tests content that doesn't exist in any other state's exam.
-                Most generic prep materials don't cover it at all.
-              </P>
-              <P>Focus on these California-specific areas:</P>
 
-              <TipBlock icon="⚡" color="#c8a84b" title="Title 8, California Code of Regulations — Cal/OSHA">
-                8 CCR electrical safety orders govern electrical work safety in California.
-                Key sections: § 2940 series (electrical safety orders for general industry),
-                § 3314 (lockout/tagout), and § 1509 (injury and illness prevention program).
-                These appear in the safety module questions and are entirely absent from
-                NEC-only study materials.
-              </TipBlock>
-
-              <TipBlock icon="⚡" color="#c8a84b" title="Title 24, California Building Code — Energy Efficiency">
-                California's energy code adds requirements beyond the NEC for lighting
-                controls, occupancy sensors, daylight controls, and solar-ready wiring.
-                The 2022 Title 24 update expanded requirements significantly. Know the
-                residential and commercial lighting control requirements.
-              </TipBlock>
-
-              <TipBlock icon="⚡" color="#c8a84b" title="California Electrical Code (CEC) Amendments">
-                California amends the NEC for its own adoption. Where the CEC differs
-                from the NEC, the CEC governs. Key amendment areas include fire alarm wiring,
-                seismic bracing requirements, and some grounding rules.
-              </TipBlock>
-
-              <P>
-                Allocate at least 2 full weeks of your study time to California-specific
-                content. It feels like extra work because it's outside the NEC, but on
-                the CA exam it's not extra — it's required.
-              </P>
-            </Section>
 
             <Section id="method" title="The Study Method That Actually Works">
               <P>
@@ -293,7 +250,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
                   },
                   {
                     step:'Weeks 9–11',
-                    title:'California-Specific Content',
+                    title:'Calculations & Trade Math',
                     body:'Dedicate these weeks to Title 8, Title 24, and CEC amendments. This feels disconnected from the NEC work you\'ve been doing, but treat it with the same discipline. It\'s on the exam.',
                   },
                   {
@@ -323,7 +280,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
                 'Identify your three weakest modules from your practice scores. Study only those.',
                 'Run at least two full 110-question timed simulations — 4.5 hours each, open book like the real exam.',
                 'Review every question you got wrong in those simulations. Don\'t just note the right answer — understand the reasoning.',
-                'Do a final pass on California-specific content. It\'s easy to forget over a long study period.',
+                
                 'The night before: stop studying at 6pm. Eat a real dinner. Sleep. You\'re not going to learn anything new in the last 12 hours that will help you — but being tired will definitely hurt.',
               ]} />
             </Section>
@@ -477,7 +434,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
             <div style={s.ctaBolt}>⚡</div>
             <div style={s.ctaTitle}>Start Practicing Today</div>
             <div style={s.ctaBody}>
-              512 questions. 12 modules. Every answer tied to the exact NEC section.
+              462 questions. 11 modules. Every answer tied to the exact NEC section.
               Built by the instructor who wrote this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
             </div>
             <div style={s.ctaBtns}>
@@ -515,7 +472,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Top Priorities</div>
-            {['Grounding & Bonding','Trade Calculations','Wiring & Overcurrent','California-Specific (Title 8/24)','Motors & Transformers'].map((item, i) => (
+            {['Grounding & Bonding','Trade Calculations','Wiring & Overcurrent','Motors & Transformers','Services & Feeders'].map((item, i) => (
               <div key={item} style={{fontSize:'13px', color:'#aabbcc', padding:'6px 0', borderBottom:'1px solid rgba(255,255,255,0.04)', display:'flex', gap:'8px'}}>
                 <span style={{color:'#c8a84b', fontFamily:"'Courier New', monospace", fontSize:'11px', flexShrink:0}}>{i+1}.</span>{item}
               </div>
@@ -524,7 +481,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, borderColor:'rgba(200,168,75,0.3)', background:'rgba(200,168,75,0.04)'}}>
             <div style={s.sideTitle}>Practice the Exam</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'14px'}}>
-              512 questions covering everything in this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
+              462 questions covering everything in this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'10px', width:'100%'}} onClick={onLaunchApp}>
               Try Free ⚡

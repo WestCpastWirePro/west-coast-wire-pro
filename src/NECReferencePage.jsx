@@ -212,7 +212,12 @@ export default function NECReferencePage({ onHome , onNavigate }) {
   return (
     <div style={s.app}>
 
-      <div style={{padding:"12px 16px 0"}}>
+      <div style={{padding:"12px 16px 4px", display:"flex", alignItems:"center", gap:"12px"}}>
+        <button onClick={onHome} style={{background:"none", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"12px", fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:"700", textTransform:"uppercase", padding:"6px 12px", borderRadius:"4px", cursor:"pointer", flexShrink:0}}>← Back</button>
+        <span style={{fontSize:"13px", color:"#7a8a9a"}}>NEC Reference Guide</span>
+      </div>
+
+      <div style={{padding:"4px 16px 0"}}>
         <input
           style={s.input}
           placeholder="Search tables, articles, values..."

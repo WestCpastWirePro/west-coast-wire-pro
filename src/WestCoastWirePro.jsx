@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // ═══════════════════════════════════════════════════════════
-// WIREREADY PRO — 512-QUESTION CA ELECTRICIAN EXAM PREP APP
+// WIREREADY PRO — 462-QUESTION CA ELECTRICIAN EXAM PREP APP
 // All questions original field knowledge, no NEC text reproduced
 // ═══════════════════════════════════════════════════════════
 
@@ -43,7 +43,7 @@ const ALL_QUESTIONS = [
 {id:33,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"In which dwelling locations does the 2020 NEC require GFCI protection?",opts:["All receptacles in the dwelling","Bathrooms and kitchens only","Living rooms only","Bathrooms, garages, outdoors, crawl spaces, unfinished basements, kitchen near sinks, and boathouses"],ans:3,ref:"NEC 210.8(A)",exp:"2020 NEC expanded GFCI locations. Full list: bathrooms, garages, outdoors, crawl spaces, unfinished basements, kitchen countertop surfaces within 6 feet of sinks, boathouses, and washing machine locations."},
 {id:34,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"In which dwelling rooms does the 2020 NEC require AFCI protection for 120V 15A/20A circuits?",opts:["All rooms in the dwelling unit","Bedrooms and living rooms only","Bedrooms only","Only rooms with sleeping occupants"],ans:0,ref:"NEC 210.12(A)",exp:"2020 NEC expanded AFCI to ALL rooms in dwelling units — not just bedrooms as in earlier editions. Includes living rooms, dining rooms, kitchens, hallways, closets."},
 {id:35,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"What is the maximum spacing allowed between dwelling unit wall receptacle outlets?",opts:["12 feet","No point along the floor line more than 6 feet from an outlet","No point along the floor line more than 12 feet from an outlet","6 feet"],ans:1,ref:"NEC 210.52(A)(1)",exp:"No point along the floor line can be more than 6 feet from an outlet, measured along the floor. Results in outlets no more than 12 feet apart. Any wall space 2 feet or wider requires an outlet."},
-{id:36,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"Where must receptacle outlets be placed in a kitchen?",opts:["Within 2 feet along the wall","No receptacle required within 6 feet of a sink","Within 24 inches of the sink edge","No minimum — anywhere on countertop"],ans:2,ref:"NEC 210.52(C)(1)",exp:"Receptacles must be placed so no point along the countertop is more than 24 inches from an outlet. No receptacle may be installed face-up in the countertop."},
+{id:36,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"What is the countertop receptacle spacing rule for kitchens per 210.52(C)(1)?",opts:["Within 2 feet along the wall","No point along the countertop wall line may be more than 24 inches from a receptacle","Within 24 inches of the sink edge","No minimum — anywhere on countertop"],ans:1,ref:"NEC 210.52(C)(1)",exp:"No point along the kitchen countertop wall line may be more than 24 inches measured horizontally from a receptacle. This is a wall-line spacing rule — not a sink proximity rule. Receptacles are NOT required directly behind a sink (that area is exempted per the Exception)."},
 {id:37,mod:2,cat:"Wiring & Overcurrent",diff:"Easy",q:"Where must bathroom receptacle outlets be located?",opts:["Adjacent to the mirror","Anywhere in the bathroom","Adjacent to the toilet","Within 36 inches of the outside edge of each basin"],ans:3,ref:"NEC 210.52(D)",exp:"At least one receptacle within 36 inches of the outside edge of EACH basin — measured from the basin edge, not along the wall. Corner vanities need a receptacle within 36 inches of each basin."},
 {id:38,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"Under what condition does the 'next size up' rule allow a larger standard overcurrent device?",opts:["Conductor ampacity doesn't correspond to a standard overcurrent device rating AND the circuit isn't a motor branch circuit or feeder","Calculated load exceeds conductor ampacity","For any residential circuit up to 30 amperes","When the inspector approves a larger device"],ans:0,ref:"NEC 240.4(B)",exp:"Next-size-up rule: conductor ampacity doesn't match a standard size → use next larger standard size. Conditions: not a motor branch circuit, next size doesn't exceed 800A."},
 {id:39,mod:2,cat:"Wiring & Overcurrent",diff:"Hard",q:"Which common residential sizes are listed as standard overcurrent device ratings in Article 240?",opts:["Only UL-listed ratings","15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200 amperes and more","Any round number","Any rating matching the connected load"],ans:1,ref:"NEC 240.6(A)",exp:"Standard sizes are specified. Know the common residential sizes: 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200A. Critical for next-size-up rule application."},
@@ -55,7 +55,7 @@ const ALL_QUESTIONS = [
 {id:45,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"What protection is required for 125V single-phase 15/20A receptacles in a commercial garage?",opts:["No special protection","Only receptacles within 6 feet of a drain","Only near water sources","GFCI protection for all 125V single-phase 15 and 20A receptacles"],ans:3,ref:"NEC 511.12",exp:"In commercial garages for vehicle service, ALL 125V, single-phase, 15 and 20-ampere receptacles require GFCI protection. Water from vehicle washing creates serious shock hazard."},
 {id:46,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"A 4,500-watt, 240V residential electric water heater requires a minimum circuit ampacity of _____.",opts:["25 amperes","Size by nameplate only","30 amperes","20 amperes"],ans:0,ref:"NEC 422.13 & 210.20(A)",exp:"4,500W ÷ 240V = 18.75A × 125% (continuous) = 23.4A minimum. Next standard size = 25A. Water heaters are continuous loads."},
 {id:47,mod:2,cat:"Wiring & Overcurrent",diff:"Hard",q:"What requirement must multiwire branch circuit breakers meet?",opts:["Standard individual breakers may be used","Have handle ties or two-pole breaker so all ungrounded conductors open simultaneously","Only one GFCI breaker needed","Connect to separate phases — individual breakers are fine"],ans:1,ref:"NEC 210.4(B)",exp:"2020 NEC: multiwire branch circuits must have a means to simultaneously disconnect all ungrounded conductors. Handle-tied pair or two-pole breaker required. Prevents dangerous partial de-energization."},
-{id:48,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"Overhead conductors above a residential driveway must maintain a minimum clearance of _____.",opts:["15 feet","10 feet","18 feet","12 feet"],ans:2,ref:"NEC 230.24(B)(1)",exp:"Service drop conductors must clear residential driveways by 18 feet minimum. Higher than the 15-foot commercial clearance and the 12-foot clearance for areas not subject to vehicle traffic."},
+{id:48,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"Overhead conductors above a residential driveway must maintain a minimum clearance of _____.",opts:["15 feet","10 feet","18 feet","12 feet"],ans:3,ref:"NEC 230.24(B)(2)",exp:"Overhead service conductors over residential property and driveways require 12 feet minimum clearance. The 18-foot clearance applies to public streets, alleys, roads, and driveways on other than residential property. Know the difference — this is a common exam trap."},
 {id:49,mod:2,cat:"Wiring & Overcurrent",diff:"Easy",q:"What circuit size is required for a dedicated bathroom receptacle circuit?",opts:["No dedicated circuit required","15 amperes minimum","Based on load calculation","20 amperes minimum"],ans:3,ref:"NEC 210.11(C)(3)",exp:"20-ampere circuit required for bathroom receptacle outlets. Cannot supply receptacles in other rooms. May serve receptacles in a single bathroom including bathroom lighting."},
 {id:50,mod:2,cat:"Wiring & Overcurrent",diff:"Medium",q:"Where does the 2020 NEC require tamper-resistant receptacles?",opts:["In all 125V, 15 and 20A non-locking receptacles throughout the entire dwelling","Only in areas accessible to children","Only on circuits below 20A","Only in bathrooms and kitchens"],ans:0,ref:"NEC 406.12",exp:"Tamper-resistant receptacles required for ALL 125V, 15 and 20-ampere non-locking receptacles throughout the entire dwelling unit. All rooms, not just those with children."},
 {id:51,mod:2,cat:"Wiring & Overcurrent",diff:"Hard",q:"Is it permitted for a 60A overcurrent device to protect a circuit with 55A-rated conductors?",opts:["Only with AHJ approval","Yes — next-size-up rule permits 60A since 55A doesn't correspond to a standard size","Yes — 60A is within 10% of the conductor ampacity","No — OCPD must not exceed conductor ampacity"],ans:1,ref:"NEC 240.4(B)",exp:"55A doesn't match a standard size (standard sizes: 50A and 60A). Next-size-up rule permits the 60A device here. Classic exam scenario — 55A conductor, 60A breaker is code-compliant."},
@@ -85,8 +85,8 @@ const ALL_QUESTIONS = [
 {id:75,mod:2,cat:"Wiring & Overcurrent",diff:"Easy",q:"Does a residential sump pump require a dedicated circuit?",opts:["Not required — any available circuit acceptable","15A circuit is sufficient","Must share a circuit with other laundry equipment","A dedicated 20A circuit is required"],ans:0,ref:"NEC 210.52 (no sump pump req.)",exp:"The NEC does NOT require a dedicated circuit for residential sump pumps. Good practice to dedicate a circuit, but not required. Know what the NEC doesn't require — as important as what it does require."},
 // MODULE 3: SERVICES & FEEDERS (35)
 {id:76,mod:3,cat:"Services & Feeders",diff:"Easy",q:"A new single-family dwelling must have a minimum service ampacity of _____.",opts:["100 amperes","150 amperes","80 amperes","60 amperes"],ans:0,ref:"NEC 230.79(C)",exp:"Minimum service for a single-family dwelling = 100 amperes. In practice, 200A is standard for new construction, but 100A is the NEC minimum."},
-{id:77,mod:3,cat:"Services & Feeders",diff:"Easy",q:"The maximum number of service disconnects permitted for a single building is _____.",opts:["Four","One only","No maximum","Six"],ans:3,ref:"NEC 230.71(A)",exp:"Maximum of six service disconnects grouped at one location. The 'rule of six' is classic exam material. Each disconnect serves a different load group."},
-{id:78,mod:3,cat:"Services & Feeders",diff:"Medium",q:"Service drop conductors above a residential driveway must maintain a minimum clearance of _____.",opts:["10 feet","12 feet","18 feet","15 feet"],ans:2,ref:"NEC 230.24(B)(1)",exp:"Service drop conductors must clear residential driveways by 18 feet minimum. Higher than the 15-foot commercial clearance and 12-foot for areas without vehicle traffic."},
+{id:77,mod:3,cat:"Services & Feeders",diff:"Easy",q:"The maximum number of service disconnects permitted for a single building is _____.",opts:["Four","One only","No maximum","Six"],ans:3,ref:"NEC 230.71(A) & 230.71(B)",exp:"NEC 2020 changed 230.71: the default is now ONE service disconnect. Up to six are permitted only when specific configurations are used — each in a separate enclosure with its own main disconnect, or in separate switchboard sections with barriers. The maximum is six but it is no longer automatic."},
+{id:78,mod:3,cat:"Services & Feeders",diff:"Medium",q:"Service drop conductors above a residential driveway must maintain a minimum clearance of _____.",opts:["10 feet","12 feet","18 feet","15 feet"],ans:1,ref:"NEC 230.24(B)(2)",exp:"Over residential property and driveways: 12 feet minimum. The 18-foot clearance applies to public streets, alleys, roads, and driveways on other than residential property. The 10-foot clearance applies at service entrances and pedestrian-only areas."},
 {id:79,mod:3,cat:"Services & Feeders",diff:"Medium",q:"Service entrance conductors above a roof surface must maintain a minimum clearance of _____.",opts:["8 feet","3 feet","10 feet","6 feet"],ans:1,ref:"NEC 230.24(A) Exception 2",exp:"Service conductors over a roof = 8 feet clearance minimum, EXCEPT where voltage ≤300V to ground AND roof slope ≥4 in 12, then 3 feet is acceptable. The 3-foot exception for steep residential roofs is commonly tested."},
 {id:80,mod:3,cat:"Services & Feeders",diff:"Medium",q:"Where must the service disconnect be located?",opts:["At a readily accessible location outside or inside nearest the point of entrance of service conductors","In the center of the building","In a locked room only","Any inside location is acceptable"],ans:0,ref:"NEC 230.70(A)(1)",exp:"Service disconnect must be readily accessible — outside or inside nearest to point of entry of service conductors. 'Readily accessible' = no ladder, moving obstacles, or unlocking enclosures required."},
 {id:81,mod:3,cat:"Services & Feeders",diff:"Hard",q:"Service conductors must be at least _____ from an openable window.",opts:["12 inches","Service conductors may not pass near openable windows","24 inches","3 feet"],ans:3,ref:"NEC 230.9(A)",exp:"Service entrance conductors must maintain at least 3 feet clearance from openable windows, doors, porches, balconies, and fire escapes. Conductors passing above the top of a window are exempt."},
@@ -114,7 +114,7 @@ const ALL_QUESTIONS = [
 {id:103,mod:3,cat:"Services & Feeders",diff:"Easy",q:"Service lateral conductors run underground from the utility to the service entrance. What is permitted?",opts:["Underground feeder (UF) cable only","Direct buried cables or in conduit","Service entrance (SE) cable only","Direct buried cables only"],ans:1,ref:"NEC 230.30 & 230.32",exp:"Service lateral conductors may be direct buried cables or in conduit depending on utility and AHJ requirements. California utilities have specific requirements for service lateral installations."},
 {id:104,mod:3,cat:"Services & Feeders",diff:"Medium",q:"What is the minimum requirement every electrical service must have?",opts:["At least one disconnecting means","No minimum — some buildings may not need a disconnect","One disconnect for every 100A of capacity","One disconnect per service"],ans:0,ref:"NEC 230.70(A)",exp:"Every service must have at least one disconnecting means to allow de-energizing the entire premises. Maximum is six. The disconnect must be accessible to emergency responders."},
 {id:105,mod:3,cat:"Services & Feeders",diff:"Hard",q:"What is the minimum copper conductor size for a 75A feeder at 75°C terminations?",opts:["4 AWG — next size meeting 75A","3 AWG (100A) for safety margin","6 AWG (65A — insufficient)","4 AWG (85A ampacity)"],ans:3,ref:"NEC Table 310.16",exp:"6 AWG copper at 75°C = 65A (insufficient). 4 AWG copper at 75°C = 85A (sufficient). Minimum conductor for 75A demand = 4 AWG copper. Ampacity must equal or exceed demand load."},
-{id:106,mod:3,cat:"Services & Feeders",diff:"Medium",q:"How many service disconnects are permitted for a 1,200A commercial building service?",opts:["Only one for services over 1,000A","As many as needed with AHJ approval","Up to six grouped at one location","Two — one per 600A of capacity"],ans:2,ref:"NEC 230.71(A)",exp:"Rule of six applies regardless of service ampacity. Up to six service disconnects for any service ampacity, grouped at one location. Large commercial services commonly use multiple parallel service sections."},
+{id:106,mod:3,cat:"Services & Feeders",diff:"Medium",q:"How many service disconnects are permitted for a 1,200A commercial building service?",opts:["Only one for services over 1,000A","As many as needed with AHJ approval","Up to six grouped at one location","Two — one per 600A of capacity"],ans:2,ref:"NEC 230.71(B)",exp:"NEC 2020: up to six service disconnects are permitted under 230.71(B), but each must have its own main disconnect and be in a separate enclosure, separate panelboard, or separate switchboard section with barriers. The 2020 NEC changed the default to one disconnect — six requires specific configurations."},
 {id:107,mod:3,cat:"Services & Feeders",diff:"Medium",q:"What protection is required for exterior branch circuits and feeders subject to physical damage?",opts:["Must be in rigid metal conduit on all exterior surfaces","Where subject to physical damage, conductors shall be protected","Must be in Schedule 80 PVC conduit","No additional protection required"],ans:1,ref:"NEC 225.22",exp:"Article 225 requires exterior conductors be protected from physical damage where exposed to it. The AHJ determines what constitutes 'subject to physical damage.' Conduit is generally used for exposed exterior wiring."},
 {id:108,mod:3,cat:"Services & Feeders",diff:"Hard",q:"For a 400A service with only ground rod electrodes, maximum GEC size required?",opts:["6 AWG copper (maximum for ground rods)","2 AWG copper","4 AWG copper","GEC must match service conductor size"],ans:0,ref:"NEC 250.66(A)",exp:"For ground rod and concrete-encased electrodes only, the GEC never needs to exceed 6 AWG copper regardless of service size. Table 250.66 caps the GEC at 6 AWG copper for ground rod electrodes. The 'large service, small GEC' rule surprises many electricians."},
 {id:109,mod:3,cat:"Services & Feeders",diff:"Medium",q:"In California, who must approve the service installation before the utility connects power?",opts:["Utility company only","The licensed electrical contractor","Both the AHJ and the utility","The local electrical inspector (AHJ)"],ans:2,ref:"CEC & Utility Requirements",exp:"California: local electrical inspector (AHJ) must approve and sign off the service installation, AND the utility must be satisfied before energizing. Utilities have their own standards for metering, clearances, and conductor sizing that may exceed NEC minimums."},
@@ -336,7 +336,7 @@ const ALL_QUESTIONS = [
 {id:319,mod:9,cat:"Communications & Emergency",diff:"Medium",q:"What must telephone system conductors have when entering a building per Article 800?",opts:["A listed protector to guard against lightning surges and power contact","Metallic conduit for physical protection","GFCI protection","Surge-protective device rated for telephone voltage"],ans:0,ref:"NEC 800.90(A)",exp:"Article 800 requires listed protectors (surge arrestors) at the building entrance of communications circuits. Guards against lightning surges and inadvertent contact with power lines."},
 {id:320,mod:9,cat:"Communications & Emergency",diff:"Hard",q:"What type of cable must be used for fire alarm cables installed in plenums?",opts:["Standard THWN in conduit always acceptable","Any listed cable acceptable in plenums","NM cable in metal conduit suitable for plenums","Plenum-rated cables (FPLP) with low smoke and flame-spread characteristics"],ans:3,ref:"NEC 760.53(A)(1)",exp:"Fire alarm cables in plenums must be plenum-rated (FPLP type) with limited flame spread and low smoke emission. Non-plenum cable in plenums is a serious safety violation — can spread fire through air handling system."},
 {id:321,mod:9,cat:"Communications & Emergency",diff:"Medium",q:"When must exit signs connected to emergency circuits be illuminated?",opts:["Only during power outages","At all times when the building is occupied","Only when emergency power is active","Only during normal business hours"],ans:1,ref:"NEC 700.16",exp:"Exit signs must be illuminated at ALL times the building is occupied. Connected to emergency circuit so they remain on during power outages."},
-{id:322,mod:9,cat:"Communications & Emergency",diff:"Hard",q:"Emergency lighting units must provide illumination for a minimum of _____ after normal power fails.",opts:["Until generator starts","30 minutes","90 minutes","60 minutes"],ans:2,ref:"NEC 700.12(E)",exp:"Emergency lighting: minimum 90 minutes after normal power failure. Monthly 30-second tests verify unit starts. Annual 90-minute test verifies battery capacity. Failed batteries must be replaced."},
+{id:322,mod:9,cat:"Communications & Emergency",diff:"Hard",q:"Emergency lighting units must provide illumination for a minimum of _____ after normal power fails.",opts:["Until generator starts","30 minutes","90 minutes","60 minutes"],ans:2,ref:"NEC 700.12(F)",exp:"Emergency lighting: minimum 90 minutes after normal power failure. Monthly 30-second tests verify unit starts. Annual 90-minute test verifies battery capacity. Failed batteries must be replaced."},
 {id:323,mod:9,cat:"Communications & Emergency",diff:"Medium",q:"How must emergency circuit wiring be separated from normal power wiring?",opts:["Emergency and normal wiring must be in separate raceways, cable trays, or cables except in transfer equipment","Emergency wiring must be in dedicated room","No separation required","Only 12-inch physical separation required"],ans:0,ref:"NEC 700.10(B)(1)",exp:"Emergency wiring must be entirely independent of normal power wiring — separate raceways, cable assemblies, boxes, and cabinets except at transfer equipment. Ensures normal wiring fault can't simultaneously damage emergency system."},
 {id:324,mod:9,cat:"Communications & Emergency",diff:"Easy",q:"At what voltage does low-voltage landscape lighting under Article 411 typically operate?",opts:["277V for efficiency","120V through transformer","24V DC","30V or less"],ans:3,ref:"NEC 411.2",exp:"Article 411 = low-voltage lighting systems operating at 30V or less. Typical landscape lighting uses 12V through step-down transformers. Lower voltage = reduced shock hazard and lighter wire gauge."},
 {id:325,mod:9,cat:"Communications & Emergency",diff:"Hard",q:"How does an optional standby system (Article 702) differ from a legally required standby system?",opts:["Optional standby has no NEC requirements","Optional standby installed at owner's discretion for comfort/productivity; legally required standby mandated by law for safety","Optional must transfer within 60 seconds; legally required within 30 seconds","The terms mean the same thing"],ans:1,ref:"NEC Article 702 vs Article 701",exp:"Optional standby (Article 702) = voluntary, for comfort or business continuity. Legally required standby (Article 701) = mandated by codes for safety. Different reliability and time requirements."},
@@ -412,56 +412,6 @@ const ALL_QUESTIONS = [
 {id:394,mod:10,cat:"Calculations",diff:"Hard",q:"What is the optional calculation result for a 2,000 sq ft dwelling with all-electric appliances totaling 25 kVA?",opts:["12,500 VA (50% demand)","10,000 VA minimum","25,000 VA","16,000 VA — first 10 kVA at 100%, remainder at 40%"],ans:3,ref:"NEC 220.82(B)",exp:"Optional method: first 10 kVA at 100% = 10,000; remainder = 15,000 at 40% = 6,000; total = 16,000 VA. Often results in lower calculated demand than standard method."},
 {id:395,mod:10,cat:"Calculations",diff:"Medium",q:"When applying both temperature correction AND conduit fill derating factors, how applied?",opts:["Add factors then subtract from 100%","Use larger of two factors only","Multiply both correction factors together, then multiply by table ampacity","Apply sequentially — first temperature, then fill"],ans:2,ref:"NEC 2020 310.15(B)(1) & Table 310.15(C)(1)",exp:"Both factors MULTIPLIED together then applied to table ampacity. Example: temp correction 0.82 × conduit fill 0.80 = 0.656 combined factor. 30A table × 0.656 = 19.7A derated ampacity. Never add the factors — always multiply."},
 // MODULE 11: CALIFORNIA-SPECIFIC (50)
-{id:396,mod:11,cat:"California-Specific",diff:"Easy",q:"Who administers California electrical certification exams?",opts:["Prometric","PSI Services LLC","Pearson VUE","California Department of Consumer Affairs"],ans:1,ref:"CA DLSE / DIR",exp:"PSI Services LLC administers California electrical certification exams on behalf of DLSE. PSI provides test centers throughout California. Contact PSI at (888) 818-5831 for scheduling."},
-{id:397,mod:11,cat:"California-Specific",diff:"Easy",q:"What is the name of California's state OSHA agency?",opts:["State Compensation Insurance Fund","California Workplace Safety Board","Cal/OSHA — Division of Occupational Safety and Health (DOSH)","California Department of Industrial Safety"],ans:2,ref:"CA Labor Code § 6300; 8 CCR",exp:"Cal/OSHA (DOSH) is California's state OSHA under the Department of Industrial Relations (DIR). California operates an OSHA State Plan — its rules must meet or exceed federal OSHA standards."},
-{id:398,mod:11,cat:"California-Specific",diff:"Medium",q:"What is the California Electrical Code (CEC) designated as?",opts:["California Title 8","California Building Code Section 27","California Title 24, Part 9","California Title 24, Part 3"],ans:3,ref:"CA Title 24, Part 3 CCR",exp:"California Electrical Code = Title 24, Part 3 of the California Code of Regulations (CCR). Title 24 = California Building Standards Code. Part 3 = electrical code (NEC with CA amendments). Title 8 = workplace safety (Cal/OSHA)."},
-{id:399,mod:11,cat:"California-Specific",diff:"Medium",q:"Who issues individual electrician certifications in California?",opts:["California Division of Labor Standards Enforcement (DLSE) under DIR","California Fire Marshal's Office","California Contractors State License Board (CSLB)","California Department of Consumer Affairs"],ans:0,ref:"CA Labor Code § 108; 8 CCR § 320",exp:"Individual electrician certifications = issued by DLSE (Division of Labor Standards Enforcement) under DIR. CSLB separately licenses electrical contractors (C-10 license). Two separate systems for individuals vs. businesses."},
-{id:400,mod:11,cat:"California-Specific",diff:"Medium",q:"How many hours of on-the-job experience are required to take the California General Electrician exam without an apprenticeship?",opts:["2,000 hours","8,000 hours","4,000 hours","10,000 hours"],ans:1,ref:"8 CCR § 320.1",exp:"Without an approved apprenticeship certificate, General Electrician applicants need 8,000 hours of verifiable on-the-job electrical work experience. With approved apprenticeship certificate, hours are waived."},
-{id:401,mod:11,cat:"California-Specific",diff:"Easy",q:"What work is a C-10 electrical contractor license (CSLB) authorized to perform?",opts:["Temporary license for out-of-state contractors","Individual journeyman certification","A business entity to perform electrical work as a contractor","High-voltage specialty work only"],ans:2,ref:"CA B&P Code § 7058",exp:"C-10 = Electrical Contractor license issued by CSLB, allowing a business entity to contract for electrical work. The C-10 holder (company) must have certified electricians perform the actual work. Separate from individual worker certification."},
-{id:402,mod:11,cat:"California-Specific",diff:"Hard",q:"Where are California's lockout/tagout requirements found in Title 8?",opts:["Section 5199","Section 2320","Section 4001","Section 3314"],ans:3,ref:"8 CCR § 3314",exp:"Cal/OSHA Title 8, Section 3314 = lockout/tagout requirements. Specifies LOTO procedures, who may remove devices, training requirements, and documentation. More stringent in some areas than federal OSHA 1910.147."},
-{id:403,mod:11,cat:"California-Specific",diff:"Medium",q:"What certification must workers performing electrical work for a C-10 contractor hold?",opts:["Certified electricians or registered electrical trainees (ETs) under constant supervision of a certified electrician","Licensed as C-10 contractors themselves","Any qualified worker — no certification required on private projects","IBEW union members only"],ans:0,ref:"CA Labor Code § 108; 8 CCR § 320.4",exp:"C-10 contractor workers connecting ≥100 VA electrical devices must be certified electricians or registered ETs under constant supervision. Enforced by DIR. Fundamental to California's electrical licensing system."},
-{id:404,mod:11,cat:"California-Specific",diff:"Medium",q:"The California General Electrician certification must be renewed every _____.",opts:["Annually","Every 3 years","Every 2 years","Every 5 years"],ans:1,ref:"8 CCR § 320.5",exp:"California General Electrician certifications renewed every 3 years. Renewal requires: 32 hours approved continuing education, 2,000 hours work experience during renewal period, and renewal fee."},
-{id:405,mod:11,cat:"California-Specific",diff:"Hard",q:"California General Electrician certification renewal requires _____ of continuing education.",opts:["24 hours total","8 hours per year","32 hours total every 3 years","16 hours total"],ans:2,ref:"8 CCR § 320.5",exp:"32 hours of approved CE required per 3-year renewal cycle. Coursework must be relevant to the certification category. Missing CE requirement = certification lapses."},
-{id:406,mod:11,cat:"California-Specific",diff:"Easy",q:"What does California's EV charging readiness requirement include for new single-family homes?",opts:["Fully installed Level 2 EVSE outlet","A 120V outlet in garage is sufficient","Dedicated 240V 50A circuit fully wired to garage","A raceway from service panel to garage/parking area with pull string and reserved panel capacity"],ans:3,ref:"CA Title 24, Part 2 § 4.106.4",exp:"California Building Code: new single-family homes must have a raceway from panel to garage/parking area with a pull string for future wiring, and reserved panel capacity for a future 40A circuit. Minimum conduit infrastructure."},
-{id:407,mod:11,cat:"California-Specific",diff:"Medium",q:"What does California Title 24 require for lighting controls in commercial buildings?",opts:["Automatic shutoff controls (occupancy sensors or automatic time switches) in most commercial spaces over 100 sq ft","Occupancy sensors in all commercial spaces","Manual dimmers for all lighting circuits","No automatic controls required for lighting under 277V"],ans:0,ref:"CA Title 24, Part 6 § 130.1",exp:"California Title 24 (Energy Code) requires automatic shutoff controls for lighting in most commercial spaces — occupancy/vacancy sensors or automatic time switches. California's energy code is among the most stringent nationally."},
-{id:408,mod:11,cat:"California-Specific",diff:"Medium",q:"What is the minimum approach distance for an unqualified person from an energized 480V conductor per Cal/OSHA?",opts:["6 feet","3 feet","1 foot","10 feet"],ans:1,ref:"8 CCR § 2299 & NFPA 70E Table 130.4(D)(a)",exp:"Cal/OSHA and NFPA 70E: limited approach boundary for unqualified persons at 480V = approximately 42 inches (3.5 feet). The practical 3-foot rule is the minimum maintained for unqualified personnel near energized 480V equipment."},
-{id:409,mod:11,cat:"California-Specific",diff:"Hard",q:"Per California's solar PV rapid shutdown requirement, to what voltage must conductors on or in a building de-energize within 30 seconds?",opts:["480V or less","120V or less","30V or less within the array boundary","0V — completely de-energized"],ans:2,ref:"NEC 690.12 (as adopted by CEC)",exp:"NEC 690.12 rapid shutdown (adopted by California): PV conductors within array boundary must de-energize to 30V or less within 30 seconds. Protects firefighters on roofs from lethal PV system voltages."},
-{id:410,mod:11,cat:"California-Specific",diff:"Medium",q:"What do California prevailing wage laws require for electricians on public works projects?",opts:["Any agreed-upon rate","Federal minimum wage only","Union scale wages regardless of union membership","Prevailing wage rate determined by DIR for the project's location and craft"],ans:3,ref:"CA Labor Code § 1720",exp:"California prevailing wage: electricians on public works projects must be paid the DIR-determined prevailing wage for the craft and locality. Typically equivalent to union scale. Violations: penalties, debarment, license suspension."},
-{id:411,mod:11,cat:"California-Specific",diff:"Easy",q:"What does IBEW stand for?",opts:["International Brotherhood of Electrical Workers","Independent Board of Electrical Wiremen","International Building Electrical Wiring","Internal Branch Electrical Wiring"],ans:0,ref:"IBEW (labor organization)",exp:"IBEW = International Brotherhood of Electrical Workers — primary union representing electricians in the US and Canada. IBEW JATC (Joint Apprenticeship Training Committee) apprenticeship programs are approved in California."},
-{id:412,mod:11,cat:"California-Specific",diff:"Hard",q:"How do California's AFCI requirements compare to the 2020 NEC base requirements?",opts:["California exempts kitchens and bathrooms from AFCI unlike NEC","California may have additional AFCI requirements through CEC amendments beyond NEC","California has no AFCI requirements","California matches 2020 NEC exactly"],ans:1,ref:"CEC amendments to NEC 210.12",exp:"California adopts NEC with amendments. 2020 NEC already requires AFCI in all dwelling unit rooms. California's CEC amendments may impose additional requirements. Always verify current CEC amendments for California-specific requirements."},
-{id:413,mod:11,cat:"California-Specific",diff:"Medium",q:"Who typically prepares the Title 24 energy compliance report for a new commercial building in California?",opts:["General contractor","California Energy Commission directly","Licensed engineer or Title 24 energy consultant","Electrical inspector"],ans:2,ref:"CA Title 24, Part 6 § 10-103(a)",exp:"Title 24 energy compliance documentation prepared by licensed engineers, architects, or certified Title 24 energy consultants. Required for plan check before permits issued."},
-{id:414,mod:11,cat:"California-Specific",diff:"Hard",q:"What does a 'Red Tag' on electrical equipment in California typically refer to?",opts:["Red paint required on emergency system equipment","Factory marking for hazardous location listing","Utility marking indicating approved metering","Stop-work order from electrical inspector for code violations"],ans:3,ref:"CA H&S Code § 17962; local ordinances",exp:"Red Tag = stop-work order or rejection notice from electrical inspector for code violations. Work must stop and violations corrected before proceeding. Getting red-tagged costs significant time and money — know the code to prevent it."},
-{id:415,mod:11,cat:"California-Specific",diff:"Medium",q:"What does California Title 8, Section 2940 primarily address?",opts:["General safety for construction and excavation work near existing electrical lines","Residential electrical installation standards","Low voltage lighting system installation","Motor and transformer installation requirements"],ans:0,ref:"8 CCR § 2940",exp:"Cal/OSHA Title 8, Section 2940 = excavation and construction work near existing electrical utilities. Specifies minimum approach distances, notification requirements (Call 811), and protective measures near energized conductors."},
-{id:416,mod:11,cat:"California-Specific",diff:"Easy",q:"Before excavating in California, what must you do?",opts:["No notification required for depths less than 18 inches","Call 811 (Underground Service Alert — Dig Alert) at least two working days before excavation","Contact the building department","Contact each utility individually"],ans:1,ref:"CA Government Code § 4216",exp:"Call 811 (Dig Alert) at least two working days before ANY excavation in California. Utilities mark underground facilities with color-coded flags/paint. Excavating without notification is illegal and dangerous."},
-{id:417,mod:11,cat:"California-Specific",diff:"Medium",q:"Which of the following is a California electrician certification category?",opts:["High Voltage Electrician","Industrial Electrician","All of the above are California certification categories","Residential Electrician"],ans:2,ref:"8 CCR § 320 et seq.",exp:"California has multiple categories: General Electrician, Residential Electrician, Non-Residential Lighting Technician, Fire/Life Safety Technician, Voice/Data/Video Technician, and others. General Electrician is most comprehensive."},
-{id:418,mod:11,cat:"California-Specific",diff:"Hard",q:"When must a licensed contractor pull an electrical permit?",opts:["Only for work over $500 in value","Only for new construction","All electrical work without exception","For all electrical work except minor repairs and maintenance as defined by local AHJ"],ans:3,ref:"CA H&S Code § 19825",exp:"California requires permits for all electrical work except specifically exempted minor maintenance and repair. AHJ defines what qualifies as minor maintenance. Work without required permit can affect contractor licensing."},
-{id:419,mod:11,cat:"California-Specific",diff:"Medium",q:"Who must California solar interconnection rules be coordinated with?",opts:["The serving electric utility (SCE, PG&E, SDG&E, etc.)","California Energy Commission only","Only the local building department","California ISO (CAISO) for all installations"],ans:0,ref:"CA PUC Rule 21 & CPUC tariffs",exp:"Solar PV installations must receive interconnection approval from the serving utility before energizing. The utility reviews system safety, grid compatibility, and metering. Net Energy Metering (NEM) agreements also executed with utility."},
-{id:420,mod:11,cat:"California-Specific",diff:"Easy",q:"After failing the California electrical certification exam, you must wait _____ before retesting.",opts:["30 days","60 days","45 days","90 days"],ans:1,ref:"8 CCR § 320.3",exp:"California requires 60-day waiting period between failed exam attempts. Re-test application and fee must be submitted to DLSE. Cannot take exam during the 60-day waiting period."},
-{id:421,mod:11,cat:"California-Specific",diff:"Medium",q:"What additional approval may be required for projects in California's Coastal Zone?",opts:["National Oceanic and Atmospheric Administration","California Department of Fish and Wildlife","California Coastal Commission in addition to local building department","US Army Corps of Engineers only"],ans:2,ref:"CA Public Resources Code § 30000",exp:"Projects in California's Coastal Zone may require Coastal Development Permits from the California Coastal Commission IN ADDITION to local building permits. Important consideration for electrical contractors working on coastal projects."},
-{id:422,mod:11,cat:"California-Specific",diff:"Hard",q:"What bonding requirement does California have for CSST gas piping?",opts:["CSST bonding only required in commercial buildings","CSST requires 2 AWG copper bonding conductor regardless of service size","CSST requires no electrical bonding — inherently non-conductive","CSST must be directly bonded to electrical grounding system within 6 feet of gas meter or entry point"],ans:3,ref:"CEC amendment to NEC 250.104(B)",exp:"California requires CSST bonded directly to electrical grounding system within 6 feet of building gas entry. Lightning-induced current can arc through thin CSST wall, creating gas leak. Bonding wire typically 6 AWG copper minimum."},
-{id:423,mod:11,cat:"California-Specific",diff:"Medium",q:"What does California Title 8 cover?",opts:["Occupational safety and health — workplace safety requirements electricians must follow","Energy efficiency standards for electrical systems","Building construction standards only","Electrical installation standards for commercial buildings"],ans:0,ref:"8 CCR (Title 8 — Cal/OSHA)",exp:"Title 8 = Cal/OSHA's occupational safety and health code. Covers electrical hazard recognition, approach distances, lockout/tagout, PPE requirements, GFCI on construction sites, and other safety practices. Major portion of CA journeyman exam."},
-{id:424,mod:11,cat:"California-Specific",diff:"Hard",q:"What electrical energy code requirements apply to new multi-family residential buildings in California per Title 24?",opts:["Energy requirements only apply to buildings over 5,000 sq ft","Title 24, Part 6 (Energy Code) requires lighting efficiency, controls, and EV readiness for multi-family buildings","No energy code requirements for electrical systems","Only single-family homes must comply with Title 24 energy requirements"],ans:1,ref:"CA Title 24, Part 6 § 130.1, § 170.2",exp:"California Title 24, Part 6 applies to all occupancy types including multi-family: lighting power density limits, occupancy sensors, daylight controls, EV charging readiness (conduit infrastructure), and energy storage readiness."},
-{id:425,mod:11,cat:"California-Specific",diff:"Medium",q:"What does registering as a California Electrical Trainee (ET) require?",opts:["Background check and fingerprinting for all ETs","Completion of full apprenticeship program before working as trainee","Application to DLSE with fees, proof of employment under C-10 contractor, and enrollment in approved training program","Only a valid ID"],ans:2,ref:"8 CCR § 320.2",exp:"ET registration: application to DLSE, registration fee, documentation of employment under a licensed C-10 contractor, enrollment in approved electrical training curriculum (150 hours/year). ETs may only work under constant supervision of certified electrician."},
-{id:426,mod:11,cat:"California-Specific",diff:"Easy",q:"Which utility serves most of the Los Angeles basin (excluding City of Los Angeles)?",opts:["Pacific Gas and Electric (PG&E)","Los Angeles Department of Water and Power (LADWP)","San Diego Gas and Electric (SDG&E)","Southern California Edison (SCE)"],ans:3,ref:"CPUC service territory maps",exp:"SCE (Southern California Edison) serves most of LA basin, Orange County, Riverside, San Bernardino. City of Los Angeles = LADWP (municipal utility). Long Beach is in SCE territory."},
-{id:427,mod:11,cat:"California-Specific",diff:"Hard",q:"What is California's energy storage readiness requirement for new homes?",opts:["Conduit pathway from main panel to approved ESS location with dedicated circuit breaker space reserved","ESS readiness only applies to commercial buildings","Fully installed battery storage system required","Only panel space must be reserved — no conduit required"],ans:0,ref:"CA Title 24, Part 2 § 4.106.4",exp:"California ESS readiness: conduit pathway from main panel to approved future battery storage location + dedicated panel space reserved for ESS interconnection. Ensures new homes can easily add battery storage without costly retrofits."},
-{id:428,mod:11,cat:"California-Specific",diff:"Medium",q:"What does California require regarding tamper-resistant receptacles in dwelling units?",opts:["Only in rooms accessible to children under 7","Required in all non-locking 125V 15 and 20A receptacles throughout the entire dwelling unit","Only in new construction — existing homes exempt","Required only in kitchens and bathrooms"],ans:1,ref:"NEC 406.12 (as adopted by CEC)",exp:"California requires tamper-resistant receptacles in ALL non-locking 125V 15 and 20A receptacle locations throughout the entire dwelling unit. All new and replacement receptacles must be tamper-resistant."},
-{id:429,mod:11,cat:"California-Specific",diff:"Hard",q:"What are the consequences of performing electrical work without a required permit in California?",opts:["Written warning for first offense only","Only the property owner (not contractor) is liable","Civil fines, stop-work orders, required demolition of unpermitted work, and potential license revocation","Unpermitted work allowed if it passes inspection after the fact"],ans:2,ref:"CA H&S Code § 17962; CA B&P Code § 7090",exp:"Without required permits: civil fines, stop-work orders, required demolition and reconstruction, potential criminal charges, and contractor license suspension/revocation by CSLB. Property owners face problems when selling — unpermitted work may require retroactive permits or demolition."},
-{id:430,mod:11,cat:"California-Specific",diff:"Easy",q:"Which agency enforces electrical installation safety on California construction sites?",opts:["California Electrical Certification Unit (ECU)","Federal OSHA Region 9","California Building Standards Commission","Cal/OSHA — Division of Occupational Safety and Health"],ans:3,ref:"CA Labor Code § 6300; 8 CCR",exp:"Cal/OSHA (Division of Occupational Safety and Health) enforces workplace safety on California construction sites. Cal/OSHA State Plan = federal OSHA doesn't typically enforce in California. Cal/OSHA has primary jurisdiction."},
-{id:431,mod:11,cat:"California-Specific",diff:"Medium",q:"What certification must California electrical inspectors hold?",opts:["Certification from local jurisdiction or HCD for state-regulated occupancies","CSLB C-10 license with inspection endorsement","No specific license required — appointed by local AHJ","General Electrician certification plus inspector training"],ans:0,ref:"CA H&S Code § 17950; HCD requirements",exp:"Electrical inspectors certified through local jurisdiction or California HCD (Department of Housing and Community Development) for state-regulated occupancies. Typically require electrical background (often journeyman), inspector training, and inspector exam."},
-{id:432,mod:11,cat:"California-Specific",diff:"Hard",q:"What must a California IIPP (Injury and Illness Prevention Program) include?",opts:["Only electrical-specific hazards","Responsibility, compliance, communication, hazard assessment, accident investigation, training, and hazard correction","IIPPs only required for employers with 50+ employees","Only first aid procedures"],ans:1,ref:"CA Labor Code § 6401.7; 8 CCR § 3203",exp:"California Labor Code Section 6401.7: ALL employers must have an IIPP covering: responsible person, compliance procedures, communication, hazard identification, accident investigation, hazard correction, training, and recordkeeping. NO size exemption — even one-employee contractors must have an IIPP."},
-{id:433,mod:11,cat:"California-Specific",diff:"Medium",q:"Does California AB 2188 limit residential solar permit fees?",opts:["Fees set independently by each jurisdiction","$500 maximum","$1,000 or 1% of system cost, whichever is less","No permit fee — residential solar permits must be free"],ans:2,ref:"CA Government Code § 65850.5 (AB 2188)",exp:"AB 2188 limits permit fees for residential solar to remove barriers to solar adoption. Specific fee limits set by state law. Some jurisdictions have implemented online solar permitting with standardized applications."},
-{id:434,mod:11,cat:"California-Specific",diff:"Easy",q:"What is the minimum age to register as an Electrical Trainee (ET) in California?",opts:["No minimum age specified","16 years old","21 years old","18 years old"],ans:3,ref:"8 CCR § 320.2",exp:"Must be at least 18 years old to register as an ET. Aligns with California child labor laws restricting minors from most construction and industrial work."},
-{id:435,mod:11,cat:"California-Specific",diff:"Medium",q:"What does California Title 24 require for daylight sensors in commercial buildings?",opts:["Automatically dim or turn off artificial lighting when adequate natural daylight is available","Measure sunlight to charge solar panels","Provide emergency lighting in areas with windows","Control HVAC based on outdoor temperature"],ans:0,ref:"CA Title 24, Part 6 § 130.1(d)",exp:"Daylighting controls automatically reduce or turn off artificial lighting when sufficient natural light is available. Reduces lighting energy use by 30-50% in well-daylit spaces. Required by California Title 24 in perimeter zones."},
-{id:436,mod:11,cat:"California-Specific",diff:"Hard",q:"What materials require special handling when demolishing pre-1980 buildings in California?",opts:["California has no special requirements for demolition waste from electrical systems","Lead-containing paint, asbestos in insulation and joint compound, and PCBs in older fluorescent ballasts","Only asbestos requires special handling","All plastic conduit contains hazardous materials"],ans:1,ref:"8 CCR § 341.6; CA H&S Code § 25914",exp:"Pre-1980 buildings may contain: lead paint (certified lead-safe contractor), asbestos in electrical insulation and building materials (AHERA-certified abatement), and PCB-containing fluorescent ballasts (pre-1980, dispose as hazardous waste)."},
-{id:437,mod:11,cat:"California-Specific",diff:"Medium",q:"How frequently must Cal/OSHA GFCI devices be tested on construction sites?",opts:["Weekly","Only when first installed","Before each work shift","Monthly"],ans:2,ref:"8 CCR § 1590(j)",exp:"Cal/OSHA: GFCI devices on construction sites must be tested before EACH work shift. Verifies device will trip correctly. Defective GFCIs provide false safety — always test before use."},
-{id:438,mod:11,cat:"California-Specific",diff:"Hard",q:"What is the minimum clearance between overhead distribution voltage lines and construction activities in California?",opts:["6 feet","Cal/OSHA requires qualified electrical worker consultation","3 feet","10 feet"],ans:3,ref:"8 CCR § 2941(a)",exp:"Cal/OSHA: minimum 10-foot clearance from distribution voltage lines (up to 50 kV) for work, equipment, and materials. Higher voltage = greater clearance. Cranes, scaffolding, and materials must maintain these clearances."},
-{id:439,mod:11,cat:"California-Specific",diff:"Medium",q:"What training does Cal/OSHA require for electrical workers near energized conductors?",opts:["Qualified Electrical Worker (QEW) or Qualified Person training specific to voltage level and equipment type","OSHA 10 or OSHA 30 training","CPR and first aid training only","Only a general safety training course"],ans:0,ref:"8 CCR § 2299 & § 3320",exp:"Cal/OSHA: workers near energized electrical equipment must be 'qualified persons' — trained and experienced to recognize and avoid hazards at the specific voltage level and equipment type. Training must be documented."},
-{id:440,mod:11,cat:"California-Specific",diff:"Easy",q:"What must be displayed on a California electrical permit job site?",opts:["Complete approved plans must be posted","The permit card posted in a conspicuous location at the job site","Permits maintained only by contractor — no job site posting required","Only permit number on the electrical panel"],ans:1,ref:"CA H&S Code § 19825",exp:"California permits must be posted conspicuously at the job site visible to inspectors. Approved plans must also be on site. Inspector who can't find permit or plans may decline to inspect."},
-{id:441,mod:11,cat:"California-Specific",diff:"Medium",q:"Who may pull electrical permits in California?",opts:["Only the electrical engineer of record","Any person over 18 years old","Licensed C-10 electrical contractor or the owner-builder for their own residence","Property owner may always pull their own permit"],ans:2,ref:"CA H&S Code § 19825 & B&P Code § 7044",exp:"Electrical permits: pulled by licensed C-10 contractor OR owner-builder building their own residence (not for sale within one year) and doing the work themselves. Commercial and rental property work requires a licensed contractor."},
-{id:442,mod:11,cat:"California-Specific",diff:"Hard",q:"What is California's EV-ready requirement for new multifamily buildings with 4 or more units?",opts:["All parking spaces must have Level 2 EVSE installed","No EV requirements for multifamily — only single-family","Only visitor parking spaces require EV infrastructure","A percentage of parking spaces must be EV-ready (conduit, wiring, panel capacity) with some spaces having EVSE installed"],ans:3,ref:"CA Title 24, Part 2 § 4.106.4.2",exp:"California Building Code: new multifamily (4+ units) must have EV-ready infrastructure for a percentage of parking spaces. Some must be 'EV-ready' (conduit + wiring ready), some must have EVSE installed. Percentages defined in Title 24."},
-{id:443,mod:11,cat:"California-Specific",diff:"Medium",q:"What is California's 'net energy metering' (NEM) program?",opts:["Billing arrangement where solar customers receive credit for excess energy exported to grid, offsetting future consumption","Cash rebate program for solar installation","Utility pays customers for all excess solar generation","Solar panels replace the utility meter entirely"],ans:0,ref:"CA Public Utilities Code § 2827",exp:"NEM allows solar customers to receive bill credits for excess electricity exported to grid, offsetting electricity drawn from grid when solar isn't generating. California updated to NEM 3.0 with adjusted export credit rates and storage incentives."},
-{id:444,mod:11,cat:"California-Specific",diff:"Easy",q:"What color is used to mark underground gas lines in utility marking?",opts:["Orange","Yellow","Red","Blue"],ans:1,ref:"APWA Uniform Color Code; CA Gov. Code § 4216",exp:"Utility underground marking colors: red=electric, blue=water, green=sewer/drain, yellow=gas/oil, orange=communications, pink=temporary survey. Electricians must know these colors to safely work near other utilities."},
-{id:445,mod:11,cat:"California-Specific",diff:"Hard",q:"What standard governs arc flash hazard analysis for commercial and industrial electrical equipment?",opts:["NFPA 70E Standard for Electrical Safety in the Workplace","NEC Article 240","IEEE 1584 (calculation method referenced by NFPA 70E)","Cal/OSHA Title 8 Section 4001"],ans:0,ref:"NFPA 70E Article 130; 8 CCR § 2299",exp:"NFPA 70E governs arc flash hazard analysis. Cal/OSHA incorporates NFPA 70E by reference. IEEE 1584 provides the calculation methodology. Equipment must be labeled with arc flash hazard information based on the analysis."},
 // MODULE 12: SAFETY, MAINTENANCE & REPAIR (55)
 {id:446,mod:12,cat:"Safety & Maintenance",diff:"Easy",q:"What does LOTO stand for?",opts:["Load Override Transfer Operations","Limitation of Task Output","Lock Out Tag Out — the energy control procedure","Line Outage Test Operations"],ans:2,ref:"8 CCR § 3314",exp:"LOTO = Lockout/Tagout — energy control procedure required by Cal/OSHA (Title 8, Section 3314). Lockout physically prevents operation; tagout uses warning tag when lockout is not feasible."},
 {id:447,mod:12,cat:"Safety & Maintenance",diff:"Easy",q:"Who is authorized to remove a lockout or tagout device?",opts:["The foreman or supervisor","Only the employee who applied the device (with limited exceptions)","Any journeyman electrician on the job","The safety officer"],ans:1,ref:"8 CCR § 3314(b)(8)",exp:"Only the employee who applied the LOTO device may remove it, except in documented emergency situations. Prevents someone from inadvertently re-energizing equipment while another worker is still in the danger zone."},
@@ -546,7 +496,6 @@ const MODULES = [
   {id:8,name:"Motors & Transformers",color:"#c0392b",articles:"Articles 430, 450"},
   {id:9,name:"Communications & Emergency",color:"#d35400",articles:"Articles 700-800"},
   {id:10,name:"Calculations & Trade Math",color:"#1abc9c",articles:"Chapter 9, Table 310.16"},
-  {id:11,name:"California-Specific",color:"#e74c3c",articles:"Title 8, Title 24, CEC"},
   {id:12,name:"Safety, Maintenance & Repair",color:"#2c3e50",articles:"NFPA 70E, Cal/OSHA"},
 ];
 
@@ -594,7 +543,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     try { return localStorage.getItem("wrp_access") || "free"; } catch(e) { return "free"; }
   });
   const FREE_MODS = [1, 2]; // Modules 1 & 2 free always
-  const PAID_MODS = [3,4,5,6,7,8,9,10,11,12];
+  const PAID_MODS = [3,4,5,6,7,8,9,10,12];
   const [selectedMods, setSelectedMods] = useState([]);
   const [selectedDiffs, setSelectedDiffs] = useState([]);
   const [quizQuestions, setQuizQuestions] = useState([]);
@@ -621,22 +570,24 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     } catch(e) { return null; }
   });
 
-  const saveSession = () => {
-    if (access !== 'pro') return;
-    try {
-      const session = {
-        quizQuestions,
-        qIndex,
-        answered,
-        score,
-        selectedMods,
-        selectedDiffs,
-        timedMode,
-        savedAt: new Date().toISOString(),
-      };
-      localStorage.setItem('wrp_saved_session', JSON.stringify(session));
-      setSavedSession(session);
-    } catch(e) {}
+  const inQuiz = screen === 'quiz';
+
+  useEffect(() => {
+    if (!inQuiz) return;
+    const handler = (e) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [inQuiz]);
+
+  const safeMenuNav = (page) => {
+    if (inQuiz && !window.confirm("Leave your quiz? Your progress will be saved — you can resume from the home screen.")) return;
+    onNavigate && onNavigate(page);
+    setMenuOpen(false);
+  };
+  const safeMenuHome = () => {
+    if (inQuiz && !window.confirm("Leave your quiz? Your progress will be saved — you can resume from the home screen.")) return;
+    onHome && onHome();
+    setMenuOpen(false);
   };
 
   const clearSession = () => {
@@ -720,22 +671,20 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     const newAnswered = [...answered, {qid: quizQuestions[qIndex].id, selected: idx, correct}];
     setAnswered(newAnswered);
     setShowExp(true);
-    // Auto-save progress for Pro users after every answer
-    if (access === 'pro') {
-      try {
-        const session = {
-          quizQuestions,
-          qIndex,
-          answered: newAnswered,
-          score: {correct: score.correct+(correct?1:0), wrong: score.wrong+(correct?0:1)},
-          selectedMods,
-          selectedDiffs,
-          timedMode: false,
-          savedAt: new Date().toISOString(),
-        };
-        localStorage.setItem('wrp_saved_session', JSON.stringify(session));
-      } catch(e) {}
-    }
+    // Auto-save progress after every answer (all tiers)
+    try {
+      const session = {
+        quizQuestions,
+        qIndex,
+        answered: newAnswered,
+        score: {correct: score.correct+(correct?1:0), wrong: score.wrong+(correct?0:1)},
+        selectedMods,
+        selectedDiffs,
+        timedMode: false,
+        savedAt: new Date().toISOString(),
+      };
+      localStorage.setItem('wrp_saved_session', JSON.stringify(session));
+    } catch(e) {}
     // Show email capture after 10 answers on free tier
     if (access === 'free' && newAnswered.length === 10 && !emailDismissed) {
       setShowEmailCapture(true);
@@ -791,20 +740,20 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{padding:"8px 0"}}>
             <div style={{padding:"8px 20px 4px",fontSize:"10px",fontWeight:"700",color:"#c8a84b",letterSpacing:"2px",textTransform:"uppercase"}}>⚡ Study Tools</div>
             {[["Module Select","home"],["Exam Simulator","simulator"],["Missed Questions","missed"],["Study Planner","planner"],["NEC Reference","nec-ref"],["Calculations Helper","calculations"],["Progress Dashboard","progress"],["Glossary","glossary"],["Table Mastery","mastery"]].map(([label, page]) => (
-              <button key={page} onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}
+              <button key={page} onClick={() => { safeMenuNav(page) }}
                 style={{display:"block",width:"100%",textAlign:"left",padding:"12px 20px",background:"none",border:"none",borderBottom:"1px solid rgba(255,255,255,0.05)",color:"#d8e0e8",fontSize:"14px",cursor:"pointer",fontFamily:"'Segoe UI',sans-serif"}}>
                 {label}
               </button>
             ))}
             <div style={{padding:"8px 20px 4px",fontSize:"10px",fontWeight:"700",color:"#c8a84b",letterSpacing:"2px",textTransform:"uppercase",marginTop:"8px"}}>📋 Resources</div>
             {[["Code Sprint","code-sprint"],["Blog","blog"],["CA Exam Guide","exam-info"],["Study Tips","study-tips"],["Exam Day Guide","exam-day"],["Electrician Salary","salary"],["FAQ","faq"],["Contact & Support","contact"]].map(([label, page]) => (
-              <button key={page} onClick={() => { onNavigate && onNavigate(page); setMenuOpen(false) }}
+              <button key={page} onClick={() => { safeMenuNav(page) }}
                 style={{display:"block",width:"100%",textAlign:"left",padding:"12px 20px",background:"none",border:"none",borderBottom:"1px solid rgba(255,255,255,0.05)",color:"#d8e0e8",fontSize:"14px",cursor:"pointer",fontFamily:"'Segoe UI',sans-serif"}}>
                 {label}
               </button>
             ))}
             <div style={{padding:"16px 20px"}}>
-              <button onClick={() => { onHome && onHome(); setMenuOpen(false) }}
+              <button onClick={safeMenuHome}
                 style={{width:"100%",padding:"12px",background:"linear-gradient(135deg,#c8a84b,#e8c878)",color:"#0f1923",fontWeight:"700",fontSize:"14px",border:"none",borderRadius:"6px",cursor:"pointer"}}>
                 ← Back to Home
               </button>
@@ -826,20 +775,22 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px",transition:"all 0.2s",opacity:menuOpen?0:1}} />
           <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px",transition:"all 0.2s",transform:menuOpen?"rotate(-45deg) translate(5px,-6px)":"none"}} />
         </button>
-        <span style={{fontSize:"24px", marginLeft:"10px"}}>⚡</span>
-        <div style={{marginLeft:"6px"}}>
-          <div style={styles.logo}>West Coast Wire Pro</div>
-          <div style={{fontSize:"11px", color:"#8899aa"}}>CA Electrician Exam Prep</div>
-        </div>
+        <button onClick={() => onHome && onHome()} style={{display:"flex", alignItems:"center", background:"none", border:"none", cursor:"pointer", padding:0, gap:"10px", marginLeft:"10px"}}>
+          <span style={{fontSize:"24px"}}>⚡</span>
+          <div style={{textAlign:"left"}}>
+            <div style={styles.logo}>West Coast Wire Pro</div>
+            <div style={{fontSize:"11px", color:"#8899aa"}}>CA Electrician Exam Prep</div>
+          </div>
+        </button>
         <div style={{marginLeft:"auto"}}>
-          <button onClick={() => onNavigate && onNavigate('exam-info')} style={{...styles.badge, background:"#c8a84b", color:"#0f1923", border:"none", cursor:"pointer"}}>512 Q's</button>
+          <div style={{...styles.badge, background: access==="pro" ? "#8e44ad" : access==="standard" ? "#c8a84b" : "#2a3a54", color: access==="free" ? "#8899aa" : "#0f1923", fontSize:"11px", padding:"4px 10px"}}>{access==="pro" ? "PRO" : access==="standard" ? "STANDARD" : "FREE"}</div>
         </div>
       </div>
 
       <div style={{padding:"16px"}}>
 
-        {/* ── RESUME BANNER (Pro only) ── */}
-        {savedSession && access === 'pro' && (
+        {/* ── RESUME BANNER (all tiers) ── */}
+        {savedSession && (
           <div style={{background:"linear-gradient(135deg,rgba(200,168,75,0.12),rgba(200,168,75,0.06))", border:"1px solid rgba(200,168,75,0.4)", borderRadius:"10px", padding:"16px", marginBottom:"16px"}}>
             <div style={{display:"flex", alignItems:"center", gap:"10px", marginBottom:"10px"}}>
               <span style={{fontSize:"22px"}}>📍</span>
@@ -865,7 +816,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         <div style={{...styles.card, background:"linear-gradient(135deg,#1a2840,#162030)", borderColor:"#c8a84b"}}>
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📋 EXAM COVERAGE</div>
           <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>
-            512 original questions covering all 12 modules of the California General Electrician (Journeyman) exam. Based on the 2020 NEC and California-specific requirements.
+            462 original questions covering all 11 modules of the California General Electrician (Journeyman) exam. Based on the 2020 NEC.
           </div>
         </div>
 
@@ -886,6 +837,14 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
                   Unlock Full Access →
                 </button>
               </div>
+            </div>
+            {/* Already paid restore link — always visible for free tier */}
+            <div style={{marginTop:"10px", paddingTop:"10px", borderTop:"1px solid rgba(200,168,75,0.15)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+              <div style={{fontSize:"12px", color:"#7a8a9a"}}>Already purchased? Your access is tied to your email.</div>
+              <button onClick={() => onNavigate && onNavigate('redeem')}
+                style={{background:"none", border:"1px solid rgba(200,168,75,0.35)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"5px 12px", borderRadius:"4px", cursor:"pointer", fontFamily:"'Arial Black',Arial,sans-serif", textTransform:"uppercase", letterSpacing:"0.3px", whiteSpace:"nowrap"}}>
+                🔓 Restore Access
+              </button>
             </div>
           </div>
         )}
@@ -911,7 +870,8 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             return (
               <span key={m.id}
                 style={{...styles.chip, ...(selectedMods.includes(m.id)?styles.chipActive:styles.chipInactive), ...(isLocked?{opacity:0.55}:{})}}
-                onClick={() => setSelectedMods(s => s.includes(m.id)?s.filter(x=>x!==m.id):[...s,m.id])}>
+                onClick={() => isLocked ? setScreen("paywall") : setSelectedMods(s => s.includes(m.id)?s.filter(x=>x!==m.id):[...s,m.id])}
+                title={isLocked ? "Upgrade to unlock this module" : ""}>
                 {isLocked ? "🔒 " : ""}{m.name} <span style={{opacity:0.7}}>({modCounts[m.id]||0})</span>
               </span>
             );
@@ -950,27 +910,32 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🛠 STUDY TOOLS</div>
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
             {[
-              { icon:"📖", label:"Code Sprint",        path:"/code-sprint"  },
-              { icon:"🎯", label:"Am I Ready?",        path:"/diagnostic"   },
-              { icon:"📋", label:"Full Exam Sim",       path:"/simulator"    },
-              { icon:"🔁", label:"Missed Questions",    path:"/missed"       },
-              { icon:"🏆", label:"Table Mastery",       path:"/mastery"      },
-              { icon:"📅", label:"Study Planner",       path:"/planner"      },
-              { icon:"📖", label:"NEC Reference",       path:"/nec-reference"},
-              { icon:"🧮", label:"Calculations",        path:"/calculations" },
-              { icon:"📊", label:"My Progress",         path:"/progress"     },
-              { icon:"📚", label:"Glossary",            path:"/glossary"     },
-              { icon:"🗓️", label:"Exam Day Guide",      path:"/exam-day"     },
-              { icon:"💬", label:"FAQ",                 path:"/faq"          },
-              { icon:"📧", label:"Contact",             path:"/contact"      },
-            ].map(tool => (
-              <button key={tool.path}
-                style={{...styles.btn, ...styles.btnGray, display:"flex", alignItems:"center", gap:"8px", justifyContent:"flex-start", padding:"10px 12px", fontSize:"13px", borderRadius:"8px"}}
-                onClick={() => { window.history.pushState({}, '', tool.path); window.location.reload(); }}>
-                <span style={{fontSize:"16px"}}>{tool.icon}</span>
-                {tool.label}
-              </button>
-            ))}
+              { icon:"🎯", label:"Top 25 Questions",   path:"/top-25",       pro:true  },
+              { icon:"📖", label:"Code Sprint",        path:"/code-sprint",  pro:true  },
+              { icon:"🎯", label:"Am I Ready?",        path:"/diagnostic",   pro:false },
+              { icon:"📋", label:"Full Exam Sim",       path:"/simulator",    pro:false },
+              { icon:"🔁", label:"Missed Questions",    path:"/missed",       pro:true  },
+              { icon:"🏆", label:"Table Mastery",       path:"/mastery",      pro:true  },
+              { icon:"📅", label:"Study Planner",       path:"/planner",      pro:false },
+              { icon:"📖", label:"NEC Reference",       path:"/nec-reference",pro:false },
+              { icon:"🧮", label:"Calculations",        path:"/calculations", pro:false },
+              { icon:"📊", label:"My Progress",         path:"/progress",     pro:false },
+              { icon:"📚", label:"Glossary",            path:"/glossary",     pro:false },
+              { icon:"🗓️", label:"Exam Day Guide",      path:"/exam-day",     pro:false },
+              { icon:"💬", label:"FAQ",                 path:"/faq",          pro:false },
+              { icon:"📧", label:"Contact",             path:"/contact",      pro:false },
+            ].map(tool => {
+              const locked = tool.pro && access !== "pro";
+              return (
+                <button key={tool.path}
+                  style={{...styles.btn, ...styles.btnGray, display:"flex", alignItems:"center", gap:"8px", justifyContent:"flex-start", padding:"10px 12px", fontSize:"13px", borderRadius:"8px", opacity: locked ? 0.6 : 1, position:"relative"}}
+                  onClick={() => { window.history.pushState({}, '', tool.path); window.location.reload(); }}>
+                  <span style={{fontSize:"16px"}}>{locked ? "🔒" : tool.icon}</span>
+                  {tool.label}
+                  {locked && <span style={{marginLeft:"auto", fontSize:"9px", color:"#c8a84b", fontWeight:"700", letterSpacing:"0.5px"}}>PRO</span>}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -1023,7 +988,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock All 512 Questions</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            You've got Modules 1 &amp; 2 free. Unlock all 12 modules — one-time payment, study forever.
+            You've got Modules 1 &amp; 2 free. Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, Top 25 &amp; more.
           </div>
         </div>
 
@@ -1031,12 +996,12 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         {[
           {
             name:"Standard", price:"$29.99", tag:"Most Popular",
-            features:["All 12 modules — 512 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Unlimited retakes"],
+            features:["All 11 modules — 462 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Exam Simulator (110Q)","NEC Reference & Calculations","Progress saved"],
             accent:"#c8a84b", tier:"standard"
           },
           {
             name:"Pro", price:"$59.99", tag:"Best Value",
-            features:["Everything in Standard","Progress saved across sessions","Missed question review deck","Full exam simulation mode","Future question updates"],
+            features:["Everything in Standard","Code Sprint — NEC Article Navigator","Full Table Mastery (10 tables, 113 cards)","Missed Questions review deck","Top 25 Most-Tested Questions","Study Planner + Progress Dashboard","Future question updates"],
             accent:"#e8c878", tier:"pro"
           }
         ].map(plan => (
@@ -1114,7 +1079,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🏆</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#a855f7", marginBottom:"8px"}}>Upgrade to Pro</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            You already have all 512 questions. Pro adds the tools that turn practice into mastery.
+            You already have all 462 questions. Pro adds the tools that turn practice into mastery.
           </div>
         </div>
 
@@ -1134,9 +1099,9 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           {[
             ["📖", "Code Sprint", "NEC article navigation game — train your brain to find any article fast under exam pressure"],
             ["🏆", "Table Mastery", "113 flashcards across 10 NEC tables — the most common exam calculation source"],
-            ["📋", "Full Exam Simulator", "110-question, 270-minute timed simulation — real exam conditions"],
-            ["🔁", "Missed Questions Deck", "Auto-builds a deck from every question you've gotten wrong"],
-            ["📊", "Progress Dashboard", "Track scores over time by module — see exactly where to focus"],
+            ["🔁", "Missed Questions Deck", "Auto-builds a review deck from every question you've gotten wrong"],
+            ["🎯", "Top 25 Exam Questions", "The 25 highest-frequency question types on the CA exam, curated by topic"],
+            ["📅", "Study Planner + Dashboard", "Custom schedule + score tracking across all your sessions"],
             ["🔄", "Future Question Updates", "New questions added as the exam evolves — yours free, forever"],
           ].map(([icon, title, desc]) => (
             <div key={title} style={{display:"flex", gap:"12px", padding:"10px 0", borderBottom:"1px solid rgba(255,255,255,0.04)"}}>
@@ -1338,7 +1303,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
           </button>
           <span style={{fontSize:"28px"}}>⚡</span>
-          <div style={styles.logo}>Quiz Results</div>
+          <button onClick={() => { setScreen("home"); setSelectedMods([]); setSelectedDiffs([]); }} style={{background:"none", border:"none", cursor:"pointer", padding:0, color:"inherit"}}><div style={styles.logo}>Quiz Results</div></button>
         </div>
         <div style={{padding:"16px"}}>
           <div style={{...styles.card, textAlign:"center", borderColor: passed?"#27ae60":"#e74c3c"}}>
@@ -1376,10 +1341,17 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </div>
           {answered.filter(a=>!a.correct).length > 0 && (
             <div style={{padding:"0 16px 24px"}}>
-              <button style={{...styles.btn, background:"rgba(231,76,60,0.12)", color:"#e74c3c", border:"1px solid #e74c3c", width:"100%", fontSize:"13px"}}
-                onClick={() => { window.history.pushState({}, '', '/missed'); window.location.reload(); }}>
-                🔁 Review {answered.filter(a=>!a.correct).length} Missed Questions
-              </button>
+              {access === "pro" ? (
+                <button style={{...styles.btn, background:"rgba(231,76,60,0.12)", color:"#e74c3c", border:"1px solid #e74c3c", width:"100%", fontSize:"13px"}}
+                  onClick={() => { window.history.pushState({}, '', '/missed'); window.location.reload(); }}>
+                  🔁 Review {answered.filter(a=>!a.correct).length} Missed Questions
+                </button>
+              ) : (
+                <button style={{...styles.btn, background:"rgba(200,168,75,0.08)", color:"#c8a84b", border:"1px solid rgba(200,168,75,0.3)", width:"100%", fontSize:"13px"}}
+                  onClick={() => setScreen("upgrade")}>
+                  🔒 Missed Questions Deck — Pro Feature → Upgrade
+                </button>
+              )}
             </div>
           )}
         </div>

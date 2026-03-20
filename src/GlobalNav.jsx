@@ -92,7 +92,6 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
             {label:'CA Journeyman Exam Guide', page:'exam-info'},
             {label:'How to Pass — Study Tips', page:'study-tips'},
             {label:'Exam Day Guide', page:'exam-day'},
-            {label:'NEC 2020 Changes for CA', page:'nec-2020-changes'},
             {label:'Electrician Salary in CA', page:'salary'},
             {label:'Contractor vs. Electrician', page:'contractor-vs-electrician'},
           ]}/>
@@ -149,7 +148,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           <MobileDivider/>
           <MobileSection title="📋 Exam Resources" items={[
             ['Blog','blog'],['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
-            ['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],
+            ['Exam Day Guide','exam-day'],
             ['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician'],
           ]} onNav={nav}/>
           <MobileDivider/>

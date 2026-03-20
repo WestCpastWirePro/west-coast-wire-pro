@@ -11,8 +11,8 @@ onNavigate={onNavigate}       title="Privacy Policy"
 
       <Section title="1. Who We Are">
         <P>
-          West Coast Wire Pro is operated by <Placeholder label="West Coast Wire Pro Training" />, 
-          located in <Placeholder label="CITY, STATE" /> ("<strong style={{color:'#d8e0e8'}}>we</strong>," 
+          West Coast Wire Pro is operated by West Coast Wire Pro, 
+          located in Long Beach, CA ("<strong style={{color:'#d8e0e8'}}>we</strong>," 
           "<strong style={{color:'#d8e0e8'}}>us</strong>," or "<strong style={{color:'#d8e0e8'}}>our</strong>"). 
           We operate the website westcoastwirepro.com and the West Coast Wire Pro exam preparation application.
         </P>
@@ -142,9 +142,9 @@ onNavigate={onNavigate}       title="Privacy Policy"
       <Section title="11. Contact">
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Privacy questions or data requests:</strong><br />
-          <Placeholder label="West Coast Wire Pro Training" /><br />
+          West Coast Wire Pro<br />
           Email: our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a><br />
-          <Placeholder label="CITY, STATE, ZIP" />
+          Long Beach, CA
         </Highlight>
       </Section>
 

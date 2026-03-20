@@ -28,7 +28,7 @@ const FAQS = [
       },
       {
         q: "What NEC edition does the California exam use?",
-        a: "As of 2023, California adopted the 2020 NEC. The exam tests 2020 NEC content along with California-specific amendments found in Title 24."
+        a: "As of 2023, California adopted the 2020 NEC. The exam tests 2020 NEC content. Verify the current adopted edition with the CA DIR at dir.ca.gov before scheduling your exam."
       },
       {
         q: "Can I bring a calculator?",
@@ -74,7 +74,7 @@ const FAQS = [
       },
       {
         q: "What modules are most heavily tested?",
-        a: "Based on exam patterns, the most heavily tested areas are: Wiring & Materials (Module 3), Branch Circuits & Feeders (Module 4), Services (Module 5), Motors (Module 7), and Grounding & Bonding (Module 6). California-specific rules (Module 11) trip up a lot of candidates who study only the NEC."
+        a: "Based on exam patterns, the most heavily tested areas are: Wiring & Materials (Module 3), Branch Circuits & Feeders (Module 4), Services (Module 5), Motors (Module 7), and Grounding & Bonding (Module 6)."
       },
       {
         q: "How do I know if I'm ready to take the exam?",
@@ -89,10 +89,7 @@ const FAQS = [
   {
     category: "West Coast Wire Pro",
     items: [
-      {
-        q: "Does West Coast Wire Pro cover California-specific rules?",
-        a: "Yes. Module 11 covers California-specific electrical requirements including Title 24 amendments, California OSHA requirements, and state-specific licensing rules. These are separate from the NEC content in other modules."
-      },
+
       {
         q: "Are the questions similar to the real exam?",
         a: "Our questions are original and written to match the format, difficulty, and NEC article distribution of the California journeyman exam. They are not actual PSI exam questions — no prep company has access to those."
@@ -103,7 +100,7 @@ const FAQS = [
       },
       {
         q: "What's the difference between Standard and Pro access?",
-        a: "Standard ($29.99) unlocks all 512 questions across all 12 modules, the full Exam Simulator, Missed Questions Deck, Diagnostic Quiz, NEC Reference, and Calculations tool. Pro ($59.99) adds Code Sprint (NEC article navigation game), Table Mastery flashcard drills (10 NEC tables, 113 cards), the Study Planner, and any future modules or content updates at no additional charge."
+        a: "Standard ($29.99) unlocks all 462 questions across all 11 modules, Exam Simulator, Diagnostic Quiz, NEC Reference, Calculations tool, and progress saved across sessions. Pro ($59.99) adds Code Sprint, Full Table Mastery (10 NEC tables, 113 flashcards), Missed Questions review deck, Top 25 Most-Tested Exam Questions, Study Planner, Progress Dashboard, and future question updates at no additional charge."
       },
       {
         q: "I bought access but the app is locked. What do I do?",

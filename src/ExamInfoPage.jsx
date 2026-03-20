@@ -35,6 +35,14 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
       </header>
 
       {/* QUICK FACTS */}
+      {/* Last verified notice */}
+      <div style={{margin:"0 16px 0", padding:"10px 14px", background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"6px", display:"flex", alignItems:"flex-start", gap:"10px"}}>
+        <span style={{fontSize:"16px", flexShrink:0}}>ℹ️</span>
+        <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.6"}}>
+          <strong style={{color:"#c8a84b"}}>Information current as of 2024.</strong> Exam format, fees, and eligibility requirements can change. Verify current requirements at <a href="https://www.dir.ca.gov/dlse/dlseECPU.html" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>dosh.ca.gov</a> and <a href="https://www.psionline.com" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>psionline.com</a> before scheduling your exam.
+        </div>
+      </div>
+
       <div style={s.quickFacts}>
         {[
           ['100', 'Questions'],
@@ -159,7 +167,6 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
                   {mod:'Motors & Transformers', arts:'Articles 430, 450', note:'Motor circuit sizing, overload, transformer protection'},
                   {mod:'Communications & Emergency', arts:'Articles 700–820', note:'Emergency systems, standby power, low voltage'},
                   {mod:'Trade Calculations', arts:'Chapter 9, Table 310.16', note:'Conduit fill, load calcs, wire sizing — math-heavy'},
-                  {mod:'California-Specific Rules', arts:'Title 8, Title 24, CEC', note:'Cal/OSHA, energy code — unique to CA exam'},
                   {mod:'Safety & Maintenance', arts:'NFPA 70E, Cal/OSHA', note:'Arc flash, lockout/tagout, PPE requirements'},
                 ].map(t => (
                   <div key={t.mod} style={s.topicCard}>
@@ -198,10 +205,11 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
               </div>
 
               <CallOut>
-                The California General Electrician exam is open book — you can bring your NEC
-                codebook. However, time is tight. You need to know the code well enough to
-                find answers quickly. Candidates who rely too heavily on looking everything up
-                run out of time.
+                The California General Electrician exam is open book — PSI provides an unmarked
+                NEC codebook at the testing center. You cannot bring your own, and no personal
+                notes, tabs, or annotations are permitted. Verify current testing policies at{' '}
+                <a href="https://www.psionline.com" target="_blank" rel="noopener noreferrer" style={{color:'#c8a84b'}}>psionline.com</a> before your exam.
+                Time is tight — know the code well enough to find answers fast.
               </CallOut>
             </Section>
 
@@ -217,7 +225,6 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
               </P>
               <Ul items={[
                 'Broad scope — 110 questions spanning 12+ content areas means no single topic can be ignored',
-                'California-specific content — most prep resources focus only on the NEC and skip Title 8, Title 24, and CEC amendments',
                 'Calculation questions — trade math (load calculations, conduit fill, motor sizing) requires actual computation under time pressure',
                 'Time pressure — the exam is open book, but 4.5 hours for 110 questions goes fast if you\'re looking up every answer',
                 'Question wording — questions often test nuance and exception clauses, not just the general rule',
@@ -262,7 +269,6 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
                 'Start with a diagnostic — take a timed practice set across all modules and find out where your gaps are',
                 'Study by module — go deep on one topic area before moving to the next',
                 'Don\'t just memorize answers — read the explanation for every question you get wrong (and right)',
-                'Pay special attention to California-specific content (Title 8, Title 24) — this is where many candidates lose points',
                 'Practice calculations until they\'re automatic — motor sizing, conduit fill, load calculations',
                 'Simulate exam conditions — 110 questions, 4.5 hours, open book just like the real exam',
                 'In the final week before your exam, focus on your weakest modules only',
@@ -273,7 +279,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
                 <div style={s.ctaBolt}>⚡</div>
                 <div style={s.ctaTitle}>West Coast Wire Pro is built for this exam.</div>
                 <div style={s.ctaBody}>
-                  512 questions across all 12 modules. Every answer tied to the exact NEC or
+                  462 questions across all 11 modules. Every answer tied to the exact NEC or
                   California code section. Timed mode, module filtering, difficulty levels.
                   Built by a California journeyman electrician and trade school instructor.
                 </div>
@@ -313,7 +319,7 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, background:'linear-gradient(135deg, rgba(200,168,75,0.08), rgba(200,168,75,0.03))', border:'1px solid rgba(200,168,75,0.3)'}}>
             <div style={s.sideTitle}>Start Preparing</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'16px'}}>
-              512 questions. 12 modules. Every answer NEC-referenced. Modules 1 & 2 always free.
+              462 questions. 11 modules. Every answer NEC-referenced. Modules 1 & 2 always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'11px 16px', width:'100%'}} onClick={onLaunchApp}>
               ⚡ Try Free Now
@@ -466,7 +472,7 @@ function PageFooter({ onNavigate }) {
       <div style={{display:'flex', gap:'20px', flexWrap:'wrap'}}>
         {link('Home', 'landing')}
         {link('About', 'about')}
-        {link('Demo', 'demo')}
+        {link('FAQ', 'faq')}
         {link('Privacy', 'privacy')}
         {link('Terms', 'terms')}
       </div>

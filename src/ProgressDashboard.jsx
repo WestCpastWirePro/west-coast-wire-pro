@@ -18,7 +18,7 @@ function fmt(ts) {
   return new Date(ts).toLocaleDateString("en-US", { month:"short", day:"numeric" });
 }
 
-export default function ProgressDashboard({ onHome, onNavigate }) {
+export default function ProgressDashboard({ onHome, onNavigate, access }) {
   const [history, setHistory] = useState([]);
   const [missed, setMissed] = useState([]);
 
@@ -39,6 +39,22 @@ export default function ProgressDashboard({ onHome, onNavigate }) {
     } catch(e) {}
   };
 
+  if (access === 'free') return (
+    <div style={s.app}>
+      <div style={{padding:'40px 20px', textAlign:'center'}}>
+        <div style={{fontSize:'40px', marginBottom:'16px'}}>📊</div>
+        <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'20px', fontWeight:'900', color:'#c8a84b', marginBottom:'12px', textTransform:'uppercase'}}>Progress Dashboard</div>
+        <div style={{fontSize:'14px', color:'#8899aa', lineHeight:'1.7', maxWidth:'340px', margin:'0 auto 24px'}}>
+          The Progress Dashboard is included with Standard and Pro access. Track your scores by module across every session to see exactly where to focus.
+        </div>
+        <button onClick={() => onNavigate('landing')}
+          style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'14px 28px', cursor:'pointer'}}>
+          View Plans →
+        </button>
+      </div>
+    </div>
+  );
+
   if (!history.length) {
     return (
       <div style={s.app}>
@@ -48,7 +64,8 @@ export default function ProgressDashboard({ onHome, onNavigate }) {
           <div style={{fontSize:"14px", color:"#8899aa", maxWidth:"300px", margin:"0 auto 24px", lineHeight:"1.6"}}>
             Complete a practice session and your scores, streaks, and module mastery will appear here.
           </div>
-          <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start Practicing</button>
+          <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start a Practice Quiz ⚡</button>
+          <div style={{marginTop:"12px", fontSize:"12px", color:"#4a5a6a"}}>Complete any quiz and your scores will appear here automatically.</div>
         </div>
       </div>
     );

@@ -85,7 +85,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={s.heroStats}>
             {[
-              ['512','Practice Questions'],
+              ['462','Practice Questions'],
               ['12','Exam Modules'],
               ['3','Difficulty Levels'],
               ['100%','NEC Referenced'],
@@ -105,7 +105,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <SectionTitle>Study Smarter.<br/>Pass Faster.</SectionTitle>
         <div style={s.steps}>
           {[
-            ['01','🎯','Pick Your Focus','Filter by module, difficulty, or mix all 12 modules for a full simulation.'],
+            ['01','🎯','Pick Your Focus','Filter by module, difficulty, or mix all 11 modules for a full simulation.'],
             ['02','⚡','Answer Questions','Timed or untimed. Four answer choices per question — just like the real exam.'],
             ['03','📖','Learn the Why','Every answer shows a full explanation AND the exact NEC article so you understand, not just memorize.'],
             ['04','📊','Find Weak Spots','Results broken down by module show exactly where to focus before exam day.'],
@@ -160,7 +160,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
-              {text:'Modules 3–12 (437 questions)', locked:true},
+              {text:'Modules 3–12 (386 questions)', locked:true},
               {text:'Table Mastery — 8 more NEC tables', locked:true},
               {text:'Progress saved & missed question deck', locked:true},
             ]}
@@ -174,17 +174,17 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             priceSub="One-time · Instant access"
             featured
             features={[
-              {text:'All 12 modules — 512 questions', locked:false},
+              {text:'All 11 modules — 462 questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Exact code section references', locked:false},
               {text:'Timed & untimed modes', locked:false},
               {text:'Module score breakdown', locked:false},
               {text:'Difficulty filtering (Easy/Med/Hard)', locked:false},
-              {text:'Table 310.16 & Conduit Fill drills', locked:false},
-              {text:'Unlimited retakes', locked:false},
-              {text:'Progress saved across sessions', locked:true},
-              {text:'Full Table Mastery (10 tables)', locked:true},
-              {text:'Missed question review deck', locked:true},
+              {text:'Exam Simulator (full 110Q)', locked:false},
+              {text:'NEC Reference & Calculations tools', locked:false},
+              {text:'Progress saved across sessions', locked:false},
+              {text:'Code Sprint, Table Mastery, Missed Questions', locked:true},
+              {text:'Top 25 Exam Questions · Study Planner', locked:true},
             ]}
             btnLabel="Get Standard Access ⚡"
             btnStyle="gold"
@@ -199,12 +199,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Everything in Standard', locked:false},
               {text:'Code Sprint — NEC Article Navigator Game', locked:false},
               {text:'Full Table Mastery — 10 NEC tables, 113 flashcards', locked:false},
-              {text:'Progress saved across sessions', locked:false},
-              {text:'Missed question review deck', locked:false},
-              {text:'Full exam simulation mode (110Q, 4.5 hrs)', locked:false},
-              {text:'Weak module targeting', locked:false},
-              {text:'Study Planner', locked:false},
-              {text:'Email support', locked:false},
+              {text:'Missed Questions review deck', locked:false},
+              {text:'Top 25 Most-Tested Exam Questions', locked:false},
+              {text:'Study Planner + Progress Dashboard', locked:false},
+              {text:'Priority email support', locked:false},
               {text:'Future question updates included', locked:false},
             ]}
             btnLabel="Get Pro Access"
@@ -220,7 +218,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <SectionLabel>// BY THE NUMBERS</SectionLabel>
         <SectionTitle>Built for the Real Exam.</SectionTitle>
         <div style={s.proofBar}>
-          {[['512','Practice Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
+          {[['462','Practice Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
             <div key={l} style={{textAlign:'center'}}>
               <div style={s.proofNum}>{n}</div>
               <div style={s.proofLabel}>{l}</div>
@@ -228,18 +226,15 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           ))}
         </div>
         <div style={s.testimonials}>
-          {[
-            ['The California-specific module alone was worth it. No other prep material touches Title 8 and Title 24 together. Passed first attempt.','MARCUS T.','General Electrician · Los Angeles, CA'],
-            ['Every wrong answer shows the exact NEC section. I stopped memorizing and started understanding. Big difference when the exam came.','ROSA M.','Electrical Trainee · San Diego, CA'],
-            ['The motor and transformer module is brutal — exactly like the real exam. Drilled until I was hitting 90%. Passed with room to spare.','DEREK K.','Journeyman Electrician · Oakland, CA'],
-          ].map(([quote, name, role]) => (
-            <div key={name} style={s.testimonial}>
-              <div style={s.tQuote}>"{quote}"</div>
-              <div style={s.tName}>{name}</div>
-              <div style={s.tRole}>{role}</div>
+          <div style={{textAlign:'center', padding:'8px 0'}}>
+            <div style={{fontSize:'14px', color:'#8899aa', lineHeight:'1.7', maxWidth:'480px', margin:'0 auto 16px'}}>
+              West Coast Wire Pro launched recently. Our first students are working toward their California Journeyman license now. As they pass, their stories will appear here.
             </div>
-          ))}
-        </div>
+            <div style={{fontSize:'13px', color:'#c8a84b', fontWeight:'700', marginBottom:'12px'}}>
+              Did you pass using West Coast Wire Pro?
+            </div>
+          </div>
+        </div></div>
       </section>
 
       {/* FAQ */}
@@ -329,14 +324,14 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {modalTier === 'pro' && (
                 <ModalOption
                   name="Pro — Full Suite"
-                  desc="Everything in Standard + saved progress + exam sim mode"
+                  desc="Everything in Standard + Code Sprint, Table Mastery, saved progress & updates"
                   price="$59.99"
                   onClick={() => handlePurchase('pro')}
                 />
               )}
               <ModalOption
                 name={modalTier === 'standard' ? 'Standard — All 12 Modules' : 'Standard instead'}
-                desc="512 questions · Timed mode · Score tracking"
+                desc="462 questions · Timed mode · Score tracking"
                 price="$29.99"
                 onClick={() => handlePurchase('standard')}
                 dim={modalTier === 'pro'}

@@ -38,6 +38,14 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
       <div style={{...s.layout, flexDirection: isMobile ? "column" : "row", padding: isMobile ? "32px 20px 60px" : "48px 40px 80px"}}>
         <main style={{...s.main, width: isMobile ? "100%" : undefined}}>
 
+          {/* Last verified notice */}
+          <div style={{background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"6px", padding:"10px 14px", marginBottom:"24px", display:"flex", alignItems:"flex-start", gap:"10px"}}>
+            <span style={{fontSize:"16px", flexShrink:0}}>ℹ️</span>
+            <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.6"}}>
+              <strong style={{color:"#c8a84b"}}>Wage data current as of 2024.</strong> California electrician wages change regularly. Verify current wage rates with the <a href="https://www.dir.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>CA Department of Industrial Relations</a> or your local IBEW before making career decisions.
+            </div>
+          </div>
+
           <div style={s.toc}>
             <div style={s.tocTitle}>In This Article</div>
             {[
@@ -56,25 +64,22 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
 
             <Section id="overview" title="What Journeyman Electricians Earn in California">
               <P>
-                California is consistently among the top three states for electrician wages in the country.
-                The Bureau of Labor Statistics places California journeyman electricians at a median annual
-                wage significantly above the national average, driven by high cost of living, strong union
-                density, and robust commercial and industrial construction activity.
+                California electricians earn significantly above the national average.
+                According to the U.S. Bureau of Labor Statistics May 2024 Occupational Employment
+                and Wage Statistics (OEWS) survey, the statewide median annual wage for electricians
+                in California is <Strong>$76,540</Strong> — compared to a national median of $62,350.
               </P>
               <P>
-                In practical terms: a journeyman electrician working full-time in California in 2025–2026
-                can expect to earn between <Strong>$45 and $75 per hour</Strong> depending on region,
-                sector, and union affiliation. That works out to roughly <Strong>$90,000 to $155,000
-                annually</Strong> for straight-time work, before overtime.
+                The top 10% of California electricians earn <Strong>$136,710 or more</Strong> annually.
+                The bottom 10% earn $46,630 or less. Where you fall in that range depends on region,
+                experience, union affiliation, and the type of work you do.
               </P>
               <div style={s.timelineGrid}>
                 {[
-                  { label:"Non-Union, Entry Journeyman", range:"$40–$52/hr", note:"Small residential/light commercial shops" },
-                  { label:"Non-Union, Commercial", range:"$50–$65/hr", note:"Mid-size commercial contractors" },
-                  { label:"Union IBEW (Bay Area)", range:"$68–$78/hr", note:"Plus full benefits, pension" },
-                  { label:"Union IBEW (LA/SoCal)", range:"$62–$72/hr", note:"Plus full benefits, pension" },
-                  { label:"Industrial / Petrochem", range:"$65–$80/hr", note:"Refinery and plant work, per diem" },
-                  { label:"Government / Public Works", range:"$55–$70/hr", note:"Prevailing wage projects" },
+                  { label:"California Statewide Median", range:"$76,540/yr", note:"BLS OEWS May 2024" },
+                  { label:"California 75th Percentile", range:"$103,720/yr", note:"BLS OEWS May 2024" },
+                  { label:"California 90th Percentile", range:"$136,710/yr", note:"BLS OEWS May 2024" },
+                  { label:"National Median (all states)", range:"$62,350/yr", note:"BLS OEWS May 2024" },
                 ].map(c => (
                   <div key={c.label} style={s.timelineCard}>
                     <div style={{fontSize:'11px', color:'#c8a84b', fontFamily:"'Courier New', monospace", marginBottom:'6px'}}>{c.label}</div>
@@ -84,26 +89,28 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
                 ))}
               </div>
               <P>
-                These ranges reflect total compensation before overtime. In California, anything over 8 hours
-                per day (not 40 per week) triggers overtime at 1.5x — and double time kicks in after 12 hours.
-                Electricians who are willing to work overtime regularly can add <Strong>$20,000–$40,000</Strong> to
-                their annual take-home without a promotion.
+                Note: BLS OEWS data covers wage and salary workers and does not include self-employed
+                electricians. Data reflects all electricians in California, not specifically journeymen —
+                wages vary by experience level and certification.
               </P>
             </Section>
 
             <Section id="regional" title="Pay by Region">
               <P>
-                California's size means significant variation in wages by market. Here's how the major regions
-                break down for journeyman electricians:
+                California shows wide regional variation. The following median annual wages are from
+                the BLS OEWS May 2024 survey for electricians (SOC 47-2111) by metropolitan area:
               </P>
               <div style={s.moduleGrid}>
                 {[
-                  ["Bay Area (SF, San Jose, Oakland)", "$68–$80/hr", "Highest wages in the state. Extremely high cost of living but also the largest IBEW presence. Commercial and data center work drives strong demand."],
-                  ["Los Angeles / Orange County", "$60–$75/hr", "Large commercial market. Entertainment industry adds specialized work. Strong union and non-union sectors coexist."],
-                  ["San Diego", "$58–$72/hr", "Military construction and defense projects create consistent demand. Slightly lower COL than LA."],
-                  ["Sacramento / Central Valley", "$52–$65/hr", "Growing market with state government and data center investment. Lower COL than coastal areas."],
-                  ["Inland Empire (Riverside, San Bernardino)", "$50–$63/hr", "Logistics and warehouse construction booming. Slightly lower wages, strong volume of work."],
-                  ["Fresno / Bakersfield", "$45–$58/hr", "Lower wages than coastal, but COL significantly lower. Agricultural processing and oil industry work."],
+                  ["San Jose / Sunnyvale / Santa Clara", "$95,020", "Highest median in state per BLS 2024."],
+                  ["San Francisco / Oakland / Fremont", "$93,750", "Strong union presence, major commercial and data center work."],
+                  ["Napa", "$80,910", "Smaller market, strong wages."],
+                  ["Sacramento / Roseville / Folsom", "$75,780", "Growing state government and data center investment."],
+                  ["Los Angeles / Long Beach / Anaheim", "$76,120", "Largest market in state by employment."],
+                  ["San Diego / Chula Vista / Carlsbad", "$75,640", "Consistent demand from defense and military construction."],
+                  ["Riverside / San Bernardino / Ontario", "$73,970", "Logistics and warehouse construction booming."],
+                  ["Fresno", "$68,410", "Lower wages, significantly lower cost of living."],
+                  ["Bakersfield / Delano", "$75,310", "Oil and agricultural industrial work."],
                 ].map(([region, range, note]) => (
                   <div key={region} style={s.moduleRow}>
                     <div style={{flex:1}}>
@@ -114,31 +121,31 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
                   </div>
                 ))}
               </div>
+              <P>
+                Source: BLS OEWS May 2024, SOC 47-2111 (Electricians). All figures are median annual wages.
+                See full data at <a href="https://www.bls.gov/oes/" target="_blank" rel="noopener noreferrer" style={{color:'#c8a84b'}}>bls.gov/oes</a>.
+              </P>
             </Section>
 
             <Section id="union" title="Union vs. Non-Union">
               <P>
-                This is the question every apprentice eventually has to answer. The honest answer is that
-                neither is strictly better — they're different paths with different trade-offs.
+                BLS wage data does not break down electrician wages by union status — those figures
+                come from individual union local wage agreements, which are publicly available from
+                your local IBEW. If you want to know what IBEW Local 11 (LA) or Local 6 (SF) currently
+                pay journeymen, the most accurate source is the local's website or business manager.
               </P>
               <P>
-                <Strong>Union (IBEW):</Strong> Higher base wages, but the real difference is the benefits
-                package. An IBEW journeyman in the Bay Area earns roughly $78/hr in total package value —
-                but only about $55 of that hits their paycheck. The rest is pension contributions, health
-                insurance (typically gold-tier family coverage), and annuity. Over a 30-year career,
-                the pension alone can be worth $1.5–$2M in retirement income.
+                What BLS data does show: California's 75th percentile electrician earns $103,720/year —
+                which is roughly where well-compensated union journeymen in major metros land.
+                The 90th percentile at $136,710 reflects experienced foremen, specialty workers,
+                and those in the highest-paying markets.
               </P>
               <P>
-                <Strong>Non-Union:</Strong> Often higher take-home pay at lower experience levels, more
-                flexibility in the type of work you take, and typically easier to move between employers.
-                The catch is that benefits are rarely comparable — health insurance is usually self-funded,
-                and there's no pension. Some non-union contractors offer 401k matching, but the math rarely
-                catches up to a full IBEW package.
-              </P>
-              <P>
-                For someone focused on long-term wealth building and stability, the union path is hard to
-                beat mathematically. For someone who wants to eventually start their own shop, non-union
-                experience across multiple contractor types often provides more business-building education.
+                <Strong>Non-Union:</Strong> Often provides higher take-home pay at entry level due to
+                lower benefit overhead, but long-term total compensation including pension and
+                healthcare typically favors union employment. For prevailing wage public projects,
+                non-union workers receive the same wage rate as union scale — it's the benefits
+                that differ.
               </P>
             </Section>
 
@@ -146,12 +153,12 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
               <P>These are the variables that move the needle most after you have your license:</P>
               <div style={s.methodSteps}>
                 {[
-                  ["SPECIALTY WORK", "Specialty certifications — fire alarm, solar, industrial controls — add $5–$15/hr in most markets. The more specialized, the less competition for your skills."],
-                  ["FOREMAN / GF", "Foreman adds roughly 10–15% over journeyman scale. General foreman adds another 10%. Many journeymen reach foreman within 3–5 years of licensure."],
-                  ["SHIFT WORK", "Night shift and weekend differential pay is common on commercial projects — often 10–20% premium above straight-time rate."],
-                  ["PREVAILING WAGE", "Any publicly-funded project (schools, government buildings, public transit) requires prevailing wage — typically the union scale regardless of whether you're union. This is a meaningful pay floor."],
-                  ["PER DIEM WORK", "Industrial and out-of-town projects often include per diem ($60–$150/day) that is tax-free. On a 6-month industrial project, this adds $10,000–$25,000 to your effective compensation."],
-                  ["OVERTIME CULTURE", "Some employers actively limit overtime; others expect it. A shop that regularly runs 50–55-hour weeks effectively pays 15–35% more annually than a strict 40-hour shop at the same rate."],
+                  ["SPECIALTY WORK", "Specialty certifications in fire alarm, solar, or industrial controls typically command premium wages. Check current prevailing wage determinations at the CA DIR for publicly-funded project rates."],
+                  ["FOREMAN / GF", "Foreman classifications typically pay above journeyman scale. Union agreements publish exact foreman differentials; non-union rates vary by employer."],
+                  ["SHIFT WORK", "Night shift and weekend differential pay is common on commercial projects — confirm current rates with your employer or union local."],
+                  ["PREVAILING WAGE", "Any publicly-funded project requires prevailing wage — typically union scale regardless of union membership. Current prevailing wage rates are published by the CA DIR at dir.ca.gov."],
+                  ["PER DIEM WORK", "Industrial and out-of-town projects often include per diem that is tax-free under IRS rules. Amounts vary by project and employer."],
+                  ["OVERTIME", "California overtime triggers at 8 hours/day (not 40/week). Shops with heavy overtime volumes effectively pay significantly more annually than those limited to straight time."],
                 ].map(([title, body]) => (
                   <div key={title} style={s.methodStep}>
                     <div style={s.methodStepNum}>{title}</div>
@@ -169,43 +176,38 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
               </P>
               <P>
                 <Strong>General (C-10) Contractor License:</Strong> With 4+ years of journeyman experience,
-                you can sit for the California C-10 electrical contractor exam. This is the license that
-                lets you run your own electrical business. Solo electricians with a C-10 and a business
-                sense routinely gross $250,000–$500,000+ per year. The ceiling is essentially your capacity.
+                you can sit for the California C-10 electrical contractor exam. This lets you run your own
+                electrical business. Income as a contractor varies widely based on business volume and is
+                not captured in BLS wage data, which covers employees only.
               </P>
               <P>
-                <Strong>Electrical Inspector:</Strong> City and county electrical inspector positions pay
-                $90,000–$130,000 in California with government benefits and retirement. Typically requires
-                the journeyman license plus relevant field experience.
+                <Strong>Electrical Inspector:</Strong> City and county electrical inspector positions in
+                California are government roles with salaries published publicly. Check the specific
+                city or county's job postings for current compensation ranges.
               </P>
               <P>
                 <Strong>Estimating / Project Management:</Strong> Many journeymen transition to office roles
-                — estimating, project management, BIM coordination. These roles pay $95,000–$160,000 and
-                don't require physical labor. They're also increasingly in demand as experienced tradespeople
-                who understand the field are rare in management.
+                — estimating, project management, and field superintendent work. These roles are
+                increasingly in demand as experienced tradespeople who understand the field are rare in
+                management. BLS does not publish a specific category for this transition path.
               </P>
             </Section>
 
             <Section id="worth-it" title="Is Getting the License Worth It?">
               <P>
-                Short answer: yes, unambiguously.
+                The BLS data makes a strong case. The California statewide median for electricians is
+                $76,540 — $14,190 above the national median. The 75th percentile in California reaches
+                $103,720 and the 90th percentile $136,710, all per the May 2024 OEWS survey.
               </P>
               <P>
-                A California apprentice earns roughly $25–$35/hr in the final years of their apprenticeship.
-                Passing the journeyman exam typically adds <Strong>$15–$25/hr immediately</Strong> — that's
-                a $30,000–$50,000 annual raise from a single exam. The exam costs $175 to take. The
-                ROI is among the best of any professional certification in the trades or otherwise.
+                Beyond wages, the journeyman card changes your legal standing. Without it, you cannot
+                legally supervise apprentices, run your own electrical business, or work as a general
+                foreman on most commercial projects in California.
               </P>
               <P>
-                Beyond the money, the license changes your legal standing. Without a journeyman card, you
-                cannot legally supervise apprentices, run your own electrical business, or work as a
-                general foreman on most commercial projects. The license is the gate to everything above
-                the journeyman level.
-              </P>
-              <P>
-                The investment is a few hundred hours of study and a $175 exam fee. The return is a 30-year
-                career with a six-figure income floor, strong union benefits if you choose that path, and
-                a clear road to business ownership. The math isn't close.
+                The exam fee is $175. For current fee information, verify at the CA DIR website.
+                For current wage data, see the full BLS OEWS dataset at{' '}
+                <a href="https://www.bls.gov/oes/" target="_blank" rel="noopener noreferrer" style={{color:'#c8a84b'}}>bls.gov/oes</a>.
               </P>
             </Section>
 
@@ -213,7 +215,7 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
               <div style={s.ctaBolt}>⚡</div>
               <div style={s.ctaTitle}>Ready to Earn It?</div>
               <div style={s.ctaBody}>
-                512 NEC-referenced practice questions across all 12 exam modules.
+                462 NEC-referenced practice questions across all 12 exam modules.
                 Modules 1 & 2 + 2 Table Mastery drills free — no account required.
               </div>
               <div style={s.ctaBtns}>
@@ -228,7 +230,7 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
                 {[
                   { label:"STUDY GUIDE", name:"How to Pass the CA Journeyman Exam", page:"study-tips" },
                   { label:"EXAM INFO", name:"California Journeyman Exam — Complete Guide", page:"exam-info" },
-                  { label:"NEC UPDATE", name:"NEC 2020 vs 2017 — What Changed", page:"nec-2020-changes" },
+                  { label:"EXAM DAY", name:"What to Expect at the PSI Testing Center", page:"exam-day" },
                 ].map(r => (
                   <div key={r.page} style={s.relatedCard} onClick={() => onNavigate(r.page)}>
                     <div style={s.relatedLabel}>{r.label}</div>
@@ -244,27 +246,31 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
 
         <aside style={{...s.sidebar, display: isMobile ? "none" : "flex"}}>
           <div style={s.sideCard}>
-            <div style={s.sideTitle}>Quick Numbers</div>
+            <div style={s.sideTitle}>BLS 2024 — California</div>
             {[
-              ["Entry journeyman", "$40–$52/hr"],
-              ["Commercial (non-union)", "$50–$65/hr"],
-              ["IBEW Bay Area", "$68–$78/hr"],
-              ["Industrial", "$65–$80/hr"],
-              ["Annual (avg)", "$90K–$155K"],
-              ["With overtime", "$110K–$190K"],
-              ["Foreman premium", "+10–15%"],
-              ["C-10 contractor", "$250K+ gross"],
+              ["Statewide median", "$76,540/yr"],
+              ["25th percentile", "$59,420/yr"],
+              ["75th percentile", "$103,720/yr"],
+              ["90th percentile", "$136,710/yr"],
+              ["San Jose median", "$95,020/yr"],
+              ["SF/Oakland median", "$93,750/yr"],
+              ["LA metro median", "$76,120/yr"],
+              ["National median", "$62,350/yr"],
             ].map(([k,v]) => (
               <div key={k} style={s.sideRow}>
                 <span style={s.sideKey}>{k}</span>
                 <span style={{...s.sideVal, color:'#c8a84b', fontWeight:'700'}}>{v}</span>
               </div>
             ))}
+            <div style={{fontSize:'10px', color:'#4a5a6a', marginTop:'10px', lineHeight:'1.5'}}>
+              Source: BLS OEWS May 2024 (SOC 47-2111).<br/>
+              <a href="https://www.bls.gov/oes/" target="_blank" rel="noopener noreferrer" style={{color:'#c8a84b'}}>bls.gov/oes</a>
+            </div>
           </div>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Start Studying</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, margin:'0 0 12px', fontFamily:"'Georgia', serif"}}>
-              512 practice questions. Modules 1 & 2 + Table Mastery free.
+              462 practice questions. Modules 1 & 2 + Table Mastery free.
             </p>
             <button style={s.btnGold} onClick={onLaunchApp}>Try Free ⚡</button>
           </div>

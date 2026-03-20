@@ -78,15 +78,7 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             the jump in knowledge expected of you, and the weight of knowing that one exam stands
             between you and the next level of your career.
           </p>
-          <p style={s.p}>
-            Along the way I worked in residential and commercial solar — installing rooftop systems
-            on homes and larger commercial builds across California. Solar gave me a different lens
-            on the code: you're dealing with DC systems, rapid shutdown requirements, inverter
-            configurations, and utility interconnection rules that most electricians don't touch
-            until they're deep into their career. That work sharpened how I think about Article 690
-            and the California-specific energy code rules that show up on the journeyman exam and
-            catch a lot of people off guard.
-          </p>
+
           <p style={s.p}>
             That breadth of experience shapes every question in West Coast Wire Pro. Every question is
             NEC-referenced and exam-style — built to reflect what actually shows up on the California
@@ -117,22 +109,10 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             <CredItem num="14" label="Years in the Trade" />
             <CredItem num="4" label="Years Teaching Electricians" />
             <CredItem num="100s" label="Students Per Semester" />
-            <CredItem num="512" label="Practice Questions" />
+            <CredItem num="462" label="Practice Questions" />
           </div>
 
-          <h2 style={s.h2}>Why I Built This for California Specifically</h2>
-          <p style={s.p}>
-            California isn't like other states. The exam doesn't just test the NEC — it tests
-            California-specific amendments, Title 8 Cal/OSHA requirements, and Title 24 energy
-            code rules that most generic prep materials completely ignore. When my students asked
-            me what to study, I kept having to tell them: "The resource you're using doesn't cover
-            the California stuff."
-          </p>
-          <p style={s.p}>
-            West Coast Wire Pro has an entire module — Module 11 — dedicated exclusively to
-            California-specific rules. Because if you're taking the CA exam, that content is on
-            the test, and it matters.
-          </p>
+
 
           <h2 style={s.h2}>What West Coast Wire Pro Is</h2>
           <p style={s.p}>
@@ -155,7 +135,7 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
             electrician's life, not the other way around.
           </p>
           <p style={s.p}>
-            512 questions. 12 modules. Modules 1 & 2 + 2 Table Mastery drills always free.
+            462 questions. 11 modules. Modules 1 & 2 + 2 Table Mastery drills always free.
           </p>
 
           {/* CTA */}

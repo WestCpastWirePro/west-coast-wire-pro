@@ -9,11 +9,11 @@ import RefundPolicy         from './RefundPolicy.jsx'
 import RedeemPage           from './RedeemPage.jsx'
 import AboutPage            from './AboutPage.jsx'
 import ExamInfoPage         from './ExamInfoPage.jsx'
-import NEC2020Page          from './NEC2020Page.jsx'
 import StudyTipsPage        from './StudyTipsPage.jsx'
 import ContactPage             from './ContactPage.jsx'
 import NotFoundPage            from './NotFoundPage.jsx'
 import ProgressDashboard       from './ProgressDashboard.jsx'
+import Top25Page             from './Top25Page.jsx'
 import TableMasteryPage        from './TableMasteryPage.jsx'
 import GlossaryPage            from './GlossaryPage.jsx'
 import ExamDayPage             from './ExamDayPage.jsx'
@@ -45,8 +45,6 @@ const ROUTES = {
   '/about': 'about',                 '/about-us': 'about',
   '/exam': 'exam-info',              '/exam-info': 'exam-info',
   '/journeyman': 'exam-info',        '/ca-journeyman-exam': 'exam-info',
-  '/nec-2020': 'nec-2020-changes',   '/nec-2020-changes': 'nec-2020-changes',
-  '/nec-changes': 'nec-2020-changes','/2020-nec-changes': 'nec-2020-changes',
   '/study-tips': 'study-tips',       '/how-to-pass': 'study-tips',
   '/study-guide': 'study-tips',      '/how-to-study': 'study-tips',
   '/contact': 'contact',             '/support': 'contact',
@@ -61,6 +59,7 @@ const ROUTES = {
   '/nec-reference': 'nec-ref',       '/nec-tables': 'nec-ref',     '/reference': 'nec-ref',
   '/calculations': 'calculations',   '/calc': 'calculations',      '/math': 'calculations',
   '/planner': 'planner',             '/study-planner': 'planner',  '/schedule': 'planner',
+  '/top-25': 'top-25',               '/top25': 'top-25',
   '/mastery': 'mastery',             '/table-mastery': 'mastery',  '/table-games': 'mastery',
   '/faq': 'faq',                     '/faqs': 'faq',               '/questions': 'faq',
   '/testimonials': 'testimonials',   '/pass-stories': 'testimonials','/reviews': 'testimonials',
@@ -71,7 +70,6 @@ const PAGE_PATHS = {
   redeem: '/redeem',
   privacy: '/privacy',   terms: '/terms',          refund: '/refund',
   about: '/about',       'exam-info': '/exam-info',
-  'nec-2020-changes': '/nec-2020-changes',
   'study-tips': '/study-tips',
   contact: '/contact',
   glossary: '/glossary',
@@ -85,6 +83,7 @@ const PAGE_PATHS = {
   'nec-ref': '/nec-reference',
   calculations: '/calculations',
   planner: '/planner',
+  'top-25': '/top-25',
   mastery: '/mastery',
   faq: '/faq',
   testimonials: '/testimonials',
@@ -93,25 +92,25 @@ const PAGE_PATHS = {
 }
 
 const PAGE_META = {
-  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '512 practice questions for the California General Electrician (Journeyman) exam. 12 modules, NEC 2020-referenced answers, timed mode. Modules 1 & 2 + Table Mastery drills free — no account needed.' },
+  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '462 practice questions for the California General Electrician (Journeyman) exam. 11 modules, NEC 2020-referenced answers, timed mode. Modules 1 & 2 + Table Mastery drills free — no account needed.' },
   'exam-info':       { title: 'California Journeyman Electrician Exam — Complete Guide | West Coast Wire Pro', desc: 'Everything about the California General Electrician (Journeyman) exam: eligibility, format, pass rate, what codes to study, and how to prepare.' },
   about:             { title: 'About West Coast Wire Pro — Built by a California Electrician', desc: 'Built by a 14-year electrician and trade school instructor who studied for the CA journeyman exam the hard way. No connections, no shortcuts.' },
-  'nec-2020-changes':{ title: 'NEC 2020 vs 2017 — What Changed for CA Electricians | West Coast Wire Pro', desc: 'AFCI expanded to all rooms, new GFCI locations, EV charging rules, solar rapid shutdown, and more. What changed in the 2020 NEC that matters for the CA journeyman exam.' },
-  'study-tips':      { title: 'How to Pass the CA Journeyman Electrician Exam | West Coast Wire Pro', desc: 'A straight-talk study guide from a California journeyman and trade school instructor. Timelines, module priorities, calculation drills, California-specific content, and test day strategy.' },
+  'study-tips':      { title: 'How to Pass the CA Journeyman Electrician Exam | West Coast Wire Pro', desc: 'A straight-talk study guide from a California journeyman and trade school instructor. Timelines, module priorities, calculation drills, and test day strategy.' },
   contact:           { title: 'Contact & Support | West Coast Wire Pro', desc: 'Questions about your purchase, access codes, or technical issues? We respond within 24 hours Monday–Friday.' },
   faq:               { title: 'Frequently Asked Questions | West Coast Wire Pro', desc: 'Common questions about the California Journeyman exam, how West Coast Wire Pro works, access codes, pricing, and what to expect on exam day.' },
   salary:            { title: 'Electrician Salary in California 2024 | West Coast Wire Pro', desc: 'How much do electricians make in California? Apprentice, journeyman, and master electrician wages by region, plus how your license affects your earning potential.' },
   'exam-day':        { title: 'Exam Day Guide — What to Expect at Your PSI Test Center | West Coast Wire Pro', desc: 'What to bring, what to expect, how the PSI testing center works, and last-minute tips from someone who has been there. The CA journeyman exam day guide.' },
   'contractor-vs-electrician': { title: 'C-10 Contractor vs. Journeyman Electrician — What\'s the Difference? | West Coast Wire Pro', desc: 'Individual electrician certification vs. contractor license — what each requires, what work each authorizes, and which path is right for you in California.' },
-  glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms, electrical concepts, and California-specific licensing terminology — built for journeyman exam prep.' },
+  glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms and electrical concepts — built for journeyman exam prep.' },
   testimonials:      { title: 'Pass Stories — Electricians Who Passed with West Coast Wire Pro', desc: 'Real stories from California electricians who used West Coast Wire Pro to pass the journeyman exam. See how they studied and what finally made it click.' },
   diagnostic:        { title: 'Readiness Diagnostic — Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
   'code-sprint':     { title: 'Code Sprint — NEC Article Navigator Game | West Coast Wire Pro', desc: 'Race the clock to find any NEC article. Builds the spatial memory you need to navigate the code book fast on the California Journeyman exam.' },
   blog:              { title: 'Blog — Industry News & Study Tips for California Electricians | West Coast Wire Pro', desc: 'Industry news, exam strategy, and career insights for California electricians preparing for the Journeyman license exam.' },
-  simulator:         { title: 'Full Exam Simulator — 110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 12 modules weighted proportionally. Practice under real test conditions.' },
+  simulator:         { title: 'Full Exam Simulator — 110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 11 modules weighted proportionally. Practice under real test conditions.' },
   'nec-ref':         { title: 'NEC 2020 Quick Reference Guide | West Coast Wire Pro', desc: 'Fast-access NEC 2020 tables, key code sections, and calculation formulas for the California journeyman exam — without flipping through the whole codebook.' },
   calculations:      { title: 'Electrical Calculations Helper | West Coast Wire Pro', desc: 'Step-by-step guides for load calculations, voltage drop, conduit fill, motor branch circuits, and more — the math section of the CA journeyman exam explained.' },
   planner:           { title: 'Personalized Study Planner | West Coast Wire Pro', desc: 'Build a custom study schedule for the California journeyman exam based on your weak modules, available time, and target test date.' },
+  'top-25':          { title: 'Top 25 Exam Questions | West Coast Wire Pro', desc: 'The 25 highest-frequency question types on the CA General Electrician exam, mapped to the PSI content outline. Pro feature.' },
   mastery:           { title: 'NEC Table Mastery Drills | West Coast Wire Pro', desc: 'Flashcard-style drills for all 10 critical NEC 2020 tables — Table 310.16, conduit fill, motor FLA, and more. The fastest way to memorize what the exam tests.' },
   progress:          { title: 'Progress Dashboard | West Coast Wire Pro', desc: 'Track your scores by module, see your improvement over time, and identify your weakest areas before the California journeyman exam.' },
   privacy:           { title: 'Privacy Policy | West Coast Wire Pro', desc: 'How West Coast Wire Pro collects, uses, and protects your information.' },
@@ -268,7 +267,6 @@ export default function App() {
   else if (view === 'redeem')      pageContent = <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
   else if (view === 'about')       pageContent = <AboutPage onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'exam-info')   pageContent = <ExamInfoPage onLaunchApp={launchApp} onNavigate={navigate} />
-  else if (view === 'nec-2020-changes') pageContent = <NEC2020Page onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'study-tips')  pageContent = <StudyTipsPage onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'missed')      pageContent = <MissedQuestionsPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'diagnostic')  pageContent = <DiagnosticPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
@@ -283,7 +281,8 @@ export default function App() {
   else if (view === 'exam-day')    pageContent = <ExamDayPage onHome={goHome} onNavigate={navigate} />
   else if (view === 'salary')      pageContent = <SalaryPage onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'contractor-vs-electrician') pageContent = <ContractorVsElectricianPage onLaunchApp={launchApp} onNavigate={navigate} />
-  else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} />
+  else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} access={getAccess()} />
+  else if (view === 'top-25')      pageContent = <Top25Page onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'mastery')     pageContent = <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'admin-grant')  pageContent = <AdminGrantPage />
   else if (view === 'code-sprint')   pageContent = <CodeSprintPage onHome={goHome} onNavigate={navigate} access={getAccess()} />

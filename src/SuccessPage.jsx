@@ -84,18 +84,24 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={s.tierBadge}>{tier === 'pro' ? 'PRO ACCESS' : 'STANDARD ACCESS'} UNLOCKED</div>
         <div style={s.sub}>
           {tier === 'pro'
-            ? 'All 512 questions, exam simulation mode, Code Sprint article navigator, Table Mastery flashcards, saved progress, and future updates — all yours.'
-            : 'All 512 questions across all 12 modules are now unlocked.'}
+            ? 'Code Sprint, Full Table Mastery, Missed Questions deck, Top 25 Exam Questions, Study Planner, Progress Dashboard, and future updates — all yours.'
+            : 'All 462 questions across all 11 modules are now unlocked. Upgrade to Pro anytime for Code Sprint, Table Mastery, Missed Questions, and more.'}
         </div>
         <div style={s.divider} />
-        <div style={s.noteTitle}>Your access is saved on this device.</div>
-        <div style={s.note}>
-          Your access link was emailed to you. Bookmark it — click it any time to restore access on any device.
-        </div>
         <button style={s.btn} onClick={onEnterApp}>
           Start Studying Now ⚡
         </button>
-        <div style={s.fine}>A receipt was sent to your email by Stripe.</div>
+        <div style={{marginTop:"20px", textAlign:"left"}}>
+          <div style={s.noteTitle}>Save your access email</div>
+          <div style={s.note}>
+            Your access link was emailed to you. If you ever clear your browser data or switch devices, click that link to restore access instantly — no password needed.
+          </div>
+          <div style={{background:"rgba(231,76,60,0.06)", border:"1px solid rgba(231,76,60,0.2)", borderRadius:"6px", padding:"10px 14px", textAlign:"left"}}>
+            <div style={{fontSize:"11px", fontWeight:"700", color:"#e74c3c", marginBottom:"3px"}}>⚠️ Don't delete that email</div>
+            <div style={{fontSize:"11px", color:"#8899aa", lineHeight:"1.6"}}>Your purchase is stored in this browser. Clearing browser data or switching devices requires the email link to restore access.</div>
+          </div>
+        </div>
+        <div style={{...s.fine, marginTop:"16px"}}>A receipt was sent to your email by Stripe.</div>
       </div>
     </div>
   )

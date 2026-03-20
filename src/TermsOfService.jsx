@@ -12,13 +12,13 @@ onNavigate={onNavigate}       title="Terms of Service"
       <Section title="1. Agreement to Terms">
         <P>
           These Terms of Service ("Terms") are a legally binding agreement between you and 
-          <Placeholder label="West Coast Wire Pro Training" /> ("we," "us," or "our"), 
+          West Coast Wire Pro ("we," "us," or "our"), 
           the operator of West Coast Wire Pro at westcoastwirepro.com. By accessing or using West Coast Wire Pro — 
           including the free tier — you agree to be bound by these Terms. If you do not agree, 
           do not use the service.
         </P>
         <P>
-          These Terms were last updated on <Placeholder label="DATE" />. We reserve the right to 
+          These Terms were last updated on January 1, 2026. We reserve the right to 
           update them at any time. Continued use after updates constitutes acceptance.
         </P>
       </Section>
@@ -106,7 +106,7 @@ onNavigate={onNavigate}       title="Terms of Service"
         <P>
           All content in West Coast Wire Pro — including but not limited to questions, answer choices, 
           explanations, code references, software, design, and text — is the intellectual property 
-          of <Placeholder label="West Coast Wire Pro Training" /> and is protected by 
+          of West Coast Wire Pro and is protected by 
           United States copyright law.
         </P>
         <P>
@@ -136,7 +136,7 @@ onNavigate={onNavigate}       title="Terms of Service"
       <Section title="9. Limitation of Liability">
         <P>
           To the maximum extent permitted by applicable law, in no event shall 
-          <Placeholder label="West Coast Wire Pro Training" />, its officers, employees, 
+          West Coast Wire Pro, its officers, employees, 
           or affiliates be liable for any indirect, incidental, special, consequential, or punitive 
           damages, including but not limited to lost profits, lost revenue, loss of data, or failure 
           to pass any examination, even if advised of the possibility of such damages.
@@ -160,7 +160,7 @@ onNavigate={onNavigate}       title="Terms of Service"
         </P>
         <P>
           If informal resolution fails, disputes shall be resolved by binding arbitration 
-          administered by JAMS in <Placeholder label="CITY, CALIFORNIA" />, except that 
+          administered by JAMS in Long Beach, California, except that 
           either party may seek injunctive relief in court for intellectual property violations.
         </P>
       </Section>
@@ -177,9 +177,9 @@ onNavigate={onNavigate}       title="Terms of Service"
       <Section title="12. Contact">
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Questions about these Terms:</strong><br />
-          <Placeholder label="West Coast Wire Pro Training" /><br />
+          West Coast Wire Pro<br />
           Email: our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a><br />
-          <Placeholder label="CITY, STATE, ZIP" />
+          Long Beach, CA
         </Highlight>
       </Section>
 

@@ -28,6 +28,11 @@ function fmt(secs) {
   return `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 }
 
+const SIM_SAVE_KEY = 'wrp_sim_session';
+const simSave  = (val) => { try { localStorage.setItem(SIM_SAVE_KEY, JSON.stringify(val)); } catch(e) {} };
+const simLoad  = ()    => { try { const v = localStorage.getItem(SIM_SAVE_KEY); return v ? JSON.parse(v) : null; } catch(e) { return null; } };
+const simClear = ()    => { try { localStorage.removeItem(SIM_SAVE_KEY); } catch(e) {} };
+
 export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
   const [phase, setPhase] = useState("intro");
   const [questions, setQuestions] = useState([]);
@@ -36,23 +41,46 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
   const [timeLeft, setTimeLeft] = useState(TOTAL_SECS);
   const [submitted, setSubmitted] = useState(false);
   const [showReview, setShowReview] = useState(false);
+  const [savedSession, setSavedSession] = useState(() => simLoad());
   const timerRef = useRef(null);
 
+  const inExam = phase === "exam" && !submitted;
+
+  useEffect(() => {
+    if (!inExam) return;
+    const handler = (e) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [inExam]);
+
+  // Auto-save timer tick
+  useEffect(() => {
+    if (!inExam) return;
+    const saveTimer = setInterval(() => {
+      setAnswers(a => { setTimeLeft(t => { simSave({ questions, answers: a, idx, timeLeft: t, savedAt: new Date().toISOString() }); return t; }); return a; });
+    }, 30000); // save every 30 seconds
+    return () => clearInterval(saveTimer);
+  }, [inExam, questions, idx]);
+
+  const safeHome = (...args) => {
+    if (inExam && !window.confirm("Leave the exam? Your progress is auto-saved — you can resume later.")) return;
+    onHome(...args);
+  };
+
   const start = () => {
-    // Build proportional 110-question exam matching real test distribution
+    simClear();
+    setSavedSession(null);
     const deck = [];
     const pool = access === "free"
-      ? ALL_QUESTIONS.filter(q => q.mod === 1)
+      ? ALL_QUESTIONS.filter(q => q.mod === 1 || q.mod === 2)
       : ALL_QUESTIONS;
 
     MODULES.forEach(m => {
       const mPool = [...pool.filter(q => q.mod === m.id)].sort(() => Math.random()-0.5);
-      // Proportional: ~8-9 per module, adjust as needed
       const count = Math.max(1, Math.round((mPool.length / pool.length) * TOTAL_Q));
       deck.push(...mPool.slice(0, count));
     });
 
-    // Trim or pad to exactly 110
     while (deck.length > TOTAL_Q) deck.splice(Math.floor(Math.random()*deck.length), 1);
 
     setQuestions(deck.sort(() => Math.random()-0.5));
@@ -64,12 +92,29 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
     setPhase("exam");
   };
 
+  const resume = () => {
+    if (!savedSession) return;
+    setQuestions(savedSession.questions);
+    setAnswers(savedSession.answers || {});
+    setIdx(savedSession.idx || 0);
+    setTimeLeft(savedSession.timeLeft || TOTAL_SECS);
+    setSubmitted(false);
+    setShowReview(false);
+    setSavedSession(null);
+    setPhase("exam");
+  };
+
   useEffect(() => {
     if (phase === "exam" && !submitted) {
       timerRef.current = setInterval(() => {
         setTimeLeft(t => {
           if (t <= 1) { clearInterval(timerRef.current); handleSubmit(true); return 0; }
-          return t - 1;
+          const newT = t - 1;
+          // Save every 60 seconds via timer
+          if (newT % 60 === 0) {
+            setAnswers(a => { simSave({ questions, answers: a, idx, timeLeft: newT, savedAt: new Date().toISOString() }); return a; });
+          }
+          return newT;
         });
       }, 1000);
       return () => clearInterval(timerRef.current);
@@ -78,6 +123,8 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
 
   const handleSubmit = (timeUp = false) => {
     clearInterval(timerRef.current);
+    simClear();
+    setSavedSession(null);
     setSubmitted(true);
     setPhase(timeUp ? "results-timeup" : "results");
   };
@@ -96,7 +143,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
       <div style={s.header}>
         <span style={{fontSize:"28px"}}>⚡</span>
         <div style={{flex:1}}><div style={s.logo}>Full Exam Simulator</div></div>
-        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Back</button>
+        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={safeHome}>Back</button>
       </div>
       <div style={{padding:"16px"}}>
         <div style={{...s.card, borderColor:"#c8a84b", background:"linear-gradient(135deg,rgba(200,168,75,0.08),rgba(200,168,75,0.02))"}}>
@@ -106,6 +153,26 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
             110 questions. 4 hours 30 minutes. Same format and distribution as the California General Electrician exam. Your score is pass or fail at 70%.
           </div>
         </div>
+
+        {savedSession && (
+          <div style={{...s.card, borderColor:"rgba(200,168,75,0.5)", background:"linear-gradient(135deg,rgba(200,168,75,0.1),rgba(200,168,75,0.04))"}}>
+            <div style={{display:"flex", alignItems:"center", gap:"10px", marginBottom:"12px"}}>
+              <span style={{fontSize:"22px"}}>📍</span>
+              <div>
+                <div style={{fontWeight:"700", fontSize:"14px", color:"#d8e0e8"}}>Resume your exam</div>
+                <div style={{fontSize:"12px", color:"#7a8a9a"}}>
+                  Q{(savedSession.idx||0)+1} of {savedSession.questions?.length} · {Object.keys(savedSession.answers||{}).length} answered · {fmt(savedSession.timeLeft||0)} remaining
+                  {savedSession.savedAt && (' · Saved ' + new Date(savedSession.savedAt).toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'}))}
+                </div>
+              </div>
+            </div>
+            <div style={{display:"flex", gap:"8px"}}>
+              <button style={{...s.btn, ...s.btnGold, flex:2, fontSize:"14px", padding:"11px"}} onClick={resume}>▶ Resume Exam</button>
+              <button style={{...s.btn, ...s.btnGray, flex:1, fontSize:"13px", padding:"11px"}} onClick={() => { simClear(); setSavedSession(null); }}>Start Over</button>
+            </div>
+          </div>
+        )}
+
         <div style={s.card}>
           {[
             ["📊","110 Questions","Proportionally drawn from all 12 modules"],
@@ -132,12 +199,12 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
         {access === "free" && (
           <div style={{...s.card, borderColor:"rgba(200,168,75,0.4)"}}>
             <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>🔒 FREE TIER</div>
-            <div style={{fontSize:"13px", color:"#8899aa"}}>Free users get a 30-question preview using Module 1 questions only. Unlock full access for the real 110-question simulation.</div>
+            <div style={{fontSize:"13px", color:"#8899aa"}}>Free users get a preview using Modules 1 &amp; 2 questions only. Unlock full access for the real 110-question simulation drawn from all 12 modules.</div>
           </div>
         )}
         <div style={{padding:"0 16px 32px"}}>
           <button style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"16px", padding:"16px"}} onClick={start}>
-            Start Exam Simulation →
+            {savedSession ? "Start Fresh →" : "Start Exam Simulation →"}
           </button>
         </div>
       </div>
@@ -188,7 +255,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
           {q.opts.map((opt, i) => (
             <button key={i}
               style={{...s.opt, ...(sel===i ? s.optSelected : {})}}
-              onClick={() => setAnswers(a => ({...a, [idx]: i}))}>
+              onClick={() => setAnswers(a => { const na = {...a, [idx]: i}; simSave({ questions, answers: na, idx, timeLeft, savedAt: new Date().toISOString() }); return na; })}>
               <span style={{fontWeight:"700", marginRight:"10px", color:"#c8a84b"}}>{String.fromCharCode(65+i)}.</span>
               {opt}
             </button>
@@ -286,7 +353,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
 
         <div style={{display:"flex", gap:"12px", padding:"0 16px 32px", flexWrap:"wrap"}}>
           <button style={{...s.btn, ...s.btnGold, flex:1}} onClick={start}>Retake Exam</button>
-          <button style={{...s.btn, ...s.btnGray, flex:1}} onClick={onHome}>Back to Menu</button>
+          <button style={{...s.btn, ...s.btnGray, flex:1}} onClick={safeHome}>Back to Menu</button>
         </div>
       </div>
     </div>

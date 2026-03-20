@@ -108,10 +108,10 @@ onNavigate={onNavigate}       title="Refund Policy"
       <Section title="Contact">
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>Refund requests and questions:</strong><br />
-          <Placeholder label="West Coast Wire Pro Training" /><br />
+          West Coast Wire Pro<br />
           Email: our <a href="#" onClick={e => { e.preventDefault(); if(window.__navigateTo) window.__navigateTo("contact") }} style={{color:'#c8a84b'}}>contact form</a><br />
           Response time: within 2 business days<br />
-          <Placeholder label="CITY, STATE, ZIP" />
+          Long Beach, CA
         </Highlight>
       </Section>
 

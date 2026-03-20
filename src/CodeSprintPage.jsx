@@ -220,6 +220,7 @@ const CHAPTERS = [
   { num:8, name:'Communications',        color:'#8e44ad', articles:'800–840' },
 ]
 
+
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5) }
 
 const QUESTION_TIME = 22
@@ -227,142 +228,165 @@ const ROUND_SIZE = 10
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function CodeSprintPage({ onNavigate, onHome, access }) {
-  const [screen, setScreen]       = useState('intro')   // intro | game | result
-  const [difficulty, setDiff]     = useState('article') // chapter | article | section
-  const [queue, setQueue]         = useState([])
-  const [current, setCurrent]     = useState(null)
-  const [choices, setChoices]     = useState([])
-  const [answered, setAnswered]   = useState(null)      // null | 'correct' | 'wrong'
-  const [selected, setSelected]   = useState(null)
-  const [timeLeft, setTimeLeft]   = useState(QUESTION_TIME)
-  const [score, setScore]         = useState(0)
-  const [streak, setStreak]       = useState(0)
+  const [screen, setScreen]         = useState('intro')
+  const [queue, setQueue]           = useState([])
+  const [completed, setCompleted]   = useState([])   // answered: {item,choices,selected,correct,pts,timeUsed}
+  const [current, setCurrent]       = useState(null) // active question item
+  const [choices, setChoices]       = useState([])
+  const [selected, setSelected]     = useState(null)
+  const [answered, setAnswered]     = useState(false)
+  const [timeLeft, setTimeLeft]     = useState(QUESTION_TIME)
+  const [score, setScore]           = useState(0)
+  const [streak, setStreak]         = useState(0)
   const [bestStreak, setBestStreak] = useState(0)
-  const [results, setResults]     = useState([])        // { article, correct, time }
-  const [roundNum, setRoundNum]   = useState(0)
-  const [totalQ, setTotalQ]       = useState(0)
-  const [wrongBucket, setWrongBucket] = useState([])    // Leitner box 1
-  const timerRef = useRef(null)
-  const timeUsed = useRef(0)
+  const [wrongBucket, setWrongBucket] = useState([])
+  const [roundNum, setRoundNum]     = useState(1)
+  const timerRef  = useRef(null)
+  const timeUsed  = useRef(0)
+  const lastPts      = useRef(0)
+  const commitRef    = useRef(null)
+  const bottomRef    = useRef(null)
+  const isPro     = access === 'pro'
+  const inGame    = screen === 'game'
 
-  const isPro = access === 'pro' || access === 'standard'
+  const SPRINT_KEY = 'wrp_sprint_session'
+  const [savedSession, setSavedSession] = useState(() => {
+    try { const v = localStorage.getItem(SPRINT_KEY); return v ? JSON.parse(v) : null } catch(e) { return null }
+  })
 
-  // ── Build a round queue ───────────────────────────────────────────────────
+  // beforeunload guard
+  useEffect(() => {
+    if (!inGame) return
+    const h = (e) => { e.preventDefault(); e.returnValue = '' }
+    window.addEventListener('beforeunload', h)
+    return () => window.removeEventListener('beforeunload', h)
+  }, [inGame])
+
+  const safeNav = (fn) => (...args) => {
+    if (inGame && !window.confirm('Leave Code Sprint? Your round progress will be lost.')) return
+    fn(...args)
+  }
+  const safeHome     = safeNav(onHome)
+  const safeNavigate = safeNav(onNavigate)
+
+  // ── Build queue ─────────────────────────────────────────────────────────
   const buildQueue = useCallback((includeWrong = []) => {
     const base = shuffle(ARTICLES).slice(0, ROUND_SIZE)
-    // Inject wrong answers from previous round (spaced repetition)
-    const withRepeat = includeWrong.length > 0
+    return includeWrong.length > 0
       ? shuffle([...base.slice(0, ROUND_SIZE - Math.min(3, includeWrong.length)), ...includeWrong.slice(0, 3)])
       : base
-    return withRepeat
   }, [])
 
-  // ── Start game ───────────────────────────────────────────────────────────
-  const startGame = () => {
-    const q = buildQueue()
-    setQueue(q)
-    setScore(0)
-    setStreak(0)
-    setResults([])
-    setWrongBucket([])
-    setRoundNum(1)
-    setTotalQ(0)
-    setScreen('game')
-    loadQuestion(q, 0)
-  }
-
   // ── Load a question ──────────────────────────────────────────────────────
-  const loadQuestion = (q, idx) => {
-    if (idx >= q.length) { finishRound(); return }
-    const item = q[idx]
-    const wrong = shuffle(item.distractors).slice(0, 3)
-    const allChoices = shuffle([item.article, ...wrong])
-    setCurrent({ ...item, idx })
-    setChoices(allChoices)
-    setAnswered(null)
+  const loadQuestion = (item) => {
+    const wrong   = shuffle(item.distractors).slice(0, 3)
+    const allC    = shuffle([item.article, ...wrong])
+    setCurrent(item)
+    setChoices(allC)
     setSelected(null)
+    setAnswered(false)
     setTimeLeft(QUESTION_TIME)
     timeUsed.current = 0
+    // Scroll to bottom after short delay so card renders first
+    setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80)
   }
 
   // ── Timer ────────────────────────────────────────────────────────────────
   useEffect(() => {
-    if (screen !== 'game' || answered !== null) return
+    if (screen !== 'game' || answered) return
+    clearInterval(timerRef.current)
     timerRef.current = setInterval(() => {
       timeUsed.current += 1
       setTimeLeft(t => {
-        if (t <= 1) {
-          clearInterval(timerRef.current)
-          handleAnswer(null, current)
-          return 0
-        }
+        if (t <= 1) { clearInterval(timerRef.current); commitRef.current?.(null); return 0 }
         return t - 1
       })
     }, 1000)
     return () => clearInterval(timerRef.current)
   }, [screen, current, answered])
 
-  // ── Handle answer ────────────────────────────────────────────────────────
-  const handleAnswer = (picked, q = current) => {
-    if (answered !== null || !q) return
+  // ── Commit answer (called immediately on pick or timeout) ─────────────────
+  const commitAnswer = (picked) => {
+    if (answered || !current) return
     clearInterval(timerRef.current)
-    const correct = picked === q.article
+    const correct = picked === current.article
     const elapsed = timeUsed.current
-    const pts = correct ? Math.max(10, 100 - elapsed * 7) : 0
+    const pts     = correct ? Math.max(10, 100 - elapsed * 7) : 0
 
     setSelected(picked)
-    setAnswered(correct ? 'correct' : 'wrong')
-    setScore(s => s + pts)
-    setTotalQ(t => t + 1)
+    setAnswered(true)
 
-    if (correct) {
-      setStreak(s => {
-        const ns = s + 1
-        setBestStreak(b => Math.max(b, ns))
-        return ns
-      })
+    const newStreak = correct ? streak + 1 : 0
+    const newBest   = Math.max(bestStreak, newStreak)
+    const newScore  = score + pts
+    setScore(newScore)
+    setStreak(newStreak)
+    setBestStreak(newBest)
+    if (!correct) setWrongBucket(wb => [...wb, current])
+
+    lastPts.current = pts
+    const entry = { item: current, choices, selected: picked, correct, pts, timeUsed: elapsed }
+    setCompleted(prev => {
+      const next = [...prev, entry]
+      // Save session
+      try {
+        localStorage.setItem(SPRINT_KEY, JSON.stringify({
+          score: newScore, streak: newStreak, bestStreak: newBest,
+          roundNum, totalQ: next.length, savedAt: new Date().toISOString()
+        }))
+      } catch(e) {}
+      return next
+    })
+  }
+
+  // Keep commitRef current so timer closure always calls latest version
+  commitRef.current = commitAnswer
+
+  // ── Advance to next question or finish ───────────────────────────────────
+  const advance = () => {
+    const nextIdx = (current?.idx ?? -1) + 1
+    if (nextIdx >= queue.length) {
+      try { localStorage.removeItem(SPRINT_KEY) } catch(e) {}
+      setScreen('result')
     } else {
-      setStreak(0)
-      setWrongBucket(wb => [...wb, q])
+      loadQuestion({ ...queue[nextIdx], idx: nextIdx })
     }
-
-    setResults(r => [...r, { article: q.article, title: q.title, scenario: q.scenario, hint: q.hint, correct, time: elapsed, pts }])
-
-    // Auto-advance after 2.2s
-    setTimeout(() => {
-      const nextIdx = q.idx + 1
-      if (nextIdx >= queue.length) {
-        finishRound()
-      } else {
-        loadQuestion(queue, nextIdx)
-      }
-    }, 2200)
   }
 
-  // ── Finish round ─────────────────────────────────────────────────────────
-  const finishRound = () => {
-    setScreen('result')
+  // ── Start game ────────────────────────────────────────────────────────────
+  const startGame = (resumeData = null) => {
+    try { localStorage.removeItem(SPRINT_KEY) } catch(e) {}
+    setSavedSession(null)
+    setCompleted([])
+    setScore(resumeData?.score || 0)
+    setStreak(resumeData?.streak || 0)
+    setBestStreak(resumeData?.bestStreak || 0)
+    setWrongBucket([])
+    setRoundNum(resumeData?.roundNum || 1)
+    const q = buildQueue()
+    setQueue(q)
+    setScreen('game')
+    loadQuestion({ ...q[0], idx: 0 })
   }
 
-  // ── Next round (with spaced repetition) ──────────────────────────────────
+  // ── Next round ────────────────────────────────────────────────────────────
   const nextRound = () => {
     const q = buildQueue(wrongBucket)
     setQueue(q)
+    setCompleted([])
     setWrongBucket([])
     setRoundNum(r => r + 1)
     setScreen('game')
-    loadQuestion(q, 0)
+    loadQuestion({ ...q[0], idx: 0 })
   }
-
-  const accuracy = totalQ > 0 ? Math.round((results.filter(r => r.correct).length / results.length) * 100) : 0
 
   // ─── Styles ───────────────────────────────────────────────────────────────
   const s = {
-    page: { minHeight:'100vh', background:'#0a1016', color:'#d8e0e8', fontFamily:"'Segoe UI',Arial,sans-serif", paddingTop:'clamp(70px,13vw,120px)' },
-    container: { maxWidth:'680px', margin:'0 auto', padding:'0 clamp(16px,4vw,32px) 60px' },
-    card: { background:'#111820', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'12px', padding:'clamp(20px,4vw,36px)' },
-    gold: { color:'#c8a84b' },
-    btn: { background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'15px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'14px 28px', cursor:'pointer', letterSpacing:'0.5px' },
+    page:     { minHeight:'100vh', background:'#0a1016', color:'#d8e0e8', fontFamily:"'Segoe UI',Arial,sans-serif", paddingTop:'clamp(70px,13vw,120px)' },
+    container:{ maxWidth:'680px', margin:'0 auto', padding:'0 clamp(16px,4vw,32px) 80px' },
+    card:     { background:'#111820', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'12px', padding:'clamp(20px,4vw,36px)' },
+    gold:     { color:'#c8a84b' },
+    btn:      { background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'15px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'14px 28px', cursor:'pointer', letterSpacing:'0.5px' },
     btnGhost: { background:'none', border:'1px solid rgba(200,168,75,0.4)', color:'#c8a84b', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'700', fontSize:'13px', textTransform:'uppercase', borderRadius:'6px', padding:'11px 20px', cursor:'pointer' },
   }
 
@@ -370,7 +394,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
   if (screen === 'intro') return (
     <div style={s.page}>
       <div style={s.container}>
-        <button onClick={() => onHome && onHome()} style={{...s.btnGhost, marginBottom:'28px', fontSize:'12px'}}>← Back</button>
+        <button onClick={() => safeHome && safeHome()} style={{...s.btnGhost, marginBottom:'28px', fontSize:'12px'}}>← Back</button>
 
         <div style={{textAlign:'center', marginBottom:'36px'}}>
           <div style={{fontSize:'48px', marginBottom:'16px'}}>📖</div>
@@ -382,7 +406,8 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           </p>
         </div>
 
-        {/* Science callout */}
+
+
         <div style={{background:'rgba(200,168,75,0.05)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'8px', padding:'20px 24px', marginBottom:'28px'}}>
           <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'10px'}}>⚗️ Why This Works</div>
           <div style={{color:'#8a9aaa', fontSize:'13px', lineHeight:'1.8'}}>
@@ -392,15 +417,12 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           </div>
         </div>
 
-        {/* NEC Chapter Map */}
         <div style={{marginBottom:'28px'}}>
           <div style={{color:'#7a8a9a', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>NEC 2020 Book Map</div>
           <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'6px'}}>
             {CHAPTERS.map(ch => (
               <div key={ch.num} style={{background:'rgba(255,255,255,0.03)', border:`1px solid ${ch.color}33`, borderRadius:'6px', padding:'8px 12px', display:'flex', gap:'10px', alignItems:'center'}}>
-                <div style={{width:'28px', height:'28px', borderRadius:'4px', background:ch.color+'22', border:`1px solid ${ch.color}66`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'11px', fontWeight:'900', color:ch.color, flexShrink:0}}>
-                  {ch.num}
-                </div>
+                <div style={{width:'28px', height:'28px', borderRadius:'4px', background:ch.color+'22', border:`1px solid ${ch.color}66`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'11px', fontWeight:'900', color:ch.color, flexShrink:0}}>{ch.num}</div>
                 <div>
                   <div style={{fontSize:'11px', fontWeight:'700', color:'#d8e0e8'}}>{ch.name}</div>
                   <div style={{fontSize:'10px', color:'#4a5a6a'}}>Articles {ch.articles}</div>
@@ -410,15 +432,14 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           </div>
         </div>
 
-        {/* How to play */}
         <div style={{...s.card, marginBottom:'28px'}}>
           <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>How to Play</div>
           {[
             ['📋', 'A scenario appears — something that would show up on the exam'],
             ['⚡', 'Pick the NEC Article where you\'d find the answer'],
-            ['⏱️', '22 seconds per question to read carefully and pick the right article'],
-            ['🔁', 'Wrong answers come back in the next round (spaced repetition)'],
-            ['🗺️', 'After each answer, see exactly where it lives in the NEC'],
+            ['⏱️', '22 seconds per question — answered questions stack up on the page'],
+            ['👇', 'Hit Next Question when you\'re ready — you control the pace'],
+            ['📋', 'At the end, review every question with the correct article and hint'],
           ].map(([icon, text]) => (
             <div key={text} style={{display:'flex', gap:'12px', alignItems:'flex-start', marginBottom:'10px'}}>
               <span style={{fontSize:'16px', flexShrink:0}}>{icon}</span>
@@ -436,10 +457,10 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
             <div style={{fontSize:'28px', marginBottom:'12px'}}>🔒</div>
             <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'16px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'8px'}}>Pro Feature</div>
             <div style={{color:'#7a8a9a', fontSize:'14px', lineHeight:'1.6', marginBottom:'20px'}}>
-              Code Sprint is included with Pro access.<br/>Upgrade to unlock this game plus Table Mastery, Exam Simulator, Missed Questions, and more.
+              Code Sprint is included with Pro access.
             </div>
-            <button style={{...s.btn, width:'100%'}} onClick={() => onNavigate && onNavigate('landing')}>
-              Upgrade to Pro — $59.99
+            <button style={{...s.btn, width:'100%'}} onClick={() => safeNavigate && safeNavigate('landing')}>
+              View Plans
             </button>
           </div>
         )}
@@ -448,104 +469,170 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
   )
 
   // ─── GAME SCREEN ──────────────────────────────────────────────────────────
-  if (screen === 'game' && current) {
-    const ch = CHAPTERS.find(c => c.num === current.chapter)
-    const timerPct = (timeLeft / QUESTION_TIME) * 100
+  if (screen === 'game') {
+    const ch         = current ? CHAPTERS.find(c => c.num === current.chapter) : null
+    const timerPct   = (timeLeft / QUESTION_TIME) * 100
     const timerColor = timeLeft > 12 ? '#27ae60' : timeLeft > 6 ? '#f39c12' : '#e74c3c'
+    const isLast     = current && (current.idx === queue.length - 1)
 
     return (
       <div style={s.page}>
         <div style={s.container}>
-
-          {/* Header */}
-          <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'20px'}}>
-            <div style={{display:'flex', gap:'16px', alignItems:'center'}}>
-              <div style={{fontSize:'12px', color:'#7a8a9a'}}>Q {current.idx + 1}/{queue.length}</div>
-              {streak >= 2 && <div style={{fontSize:'12px', color:'#c8a84b', fontWeight:'700'}}>🔥 {streak} streak</div>}
-            </div>
-            <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b'}}>Score: {score}</div>
-          </div>
-
-          {/* Timer bar */}
-          <div style={{height:'6px', background:'rgba(255,255,255,0.08)', borderRadius:'3px', marginBottom:'24px', overflow:'hidden'}}>
-            <div style={{height:'100%', width:`${timerPct}%`, background:timerColor, borderRadius:'3px', transition:'width 1s linear, background 0.3s'}} />
-          </div>
-
-          {/* Timer number */}
-          <div style={{textAlign:'right', fontSize:'13px', color:timerColor, fontWeight:'700', marginBottom:'8px', marginTop:'-18px'}}>
-            {timeLeft}s
-          </div>
-
-          {/* Question card */}
-          <div style={{...s.card, marginBottom:'20px'}}>
-            <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'16px'}}>
-              📖 Which NEC Article covers this?
-            </div>
-            <p style={{fontSize:'clamp(15px,2.5vw,18px)', color:'#d8e0e8', lineHeight:'1.7', margin:0}}>
-              {current.scenario}
-            </p>
-          </div>
-
-          {/* Choices */}
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'10px', marginBottom:'20px'}}>
-            {choices.map(choice => {
-              let bg = 'rgba(255,255,255,0.04)'
-              let border = 'rgba(255,255,255,0.1)'
-              let color = '#d8e0e8'
-
-              if (answered !== null) {
-                if (choice === current.article) {
-                  bg = 'rgba(39,174,96,0.15)'; border = '#27ae60'; color = '#2ecc71'
-                } else if (choice === selected && choice !== current.article) {
-                  bg = 'rgba(231,76,60,0.15)'; border = '#e74c3c'; color = '#e74c3c'
-                }
-              } else if (selected === choice) {
-                bg = 'rgba(200,168,75,0.1)'; border = '#c8a84b'
-              }
-
-              return (
-                <button key={choice}
-                  onClick={() => answered === null && handleAnswer(choice)}
-                  disabled={answered !== null}
-                  style={{background:bg, border:`2px solid ${border}`, borderRadius:'8px', padding:'16px', cursor:answered === null ? 'pointer' : 'default', textAlign:'center', transition:'all 0.2s'}}>
-                  <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(18px,4vw,28px)', fontWeight:'900', color, marginBottom:'4px'}}>
-                    {choice}
-                  </div>
-                  <div style={{fontSize:'11px', color:'#4a5a6a'}}>Article</div>
+          {/* Sticky header */}
+          <div style={{position:'sticky', top:'clamp(60px,11vw,100px)', zIndex:10, background:'#0a1016', paddingBottom:'12px', marginBottom:'8px', borderBottom:'1px solid rgba(200,168,75,0.1)'}}>
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px'}}>
+              <div style={{display:'flex', gap:'12px', alignItems:'center'}}>
+                <button onClick={() => { if (window.confirm('Quit this round? Your progress will be lost.')) setScreen('intro') }}
+                  style={{background:'none', border:'none', color:'#4a5a6a', fontSize:'12px', cursor:'pointer', padding:'0', fontFamily:"'Segoe UI',Arial,sans-serif"}}>
+                  ✕ Quit
                 </button>
-              )
-            })}
+                <div style={{fontSize:'12px', color:'#7a8a9a'}}>Round {roundNum} · {completed.length + (current ? 1 : 0)}/{queue.length}</div>
+                {streak >= 2 && <div style={{fontSize:'12px', color:'#c8a84b', fontWeight:'700'}}>🔥 {streak}</div>}
+              </div>
+              <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b'}}>Score: {score}</div>
+            </div>
+            {/* Progress bar */}
+            <div style={{height:'4px', background:'rgba(255,255,255,0.06)', borderRadius:'2px', overflow:'hidden'}}>
+              <div style={{height:'100%', width:`${((completed.length) / queue.length) * 100}%`, background:'#c8a84b', borderRadius:'2px', transition:'width 0.3s'}} />
+            </div>
           </div>
 
-          {/* Feedback */}
-          {answered !== null && (
-            <div style={{background: answered === 'correct' ? 'rgba(39,174,96,0.08)' : 'rgba(231,76,60,0.08)', border:`1px solid ${answered === 'correct' ? 'rgba(39,174,96,0.3)' : 'rgba(231,76,60,0.3)'}`, borderRadius:'8px', padding:'16px 20px'}}>
-              <div style={{display:'flex', alignItems:'flex-start', gap:'12px', marginBottom:'10px'}}>
-                <span style={{fontSize:'18px'}}>{answered === 'correct' ? '✅' : '❌'}</span>
-                <div>
-                  <div style={{fontWeight:'700', color: answered === 'correct' ? '#2ecc71' : '#e74c3c', marginBottom:'4px', fontSize:'14px'}}>
-                    {answered === 'correct' ? `+${results[results.length-1]?.pts || 0} pts` : `Article ${current.article} — ${current.title}`}
+          {/* ── Completed question cards ── */}
+          {completed.map((entry, i) => {
+            const eCh = CHAPTERS.find(c => c.num === entry.item.chapter)
+            return (
+              <div key={i} style={{
+                background: entry.correct ? 'rgba(39,174,96,0.04)' : 'rgba(231,76,60,0.04)',
+                border: `1px solid ${entry.correct ? 'rgba(39,174,96,0.15)' : 'rgba(231,76,60,0.15)'}`,
+                borderRadius:'10px', padding:'14px 16px', marginBottom:'10px', opacity:0.85
+              }}>
+                {/* Top row */}
+                <div style={{display:'flex', alignItems:'center', gap:'10px', marginBottom:'8px'}}>
+                  <span style={{fontSize:'14px', flexShrink:0}}>{entry.correct ? '✅' : '❌'}</span>
+                  <span style={{fontFamily:"'Courier New',monospace", fontSize:'13px', color:'#c8a84b', fontWeight:'700', flexShrink:0}}>Art. {entry.item.article}</span>
+                  <span style={{fontSize:'13px', color:'#d8e0e8', fontWeight:'600', flex:1, minWidth:0, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{entry.item.title}</span>
+                  <span style={{fontSize:'11px', color:'#4a5a6a', flexShrink:0}}>{entry.timeUsed}s{entry.correct ? ` · +${entry.pts}` : ''}</span>
+                </div>
+                {/* Scenario */}
+                <div style={{fontSize:'12px', color:'#5a6a7a', lineHeight:'1.5', marginLeft:'28px', marginBottom:'6px'}}>{entry.item.scenario}</div>
+                {/* Answer reveal */}
+                <div style={{marginLeft:'28px', display:'flex', alignItems:'flex-start', gap:'8px'}}>
+                  {!entry.correct && entry.selected && (
+                    <span style={{fontSize:'11px', color:'#e74c3c', flexShrink:0, marginTop:'1px'}}>You: Art. {entry.selected} →</span>
+                  )}
+                  <span style={{fontSize:'11px', color: entry.correct ? '#27ae60' : '#c8a84b', fontWeight:'700', flexShrink:0}}>
+                    {entry.correct ? '✓ ' : '✗ Correct: '}Art. {entry.item.article} — {entry.item.title}.{' '}
+                  </span>
+                  <span style={{fontSize:'11px', color:'#6a7a8a', lineHeight:'1.5'}}>{entry.item.hint}</span>
+                </div>
+                {/* Chapter badge */}
+                {eCh && (
+                  <div style={{marginLeft:'28px', marginTop:'6px', display:'flex', alignItems:'center', gap:'6px'}}>
+                    <div style={{width:'16px', height:'16px', borderRadius:'2px', background:eCh.color+'22', border:`1px solid ${eCh.color}55`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'9px', fontWeight:'900', color:eCh.color, flexShrink:0}}>{entry.item.chapter}</div>
+                    <span style={{fontSize:'10px', color:eCh.color}}>Ch. {entry.item.chapter} — {eCh.name} · Articles {eCh.articles}</span>
                   </div>
-                  <div style={{color:'#8a9aaa', fontSize:'13px', lineHeight:'1.6'}}>{current.hint}</div>
-                </div>
+                )}
               </div>
-              {/* Chapter location */}
-              <div style={{display:'flex', alignItems:'center', gap:'8px', marginTop:'10px', paddingTop:'10px', borderTop:'1px solid rgba(255,255,255,0.06)'}}>
-                <div style={{width:'20px', height:'20px', borderRadius:'3px', background:ch?.color+'33', border:`1px solid ${ch?.color}66`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'10px', fontWeight:'900', color:ch?.color, flexShrink:0}}>
-                  {current.chapter}
-                </div>
-                <div style={{fontSize:'12px', color:'#7a8a9a'}}>
-                  <span style={{color:ch?.color, fontWeight:'700'}}>Chapter {current.chapter} — {ch?.name}</span>
-                  &nbsp;·&nbsp;Articles {ch?.articles}
-                </div>
-              </div>
-            </div>
-          )}
+            )
+          })}
 
-          {/* Timeout message */}
-          {timeLeft === 0 && answered === null && (
-            <div style={{textAlign:'center', color:'#e74c3c', fontWeight:'700', marginTop:'12px'}}>
-              Time's up — Article {current.article}
+          {/* ── Active question ── */}
+          {current && (
+            <div ref={bottomRef} style={{scrollMarginTop:'140px'}}>
+              {/* Divider between completed and active */}
+              {completed.length > 0 && (
+                <div style={{display:'flex', alignItems:'center', gap:'12px', margin:'16px 0'}}>
+                  <div style={{flex:1, height:'1px', background:'rgba(200,168,75,0.2)'}} />
+                  <span style={{fontSize:'11px', color:'#c8a84b', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase'}}>Q{current.idx + 1} of {queue.length}</span>
+                  <div style={{flex:1, height:'1px', background:'rgba(200,168,75,0.2)'}} />
+                </div>
+              )}
+
+              {/* Timer */}
+              {!answered && (
+                <>
+                  <div style={{height:'5px', background:'rgba(255,255,255,0.06)', borderRadius:'3px', marginBottom:'6px', overflow:'hidden'}}>
+                    <div style={{height:'100%', width:`${timerPct}%`, background:timerColor, borderRadius:'3px', transition:'width 1s linear, background 0.3s'}} />
+                  </div>
+                  <div style={{textAlign:'right', fontSize:'12px', color:timerColor, fontWeight:'700', marginBottom:'14px'}}>{timeLeft}s</div>
+                </>
+              )}
+
+              {/* Question card */}
+              <div style={{...s.card, marginBottom:'14px'}}>
+                <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>
+                  📖 Which NEC Article covers this?
+                </div>
+                <p style={{fontSize:'clamp(15px,2.5vw,18px)', color:'#d8e0e8', lineHeight:'1.7', margin:0}}>
+                  {current.scenario}
+                </p>
+              </div>
+
+              {/* Choice grid */}
+              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'10px', marginBottom:'16px'}}>
+                {choices.map(choice => {
+                  let bg = 'rgba(255,255,255,0.04)'
+                  let border = 'rgba(255,255,255,0.1)'
+                  let color = '#d8e0e8'
+                  if (answered) {
+                    if (choice === current.article) {
+                      bg = 'rgba(39,174,96,0.15)'; border = '#27ae60'; color = '#2ecc71'
+                    } else if (choice === selected && choice !== current.article) {
+                      bg = 'rgba(231,76,60,0.15)'; border = '#e74c3c'; color = '#e74c3c'
+                    }
+                  } else if (selected === choice) {
+                    bg = 'rgba(200,168,75,0.1)'; border = '#c8a84b'
+                  }
+                  return (
+                    <button key={choice}
+                      onClick={() => !answered && commitAnswer(choice)}
+                      disabled={answered}
+                      style={{background:bg, border:`2px solid ${border}`, borderRadius:'8px', padding:'16px', cursor:answered ? 'default' : 'pointer', textAlign:'center', transition:'all 0.15s'}}>
+                      <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(18px,4vw,28px)', fontWeight:'900', color, marginBottom:'2px'}}>{choice}</div>
+                      <div style={{fontSize:'10px', color:'#4a5a6a'}}>Article</div>
+                    </button>
+                  )
+                })}
+              </div>
+
+              {/* Feedback + Next button */}
+              {answered && (
+                <>
+                  {/* Inline feedback */}
+                  <div style={{background: selected === current.article ? 'rgba(39,174,96,0.08)' : 'rgba(231,76,60,0.08)', border:`1px solid ${selected === current.article ? 'rgba(39,174,96,0.3)' : 'rgba(231,76,60,0.3)'}`, borderRadius:'8px', padding:'14px 16px', marginBottom:'14px'}}>
+                    <div style={{display:'flex', alignItems:'flex-start', gap:'10px', marginBottom:'8px'}}>
+                      <span style={{fontSize:'16px'}}>{selected === current.article ? '✅' : '❌'}</span>
+                      <div>
+                        <div style={{fontWeight:'700', color: selected === current.article ? '#2ecc71' : '#e74c3c', marginBottom:'3px', fontSize:'14px'}}>
+                          {selected === current.article
+                            ? `Correct — Article ${current.article} · +${lastPts.current} pts`
+                            : `Article ${current.article} — ${current.title}`}
+                        </div>
+                        <div style={{color:'#8a9aaa', fontSize:'13px', lineHeight:'1.6'}}>{current.hint}</div>
+                      </div>
+                    </div>
+                    {ch && (
+                      <div style={{display:'flex', alignItems:'center', gap:'8px', paddingTop:'8px', borderTop:'1px solid rgba(255,255,255,0.06)'}}>
+                        <div style={{width:'18px', height:'18px', borderRadius:'3px', background:ch.color+'22', border:`1px solid ${ch.color}66`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'9px', fontWeight:'900', color:ch.color, flexShrink:0}}>{current.chapter}</div>
+                        <span style={{fontSize:'12px', color:ch.color, fontWeight:'700'}}>Chapter {current.chapter} — {ch.name}</span>
+                        <span style={{fontSize:'12px', color:'#4a5a6a'}}>· Articles {ch.articles}</span>
+                      </div>
+                    )}
+                  </div>
+                  {/* Timeout message */}
+                  {timeLeft === 0 && selected === null && (
+                    <div style={{textAlign:'center', color:'#e74c3c', fontWeight:'700', fontSize:'13px', marginBottom:'10px'}}>
+                      Time's up — answer was Article {current.article}
+                    </div>
+                  )}
+                  {/* Next / Finish button */}
+                  <button
+                    style={{...s.btn, width:'100%', fontSize:'15px', padding:'15px'}}
+                    onClick={advance}>
+                    {isLast ? '📋 See Full Review →' : `Next Question (${queue.length - current.idx - 1} left) →`}
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>
@@ -555,80 +642,110 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
 
   // ─── RESULT SCREEN ────────────────────────────────────────────────────────
   if (screen === 'result') {
-    const correct = results.filter(r => r.correct).length
-    const pct = Math.round((correct / results.length) * 100)
-    const avgTime = Math.round(results.reduce((a,r) => a + r.time, 0) / results.length)
+    const correctCount = completed.filter(r => r.correct).length
+    const pct          = completed.length > 0 ? Math.round((correctCount / completed.length) * 100) : 0
+    const avgTime      = completed.length > 0 ? Math.round(completed.reduce((a, r) => a + r.timeUsed, 0) / completed.length) : 0
+    const missedItems  = completed.filter(r => !r.correct)
+    const correctItems = completed.filter(r => r.correct)
 
     return (
       <div style={s.page}>
         <div style={s.container}>
-          <div style={{textAlign:'center', marginBottom:'32px'}}>
-            <div style={{fontSize:'52px', marginBottom:'16px'}}>
-              {pct >= 80 ? '🏆' : pct >= 60 ? '⚡' : '📖'}
-            </div>
-            <h2 style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(22px,4vw,32px)', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', margin:'0 0 8px'}}>
+
+          {/* Score summary */}
+          <div style={{textAlign:'center', marginBottom:'28px'}}>
+            <div style={{fontSize:'52px', marginBottom:'12px'}}>{pct >= 80 ? '🏆' : pct >= 60 ? '⚡' : '📖'}</div>
+            <h2 style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(22px,4vw,30px)', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', margin:'0 0 8px'}}>
               Round {roundNum} Complete
             </h2>
-            <div style={{color:'#7a8a9a', fontSize:'15px'}}>
-              {pct >= 90 ? 'Excellent navigation!' : pct >= 70 ? 'Good — keep drilling the misses.' : 'Keep going — spaced repetition will lock these in.'}
+            <div style={{color:'#7a8a9a', fontSize:'14px'}}>
+              {pct >= 90 ? 'Excellent — you know this book.' : pct >= 70 ? 'Good. Drill the misses below.' : 'Keep going — spaced repetition will lock these in.'}
             </div>
           </div>
 
-          {/* Score cards */}
-          <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'12px', marginBottom:'24px'}}>
+          {/* Stat cards */}
+          <div style={{display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'10px', marginBottom:'20px'}}>
             {[
               ['Score', score, 'pts'],
+              ['Correct', `${correctCount}/${completed.length}`, ''],
               ['Accuracy', pct, '%'],
               ['Avg Time', avgTime, 's'],
             ].map(([label, val, unit]) => (
-              <div key={label} style={{...s.card, textAlign:'center', padding:'20px 12px'}}>
-                <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(22px,4vw,32px)', color:'#c8a84b', fontWeight:'900'}}>{val}<span style={{fontSize:'14px'}}>{unit}</span></div>
-                <div style={{fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'4px'}}>{label}</div>
+              <div key={label} style={{...s.card, textAlign:'center', padding:'16px 8px'}}>
+                <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(18px,3vw,26px)', color:'#c8a84b', fontWeight:'900'}}>{val}<span style={{fontSize:'12px'}}>{unit}</span></div>
+                <div style={{fontSize:'10px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'3px'}}>{label}</div>
               </div>
             ))}
           </div>
 
           {bestStreak >= 3 && (
-            <div style={{background:'rgba(200,168,75,0.08)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'8px', padding:'12px 16px', marginBottom:'20px', textAlign:'center', color:'#c8a84b', fontSize:'13px', fontWeight:'700'}}>
+            <div style={{background:'rgba(200,168,75,0.08)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'8px', padding:'10px 16px', marginBottom:'16px', textAlign:'center', color:'#c8a84b', fontSize:'13px', fontWeight:'700'}}>
               🔥 Best streak this round: {bestStreak} in a row
             </div>
           )}
 
-          {/* Per-question breakdown */}
-          <div style={{...s.card, marginBottom:'24px'}}>
-            <div style={{color:'#7a8a9a', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>Question Breakdown</div>
-            <div style={{display:'flex', flexDirection:'column', gap:'0px'}}>
-              {results.map((r, i) => (
-                <div key={i} style={{padding:'14px 0', borderBottom:'1px solid rgba(255,255,255,0.06)'}}>
-                  {/* Top row: icon + article + time */}
-                  <div style={{display:'flex', alignItems:'center', gap:'10px', marginBottom:'8px'}}>
-                    <span style={{fontSize:'15px', flexShrink:0}}>{r.correct ? '✅' : '❌'}</span>
-                    <span style={{fontFamily:"'Courier New',monospace", fontSize:'14px', color:'#c8a84b', fontWeight:'700', flexShrink:0}}>Art. {r.article}</span>
-                    <span style={{fontSize:'13px', color:'#d8e0e8', fontWeight:'700', flex:1}}>{r.title}</span>
-                    <span style={{fontSize:'11px', color:'#4a5a6a', flexShrink:0}}>{r.time}s</span>
-                  </div>
-                  {/* Scenario */}
-                  <div style={{fontSize:'12px', color:'#7a8a9a', lineHeight:'1.6', marginLeft:'28px', marginBottom:'6px'}}>
-                    <span style={{color:'#4a5a6a', fontWeight:'700', textTransform:'uppercase', fontSize:'10px', letterSpacing:'1px'}}>Scenario: </span>
-                    {r.scenario}
-                  </div>
-                  {/* Answer / hint */}
-                  <div style={{fontSize:'12px', lineHeight:'1.6', marginLeft:'28px', background: r.correct ? 'rgba(39,174,96,0.06)' : 'rgba(231,76,60,0.06)', border: `1px solid ${r.correct ? 'rgba(39,174,96,0.15)' : 'rgba(231,76,60,0.15)'}`, borderRadius:'6px', padding:'8px 10px'}}>
-                    <span style={{color: r.correct ? '#2ecc71' : '#e74c3c', fontWeight:'700', fontSize:'10px', textTransform:'uppercase', letterSpacing:'1px'}}>
-                      {r.correct ? '✓ Correct — ' : '✗ Answer — '}
-                    </span>
-                    <span style={{color:'#c8a84b', fontWeight:'700'}}>Article {r.article} — {r.title}. </span>
-                    <span style={{color:'#8a9aaa'}}>{r.hint}</span>
-                  </div>
-                </div>
-              ))}
+          {/* ── Missed articles — study these ── */}
+          {missedItems.length > 0 && (
+            <div style={{marginBottom:'20px'}}>
+              <div style={{color:'#e74c3c', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>
+                ❌ Missed — Study These ({missedItems.length})
+              </div>
+              <div style={{display:'flex', flexDirection:'column', gap:'8px'}}>
+                {missedItems.map((r, i) => {
+                  const eCh = CHAPTERS.find(c => c.num === r.item.chapter)
+                  return (
+                    <div key={i} style={{background:'rgba(231,76,60,0.06)', border:'1px solid rgba(231,76,60,0.2)', borderRadius:'10px', padding:'14px 16px'}}>
+                      <div style={{display:'flex', alignItems:'center', gap:'10px', marginBottom:'8px'}}>
+                        <span style={{fontFamily:"'Courier New',monospace", fontSize:'15px', color:'#c8a84b', fontWeight:'900', flexShrink:0}}>Art. {r.item.article}</span>
+                        <span style={{fontSize:'14px', color:'#d8e0e8', fontWeight:'700', flex:1}}>{r.item.title}</span>
+                        {r.selected && <span style={{fontSize:'11px', color:'#e74c3c', flexShrink:0}}>You picked: {r.selected}</span>}
+                        <span style={{fontSize:'11px', color:'#4a5a6a', flexShrink:0}}>{r.timeUsed}s</span>
+                      </div>
+                      <div style={{fontSize:'12px', color:'#5a6a7a', lineHeight:'1.5', marginBottom:'8px'}}>
+                        <span style={{color:'#4a5a6a', fontWeight:'700', textTransform:'uppercase', fontSize:'10px', letterSpacing:'1px'}}>Scenario: </span>
+                        {r.item.scenario}
+                      </div>
+                      <div style={{background:'rgba(200,168,75,0.08)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'6px', padding:'8px 12px'}}>
+                        <span style={{color:'#c8a84b', fontWeight:'700', fontSize:'12px'}}>Article {r.item.article} — {r.item.title}. </span>
+                        <span style={{color:'#8a9aaa', fontSize:'12px', lineHeight:'1.6'}}>{r.item.hint}</span>
+                        {eCh && <div style={{marginTop:'4px', fontSize:'11px', color:eCh.color}}>Chapter {r.item.chapter} — {eCh.name} · Articles {eCh.articles}</div>}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* ── Correct articles ── */}
+          {correctItems.length > 0 && (
+            <div style={{marginBottom:'24px'}}>
+              <div style={{color:'#27ae60', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>
+                ✅ Got Right ({correctItems.length})
+              </div>
+              <div style={{display:'flex', flexDirection:'column', gap:'6px'}}>
+                {correctItems.map((r, i) => {
+                  const eCh = CHAPTERS.find(c => c.num === r.item.chapter)
+                  return (
+                    <div key={i} style={{background:'rgba(39,174,96,0.04)', border:'1px solid rgba(39,174,96,0.12)', borderRadius:'8px', padding:'10px 14px'}}>
+                      <div style={{display:'flex', alignItems:'center', gap:'10px', marginBottom:'4px'}}>
+                        <span style={{fontFamily:"'Courier New',monospace", fontSize:'13px', color:'#c8a84b', fontWeight:'700', flexShrink:0}}>Art. {r.item.article}</span>
+                        <span style={{fontSize:'13px', color:'#d8e0e8', fontWeight:'600', flex:1}}>{r.item.title}</span>
+                        <span style={{fontSize:'11px', color:'#27ae60', flexShrink:0}}>+{r.pts}pts · {r.timeUsed}s</span>
+                      </div>
+                      <div style={{fontSize:'11px', color:'#5a6a7a', lineHeight:'1.5', marginLeft:'0'}}>{r.item.hint}</div>
+                      {eCh && <div style={{fontSize:'10px', color:eCh.color, marginTop:'3px'}}>Ch. {r.item.chapter} — {eCh.name}</div>}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Spaced repetition note */}
           {wrongBucket.length > 0 && (
             <div style={{background:'rgba(231,76,60,0.06)', border:'1px solid rgba(231,76,60,0.2)', borderRadius:'8px', padding:'12px 16px', marginBottom:'20px', fontSize:'13px', color:'#e74c3c'}}>
-              🔁 <strong>{wrongBucket.length} article{wrongBucket.length > 1 ? 's' : ''} missed</strong> — they'll come back in Round {roundNum + 1} (spaced repetition)
+              🔁 <strong>{wrongBucket.length} article{wrongBucket.length > 1 ? 's' : ''} missed</strong> — they'll come back in Round {roundNum + 1}
             </div>
           )}
 

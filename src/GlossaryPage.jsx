@@ -128,6 +128,11 @@ export default function GlossaryPage({ onHome , onNavigate }) {
   return (
     <div style={s.app}>
 
+      <div style={{padding:"12px 16px 0", display:"flex", alignItems:"center", gap:"12px"}}>
+        <button onClick={onHome} style={{background:"none", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"12px", fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:"700", textTransform:"uppercase", padding:"6px 12px", borderRadius:"4px", cursor:"pointer"}}>← Back</button>
+        <span style={{fontSize:"13px", color:"#7a8a9a"}}>NEC Glossary</span>
+      </div>
+
       <div style={{padding:"12px 16px 0"}}>
         <input style={s.input} placeholder="Search terms or definitions..." value={search} onChange={e=>{setSearch(e.target.value); setLetter("All");}}/>
       </div>

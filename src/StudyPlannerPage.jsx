@@ -150,6 +150,22 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
   const maxDate = new Date(today); maxDate.setDate(today.getDate() + 180);
   const toISO = d => d.toISOString().split("T")[0];
 
+  if (access === 'free') return (
+    <div style={s.app}>
+      <div style={{padding:'40px 20px', textAlign:'center'}}>
+        <div style={{fontSize:'40px', marginBottom:'16px'}}>📋</div>
+        <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'20px', fontWeight:'900', color:'#c8a84b', marginBottom:'12px', textTransform:'uppercase'}}>Study Planner</div>
+        <div style={{fontSize:'14px', color:'#8899aa', lineHeight:'1.7', maxWidth:'340px', margin:'0 auto 24px'}}>
+          The Study Planner is included with Standard and Pro access. Upgrade to build a custom study schedule around your weak modules and exam date.
+        </div>
+        <button onClick={() => onNavigate('landing')}
+          style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'14px 28px', cursor:'pointer'}}>
+          View Plans →
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div style={s.app}>
 
