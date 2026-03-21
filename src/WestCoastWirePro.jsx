@@ -910,7 +910,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🛠 STUDY TOOLS</div>
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
             {[
-              { icon:"🎯", label:"Top 25 Questions",   path:"/top-25",       pro:true  },
+              { icon:"🎯", label:"High-Priority Drill",   path:"/top-25",       pro:true  },
               { icon:"📖", label:"Code Sprint",        path:"/code-sprint",  pro:true  },
               { icon:"🎯", label:"Am I Ready?",        path:"/diagnostic",   pro:false },
               { icon:"📋", label:"Full Exam Sim",       path:"/simulator",    pro:false },
@@ -988,7 +988,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock All 512 Questions</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            You've got Modules 1 &amp; 2 free. Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, Top 25 &amp; more.
+            You've got Modules 1 &amp; 2 free. Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, High-Priority Drill &amp; more.
           </div>
         </div>
 
@@ -1001,7 +1001,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           },
           {
             name:"Pro", price:"$59.99", tag:"Best Value",
-            features:["Everything in Standard","Code Sprint — NEC Article Navigator","Full Table Mastery (10 tables, 113 cards)","Missed Questions review deck","Top 25 Most-Tested Questions","Study Planner + Progress Dashboard","Future question updates"],
+            features:["Everything in Standard","Code Sprint — NEC Article Navigator","Full Table Mastery (10 tables, 113 cards)","Missed Questions review deck","High-Priority Drill","Study Planner + Progress Dashboard","Future question updates"],
             accent:"#e8c878", tier:"pro"
           }
         ].map(plan => (
@@ -1100,7 +1100,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             ["📖", "Code Sprint", "NEC article navigation game — train your brain to find any article fast under exam pressure"],
             ["🏆", "Table Mastery", "113 flashcards across 10 NEC tables — the most common exam calculation source"],
             ["🔁", "Missed Questions Deck", "Auto-builds a review deck from every question you've gotten wrong"],
-            ["🎯", "Top 25 Exam Questions", "The 25 highest-frequency question types on the CA exam, curated by topic"],
+            ["🎯", "High-Priority Drill", "25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline — not real exam questions"],
             ["📅", "Study Planner + Dashboard", "Custom schedule + score tracking across all your sessions"],
             ["🔄", "Future Question Updates", "New questions added as the exam evolves — yours free, forever"],
           ].map(([icon, title, desc]) => (

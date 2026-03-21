@@ -84,7 +84,7 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={s.tierBadge}>{tier === 'pro' ? 'PRO ACCESS' : 'STANDARD ACCESS'} UNLOCKED</div>
         <div style={s.sub}>
           {tier === 'pro'
-            ? 'Code Sprint, Full Table Mastery, Missed Questions deck, Top 25 Exam Questions, Study Planner, Progress Dashboard, and future updates — all yours.'
+            ? 'Code Sprint, Full Table Mastery, Missed Questions deck, High-Priority Drill, Study Planner, Progress Dashboard, and future updates — all yours.'
             : 'All 462 questions across all 11 modules are now unlocked. Upgrade to Pro anytime for Code Sprint, Table Mastery, Missed Questions, and more.'}
         </div>
         <div style={s.divider} />

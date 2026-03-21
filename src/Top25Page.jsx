@@ -1,6 +1,6 @@
-// Top25Page.jsx — Top 25 Most-Tested Topics on the CA Journeyman Exam
-// Questions selected from the existing bank, mapped to PSI content outline
-// high-frequency categories. Pro feature.
+// Top25Page.jsx — High-Priority Drill
+// 25 practice questions mapped to the most heavily weighted topics on the CA exam
+// per the PSI content outline. Pro feature.
 import { useState } from 'react'
 
 const TOP25 = [
@@ -98,7 +98,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
         <button onClick={onHome} style={{...s.btnGhost, marginBottom:'28px', fontSize:'12px'}}>← Back</button>
         <div style={{...s.card, textAlign:'center', padding:'40px 24px'}}>
           <div style={{fontSize:'48px', marginBottom:'16px'}}>🎯</div>
-          <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'20px', fontWeight:'900', textTransform:'uppercase', color:'#c8a84b', marginBottom:'12px'}}>Top 25 Exam Questions</div>
+          <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'20px', fontWeight:'900', textTransform:'uppercase', color:'#c8a84b', marginBottom:'12px'}}>High-Priority Drill</div>
           <div style={{color:'#7a8a9a', fontSize:'14px', lineHeight:'1.7', marginBottom:'24px', maxWidth:'380px', margin:'0 auto 24px'}}>
             The 25 highest-frequency question types on the CA Journeyman exam — pulled from the PSI content outline and mapped to NEC articles. Pro feature.
           </div>
@@ -120,7 +120,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
             Top <span style={{color:'#c8a84b'}}>25</span> Exam Questions
           </h1>
           <p style={{color:'#7a8a9a', fontSize:'14px', lineHeight:'1.7', maxWidth:'480px', margin:'0 auto'}}>
-            These 25 question types appear most frequently on the CA General Electrician exam based on the official PSI content outline. Work through all 25 before your exam date.
+            25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline. These are original practice questions — not real exam questions. Work through all 25 before your exam date.
           </p>
         </div>
 
@@ -145,7 +145,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
         </div>
 
         <button style={{...s.btn, width:'100%', fontSize:'16px', padding:'16px'}} onClick={() => setScreen('quiz')}>
-          🎯 Start Top 25 Drill
+          🎯 Start High-Priority Drill
         </button>
       </div>
     </div>
@@ -160,7 +160,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
         <div style={{position:'sticky', top:'clamp(60px,11vw,100px)', zIndex:10, background:'#0a1016', paddingBottom:'10px', marginBottom:'12px', borderBottom:'1px solid rgba(200,168,75,0.1)'}}>
           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'6px'}}>
             <div style={{display:'flex', gap:'12px', alignItems:'center'}}>
-              <button onClick={() => { if (window.confirm('Quit Top 25 drill? Progress will be lost.')) { setScreen('intro'); setIdx(0); setSelected(null); setAnswered(false); setResults([]) }}}
+              <button onClick={() => { if (window.confirm('Quit High-Priority Drill? Progress will be lost.')) { setScreen('intro'); setIdx(0); setSelected(null); setAnswered(false); setResults([]) }}}
                 style={{background:'none', border:'none', color:'#4a5a6a', fontSize:'12px', cursor:'pointer', padding:'0'}}>
                 ✕ Quit
               </button>
@@ -183,7 +183,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
         {/* Question */}
         <div style={{...s.card, marginBottom:'14px'}}>
           <div style={{color:'#c8a84b', fontSize:'10px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>
-            🎯 Most-Tested Topic — Q{idx + 1}
+            🎯 High-Priority Topic — Q{idx + 1}
           </div>
           <p style={{fontSize:'clamp(15px,2.5vw,17px)', color:'#d8e0e8', lineHeight:'1.7', margin:0}}>{q.q}</p>
         </div>
@@ -245,7 +245,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
           <div style={{textAlign:'center', marginBottom:'28px'}}>
             <div style={{fontSize:'52px', marginBottom:'12px'}}>{pct >= 80 ? '🏆' : pct >= 60 ? '⚡' : '📖'}</div>
             <h2 style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'clamp(20px,4vw,28px)', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', margin:'0 0 8px'}}>
-              Top 25 Complete
+              High-Priority Drill — Complete
             </h2>
             <div style={{color:'#7a8a9a', fontSize:'14px'}}>
               {pct >= 90 ? 'Excellent — you know the high-frequency material.' : pct >= 70 ? 'Good. Study the missed topics before exam day.' : 'These are the most-tested areas. Keep drilling.'}

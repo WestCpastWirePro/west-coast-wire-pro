@@ -184,7 +184,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'NEC Reference & Calculations tools', locked:false},
               {text:'Progress saved across sessions', locked:false},
               {text:'Code Sprint, Table Mastery, Missed Questions', locked:true},
-              {text:'Top 25 Exam Questions · Study Planner', locked:true},
+              {text:'High-Priority Drill · Study Planner', locked:true},
             ]}
             btnLabel="Get Standard Access ⚡"
             btnStyle="gold"
@@ -200,7 +200,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Code Sprint — NEC Article Navigator Game', locked:false},
               {text:'Full Table Mastery — 10 NEC tables, 113 flashcards', locked:false},
               {text:'Missed Questions review deck', locked:false},
-              {text:'Top 25 Most-Tested Exam Questions', locked:false},
+              {text:'High-Priority Drill — 25 questions on the most-tested topics', locked:false},
               {text:'Study Planner + Progress Dashboard', locked:false},
               {text:'Priority email support', locked:false},
               {text:'Future question updates included', locked:false},
