@@ -1,3 +1,4 @@
+// LandingPage — v2
 import React, { useState, useEffect } from 'react'
 
 // ── Stripe checkout ───────────────────────────────────────────────────────────
@@ -118,8 +119,8 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           {[
             ['01','🎯','Answer First, Always','Every session starts with a question, not a reading. Forcing your brain to retrieve an answer — even wrong — builds stronger memory than re-reading ever does. This is active recall, the most evidence-backed study method in cognitive psychology.'],
             ['02','⚡','Timed Like the Real Exam','4.5 hours for 110 questions is 2.5 minutes each. Timed mode trains you to work at exam pace, not study pace. Research shows that practicing under test conditions — same time pressure, same format — directly improves test performance.'],
-            ['03','📖','Every Answer Cites the Code','After each question you see the exact NEC article, the reasoning, and what the code actually says. You learn where the rule lives, not just what it is. On an open-book exam, that's the difference between confirming an answer in 20 seconds and spending 3 minutes searching.'],
-            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve — reviewing right before you forget resets it. This is spaced repetition, and it's why drilling your missed questions in the final week is the highest-ROI study move you can make.'],
+            ['03','📖','Every Answer Cites the Code','After each question you see the exact NEC article, the reasoning, and what the code actually says. You learn where the rule lives, not just what it is. On an open-book exam, that is the difference between confirming an answer in 20 seconds and spending 3 minutes searching.'],
+            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve — reviewing right before you forget resets it. This is spaced repetition, and drilling your missed questions in the final week is the highest-ROI study move you can make.'],
           ].map(([num, icon, title, text]) => (
             <div key={num} style={s.step}>
               <div style={s.stepNum}>{num}</div>
