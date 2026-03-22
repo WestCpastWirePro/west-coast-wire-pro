@@ -59,7 +59,7 @@ function buildPlan(examDate, dailyMins, weakMods, access) {
         tasks: [
           { day:"Mon–Wed", task:"Light review only — 30 min max. Focus on NEC articles you keep missing.", icon:"📖" },
           { day:"Thursday", task:"Rest day. No studying. Get 8+ hours of sleep.", icon:"😴" },
-          { day:"Friday", task:"Review your Exam Day checklist: ID, confirmation number, calculator (if allowed).", icon:"✅" },
+          { day:"Friday", task:"Review your Exam Day checklist: ID, confirmation number. PSI provides scratch paper and an on-screen calculator — no personal calculator needed.", icon:"✅" },
           { day:"Exam Day", task:"Arrive 30 min early. Read every question twice. Skip and return to hard ones.", icon:"🎯" },
         ]
       });

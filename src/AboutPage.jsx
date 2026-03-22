@@ -23,8 +23,8 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
 
       {/* SECTION NAV */}
       <div style={{position:'sticky', top:0, zIndex:10, background:'rgba(10,16,22,0.97)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.1)', display:'flex', justifyContent:'center', gap:0}}>
-        <a href="#method" style={{padding:'14px 28px', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', letterSpacing:'1px', color:'#c8a84b', textDecoration:'none', borderBottom:'2px solid #c8a84b'}}>The Method</a>
-        <a href="#story" style={{padding:'14px 28px', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', letterSpacing:'1px', color:'#7a8a9a', textDecoration:'none', borderBottom:'2px solid transparent'}}>Our Story</a>
+        <button onClick={() => document.getElementById('method')?.scrollIntoView({behavior:'smooth'})} style={{padding:'14px 28px', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', letterSpacing:'1px', color:'#c8a84b', background:'none', border:'none', borderBottom:'2px solid #c8a84b', cursor:'pointer'}}>The Method</button>
+        <button onClick={() => document.getElementById('story')?.scrollIntoView({behavior:'smooth'})} style={{padding:'14px 28px', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', letterSpacing:'1px', color:'#7a8a9a', background:'none', border:'none', borderBottom:'2px solid transparent', cursor:'pointer'}}>Our Story</button>
       </div>
 
       {/* SCIENCE */}

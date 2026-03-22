@@ -138,7 +138,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               <P>
                 A passing score is <strong style={s.strong}>70% or higher</strong> (77 correct out of 110 questions).
                 You will receive your result immediately upon finishing at the testing center.
-                If you do not pass, you may retake the exam after a waiting period and payment
+                If you do not pass, you must wait 60 days before reapplying to retake the exam. There is a $100 retake fee. Submit your retake application to DLSE at the same address as your original application.
                 of another examination fee.
               </P>
               <CallOut>
@@ -224,7 +224,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 Several factors contribute to the difficulty:
               </P>
               <Ul items={[
-                'Broad scope — 110 questions spanning 12+ content areas means no single topic can be ignored',
+                'Broad scope — 100 questions spanning 11 content areas means no single topic can be ignored',
                 'Calculation questions — trade math (load calculations, conduit fill, motor sizing) requires actual computation under time pressure',
                 'Time pressure — the exam is open book, but 4.5 hours for 110 questions goes fast if you\'re looking up every answer',
                 'Question wording — questions often test nuance and exception clauses, not just the general rule',
@@ -282,7 +282,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 <div style={s.ctaBody}>
                   462 questions across all 11 modules. Every answer tied to the exact NEC or
                   California code section. Timed mode, module filtering, difficulty levels.
-                  Built by a California journeyman electrician and trade school instructor.
+                  Built by a licensed California journeyman electrician.
                 </div>
                 <div style={s.ctaBtns}>
                   <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>

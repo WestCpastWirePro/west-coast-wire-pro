@@ -63,8 +63,8 @@ const SECTIONS = [
     content: [
       { type:"check", text:"You receive a pass/fail result immediately on screen when you submit." },
       { type:"check", text:"Passing score is 70% (77 out of 110 correct)." },
-      { type:"check", text:"If you pass: PSI will provide a score report. Your results go to the DLSE, and you'll receive your official license documentation by mail." },
-      { type:"check", text:"If you fail: You'll receive a diagnostic report showing which topic areas you were weakest in. You can retake after a waiting period — check your state authorization for current rules." },
+      { type:"check", text:"If you pass: PSI transmits your results to the DLSE. Your official California Electrician Certification card will be mailed to the address on your application — typically within a few weeks. Keep your score report as proof of certification until the card arrives. You are legally certified as of your pass date." },
+      { type:"check", text:"If you fail: You'll receive a diagnostic report showing which topic areas you were weakest in. You must wait 60 days before reapplying to retake, and pay a $100 retake fee to DLSE." },
       { type:"tip", text:"Tip: If you fail, don't reschedule immediately. Study the diagnostic report. Most people who fail did so in 2–3 specific areas, not across the board." },
     ]
   },
