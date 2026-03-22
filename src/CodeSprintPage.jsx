@@ -483,7 +483,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
             ['⚡', 'Pick the NEC Article where you\'d find the answer'],
             ['⏱️', '22 seconds per question — answered questions stack up on the page'],
             ['👇', 'Hit Next Question when you\'re ready — you control the pace'],
-            ['📋', 'At the end, review every question with the correct article and hint'],
+            ['✅', 'At the end, review every question with the correct article and hint'],
           ].map(([icon, text]) => (
             <div key={text} style={{display:'flex', gap:'12px', alignItems:'flex-start', marginBottom:'10px'}}>
               <span style={{fontSize:'16px', flexShrink:0}}>{icon}</span>

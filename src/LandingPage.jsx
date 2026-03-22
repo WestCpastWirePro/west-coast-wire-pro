@@ -77,7 +77,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <button style={{...s.btnGhost, background:'none', border:'none', cursor:'pointer', fontFamily:'inherit'}}
               onClick={() => onLaunchApp()}>Start Free — No Account Needed →</button>
           </div>
-          <div style={{marginTop:'16px'}}>
+          <div style={{marginTop:'12px'}}>
+            <button onClick={() => onNavigate && onNavigate('demo')}
+              style={{background:'none', border:'none', color:'#4a5a6a', fontSize:'12px', cursor:'pointer', padding:0, textDecoration:'underline'}}>
+              Try a 5-question demo first →
+            </button>
+          </div>
+          <div style={{marginTop:'4px'}}>
             <button
               onClick={() => onNavigate && onNavigate('redeem')}
               style={{background:'none', border:'1px solid rgba(200,168,75,0.4)', color:'#c8a84b', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'700', fontSize:'13px', textTransform:'uppercase', letterSpacing:'0.5px', padding:'10px 20px', borderRadius:'4px', cursor:'pointer'}}>

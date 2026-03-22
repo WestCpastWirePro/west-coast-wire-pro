@@ -83,7 +83,7 @@ export default function MissedQuestionsPage({ onHome, access , onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"16px"}}>🎯</div>
           <div style={{fontSize:"20px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px"}}>No Missed Questions Yet</div>
           <div style={{fontSize:"14px", color:"#8899aa", maxWidth:"300px", margin:"0 auto 24px"}}>
-            Complete some practice sessions first. Any questions you get wrong will appear here for review.
+            Complete some practice sessions and any questions you get wrong will appear here automatically. If you recently cleared your browser data, your history will have reset.
           </div>
           <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start Practicing</button>
         </div>

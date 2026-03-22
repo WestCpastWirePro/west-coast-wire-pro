@@ -1,3 +1,4 @@
+import React from 'react'
 import { getPost } from './blogPosts.js'
 
 // Simple markdown-ish renderer — handles ## headers, **bold**, *italic*, plain paragraphs
@@ -32,6 +33,18 @@ function renderContent(text) {
 export default function BlogPostPage({ slug, onNavigate, onLaunchApp }) {
   const post = getPost(slug)
   const nav = (to) => { onNavigate && onNavigate(to); window.scrollTo(0,0) }
+
+  // Set page title and meta for this specific post
+  React.useEffect(() => {
+    if (post) {
+      document.title = post.title + ' | West Coast Wire Pro'
+      const metaDesc = document.querySelector('meta[name="description"]')
+      if (metaDesc) metaDesc.setAttribute('content', post.excerpt || post.title)
+    }
+    return () => {
+      document.title = 'West Coast Wire Pro — California Electrician Exam Prep'
+    }
+  }, [post])
 
   if (!post) return (
     <div style={{minHeight:'100vh', background:'#0a1016', display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', gap:'16px'}}>

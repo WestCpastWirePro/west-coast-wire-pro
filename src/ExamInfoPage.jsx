@@ -45,7 +45,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
 
       <div style={s.quickFacts}>
         {[
-          ['100', 'Questions'],
+          ['110', 'Questions'],
           ['4.5 hrs', 'Time Limit'],
           ['70%', 'Passing Score'],
           ['$175', 'Exam Fee (approx)'],
@@ -224,7 +224,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 Several factors contribute to the difficulty:
               </P>
               <Ul items={[
-                'Broad scope — 100 questions spanning 11 content areas means no single topic can be ignored',
+                'Broad scope — 110 questions spanning 11 content areas means no single topic can be ignored',
                 'Calculation questions — trade math (load calculations, conduit fill, motor sizing) requires actual computation under time pressure',
                 'Time pressure — the exam is open book, but 4.5 hours for 110 questions goes fast if you\'re looking up every answer',
                 'Question wording — questions often test nuance and exception clauses, not just the general rule',
