@@ -22,7 +22,8 @@ const SECTIONS = [
       { type:"check", text:"Two valid, unexpired, government-issued photo IDs (driver's license + one more). The names must match exactly." },
       { type:"check", text:"Your ATT (Authorization to Test) letter or email from the DLSE — either printed or on your phone." },
       { type:"check", text:"Confirmation number from PSI — you'll need it at check-in." },
-      { type:"warn", text:"Do NOT bring: calculators, phones (must be off and stored), study materials, food or drink, smartwatches, or any electronic devices. PSI provides a whiteboard or scratch paper — ask for it at check-in." },
+      { type:"check", text:"PSI provides the NEC 2020 codebook at the testing center. Do NOT bring your own — no personal codebooks, tabs, highlights, or handwritten notes are permitted. The provided copy is clean and unmarked." },
+      { type:"warn", text:"Do NOT bring: your own NEC codebook, calculators, phones (must be off and stored), study materials, food or drink, smartwatches, or any electronic devices. PSI provides scratch paper — ask for it at check-in." },
     ]
   },
   {
@@ -137,6 +138,7 @@ export default function ExamDayPage({ onHome, onNavigate }) {
           ["Questions", "110 multiple choice"],
           ["Passing score", "70% (77/110)"],
           ["Result", "Immediate on screen"],
+          ["NEC Codebook", "Provided by PSI — do not bring your own"],
           ["Calculator", "On-screen only (provided)"],
           ["Arrive", "30 min early minimum"],
           ["IDs needed", "2 government-issued photo IDs"],

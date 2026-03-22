@@ -1047,11 +1047,17 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </a>
         </div>
 
-        <div style={{textAlign:"center", padding:"24px 16px 16px"}}>
+        <div style={{background:"rgba(39,174,96,0.06)", border:"1px solid rgba(39,174,96,0.2)", borderRadius:"8px", padding:"12px 16px", marginBottom:"16px"}}>
+          <div style={{fontSize:"12px", fontWeight:"700", color:"#2ecc71", marginBottom:"6px"}}>✓ Your free access includes:</div>
+          <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.8"}}>
+            Module 1 — Definitions &amp; General · Module 2 — Wiring &amp; Overcurrent · ~76 practice questions · NEC explanations on every answer · Table 310.16 &amp; Conduit Fill drills
+          </div>
+        </div>
+        <div style={{textAlign:"center", padding:"16px 16px 16px"}}>
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock Full Access</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            You've got Modules 1 &amp; 2 free. Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, High-Priority Drill &amp; more.
+            Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, High-Priority Drill &amp; more.
           </div>
         </div>
 

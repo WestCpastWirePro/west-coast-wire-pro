@@ -62,7 +62,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </button>
           <div style={s.heroBadge}>
             <span style={s.badgeDot} />
-            California Exam Prep · 2020 NEC · Updated 2025
+            California Exam Prep · 2020 NEC · Updated 2026
           </div>
           <h1 style={s.h1}>
             <div style={s.h1Line1}>Electricians Are</div>
@@ -87,7 +87,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           <div style={s.heroStats}>
             {[
               ['462','Practice Questions'],
-              ['12','Exam Modules'],
+              ['11','Exam Modules'],
               ['3','Difficulty Levels'],
               ['100%','NEC Referenced'],
             ].map(([num, label]) => (
@@ -140,7 +140,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           {MODULES_DATA.map(m => (
             <div key={m.id} style={{...s.moduleCard, '--accent': m.color}}>
               <div style={{height:'2px', background: m.color, borderRadius:'1px', marginBottom:'16px'}} />
-              <div style={s.modNum}>MODULE {String(m.id).padStart(2,'0')}</div>
+              <div style={s.modNum}>MODULE {String(m.displayId || m.id).padStart(2,'0')}</div>
               <div style={s.modName}>{m.name}</div>
               <div style={s.modArticles}>{m.articles}</div>
               <div>
@@ -168,7 +168,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             features={[
               {text:'Module 1 — Definitions & General', locked:false},
               {text:'Module 2 — Wiring & Overcurrent', locked:false},
-              {text:'~75 practice questions', locked:false},
+              {text:'76 practice questions (Modules 1 & 2)', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
@@ -234,7 +234,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           {[
             ['Which exam does this prepare me for?','The California General Electrician (Journeyman) certification exam administered by PSI Services on behalf of DLSE/DIR. Questions based on 2020 NEC and California codes (Title 8 Cal/OSHA and Title 24 CEC).'],
             ['Is this the actual exam content?','No — these are original practice questions developed from NEC 2020 content and electrical trade resources using AI, then reviewed by a licensed California journeyman electrician. The actual PSI exam questions are proprietary, owned by the DLSE, and not available to any prep company or training site anywhere.'],
-            ['What NEC edition is used?','The 2020 NEC (NFPA 70), which is the current adopted edition in California. Module 11 specifically covers California amendments (CEC), Title 8 (Cal/OSHA), and Title 24 requirements.'],
+            ['What NEC edition is used?','The 2020 NEC (NFPA 70), which is the current adopted edition in California.'],
             ['Do I need a codebook to use this app?','Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2020 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you will need on exam day, when PSI hands you an unmarked codebook and the clock starts.'],
             ['Is this a subscription?','No. One-time payment, yours forever. No recurring charges, no expiration dates. Study at your own pace until you pass.'],
             ['Does it work on my phone?','Yes. West Coast Wire Pro is fully mobile-optimized. Works on phone, tablet, and laptop.'],
@@ -412,8 +412,7 @@ const MODULES_DATA = [
   {id:8, name:'Motors & Transformers', articles:'Articles 430, 450', qCount:40, color:'#c0392b'},
   {id:9, name:'Communications & Emergency', articles:'Articles 700–820', qCount:25, color:'#d35400'},
   {id:10, name:'Calculations & Trade Math', articles:'Chapter 9, Table 310.16', qCount:60, color:'#1abc9c'},
-  {id:11, name:'California-Specific Rules', articles:'Title 8, Title 24, CEC', qCount:50, color:'#8e44ad'},
-  {id:12, name:'Safety & Maintenance', articles:'NFPA 70E, Cal/OSHA', qCount:55, color:'#2c3e50'},
+  {id:12, name:'Safety & Maintenance', articles:'NFPA 70E, Cal/OSHA', qCount:55, color:'#2c3e50', displayId:11},
 ]
 
 // ── Styles ──────────────────────────────────────────────────

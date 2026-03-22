@@ -21,8 +21,14 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
       </header>
 
 
+      {/* SECTION NAV */}
+      <div style={{position:'sticky', top:0, zIndex:10, background:'rgba(10,16,22,0.97)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.1)', display:'flex', justifyContent:'center', gap:0}}>
+        <a href="#method" style={{padding:'14px 28px', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', letterSpacing:'1px', color:'#c8a84b', textDecoration:'none', borderBottom:'2px solid #c8a84b'}}>The Method</a>
+        <a href="#story" style={{padding:'14px 28px', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', letterSpacing:'1px', color:'#7a8a9a', textDecoration:'none', borderBottom:'2px solid transparent'}}>Our Story</a>
+      </div>
+
       {/* SCIENCE */}
-      <section style={s.section}>
+      <section id="method" style={s.section}>
         <div style={s.prose}>
 
           <h2 style={s.h2}>The Science Behind How This Works</h2>
@@ -77,7 +83,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
       </section>
 
       {/* ORIGIN STORY */}
-      <section style={s.section}>
+      <section id="story" style={s.section}>
         <div style={s.prose}>
 
           <div style={s.pullQuote}>

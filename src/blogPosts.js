@@ -20,10 +20,15 @@ PSI Exams is the third-party testing company that administers the California Jou
 
 ## What to Bring
 
-- **Your NEC 2020 codebook** — this is your open-book resource. Tabs are allowed. Handwritten notes in the margins are allowed. Printed inserts, loose papers, and sticky notes with content are NOT allowed.
 - **Two forms of valid ID** — one must be government-issued with a photo.
 - **Your PSI appointment confirmation** — screenshot or printed.
 - Nothing else. No phones, no scratch paper from home, no food or drinks in the testing room.
+
+## The Codebook — PSI Provides It
+
+The California Journeyman exam is open book, but **PSI provides the NEC 2020 codebook at the testing center. You do not bring your own.** No tabs, no highlights, no handwritten notes — it is a clean, unmarked copy. Anything you wrote in your personal codebook stays home.
+
+This is confirmed by WECA (Western Electrical Contractors Association) and multiple official sources: the NEC code books are provided at the testing sites. You are allowed to bring a basic, non-programmable calculator. Everything else stays in the locker PSI provides.
 
 ## What Happens When You Arrive
 
@@ -127,7 +132,7 @@ Most people who fail the California Journeyman exam don't fail because the mater
 
 ## Know What You're Actually Being Tested On
 
-The CA General Electrician exam is 110 questions drawn from the NEC 2020. It is open book — PSI provides an unmarked NEC codebook at the testing center. You cannot bring your own, and no tabs or personal notes are permitted.
+The CA General Electrician exam is 110 questions drawn from the NEC 2020. It is open book — PSI provides an unmarked NEC 2020 codebook at the testing center. You do not bring your own book. No personal tabs, highlights, or notes permitted.
 
 This is both a gift and a trap. If you know the code, you can verify answers. If you don't know it, you'll spend 4.5 hours desperately flipping pages and run out of time. The open book doesn't help you if you don't know which article to turn to.
 

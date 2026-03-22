@@ -62,7 +62,7 @@ export default function ProgressDashboard({ onHome, onNavigate, access }) {
           <div style={{fontSize:"48px", marginBottom:"16px"}}>📊</div>
           <div style={{fontSize:"18px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px"}}>No Data Yet</div>
           <div style={{fontSize:"14px", color:"#8899aa", maxWidth:"300px", margin:"0 auto 24px", lineHeight:"1.6"}}>
-            Complete a practice session and your scores, streaks, and module mastery will appear here.
+Complete a practice session and your scores, streaks, and module mastery will appear here. Progress is saved on this device — if you recently cleared your browser data, your history will have reset.
           </div>
           <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start a Practice Quiz ⚡</button>
           <div style={{marginTop:"12px", fontSize:"12px", color:"#4a5a6a"}}>Complete any quiz and your scores will appear here automatically.</div>
