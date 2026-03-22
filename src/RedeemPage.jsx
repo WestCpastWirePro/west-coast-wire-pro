@@ -80,8 +80,8 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
           </div>
           <div style={s.sub}>
             {tier === 'pro'
-              ? 'All 512 questions, exam simulation mode, and saved progress are now active on this device.'
-              : 'All 512 questions across all 12 modules are now unlocked on this device.'}
+              ? 'All 462 questions, exam simulation mode, Code Sprint, Table Mastery, and all Pro tools are now active on this device.'
+              : 'All 462 questions across all 11 modules are now unlocked on this device.'}
           </div>
           <button style={s.btnGold} onClick={onEnterApp}>
             Start Studying Now ⚡

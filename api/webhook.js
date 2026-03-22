@@ -143,7 +143,7 @@ export default async function handler(req, res) {
                 </div>
 
                 <div style="text-align:center;color:#4a5a6a;font-size:12px;line-height:1.8;">
-                  Questions? Email us at <a href="mailto:wirereadypro@gmail.com" style="color:#c8a84b;">wirereadypro@gmail.com</a><br>
+                  Questions? <a href="https://westcoastwirepro.com/contact" style="color:#c8a84b;">Contact us via our support form</a><br>
                   West Coast Wire Pro · California Journeyman Exam Prep
                 </div>
               </div>

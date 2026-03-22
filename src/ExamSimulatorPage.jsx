@@ -175,7 +175,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
 
         <div style={s.card}>
           {[
-            ["📊","110 Questions","Proportionally drawn from all 12 modules"],
+            ["📊","110 Questions","Proportionally drawn from all 11 modules"],
             ["⏱️","4.5 Hour Timer","Auto-submits when time expires"],
             ["🎯","70% to Pass","Same threshold as the real PSI exam"],
             ["📈","Full Breakdown","Score by module when you finish"],
@@ -199,7 +199,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
         {access === "free" && (
           <div style={{...s.card, borderColor:"rgba(200,168,75,0.4)"}}>
             <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>🔒 FREE TIER</div>
-            <div style={{fontSize:"13px", color:"#8899aa"}}>Free users get a preview using Modules 1 &amp; 2 questions only. Unlock full access for the real 110-question simulation drawn from all 12 modules.</div>
+            <div style={{fontSize:"13px", color:"#8899aa"}}>Free users get a preview using Modules 1 &amp; 2 questions only. Unlock full access for the real 110-question simulation drawn from all 11 modules.</div>
           </div>
         )}
         <div style={{padding:"0 16px 32px"}}>

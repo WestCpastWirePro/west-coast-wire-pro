@@ -1,6 +1,6 @@
 import { blogPosts } from './blogPosts.js'
 
-export default function BlogPage({ onNavigate }) {
+export default function BlogPage({ onHome, onNavigate }) {
   const nav = (to) => { onNavigate && onNavigate(to); window.scrollTo(0,0) }
 
   return (

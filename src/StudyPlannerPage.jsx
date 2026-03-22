@@ -150,18 +150,47 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
   const maxDate = new Date(today); maxDate.setDate(today.getDate() + 180);
   const toISO = d => d.toISOString().split("T")[0];
 
-  if (access === 'free') return (
+  if (access === 'free') {
+    const daysLeft = examDate ? Math.ceil((new Date(examDate) - new Date()) / (1000 * 60 * 60 * 24)) : null;
+    return (
     <div style={s.app}>
-      <div style={{padding:'40px 20px', textAlign:'center'}}>
-        <div style={{fontSize:'40px', marginBottom:'16px'}}>📋</div>
-        <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'20px', fontWeight:'900', color:'#c8a84b', marginBottom:'12px', textTransform:'uppercase'}}>Study Planner</div>
-        <div style={{fontSize:'14px', color:'#8899aa', lineHeight:'1.7', maxWidth:'340px', margin:'0 auto 24px'}}>
-          The Study Planner is included with Standard and Pro access. Upgrade to build a custom study schedule around your weak modules and exam date.
+      <div style={{...s.header}}>
+        <span style={{fontSize:'24px'}}>📅</span>
+        <div style={{flex:1}}>
+          <div style={s.logo}>Study Planner</div>
+          <div style={{fontSize:'11px', color:'#8899aa'}}>Set your exam date</div>
         </div>
-        <button onClick={() => onNavigate('landing')}
-          style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'14px 28px', cursor:'pointer'}}>
-          View Plans →
-        </button>
+        <button style={{...s.btn, ...s.btnGray, padding:'6px 12px', fontSize:'12px'}} onClick={onHome}>← Back</button>
+      </div>
+      <div style={{padding:'16px'}}>
+        <div style={{...s.card, marginBottom:'16px'}}>
+          <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b', marginBottom:'12px', textTransform:'uppercase', letterSpacing:'0.5px'}}>📅 When is your exam?</div>
+          <input type="date" value={examDate} onChange={e => { setExamDate(e.target.value); try { localStorage.setItem('wrp_exam_date', e.target.value); } catch(e) {} }}
+            min={toISO(minDate)} max={toISO(maxDate)}
+            style={{width:'100%', background:'#0a1016', border:'1px solid rgba(200,168,75,0.3)', borderRadius:'6px', color:'#e8eaf0', fontSize:'15px', padding:'10px 12px', boxSizing:'border-box'}} />
+          {daysLeft && daysLeft > 0 && (
+            <div style={{marginTop:'12px', textAlign:'center', padding:'14px', background:'rgba(200,168,75,0.06)', borderRadius:'8px', border:'1px solid rgba(200,168,75,0.2)'}}>
+              <div style={{fontSize:'36px', fontWeight:'900', color:'#c8a84b', fontFamily:"'Arial Black',Arial,sans-serif", lineHeight:1}}>{daysLeft}</div>
+              <div style={{fontSize:'12px', color:'#8899aa', marginTop:'4px'}}>days until your exam</div>
+              <div style={{fontSize:'12px', color:'#7a8a9a', marginTop:'8px', lineHeight:'1.6'}}>
+                {daysLeft <= 14 ? '⚠️ Final stretch — run full exam simulations now.' :
+                 daysLeft <= 30 ? '📊 One month out — focus on your weak modules.' :
+                 daysLeft <= 60 ? '📚 Good runway — build your base now while you have time.' :
+                 '✅ Plenty of time — steady daily study beats cramming every time.'}
+              </div>
+            </div>
+          )}
+        </div>
+        <div style={{...s.card, background:'rgba(200,168,75,0.04)', borderColor:'rgba(200,168,75,0.2)'}}>
+          <div style={{fontSize:'12px', fontWeight:'700', color:'#c8a84b', marginBottom:'8px'}}>🔓 Upgrade for the full Study Planner</div>
+          <div style={{fontSize:'12px', color:'#8899aa', lineHeight:'1.7', marginBottom:'16px'}}>
+            Standard and Pro unlock a custom week-by-week schedule built around your weak modules, your exam date, and how much time you have each day.
+          </div>
+          <button onClick={() => onNavigate && onNavigate('landing')}
+            style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'13px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'12px 20px', cursor:'pointer', width:'100%'}}>
+            View Plans →
+          </button>
+        </div>
       </div>
     </div>
   );

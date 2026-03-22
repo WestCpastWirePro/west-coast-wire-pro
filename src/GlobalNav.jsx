@@ -97,8 +97,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           ]}/>
           <GnDropdown label="Company" onNavigate={nav} items={[
             {label:'About', page:'about'},
-            {label:'Reviews', page:'testimonials'},
-            {label:'FAQ', page:'faq'},
+                        {label:'FAQ', page:'faq'},
             {label:'Contact & Support', page:'contact'},
           ]}/>
           {onLaunchApp && (
@@ -153,7 +152,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
           ]} onNav={nav}/>
           <MobileDivider/>
           <MobileSection title="🔧 Company" items={[
-            ['About','about'],['Reviews & Testimonials','testimonials'],
+            ['About','about'],
             ['FAQ','faq'],['Contact & Support','contact'],
           ]} onNav={nav}/>
           <div style={{height:'16px'}}/>

@@ -25,7 +25,6 @@ import NECReferencePage     from './NECReferencePage.jsx'
 import CalculationsPage     from './CalculationsPage.jsx'
 import StudyPlannerPage     from './StudyPlannerPage.jsx'
 import FAQPage              from './FAQPage.jsx'
-import TestimonialsPage     from './TestimonialsPage.jsx'
 import MissedQuestionsPage  from './MissedQuestionsPage.jsx'
 import AdminGrantPage       from './AdminGrantPage.jsx'
 import BlogPage             from './BlogPage.jsx'
@@ -62,7 +61,6 @@ const ROUTES = {
   '/top-25': 'top-25',               '/top25': 'top-25',
   '/mastery': 'mastery',             '/table-mastery': 'mastery',  '/table-games': 'mastery',
   '/faq': 'faq',                     '/faqs': 'faq',               '/questions': 'faq',
-  '/testimonials': 'testimonials',   '/pass-stories': 'testimonials','/reviews': 'testimonials',
 }
 
 const PAGE_PATHS = {
@@ -86,7 +84,6 @@ const PAGE_PATHS = {
   'top-25': '/top-25',
   mastery: '/mastery',
   faq: '/faq',
-  testimonials: '/testimonials',
   blog: '/blog',
   'code-sprint': '/code-sprint',
 }
@@ -102,7 +99,6 @@ const PAGE_META = {
   'exam-day':        { title: 'Exam Day Guide — What to Expect at Your PSI Test Center | West Coast Wire Pro', desc: 'What to bring, what to expect, how the PSI testing center works, and last-minute tips from someone who has been there. The CA journeyman exam day guide.' },
   'contractor-vs-electrician': { title: 'C-10 Contractor vs. Journeyman Electrician — What\'s the Difference? | West Coast Wire Pro', desc: 'Individual electrician certification vs. contractor license — what each requires, what work each authorizes, and which path is right for you in California.' },
   glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms and electrical concepts — built for journeyman exam prep.' },
-  testimonials:      { title: 'Pass Stories — Electricians Who Passed with West Coast Wire Pro', desc: 'Real stories from California electricians who used West Coast Wire Pro to pass the journeyman exam. See how they studied and what finally made it click.' },
   diagnostic:        { title: 'Readiness Diagnostic — Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
   'code-sprint':     { title: 'Code Sprint — NEC Article Navigator Game | West Coast Wire Pro', desc: 'Race the clock to find any NEC article. Builds the spatial memory you need to navigate the code book fast on the California Journeyman exam.' },
   blog:              { title: 'Blog — Industry News & Study Tips for California Electricians | West Coast Wire Pro', desc: 'Industry news, exam strategy, and career insights for California electricians preparing for the Journeyman license exam.' },
@@ -260,14 +256,14 @@ export default function App() {
 
   let pageContent
   if (view === '404')              pageContent = <NotFoundPage onHome={goHome} onNavigate={navigate} />
-  else if (view === 'success')     pageContent = <SuccessPage onEnterApp={() => navigate('app')} />
+  else if (view === 'success')     pageContent = <SuccessPage onEnterApp={() => navigate('app')} onHome={goHome} />
   else if (view === 'privacy')     pageContent = <PrivacyPolicy onHome={goHome} onNavigate={navigate} />
   else if (view === 'terms')       pageContent = <TermsOfService onHome={goHome} onNavigate={navigate} />
   else if (view === 'refund')      pageContent = <RefundPolicy onHome={goHome} onNavigate={navigate} />
   else if (view === 'redeem')      pageContent = <RedeemPage onEnterApp={() => navigate('app')} onHome={goHome} onNavigate={navigate} />
-  else if (view === 'about')       pageContent = <AboutPage onLaunchApp={launchApp} onNavigate={navigate} />
-  else if (view === 'exam-info')   pageContent = <ExamInfoPage onLaunchApp={launchApp} onNavigate={navigate} />
-  else if (view === 'study-tips')  pageContent = <StudyTipsPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'about')       pageContent = <AboutPage onHome={goHome} onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'exam-info')   pageContent = <ExamInfoPage onHome={goHome} onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'study-tips')  pageContent = <StudyTipsPage onHome={goHome} onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'missed')      pageContent = <MissedQuestionsPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'diagnostic')  pageContent = <DiagnosticPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'simulator')   pageContent = <ExamSimulatorPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
@@ -275,23 +271,22 @@ export default function App() {
   else if (view === 'calculations') pageContent = <CalculationsPage onHome={goHome} onNavigate={navigate} />
   else if (view === 'planner')     pageContent = <StudyPlannerPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'faq')         pageContent = <FAQPage onHome={goHome} onNavigate={navigate} />
-  else if (view === 'testimonials') pageContent = <TestimonialsPage onHome={goHome} onNavigate={navigate} />
   else if (view === 'contact')     pageContent = <ContactPage onHome={goHome} onNavigate={navigate} />
   else if (view === 'glossary')    pageContent = <GlossaryPage onHome={goHome} onNavigate={navigate} />
   else if (view === 'exam-day')    pageContent = <ExamDayPage onHome={goHome} onNavigate={navigate} />
-  else if (view === 'salary')      pageContent = <SalaryPage onLaunchApp={launchApp} onNavigate={navigate} />
-  else if (view === 'contractor-vs-electrician') pageContent = <ContractorVsElectricianPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'salary')      pageContent = <SalaryPage onHome={goHome} onLaunchApp={launchApp} onNavigate={navigate} />
+  else if (view === 'contractor-vs-electrician') pageContent = <ContractorVsElectricianPage onHome={goHome} onLaunchApp={launchApp} onNavigate={navigate} />
   else if (view === 'progress')    pageContent = <ProgressDashboard onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'top-25')      pageContent = <Top25Page onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'mastery')     pageContent = <TableMasteryPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
   else if (view === 'admin-grant')  pageContent = <AdminGrantPage />
   else if (view === 'code-sprint')   pageContent = <CodeSprintPage onHome={goHome} onNavigate={navigate} access={getAccess()} />
-  else if (view === 'blog')          pageContent = <BlogPage onNavigate={navigate} />
+  else if (view === 'blog')          pageContent = <BlogPage onHome={goHome} onNavigate={navigate} />
   else if (view === 'blog-post') {
     const slug = window.location.pathname.replace('/blog/', '').replace(/^\//, '')
-    pageContent = <BlogPostPage slug={slug} onNavigate={navigate} onLaunchApp={launchApp} />
+    pageContent = <BlogPostPage slug={slug} onHome={goHome} onNavigate={navigate} onLaunchApp={launchApp} />
   }
-  else                             pageContent = <LandingPage onLaunchApp={launchApp} onNavigate={navigate} />
+  else                             pageContent = <LandingPage onHome={goHome} onLaunchApp={launchApp} onNavigate={navigate} />
 
   return (
     <>

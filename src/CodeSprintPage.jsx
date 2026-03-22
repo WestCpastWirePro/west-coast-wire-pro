@@ -4,7 +4,7 @@
 //   • Active recall under time pressure (Roediger & Karpicke 2006)
 //   • Leitner spaced repetition: wrong answers return sooner
 //   • Interleaved practice: mixed articles > blocked chapter study
-import { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 // ─── NEC 2020 Article Data ────────────────────────────────────────────────────
 // Each entry: { id, article, title, chapter, chapterName, scenario, hint, distractors }
@@ -227,6 +227,49 @@ const QUESTION_TIME = 22
 const ROUND_SIZE = 10
 
 // ─── Component ────────────────────────────────────────────────────────────────
+function ReportButton({ qid, qText }) {
+  const [state, setState] = React.useState('idle');
+  const [note, setNote]   = React.useState('');
+  const submit = async () => {
+    if (state === 'sending') return;
+    setState('sending');
+    try {
+      const res = await fetch('https://formspree.io/f/mwvrvdzj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          subject: `Question Issue Report — ID #${qid}`,
+          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz — user did not leave the session]`,
+        }),
+      });
+      setState(res.ok ? 'done' : 'error');
+    } catch { setState('error'); }
+  };
+  if (state === 'done') return (
+    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported — we'll review it. Keep going.</span>
+  );
+  if (state === 'idle') return (
+    <button onClick={() => setState('open')} style={{background:"none",border:"none",cursor:"pointer",fontSize:"11px",color:"#4a5a6a",padding:"0",display:"inline-flex",alignItems:"center",gap:"4px"}}>
+      ⚑ Report an issue with this question
+    </button>
+  );
+  return (
+    <div style={{width:"100%",marginTop:"8px"}}>
+      <div style={{fontSize:"11px",color:"#8899aa",marginBottom:"6px"}}>What's wrong? (optional)</div>
+      <textarea value={note} onChange={e=>setNote(e.target.value)}
+        placeholder="e.g. Wrong answer, incorrect citation, unclear wording..."
+        rows={2} style={{width:"100%",background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:"4px",color:"#d8e0e8",fontSize:"12px",padding:"8px",resize:"none",boxSizing:"border-box",fontFamily:"inherit"}} />
+      <div style={{display:"flex",gap:"8px",marginTop:"6px"}}>
+        <button onClick={submit} disabled={state==='sending'} style={{background:"rgba(200,168,75,0.15)",border:"1px solid rgba(200,168,75,0.3)",color:"#c8a84b",fontSize:"11px",fontWeight:"700",padding:"5px 12px",borderRadius:"4px",cursor:"pointer"}}>
+          {state==='sending' ? 'Sending…' : 'Send Report'}
+        </button>
+        <button onClick={()=>{setState('idle');setNote('');}} style={{background:"none",border:"none",color:"#4a5a6a",fontSize:"11px",cursor:"pointer",padding:"5px 0"}}>Cancel</button>
+        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed — try again</span>}
+      </div>
+    </div>
+  );
+}
+
 export default function CodeSprintPage({ onNavigate, onHome, access }) {
   const [screen, setScreen]         = useState('intro')
   const [queue, setQueue]           = useState([])
@@ -435,6 +478,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
         <div style={{...s.card, marginBottom:'28px'}}>
           <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>How to Play</div>
           {[
+            ['🎯', 'The CA exam is open book — but 4.5 hours for 110 questions means 2.5 minutes each. You cannot look up every article. This drill burns NEC chapter and article locations into memory so you can find answers fast.'],
             ['📋', 'A scenario appears — something that would show up on the exam'],
             ['⚡', 'Pick the NEC Article where you\'d find the answer'],
             ['⏱️', '22 seconds per question — answered questions stack up on the page'],
@@ -609,6 +653,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                             : `Article ${current.article} — ${current.title}`}
                         </div>
                         <div style={{color:'#8a9aaa', fontSize:'13px', lineHeight:'1.6'}}>{current.hint}</div>
+                        <div style={{marginTop:'10px', paddingTop:'8px', borderTop:'1px solid rgba(255,255,255,0.06)'}}><ReportButton qid={current.num} qText={current.scenario} /></div>
                       </div>
                     </div>
                     {ch && (

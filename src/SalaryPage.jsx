@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-export default function SalaryPage({ onLaunchApp, onNavigate }) {
+export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' && window.innerWidth < 768)
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth < 768)
@@ -13,7 +13,7 @@ export default function SalaryPage({ onLaunchApp, onNavigate }) {
         <div style={s.heroGrid} />
         <div style={s.heroInner}>
           <div style={s.breadcrumb}>
-            <button style={s.breadcrumbLink} onClick={() => onNavigate('landing')}>Home</button>
+            <button style={s.breadcrumbLink} onClick={() => onHome && onHome()}>Home</button>
             <span style={s.breadcrumbSep}>/</span>
             <span style={s.breadcrumbCurrent}>Electrician Salary</span>
           </div>

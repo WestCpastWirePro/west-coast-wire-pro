@@ -499,7 +499,7 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
       <div style={{ margin:"12px 16px 4px", background:"linear-gradient(135deg,rgba(200,168,75,0.06),rgba(200,168,75,0.02))", border:"1px solid rgba(200,168,75,0.15)", borderRadius:"10px", padding:"14px 16px" }}>
         <div style={{ fontSize:"12px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px", letterSpacing:"0.5px" }}>📖 HOW THIS WORKS</div>
         <div style={{ fontSize:"12px", color:"#8899aa", lineHeight:"1.7" }}>
-          The PSI exam gives you an <strong style={{color:"#d8e0e8"}}>unmarked codebook</strong> — no tabs, no highlights, no personal notes. These drills train you to recall critical table values from memory so you can navigate the book fast under exam pressure.
+          The CA exam is open book — PSI gives you an <strong style={{color:"#d8e0e8"}}>unmarked codebook</strong> with no tabs, highlights, or personal notes. But you have 4.5 hours for 110 questions. You cannot look everything up. These drills burn critical table values into memory so you can navigate the codebook at full speed under exam pressure — and spend your 2.5 minutes per question on thinking, not searching.
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:"8px", marginTop:"12px" }}>
           {[

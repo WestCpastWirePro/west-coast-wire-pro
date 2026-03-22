@@ -55,6 +55,49 @@ const saveLoad = (key) => { try { const v = localStorage.getItem(key); return v 
 const savePut  = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {} };
 const saveClear = (key) => { try { localStorage.removeItem(key); } catch(e) {} };
 
+function ReportButton({ qid, qText }) {
+  const [state, setState] = React.useState('idle');
+  const [note, setNote]   = React.useState('');
+  const submit = async () => {
+    if (state === 'sending') return;
+    setState('sending');
+    try {
+      const res = await fetch('https://formspree.io/f/mwvrvdzj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          subject: `Question Issue Report — ID #${qid}`,
+          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz — user did not leave the session]`,
+        }),
+      });
+      setState(res.ok ? 'done' : 'error');
+    } catch { setState('error'); }
+  };
+  if (state === 'done') return (
+    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported — we'll review it. Keep going.</span>
+  );
+  if (state === 'idle') return (
+    <button onClick={() => setState('open')} style={{background:"none",border:"none",cursor:"pointer",fontSize:"11px",color:"#4a5a6a",padding:"0",display:"inline-flex",alignItems:"center",gap:"4px"}}>
+      ⚑ Report an issue with this question
+    </button>
+  );
+  return (
+    <div style={{width:"100%",marginTop:"8px"}}>
+      <div style={{fontSize:"11px",color:"#8899aa",marginBottom:"6px"}}>What's wrong? (optional)</div>
+      <textarea value={note} onChange={e=>setNote(e.target.value)}
+        placeholder="e.g. Wrong answer, incorrect citation, unclear wording..."
+        rows={2} style={{width:"100%",background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:"4px",color:"#d8e0e8",fontSize:"12px",padding:"8px",resize:"none",boxSizing:"border-box",fontFamily:"inherit"}} />
+      <div style={{display:"flex",gap:"8px",marginTop:"6px"}}>
+        <button onClick={submit} disabled={state==='sending'} style={{background:"rgba(200,168,75,0.15)",border:"1px solid rgba(200,168,75,0.3)",color:"#c8a84b",fontSize:"11px",fontWeight:"700",padding:"5px 12px",borderRadius:"4px",cursor:"pointer"}}>
+          {state==='sending' ? 'Sending…' : 'Send Report'}
+        </button>
+        <button onClick={()=>{setState('idle');setNote('');}} style={{background:"none",border:"none",color:"#4a5a6a",fontSize:"11px",cursor:"pointer",padding:"5px 0"}}>Cancel</button>
+        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed — try again</span>}
+      </div>
+    </div>
+  );
+}
+
 export default function DiagnosticPage({ onNavigate, onHome, access }) {
   const [phase, setPhase] = useState("intro"); // intro | quiz | results
   const [deck, setDeck] = useState([]);
@@ -130,7 +173,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
             <div style={{fontSize:"40px", marginBottom:"12px"}}>🎯</div>
             <div style={{fontSize:"20px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Readiness Diagnostic</div>
             <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"16px"}}>
-              24 questions across all 12 exam modules. Takes about 10 minutes. You'll get a readiness score and a breakdown showing exactly where to focus your study time.
+              24 questions across all 11 exam modules. Takes about 10 minutes. You'll get a readiness score and a breakdown showing exactly where to focus your study time.
             </div>
           </div>
 
@@ -153,9 +196,14 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
             </div>
           )}
 
+          {access === "free" && (
+            <div style={{background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"8px", padding:"12px 14px", marginBottom:"12px", fontSize:"13px", color:"#c8a84b", lineHeight:"1.6"}}>
+              <strong>Free tier:</strong> You'll see questions from Modules 1 & 2 only. Upgrade to Standard or Pro to diagnose all 11 modules.
+            </div>
+          )}
           <div style={s.card}>
             {[
-              ["📋","24 questions","2 per module, mixed difficulty"],
+              ["📋","24 questions","2 per module across all 11 modules"],
               ["🕐","~10 minutes","No time pressure"],
               ["📊","Module breakdown","See your weak spots instantly"],
               ["📚","Study plan","Custom recommendations after"],
@@ -241,6 +289,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
               </div>
               <div style={{fontSize:"13px", color:"#aabbcc", lineHeight:"1.5"}}>{q.exp}</div>
               <div style={{marginTop:"6px", fontSize:"11px", color:"#c8a84b"}}>{q.ref}</div>
+              <div style={{marginTop:"10px", paddingTop:"8px", borderTop:"1px solid rgba(255,255,255,0.06)"}}><ReportButton qid={q.id} qText={q.q} /></div>
               <button style={{...s.btn, ...s.btnGold, width:"100%", marginTop:"14px"}} onClick={next}>
                 {idx+1 >= deck.length ? "See My Results →" : "Next →"}
               </button>

@@ -1,7 +1,7 @@
 // Top25Page.jsx — High-Priority Drill
 // 25 practice questions mapped to the most heavily weighted topics on the CA exam
 // per the PSI content outline. Pro feature.
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const TOP25 = [
   { id:178, topic:"Conductor Sizing", cat:"Wiring", diff:"Hard", q:"When more than 4 current-carrying conductors are installed in a single conduit, what adjustment factor applies per Table 310.15(C)(1)?", opts:["4-6 conductors: 70%; 7-9 conductors: 50%","4-6 conductors: 80% of ampacity; 7-9 conductors: 70%","3-5 conductors: 80%; 6-8 conductors: 60%","No derating required for 4 conductors"], ans:1, ref:"NEC 2020 Table 310.15(C)(1)", exp:"Standard derating table: 4-6 current-carrying conductors = 80%; 7-9 = 70%; 10-20 = 50%; 21-30 = 45%; 31-40 = 40%; 41+ = 35%. These factors account for mutual heating of multiple loaded conductors in the same raceway." },
@@ -43,6 +43,49 @@ const TOPIC_INFO = {
   'Clearances':          { color:'#2980b9', icon:'📏', psi:'~3 questions on exam', ref:'Art. 110' },
   'Load Calculations':   { color:'#d35400', icon:'🔢', psi:'~3 questions on exam', ref:'Art. 220' },
   'Voltage Drop':        { color:'#7f8c8d', icon:'📉', psi:'appears in calculations', ref:'Ch. 9 Table 9' },
+}
+
+function ReportButton({ qid, qText }) {
+  const [state, setState] = React.useState('idle');
+  const [note, setNote]   = React.useState('');
+  const submit = async () => {
+    if (state === 'sending') return;
+    setState('sending');
+    try {
+      const res = await fetch('https://formspree.io/f/mwvrvdzj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          subject: `Question Issue Report — ID #${qid}`,
+          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz — user did not leave the session]`,
+        }),
+      });
+      setState(res.ok ? 'done' : 'error');
+    } catch { setState('error'); }
+  };
+  if (state === 'done') return (
+    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported — we'll review it. Keep going.</span>
+  );
+  if (state === 'idle') return (
+    <button onClick={() => setState('open')} style={{background:"none",border:"none",cursor:"pointer",fontSize:"11px",color:"#4a5a6a",padding:"0",display:"inline-flex",alignItems:"center",gap:"4px"}}>
+      ⚑ Report an issue with this question
+    </button>
+  );
+  return (
+    <div style={{width:"100%",marginTop:"8px"}}>
+      <div style={{fontSize:"11px",color:"#8899aa",marginBottom:"6px"}}>What's wrong? (optional)</div>
+      <textarea value={note} onChange={e=>setNote(e.target.value)}
+        placeholder="e.g. Wrong answer, incorrect citation, unclear wording..."
+        rows={2} style={{width:"100%",background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.1)",borderRadius:"4px",color:"#d8e0e8",fontSize:"12px",padding:"8px",resize:"none",boxSizing:"border-box",fontFamily:"inherit"}} />
+      <div style={{display:"flex",gap:"8px",marginTop:"6px"}}>
+        <button onClick={submit} disabled={state==='sending'} style={{background:"rgba(200,168,75,0.15)",border:"1px solid rgba(200,168,75,0.3)",color:"#c8a84b",fontSize:"11px",fontWeight:"700",padding:"5px 12px",borderRadius:"4px",cursor:"pointer"}}>
+          {state==='sending' ? 'Sending…' : 'Send Report'}
+        </button>
+        <button onClick={()=>{setState('idle');setNote('');}} style={{background:"none",border:"none",color:"#4a5a6a",fontSize:"11px",cursor:"pointer",padding:"5px 0"}}>Cancel</button>
+        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed — try again</span>}
+      </div>
+    </div>
+  );
 }
 
 export default function Top25Page({ onHome, onNavigate, access }) {
@@ -120,7 +163,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
             Top <span style={{color:'#c8a84b'}}>25</span> Exam Questions
           </h1>
           <p style={{color:'#7a8a9a', fontSize:'14px', lineHeight:'1.7', maxWidth:'480px', margin:'0 auto'}}>
-            25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline. These are original practice questions — not real exam questions. Work through all 25 before your exam date.
+            The CA exam is open book — but 4.5 hours for 110 questions leaves no room to look everything up. These 25 drills target the NEC topics PSI weights most heavily, so you go in knowing the chapters, citations, and rules cold. Original practice questions — the actual PSI exam questions are proprietary and owned by the DLSE. No prep site has them.
           </p>
         </div>
 
@@ -222,6 +265,7 @@ export default function Top25Page({ onHome, onNavigate, access }) {
               </div>
               <div style={{color:'#8a9aaa', fontSize:'12px', lineHeight:'1.7', marginBottom:'8px'}}>{q.exp}</div>
               <div style={{fontSize:'11px', color:'#c8a84b', fontFamily:"'Courier New',monospace"}}>📎 {q.ref}</div>
+              <div style={{marginTop:'10px', paddingTop:'8px', borderTop:'1px solid rgba(255,255,255,0.06)'}}><ReportButton qid={q.id} qText={q.q} /></div>
             </div>
             <button style={{...s.btn, width:'100%', padding:'15px'}} onClick={next}>
               {idx + 1 >= TOP25.length ? '📋 See Full Review →' : `Next Question (${TOP25.length - idx - 1} left) →`}

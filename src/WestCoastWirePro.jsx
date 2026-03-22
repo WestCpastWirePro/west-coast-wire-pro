@@ -507,17 +507,18 @@ export { ALL_QUESTIONS, MODULES };
 // ── Report Issue Button ────────────────────────────────────────────────────
 // Posts silently to Formspree — no email address exposed client-side
 function ReportButton({ qid, qText }) {
-  const [state, setState] = React.useState('idle'); // idle | sending | done | error
+  const [state, setState] = React.useState('idle'); // idle | open | sending | done | error
+  const [note, setNote]   = React.useState('');
   const submit = async () => {
-    if (state !== 'idle') return;
+    if (state === 'sending') return;
     setState('sending');
     try {
       const res = await fetch('https://formspree.io/f/mwvrvdzj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          subject: `Question Issue #${qid}`,
-          message: `Question ID: ${qid}\nQuestion: ${qText}\n\n[Auto-reported from quiz]`,
+          subject: `Question Issue Report — ID #${qid}`,
+          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz — user did not leave the session]`,
         }),
       });
       setState(res.ok ? 'done' : 'error');
@@ -525,15 +526,42 @@ function ReportButton({ qid, qText }) {
       setState('error');
     }
   };
-  if (state === 'done')  return <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported — thanks</span>;
-  if (state === 'error') return <span style={{fontSize:"11px", color:"#e74c3c"}}>Couldn't send. Try again.</span>;
-  return (
-    <button onClick={submit} disabled={state === 'sending'}
+  if (state === 'done') return (
+    <span style={{fontSize:"11px", color:"#27ae60", display:"flex", alignItems:"center", gap:"4px"}}>
+      ✓ Reported — we'll review it. Keep going.
+    </span>
+  );
+  if (state === 'idle') return (
+    <button onClick={() => setState('open')}
       style={{background:"none", border:"none", cursor:"pointer", fontSize:"11px", color:"#4a5a6a", padding:"0", display:"inline-flex", alignItems:"center", gap:"4px"}}>
-      {state === 'sending' ? '…' : '⚑'} {state === 'sending' ? 'Sending…' : 'Report an issue with this question'}
+      ⚑ Report an issue with this question
     </button>
   );
+  return (
+    <div style={{width:"100%"}}>
+      <div style={{fontSize:"11px", color:"#8899aa", marginBottom:"6px"}}>What's wrong? (optional — helps us fix it faster)</div>
+      <textarea
+        value={note}
+        onChange={e => setNote(e.target.value)}
+        placeholder="e.g. Wrong answer, incorrect citation, unclear wording..."
+        rows={2}
+        style={{width:"100%", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:"4px", color:"#d8e0e8", fontSize:"12px", padding:"8px", resize:"none", boxSizing:"border-box", fontFamily:"inherit"}}
+      />
+      <div style={{display:"flex", gap:"8px", marginTop:"6px"}}>
+        <button onClick={submit} disabled={state === 'sending'}
+          style={{background:"rgba(200,168,75,0.15)", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"5px 12px", borderRadius:"4px", cursor:"pointer"}}>
+          {state === 'sending' ? 'Sending…' : 'Send Report'}
+        </button>
+        <button onClick={() => { setState('idle'); setNote(''); }}
+          style={{background:"none", border:"none", color:"#4a5a6a", fontSize:"11px", cursor:"pointer", padding:"5px 0"}}>
+          Cancel
+        </button>
+        {state === 'error' && <span style={{fontSize:"11px", color:"#e74c3c", alignSelf:"center"}}>Failed — try again</span>}
+      </div>
+    </div>
+  );
 }
+
 
 export default function WestCoastWirePro({ onHome, onNavigate }) {
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -789,6 +817,41 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
       <div style={{padding:"16px"}}>
 
+        {/* ── EXAM COUNTDOWN ── */}
+        {daysUntilExam !== null && daysUntilExam > 0 && (
+          <div style={{background:"linear-gradient(135deg,rgba(231,76,60,0.08),rgba(231,76,60,0.04))", border:"1px solid rgba(231,76,60,0.3)", borderRadius:"10px", padding:"12px 16px", marginBottom:"16px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"12px"}}>
+            <div style={{display:"flex", alignItems:"center", gap:"10px"}}>
+              <span style={{fontSize:"20px"}}>📅</span>
+              <div>
+                <div style={{fontSize:"13px", fontWeight:"700", color:"#d8e0e8"}}>Exam in <span style={{color: daysUntilExam <= 14 ? "#e74c3c" : daysUntilExam <= 30 ? "#f39c12" : "#c8a84b"}}>{daysUntilExam} days</span></div>
+                <div style={{fontSize:"11px", color:"#7a8a9a"}}>
+                  {daysUntilExam <= 7 ? "⚠️ Final week — run full simulations daily" :
+                   daysUntilExam <= 14 ? "🎯 Two weeks out — focus on weak modules" :
+                   daysUntilExam <= 30 ? "📊 One month — drill your gaps" :
+                   "📚 Stay consistent — daily beats cramming"}
+                </div>
+              </div>
+            </div>
+            <button onClick={() => { window.history.pushState({}, '', '/planner'); window.location.reload(); }}
+              style={{background:"none", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"5px 10px", borderRadius:"4px", cursor:"pointer", whiteSpace:"nowrap", flexShrink:0}}>
+              Study Plan →
+            </button>
+          </div>
+        )}
+        {daysUntilExam !== null && daysUntilExam <= 0 && (
+          <div style={{background:"rgba(39,174,96,0.08)", border:"1px solid rgba(39,174,96,0.3)", borderRadius:"10px", padding:"12px 16px", marginBottom:"16px", display:"flex", alignItems:"center", gap:"10px"}}>
+            <span style={{fontSize:"20px"}}>🎉</span>
+            <div style={{fontSize:"13px", color:"#2ecc71", fontWeight:"700"}}>Exam day — good luck! You've got this.</div>
+          </div>
+        )}
+        {!examDate && (
+          <button onClick={() => { window.history.pushState({}, '', '/planner'); window.location.reload(); }}
+            style={{width:"100%", background:"rgba(200,168,75,0.04)", border:"1px dashed rgba(200,168,75,0.2)", borderRadius:"10px", padding:"10px 16px", marginBottom:"16px", display:"flex", alignItems:"center", gap:"10px", cursor:"pointer", color:"#5a6a7a", fontSize:"12px", textAlign:"left"}}>
+            <span style={{fontSize:"16px"}}>📅</span>
+            <span>Set your exam date to see your countdown →</span>
+          </button>
+        )}
+
         {/* ── RESUME BANNER (all tiers) ── */}
         {savedSession && (
           <div style={{background:"linear-gradient(135deg,rgba(200,168,75,0.12),rgba(200,168,75,0.06))", border:"1px solid rgba(200,168,75,0.4)", borderRadius:"10px", padding:"16px", marginBottom:"16px"}}>
@@ -986,7 +1049,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
         <div style={{textAlign:"center", padding:"24px 16px 16px"}}>
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
-          <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock All 512 Questions</div>
+          <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock Full Access</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
             You've got Modules 1 &amp; 2 free. Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, High-Priority Drill &amp; more.
           </div>
@@ -1412,7 +1475,7 @@ function EmailCaptureModal({ onDismiss }) {
 
         {status === 'done' ? (
           <div style={{color:'#27ae60', fontSize:'15px', padding:'20px 0'}}>
-            ✅ You're in! Study tip coming soon.
+            ✅ You're in! Your first study tip is on its way.
           </div>
         ) : (
           <>

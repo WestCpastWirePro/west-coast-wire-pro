@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate }) {
+export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNavigate }) {
   const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
   React.useEffect(() => {
     const h = () => setIsMobile(window.innerWidth < 768)
@@ -13,7 +13,7 @@ export default function ContractorVsElectricianPage({ onLaunchApp, onNavigate })
         <div style={s.heroGrid} />
         <div style={s.heroInner}>
           <div style={s.breadcrumb}>
-            <button style={s.breadcrumbLink} onClick={() => onNavigate('landing')}>Home</button>
+            <button style={s.breadcrumbLink} onClick={() => onHome && onHome()}>Home</button>
             <span style={s.breadcrumbSep}>/</span>
             <span style={s.breadcrumbCurrent}>Electrician vs. Contractor</span>
           </div>

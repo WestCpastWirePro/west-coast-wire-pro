@@ -70,7 +70,7 @@ const FAQS = [
       },
       {
         q: "Do I need to memorize the NEC?",
-        a: "Yes — the California General Electrician exam is open book. PSI provides an unmarked NEC codebook at the testing center. You cannot bring your own and no personal tabs or notes are permitted. Time is still the real challenge — you cannot look up every answer. Know the most-tested tables cold: 310.16, 250.66, 430.52, and conduit fill, and know the calculation formulas without having to search."
+        a: "Yes — even though the CA exam is open book, time is the real enemy. PSI provides an unmarked NEC codebook but you have 4.5 hours for 110 questions — about 2.5 minutes each. You cannot look up every answer. These drills are designed to burn NEC chapters, article citations, and key table values into memory so you can navigate the codebook at full speed. Know the most-tested tables cold: 310.16, 250.66, 430.52, and conduit fill. Know your calculation formulas without searching."
       },
       {
         q: "What modules are most heavily tested?",
@@ -92,7 +92,11 @@ const FAQS = [
 
       {
         q: "Are the questions similar to the real exam?",
-        a: "Our questions are original and written to match the format, difficulty, and NEC article distribution of the California journeyman exam. They are not actual PSI exam questions — no prep company has access to those."
+        a: "Our questions are original and built to match the format, difficulty, and NEC article distribution of the California journeyman exam. No prep company, training provider, or study site has access to the actual PSI exam questions — they are proprietary and owned exclusively by the DLSE. Every resource out there, including this one, is working from the same starting point: the NEC and the PSI content outline."
+      },
+      {
+        q: "Do I need a codebook to use this app?",
+        a: "Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2020 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you'll need on exam day, when PSI hands you an unmarked codebook and the clock starts."
       },
       {
         q: "Do I need internet to use the app?",
@@ -105,6 +109,14 @@ const FAQS = [
       {
         q: "I bought access but the app is locked. What do I do?",
         a: "After purchase, you should be redirected to a success page that unlocks the app automatically. If that didn't happen, use the 'Enter Access Code' link on the paywall screen and enter your access code from your confirmation email. Still stuck? use our contact form."
+      },
+      {
+        q: "How were the practice questions written?",
+        a: "Questions were developed using AI trained on the NEC 2020, electrical trade publications, and publicly available exam prep materials, then reviewed by a licensed California journeyman electrician against the codebook. They are original questions — not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
+      },
+      {
+        q: "If I fail the exam, can I keep using the app?",
+        a: "Yes — your access never expires. Pay once and study as long as you need. If you don't pass on the first attempt, your full question bank, progress history, and all your tools are still right here waiting. A lot of people pass on their second attempt after going back through their weak modules."
       },
       {
         q: "Is there a refund policy?",

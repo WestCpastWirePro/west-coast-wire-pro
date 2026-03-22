@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function AboutPage({ onLaunchApp, onNavigate }) {
+export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
   return (
     <div style={s.root}>
 
@@ -9,18 +9,72 @@ export default function AboutPage({ onLaunchApp, onNavigate }) {
         <div style={s.heroGrid} />
         <div style={s.heroGlow} />
         <div style={s.heroInner}>
-          <div style={s.label}>// ABOUT WEST COAST WIRE PRO</div>
+          <div style={s.label}>// THE METHOD</div>
           <h1 style={s.h1}>
-            Built by an Electrician.<br />
-            <span style={s.h1Gold}>For Electricians.</span>
+            Why This Works.<br />
+            <span style={s.h1Gold}>The Science Behind It.</span>
           </h1>
           <p style={s.heroSub}>
-            14 years in the trade. 4 years teaching at a trade school.
-            No head start, no connections, no mentors — just the work.
-            And a decision to be the resource that didn't exist.
+            West Coast Wire Pro is built around how memory actually works under pressure — active recall, spaced repetition, and exam simulation. The same methods top-stakes test-takers in medicine and law have used for decades, applied to the NEC.
           </p>
         </div>
       </header>
+
+
+      {/* SCIENCE */}
+      <section style={s.section}>
+        <div style={s.prose}>
+
+          <h2 style={s.h2}>The Science Behind How This Works</h2>
+          <p style={s.p}>
+            West Coast Wire Pro is built around what memory research actually says about how people retain information under pressure — not how it feels like you should study.
+          </p>
+
+          <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Active Recall Beats Passive Review</h3>
+          <p style={s.p}>
+            Reading your notes feels productive. Re-reading a chapter feels like studying. But memory research — going back to Roediger and Karpicke's 2006 landmark study and replicated dozens of times since — shows that <strong style={{color:'#d8e0e8'}}>the act of retrieving information is what builds durable memory</strong>, not the act of reviewing it. Every time you force your brain to recall an answer before seeing it, you strengthen the neural pathway. Every time you just re-read, you don't.
+          </p>
+          <p style={s.p}>
+            This is why every feature in West Coast Wire Pro is built around answering, not reading. You don't browse explanations — you attempt a question, commit to an answer, then see whether you were right and why. That sequence — attempt, feedback, explanation — is the core of spaced retrieval practice, the most evidence-backed study method in cognitive psychology.
+          </p>
+
+          <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Spaced Repetition and the Missed Questions Deck</h3>
+          <p style={s.p}>
+            Your brain forgets things on a predictable curve — steeply at first, then more gradually over time. Reviewing material right before you forget it interrupts that curve and resets the clock. This is spaced repetition, and it's why the Missed Questions deck is one of the most powerful tools in the app. It automatically resurfaces the exact questions you got wrong, targeting the specific gaps in your knowledge rather than making you re-drill material you already know.
+          </p>
+
+          <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Spatial Memory and the Open-Book Exam</h3>
+          <p style={s.p}>
+            The CA Journeyman exam is open book — but the book only helps you if you know where to look. Research on spatial memory shows that people who regularly navigate a physical reference (like a codebook) build a mental map of where information lives. They stop "reading" and start "navigating." This is why the <strong style={{color:'#d8e0e8'}}>Code Sprint drill</strong> exists: it trains your brain to associate topics with NEC chapter and article locations under time pressure, building exactly the kind of book-navigation speed the exam rewards.
+          </p>
+
+          <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Desirable Difficulty</h3>
+          <p style={s.p}>
+            Cognitive psychologist Robert Bjork introduced the concept of "desirable difficulties" — the counterintuitive finding that <strong style={{color:'#d8e0e8'}}>studying that feels harder in the moment produces stronger long-term retention</strong>. Timed questions feel harder than untimed ones. Mixed-module drilling feels harder than blocking one topic at a time. Both of these are features, not bugs. The discomfort of not immediately knowing the answer is the signal that learning is actually happening.
+          </p>
+          <p style={s.p}>
+            This is why the app offers timed mode, difficulty filtering, and mixed-module drilling — not to make studying more stressful, but because the research is clear: harder retrieval practice produces better exam performance.
+          </p>
+
+          <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Test-Taking Simulation</h3>
+          <p style={s.p}>
+            One of the most consistent findings in learning science is that <strong style={{color:'#d8e0e8'}}>practicing under conditions that match the test improves performance on the test</strong>. This is called encoding specificity. The CA Journeyman exam is timed, open book, and computer-based. The Exam Simulator replicates all three: 110 questions, a running 4.5-hour clock, no explanations during the exam (just like the real thing), and your full NEC sitting beside you. Doing at least two full simulations before your exam date isn't just helpful — it's one of the highest-ROI things you can do in the final two weeks.
+          </p>
+
+          <div style={{background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'8px', padding:'20px 20px', marginTop:'24px', marginBottom:'8px'}}>
+            <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b', marginBottom:'12px', textTransform:'uppercase', letterSpacing:'0.5px'}}>The Bottom Line</div>
+            <p style={{...s.p, margin:0, lineHeight:'1.8'}}>
+              Most study tools are built around content delivery. West Coast Wire Pro is built around <strong style={{color:'#d8e0e8'}}>retrieval practice, spaced repetition, desirable difficulty, and exam simulation</strong> — the four interventions with the strongest evidence base in learning science. Not because it sounds good, but because these are the methods that produce the highest pass rates, and passing this exam is the only outcome that matters.
+            </p>
+          </div>
+
+          <div style={{height:'1px', background:'rgba(200,168,75,0.15)', margin:'40px 0'}} />
+          <p style={{...s.p, color:'#c8a84b', fontWeight:'700', fontSize:'15px'}}>
+            Who built it — and why.
+          </p>
+
+        </div>
+      </section>
 
       {/* ORIGIN STORY */}
       <section style={s.section}>
@@ -238,12 +292,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>🔧 Company</div>
-            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
+            {[['About','about'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{padding:'16px 20px'}}>
             <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px',width:'100%'}} onClick={()=>{onLaunchApp();setMenuOpen(false)}}>⚡ Start Studying Free</button>

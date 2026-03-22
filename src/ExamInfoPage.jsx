@@ -1,5 +1,5 @@
 import React from 'react'
-export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
+export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
   const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
   React.useEffect(() => {
     const h = () => setIsMobile(window.innerWidth < 768)
@@ -268,7 +268,8 @@ export default function ExamInfoPage({ onLaunchApp, onNavigate }) {
               <Ul items={[
                 'Start with a diagnostic — take a timed practice set across all modules and find out where your gaps are',
                 'Study by module — go deep on one topic area before moving to the next',
-                'Don\'t just memorize answers — read the explanation for every question you get wrong (and right)',
+                'The actual PSI exam questions are proprietary and owned by the DLSE — no prep company has access to them. Every study resource builds original questions from the same NEC content and PSI outline. Focus on understanding the NEC, not hunting for \'real\' test questions that don\'t exist outside PSI\'s vaults.',
+                'Don\'t just memorize answers — read the explanation to understand the NEC rule, not just the right letter',
                 'Practice calculations until they\'re automatic — motor sizing, conduit fill, load calculations',
                 'Simulate exam conditions — 110 questions, 4.5 hours, open book just like the real exam',
                 'In the final week before your exam, focus on your weakest modules only',
@@ -445,12 +446,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>🔧 Company</div>
-            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
+            {[['About','about'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{padding:'16px 20px'}}>
             <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px',width:'100%'}} onClick={()=>{onLaunchApp();setMenuOpen(false)}}>⚡ Start Studying Free</button>

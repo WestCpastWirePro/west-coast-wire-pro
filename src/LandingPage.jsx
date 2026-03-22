@@ -56,9 +56,9 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={s.heroGlow} />
         <div style={s.heroGrid} />
         <div style={s.heroContent}>
-          <div style={{background:'rgba(200,168,75,0.08)',border:'1px solid rgba(200,168,75,0.3)',borderRadius:'4px',padding:'10px 16px',marginBottom:'20px',display:'inline-block'}}>
-            <span style={{color:'#c8a84b',fontSize:'12px',fontWeight:'700',letterSpacing:'1px',textTransform:'uppercase',fontFamily:"'Courier New',monospace"}}>⚡ BlackRock just committed $100M to electrician training — demand has never been higher</span>
-          </div>
+          <button onClick={() => onNavigate && onNavigate('blog-post:blackrock-electrician-shortage')} style={{background:'rgba(200,168,75,0.08)',border:'1px solid rgba(200,168,75,0.3)',borderRadius:'4px',padding:'10px 16px',marginBottom:'20px',display:'inline-block',cursor:'pointer',transition:'background 0.2s'}} onMouseEnter={e=>e.currentTarget.style.background='rgba(200,168,75,0.15)'} onMouseLeave={e=>e.currentTarget.style.background='rgba(200,168,75,0.08)'}>
+            <span style={{color:'#c8a84b',fontSize:'12px',fontWeight:'700',letterSpacing:'1px',textTransform:'uppercase',fontFamily:"'Courier New',monospace"}}>⚡ BlackRock just committed $100M to electrician training — demand has never been higher →</span>
+          </button>
           <div style={s.heroBadge}>
             <span style={s.badgeDot} />
             California Exam Prep · 2020 NEC · Updated 2025
@@ -69,7 +69,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <div style={s.h1Line3}>Get Licensed.</div>
           </h1>
           <p style={s.heroSub}>
-            The world's largest asset manager says America is running out of electricians. <strong style={{color:'#d8e0e8'}}>Your California Journeyman license is your ticket in.</strong> 512 exam-style practice questions, every answer NEC referenced.
+            The world's largest asset manager says America is running out of electricians. <strong style={{color:'#d8e0e8'}}>Your California Journeyman license is your ticket in.</strong> 462 original practice questions, every answer NEC referenced.
           </p>
           <div style={s.heroCtas}>
             <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
@@ -99,16 +99,27 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         </div>
       </header>
 
+            {/* TRUST SIGNAL */}
+      <div style={{background:'rgba(200,168,75,0.04)', borderTop:'1px solid rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'center', gap:'16px', flexWrap:'wrap'}}>
+        <span style={{fontSize:'22px'}}>⚡</span>
+        <p style={{margin:0, fontSize:'13px', color:'#8899aa', lineHeight:'1.6', textAlign:'center', maxWidth:'620px'}}>
+          Questions developed from NEC 2020 content and electrical trade resources using AI, reviewed by a <strong style={{color:'#d8e0e8'}}>licensed California journeyman electrician</strong> against the codebook. <button onClick={() => onNavigate && onNavigate('about')} style={{background:'none',border:'none',color:'#c8a84b',cursor:'pointer',fontSize:'13px',padding:0,textDecoration:'underline'}}>Learn more →</button>
+        </p>
+      </div>
+
       {/* HOW IT WORKS */}
       <section id="how-it-works" style={s.sectionDark2}>
         <SectionLabel>// HOW IT WORKS</SectionLabel>
-        <SectionTitle>Study Smarter.<br/>Pass Faster.</SectionTitle>
+        <SectionTitle>Built on how<br/>memory actually works.</SectionTitle>
+        <p style={{color:'#7a8a9a', maxWidth:'520px', margin:'0 auto 40px', fontSize:'14px', lineHeight:'1.7', textAlign:'center'}}>
+          Built on active recall and spaced repetition — the two study methods with the strongest evidence base in learning science.
+        </p>
         <div style={s.steps}>
           {[
-            ['01','🎯','Pick Your Focus','Filter by module, difficulty, or mix all 11 modules for a full simulation.'],
-            ['02','⚡','Answer Questions','Timed or untimed. Four answer choices per question — just like the real exam.'],
-            ['03','📖','Learn the Why','Every answer shows a full explanation AND the exact NEC article so you understand, not just memorize.'],
-            ['04','📊','Find Weak Spots','Results broken down by module show exactly where to focus before exam day.'],
+            ['01','🎯','Answer First, Always','Every session starts with a question, not a reading. Forcing your brain to retrieve an answer — even wrong — builds stronger memory than re-reading ever does. This is active recall, the most evidence-backed study method in cognitive psychology.'],
+            ['02','⚡','Timed Like the Real Exam','4.5 hours for 110 questions is 2.5 minutes each. Timed mode trains you to work at exam pace, not study pace. Research shows that practicing under test conditions — same time pressure, same format — directly improves test performance.'],
+            ['03','📖','Every Answer Cites the Code','After each question you see the exact NEC article, the reasoning, and what the code actually says. You learn where the rule lives, not just what it is. On an open-book exam, that's the difference between confirming an answer in 20 seconds and spending 3 minutes searching.'],
+            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve — reviewing right before you forget resets it. This is spaced repetition, and it's why drilling your missed questions in the final week is the highest-ROI study move you can make.'],
           ].map(([num, icon, title, text]) => (
             <div key={num} style={s.step}>
               <div style={s.stepNum}>{num}</div>
@@ -123,7 +134,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       {/* MODULES */}
       <section id="modules" style={s.sectionDark}>
         <SectionLabel>// EXAM COVERAGE</SectionLabel>
-        <SectionTitle>All 12 Modules.<br/>Every Topic.</SectionTitle>
+        <SectionTitle>All 11 Modules.<br/>Every Topic.</SectionTitle>
         <div style={s.modulesGrid}>
           {MODULES_DATA.map(m => (
             <div key={m.id} style={{...s.moduleCard, '--accent': m.color}}>
@@ -160,7 +171,8 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
-              {text:'Modules 3–12 (386 questions)', locked:true},
+              {text:'Set your exam date & see your countdown', locked:false},
+              {text:'Modules 3–11 (386 questions)', locked:true},
               {text:'Table Mastery — 8 more NEC tables', locked:true},
               {text:'Progress saved & missed question deck', locked:true},
             ]}
@@ -202,7 +214,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Missed Questions review deck', locked:false},
               {text:'High-Priority Drill — 25 questions on the most-tested topics', locked:false},
               {text:'Study Planner + Progress Dashboard', locked:false},
-              {text:'Priority email support', locked:false},
               {text:'Future question updates included', locked:false},
             ]}
             btnLabel="Get Pro Access"
@@ -213,30 +224,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         </div>
       </section>
 
-      {/* PROOF */}
-      <section style={s.sectionDark}>
-        <SectionLabel>// BY THE NUMBERS</SectionLabel>
-        <SectionTitle>Built for the Real Exam.</SectionTitle>
-        <div style={s.proofBar}>
-          {[['462','Practice Questions'],['100%','NEC Referenced'],['2020','NEC Edition'],['3','Difficulty Tiers'],['70%','Exam Pass Threshold']].map(([n,l]) => (
-            <div key={l} style={{textAlign:'center'}}>
-              <div style={s.proofNum}>{n}</div>
-              <div style={s.proofLabel}>{l}</div>
-            </div>
-          ))}
-        </div>
-        <div style={s.testimonials}>
-          <div style={{textAlign:'center', padding:'8px 0'}}>
-            <div style={{fontSize:'14px', color:'#8899aa', lineHeight:'1.7', maxWidth:'480px', margin:'0 auto 16px'}}>
-              West Coast Wire Pro launched recently. Our first students are working toward their California Journeyman license now. As they pass, their stories will appear here.
-            </div>
-            <div style={{fontSize:'13px', color:'#c8a84b', fontWeight:'700', marginBottom:'12px'}}>
-              Did you pass using West Coast Wire Pro?
-            </div>
-          </div>
-        </div>
-      </section>
-
+      
       {/* FAQ */}
       <section id="faq" style={s.sectionDark2}>
         <SectionLabel>// FAQ</SectionLabel>
@@ -244,9 +232,9 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={s.faqGrid}>
           {[
             ['Which exam does this prepare me for?','The California General Electrician (Journeyman) certification exam administered by PSI Services on behalf of DLSE/DIR. Questions based on 2020 NEC and California codes (Title 8 Cal/OSHA and Title 24 CEC).'],
-            ['Is this the actual exam content?','No — these are original practice questions written by working electricians to cover the same topics and skills the real exam tests. The actual exam questions are proprietary.'],
+            ['Is this the actual exam content?','No — these are original practice questions developed from NEC 2020 content and electrical trade resources using AI, then reviewed by a licensed California journeyman electrician. The actual PSI exam questions are proprietary, owned by the DLSE, and not available to any prep company or training site anywhere.'],
             ['What NEC edition is used?','The 2020 NEC (NFPA 70), which is the current adopted edition in California. Module 11 specifically covers California amendments (CEC), Title 8 (Cal/OSHA), and Title 24 requirements.'],
-            ['Do I need a code book?','No. Every explanation includes the relevant NEC article or section, so you know exactly where to look if you want to go deeper. The app is self-contained.'],
+            ['Do I need a codebook to use this app?','Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2020 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you will need on exam day, when PSI hands you an unmarked codebook and the clock starts.'],
             ['Is this a subscription?','No. One-time payment, yours forever. No recurring charges, no expiration dates. Study at your own pace until you pass.'],
             ['Does it work on my phone?','Yes. West Coast Wire Pro is fully mobile-optimized. Works on phone, tablet, and laptop.'],
           ].map(([q, a]) => (
@@ -288,13 +276,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={{display:'flex', flexDirection:'column', gap:'7px'}}>
             <div style={{fontSize:'10px', color:'#c8a84b', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase', marginBottom:'2px'}}>Articles</div>
-            {[['Exam Guide','exam-info'],['How to Pass','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes','nec-2020-changes'],['Electrician Salary','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p]) => (
+            {[['Exam Guide','exam-info'],['How to Pass','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p]) => (
               <button key={p} style={{...s.footerLink, background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0}} onClick={() => onNavigate && onNavigate(p)}>{l}</button>
             ))}
           </div>
           <div style={{display:'flex', flexDirection:'column', gap:'7px'}}>
             <div style={{fontSize:'10px', color:'#c8a84b', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase', marginBottom:'2px'}}>Company</div>
-            {[['About','about'],['Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p]) => (
+            {[['About','about'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p]) => (
               <button key={p} style={{...s.footerLink, background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0}} onClick={() => onNavigate && onNavigate(p)}>{l}</button>
             ))}
             <div style={{fontSize:'10px', color:'#4a5a6a', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase', margin:'8px 0 2px'}}>Legal</div>
@@ -471,8 +459,6 @@ const styles = {
   proofBar: {display:'flex', alignItems:'center', justifyContent:'center', flexWrap:'wrap', gap:'44px', padding:'44px', background:'#111820', border:'1px solid rgba(200,168,75,0.1)', borderRadius:'4px', marginTop:'50px'},
   proofNum: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'44px', fontWeight:'900', color:'#c8a84b', textAlign:'center'},
   proofLabel: {fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'4px', textAlign:'center'},
-  testimonials: {display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(260px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', marginTop:'2px'},
-  testimonial: {background:'#0a1016', padding:'28px'},
   tQuote: {fontSize:'14px', lineHeight:'1.7', color:'#d8e0e8', marginBottom:'16px', fontStyle:'italic'},
   tName: {fontFamily:"'Courier New', monospace", fontSize:'11px', color:'#c8a84b', letterSpacing:'1px'},
   tRole: {fontSize:'11px', color:'#7a8a9a', marginTop:'3px'},

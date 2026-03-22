@@ -152,15 +152,15 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
 
             <div style={s.resultsMsg}>
               {pct === 100
-                ? "Perfect score — you're ready for the real thing. Unlock all 512 questions."
+                ? "Perfect score — you're ready for the real thing. Unlock all 462 questions."
                 : pct >= 60
-                ? "Solid start. The full app covers 512 questions across all 12 modules with detailed code explanations."
+                ? "Solid start. The full app covers 462 questions across all 11 modules with detailed code explanations."
                 : "These questions get harder. The full app builds you up module by module with explanations that teach, not just reveal answers."}
             </div>
 
             <div style={s.resultsCtaRow}>
               <button style={s.btnGold} onClick={onLaunchApp}>
-                ⚡ Unlock All 512 Questions
+                ⚡ Unlock All 462 Questions
               </button>
               <button style={s.btnGhost} onClick={restart}>
                 Retry Demo
@@ -267,7 +267,7 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
 
         <div style={s.footerNudge}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
-            This is a sample — the full app has 512 questions across 12 modules.
+            This is a sample — the full app has 462 questions across 11 modules.
           </span>
           <button style={s.nudgeBtn} onClick={onLaunchApp}>Unlock Free Module 1 →</button>
         </div>

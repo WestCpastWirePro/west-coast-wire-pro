@@ -1,5 +1,5 @@
 import React from 'react'
-export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
+export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
   const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
   React.useEffect(() => {
     const h = () => setIsMobile(window.innerWidth < 768)
@@ -13,7 +13,7 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
         <div style={s.heroGrid} />
         <div style={s.heroInner}>
           <div style={s.breadcrumb}>
-            <button style={s.breadcrumbLink} onClick={() => onNavigate('landing')}>Home</button>
+            <button style={s.breadcrumbLink} onClick={() => onHome && onHome()}>Home</button>
             <span style={s.breadcrumbSep}>/</span>
             <button style={s.breadcrumbLink} onClick={() => onNavigate('landing')}>Articles</button>
             <span style={s.breadcrumbSep}>/</span>
@@ -287,7 +287,9 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
 
             <Section id="openbooktactics" title="Open Book Exam Tactics That Actually Save Time">
               <P>
-                The exam is open book — but that only helps you if you can find answers
+                The CA exam is open book — PSI provides an unmarked codebook, no tabs, no highlights, no personal notes. But 4.5 hours for 110 questions is about 2.5 minutes per question. Time is the real test. The goal of every drill on this site is to burn NEC chapters, article citations, and table values into memory so you can navigate that codebook at full speed. The actual PSI exam questions are proprietary — no prep site has them. Everyone is working from the same NEC. The edge goes to whoever knows it best.
+
+                That only helps you if you can find answers
                 quickly. Most candidates who fail don't run out of knowledge. They run out
                 of time. Electricians who pass on the first attempt tend to use the same
                 three codebook strategies. Here's exactly what they do.
@@ -447,9 +449,9 @@ export default function StudyTipsPage({ onLaunchApp, onNavigate }) {
           <div style={s.related}>
             <div style={s.relatedTitle}>Related Articles</div>
             <div style={s.relatedGrid}>
-              <div style={s.relatedCard} onClick={() => onNavigate('nec-2020-changes')}>
-                <div style={s.relatedLabel}>Code Changes</div>
-                <div style={s.relatedName}>NEC 2020 vs 2017 — What Changed</div>
+              <div style={s.relatedCard} onClick={() => onNavigate('blog-post:blackrock-electrician-shortage')}>
+                <div style={s.relatedLabel}>Industry News</div>
+                <div style={s.relatedName}>BlackRock Just Committed $100M to Electrician Training</div>
                 <div style={s.relatedArrow}>→</div>
               </div>
               <div style={s.relatedCard} onClick={() => onNavigate('exam-info')}>
@@ -611,12 +613,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['NEC 2020 Changes for CA','nec-2020-changes'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>🔧 Company</div>
-            {[['About','about'],['Reviews & Testimonials','testimonials'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
+            {[['About','about'],['FAQ','faq'],['Contact & Support','contact']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{padding:'16px 20px'}}>
             <button style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'15px',padding:'14px',borderRadius:'6px',border:'none',cursor:'pointer',textTransform:'uppercase',letterSpacing:'0.5px',width:'100%'}} onClick={()=>{onLaunchApp();setMenuOpen(false)}}>⚡ Start Studying Free</button>
