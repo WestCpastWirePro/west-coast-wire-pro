@@ -194,6 +194,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
       </div>
     </div>
   );
+  }
 
   return (
     <div style={s.app}>
