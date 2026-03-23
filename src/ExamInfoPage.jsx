@@ -136,7 +136,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 your own. No personal notes, annotations, or tabs are permitted.
               </P>
               <P>
-                A passing score is <strong style={s.strong}>70% or higher</strong> (77 correct out of 110 questions).
+                A passing score is <strong style={s.strong}>70% or higher</strong>.
                 You will receive your result immediately upon finishing at the testing center.
                 If you do not pass, you must wait 60 days before reapplying to retake the exam. There is a $100 retake fee. Submit your retake application to DLSE at the same address as your original application.
                 of another examination fee.
@@ -215,10 +215,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
 
             <Section id="passrate" title="Pass Rate & Difficulty">
               <P>
-                The California General Electrician exam is known for its low pass rate.
-                Exact pass rate data is not publicly published by the DLSE, but industry
-                experience and anecdotal reports consistently put the first-attempt pass
-                rate below 50% — and in some reporting periods, significantly lower.
+                The California General Electrician exam has a low pass rate. The DLSE does not publish official figures, but available industry data puts the first-attempt pass rate around 50% or below — and repeat attempt pass rates are lower still. In 2020, one widely cited data point placed the first-attempt rate at approximately 53%, with repeat attempts around 36%.
               </P>
               <P>
                 Several factors contribute to the difficulty:
@@ -282,7 +279,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 <div style={s.ctaBody}>
                   462 questions across all 11 modules. Every answer tied to the exact NEC or
                   California code section. Timed mode, module filtering, difficulty levels.
-                  Built by a licensed California journeyman electrician.
+                  Built by a California journeyman electrician and trade school instructor.
                 </div>
                 <div style={s.ctaBtns}>
                   <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
@@ -303,7 +300,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
             {[
               ['Questions', '110 multiple choice'],
               ['Time', '4.5 hours'],
-              ['Passing', '70% (77/110)'],
+              ['Passing', '70%'],
               ['Format', 'Computer-based'],
               ['Location', 'PSI Testing Centers'],
               ['Reference', 'Open book — NEC permitted'],

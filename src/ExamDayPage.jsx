@@ -62,7 +62,7 @@ const SECTIONS = [
     title: "📊 Your Score",
     content: [
       { type:"check", text:"You receive a pass/fail result immediately on screen when you submit." },
-      { type:"check", text:"Passing score is 70% (77 out of 110 correct)." },
+      { type:"check", text:"Passing score is 70%." },
       { type:"check", text:"If you pass: PSI transmits your results to the DLSE. Your official California Electrician Certification card will be mailed to the address on your application — typically within a few weeks. Keep your score report as proof of certification until the card arrives. You are legally certified as of your pass date." },
       { type:"check", text:"If you fail: You'll receive a diagnostic report showing which topic areas you were weakest in. You must wait 60 days before reapplying to retake, and pay a $100 retake fee to DLSE." },
       { type:"tip", text:"Tip: If you fail, don't reschedule immediately. Study the diagnostic report. Most people who fail did so in 2–3 specific areas, not across the board." },
@@ -136,7 +136,7 @@ export default function ExamDayPage({ onHome, onNavigate }) {
         {[
           ["Time allowed", "4 hours 30 minutes"],
           ["Questions", "110 multiple choice"],
-          ["Passing score", "70% (77/110)"],
+          ["Passing score", "70%"],
           ["Result", "Immediate on screen"],
           ["NEC Codebook", "Provided by PSI — do not bring your own"],
           ["Calculator", "On-screen only (provided)"],

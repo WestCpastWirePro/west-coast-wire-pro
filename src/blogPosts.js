@@ -44,7 +44,7 @@ Your codebook is there. Use it strategically. If you flip to it for every questi
 
 ## What the Score Screen Looks Like
 
-When you submit, your score appears immediately. 70% is passing (77 out of 110 correct). The screen shows your percentage and pass/fail status — not a breakdown by topic. If you pass, your license application proceeds through the CSLB. If you fail, you must wait 30 days before you can retest.
+When you submit, your score appears immediately. 70% is passing. The screen shows your percentage and pass/fail status — not a breakdown by topic. If you pass, your license application proceeds through the CSLB. If you fail, you must wait 60 days before you can retest.
 
 Your access to West Coast Wire Pro doesn't expire. If you need a second attempt, every question, every drill, and every tool is still there.
 

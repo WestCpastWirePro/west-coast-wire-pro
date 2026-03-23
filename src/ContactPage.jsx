@@ -50,7 +50,7 @@ export default function ContactPage({ onHome, onNavigate }) {
           <div style={s.sectionLabel}>📬 SEND US A MESSAGE</div>
           <p style={s.introText}>
             Questions about your purchase, access codes, technical issues, refunds, or anything else —
-            fill out the form below and we'll get back to you within 24 hours, Monday–Friday.
+            fill out the form below and we'll get back to you within 1 business day. Responses to weekend messages go out Monday morning.
           </p>
 
           {status === 'success' ? (
@@ -58,7 +58,7 @@ export default function ContactPage({ onHome, onNavigate }) {
               <div style={{ fontSize: '32px', marginBottom: '12px' }}>✅</div>
               <div style={{ fontFamily: "'Arial Black', Arial, sans-serif", fontWeight: '900', fontSize: '18px', color: '#27ae60', marginBottom: '8px', textTransform: 'uppercase' }}>Message Sent!</div>
               <div style={{ fontSize: '14px', color: '#aabbcc', lineHeight: '1.6' }}>
-                We received your message and will respond within 24 hours, Monday–Friday.
+                We received your message and will respond within 1 business day. Weekend messages get a Monday morning reply.
               </div>
               <button style={{ ...s.btnGold, marginTop: '20px' }} onClick={() => setStatus('idle')}>Send Another</button>
             </div>
@@ -143,7 +143,7 @@ export default function ContactPage({ onHome, onNavigate }) {
                 'Check your email for a confirmation from Stripe with your access code.',
                 "Go to the app and tap 'Enter Access Code →' on the paywall screen.",
                 "Enter the code exactly as shown — it's formatted XXXX-XXXX-XXXX.",
-                "Still not working? Use the contact form above and we'll fix it within 24 hours.",
+                "Still not working? Use the contact form above and we'll fix it within 1 business day.",
               ]
             },
             {
@@ -190,7 +190,7 @@ export default function ContactPage({ onHome, onNavigate }) {
             ['Business Name', 'West Coast Wire Pro Training'],
             ['Contact', 'Use the form above'],
             ['Product', 'West Coast Wire Pro — California Electrician Exam Prep'],
-            ['Response Time', 'Within 24 hours, Monday–Friday'],
+            ['Response Time', '1 business day (weekends → Monday)'],
           ].map(([label, val]) => (
             <div key={label} style={{ display: 'flex', gap: '12px', marginBottom: '8px', fontSize: '13px' }}>
               <span style={{ color: '#8899aa', minWidth: '120px', flexShrink: 0 }}>{label}:</span>

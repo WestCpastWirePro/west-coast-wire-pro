@@ -12,7 +12,7 @@ const s = {
 
 const STATS = [
   { value: "462", label: "Practice Questions" },
-  { value: "12", label: "Exam Modules" },
+  { value: "11", label: "Exam Modules" },
   { value: "70%", label: "Passing Score" },
   { value: "2020", label: "NEC Edition" },
 ];
@@ -21,6 +21,10 @@ export default function TestimonialsPage({ onNavigate, onHome }) {
 
   return (
     <div style={s.app}>
+      <div style={{padding:"12px 16px", borderBottom:"1px solid #2a3a54", display:"flex", alignItems:"center", gap:"12px"}}>
+        <button onClick={() => onHome && onHome()} style={{background:"none", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"12px", fontWeight:"700", textTransform:"uppercase", padding:"6px 12px", borderRadius:"4px", cursor:"pointer"}}>← Home</button>
+        <span style={{fontSize:"13px", color:"#4a5a6a"}}>West Coast Wire Pro</span>
+      </div>
 
       {/* Stats bar */}
       <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))", gap:"1px", background:"#2a3a54", margin:"12px 16px", borderRadius:"10px", overflow:"hidden"}}>

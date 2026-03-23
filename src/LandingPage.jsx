@@ -283,7 +283,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={{display:'flex', flexDirection:'column', gap:'7px'}}>
             <div style={{fontSize:'10px', color:'#c8a84b', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase', marginBottom:'2px'}}>Articles</div>
-            {[['Exam Guide','exam-info'],['How to Pass','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p]) => (
+            {[['Blog','blog'],['Exam Guide','exam-info'],['How to Pass','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p]) => (
               <button key={p} style={{...s.footerLink, background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0}} onClick={() => onNavigate && onNavigate(p)}>{l}</button>
             ))}
           </div>

@@ -85,7 +85,7 @@ const DEMO_QUESTIONS = [
   },
 ]
 
-export default function DemoPage({ onLaunchApp, onNavigate }) {
+export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
   const [current, setCurrent]   = useState(0)
   const [selected, setSelected] = useState(null)
   const [showExp, setShowExp]   = useState(false)
@@ -128,6 +128,15 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
     const pct = Math.round((totalCorrect / DEMO_QUESTIONS.length) * 100)
     return (
       <div style={s.root}>
+        <nav style={{position:'sticky', top:0, zIndex:100, padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
+          <button onClick={onHome} style={{display:'flex', alignItems:'center', gap:'8px', background:'none', border:'none', cursor:'pointer', padding:0}}>
+            <span style={{fontSize:'18px'}}>⚡</span>
+            <span style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'15px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase'}}>
+              West Coast <span style={{color:'#d8e0e8', fontWeight:'400'}}>Wire Pro</span>
+            </span>
+          </button>
+          <button onClick={onHome} style={{background:'none', border:'1px solid rgba(200,168,75,0.3)', color:'#c8a84b', fontSize:'12px', fontWeight:'700', textTransform:'uppercase', padding:'6px 12px', borderRadius:'4px', cursor:'pointer', letterSpacing:'0.5px'}}>← Home</button>
+        </nav>
         <div style={s.resultsWrap}>
           <div style={s.resultsCard}>
             <div style={s.resultsBolt}>⚡</div>
@@ -168,7 +177,7 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
             </div>
 
             <div style={s.resultsNote}>
-              Module 1 (30 questions) is always free — no payment needed.
+              Modules 1 & 2 are always free — no payment needed.
             </div>
           </div>
         </div>
@@ -179,6 +188,20 @@ export default function DemoPage({ onLaunchApp, onNavigate }) {
   // ── QUESTION SCREEN ────────────────────────────────────────
   return (
     <div style={s.root}>
+
+      {/* Nav */}
+      <nav style={{position:'sticky', top:0, zIndex:100, padding:'12px 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(10,16,22,0.96)', backdropFilter:'blur(12px)', borderBottom:'1px solid rgba(200,168,75,0.15)'}}>
+        <button onClick={onHome} style={{display:'flex', alignItems:'center', gap:'8px', background:'none', border:'none', cursor:'pointer', padding:0}}>
+          <span style={{fontSize:'18px'}}>⚡</span>
+          <span style={{fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'15px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase'}}>
+            West Coast <span style={{color:'#d8e0e8', fontWeight:'400'}}>Wire Pro</span>
+          </span>
+        </button>
+        <button onClick={onLaunchApp}
+          style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'12px', padding:'7px 16px', borderRadius:'4px', border:'none', cursor:'pointer', textTransform:'uppercase', letterSpacing:'0.5px'}}>
+          Start Free ⚡
+        </button>
+      </nav>
 
       {/* Hero intro — only shown before first answer on Q1 */}
       {current === 0 && selected === null && (

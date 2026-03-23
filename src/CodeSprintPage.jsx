@@ -478,7 +478,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
         <div style={{...s.card, marginBottom:'28px'}}>
           <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>How to Play</div>
           {[
-            ['🎯', 'The CA exam is open book — but 4.5 hours for 110 questions means 2.5 minutes each. You cannot look up every article. This drill burns NEC chapter and article locations into memory so you can find answers fast.'],
+            ['🎯', 'Burns NEC chapter and article locations into memory so you can navigate the codebook fast under exam time pressure.'],
             ['📋', 'A scenario appears — something that would show up on the exam'],
             ['⚡', 'Pick the NEC Article where you\'d find the answer'],
             ['⏱️', '22 seconds per question — answered questions stack up on the page'],

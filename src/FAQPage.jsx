@@ -16,7 +16,7 @@ const FAQS = [
     items: [
       {
         q: "How many questions are on the California General Electrician exam?",
-        a: "The California General (Journeyman) Electrician exam has 110 multiple-choice questions. You have 4 hours and 30 minutes to complete it. A passing score is 70% (77 correct answers)."
+        a: "The California General (Journeyman) Electrician exam has 110 multiple-choice questions. You have 4 hours and 30 minutes to complete it. A passing score is 70%."
       },
       {
         q: "Where do I take the exam?",
@@ -24,7 +24,7 @@ const FAQS = [
       },
       {
         q: "What score do I need to pass?",
-        a: "70% — you need to answer at least 77 out of 110 questions correctly. The exam does not penalize for wrong answers, so always guess rather than leave a question blank."
+        a: "70% — the exam does not penalize for wrong answers, so always guess rather than leave a question blank."
       },
       {
         q: "What NEC edition does the California exam use?",
@@ -64,6 +64,18 @@ const FAQS = [
   {
     category: "Studying",
     items: [
+      {
+        q: "What ID do I need to bring to the exam?",
+        a: "PSI requires one valid, unexpired, government-issued photo ID. Your name on the ID must match exactly what you used when registering. A California driver's license or state ID card is the standard. If you cannot provide acceptable ID at check-in, you will not be allowed to test and will forfeit your exam fee."
+      },
+      {
+        q: "How do I schedule my exam?",
+        a: "Once DLSE approves your application, you'll receive an eligibility notice. You then schedule directly with PSI — online at psiexams.com or by phone at (888) 818-5831. You have one year from your eligibility date to take the exam. PSI has 20 testing locations across California."
+      },
+      {
+        q: "What is the pass rate for the California General Electrician exam?",
+        a: "The DLSE does not publish official pass rate data, but industry data consistently puts the first-attempt pass rate around 50% or below — and repeat attempt rates are lower. This is one of the harder trade certification exams in California. Preparation matters significantly."
+      },
       {
         q: "How long should I study before the exam?",
         a: "Most candidates who pass on their first attempt study for 8–12 weeks, spending 45–90 minutes per day. If you're coming straight from the field with no formal training, budget toward 12 weeks. If you completed a JATC apprenticeship, 6–8 weeks may be enough."
