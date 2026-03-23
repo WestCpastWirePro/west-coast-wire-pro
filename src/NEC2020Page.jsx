@@ -1,5 +1,5 @@
 import React from 'react'
-export default function NEC2020ChangesPage({ onLaunchApp, onNavigate }) {
+export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) {
   const [isMobile, setIsMobile] = React.useState(typeof window !== "undefined" && window.innerWidth < 768)
   React.useEffect(() => {
     const h = () => setIsMobile(window.innerWidth < 768)

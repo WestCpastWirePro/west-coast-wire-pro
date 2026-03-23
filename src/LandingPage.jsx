@@ -195,15 +195,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             features={[
               {text:'All 11 modules — 462 questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
-              {text:'Exact code section references', locked:false},
               {text:'Timed & untimed modes', locked:false},
-              {text:'Module score breakdown', locked:false},
-              {text:'Difficulty filtering (Easy/Med/Hard)', locked:false},
               {text:'Exam Simulator (full 110Q)', locked:false},
+              {text:'Diagnostic Quiz', locked:false},
+              {text:'Study Planner + Progress Dashboard', locked:false},
               {text:'NEC Reference & Calculations tools', locked:false},
               {text:'Progress saved across sessions', locked:false},
-              {text:'Code Sprint, Table Mastery, Missed Questions', locked:true},
-              {text:'High-Priority Drill · Study Planner', locked:true},
+              {text:'Code Sprint, Table Mastery, Missed Questions, High-Priority Drill', locked:true},
             ]}
             btnLabel="Get Standard Access ⚡"
             btnStyle="gold"
@@ -214,13 +212,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             name="Pro"
             price="$59.99"
             priceSub="One-time · Instant access"
+            tagline="For the candidate who wants every available edge."
             features={[
               {text:'Everything in Standard', locked:false},
-              {text:'Code Sprint — NEC Article Navigator Game', locked:false},
-              {text:'Full Table Mastery — 10 NEC tables, 113 flashcards', locked:false},
-              {text:'Missed Questions review deck', locked:false},
-              {text:'High-Priority Drill — 25 questions on the most-tested topics', locked:false},
-              {text:'Study Planner + Progress Dashboard', locked:false},
+              {text:'Code Sprint — train NEC article navigation under pressure', locked:false},
+              {text:'Full Table Mastery — 10 tables, 113 flashcards', locked:false},
+              {text:'Missed Questions deck — spaced repetition on your wrong answers', locked:false},
+              {text:'High-Priority Drill — 25 questions on the most-tested CA exam topics', locked:false},
               {text:'Future question updates included', locked:false},
             ]}
             btnLabel="Get Pro Access"
@@ -352,7 +350,7 @@ function SectionTitle({ children }) {
   return <h2 style={{fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'clamp(32px, 5vw, 54px)', fontWeight:'900', textTransform:'uppercase', lineHeight:'1', marginBottom:'12px'}}>{children}</h2>
 }
 
-function PlanCard({ name, price, priceSub, featured, features, btnLabel, btnStyle, onBuy, isLoading }) {
+function PlanCard({ name, price, priceSub, tagline, featured, features, btnLabel, btnStyle, onBuy, isLoading }) {
   const planCard = {
     background: featured ? '#1a2840' : '#131e2c',
     border: featured ? '1px solid rgba(200,168,75,0.5)' : '1px solid rgba(255,255,255,0.06)',
@@ -372,7 +370,8 @@ function PlanCard({ name, price, priceSub, featured, features, btnLabel, btnStyl
       {featured && <div style={{position:'absolute', top:'-1px', left:'50%', transform:'translateX(-50%)', background:'#c8a84b', color:'#0f1923', fontWeight:'800', fontSize:'11px', letterSpacing:'2px', textTransform:'uppercase', padding:'4px 16px', borderRadius:'0 0 4px 4px'}}>MOST POPULAR</div>}
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'24px', fontWeight:'900', textTransform:'uppercase', marginBottom:'8px', marginTop: featured?'16px':'0'}}>{name}</div>
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'52px', fontWeight:'900', color:'#c8a84b', lineHeight:'1', margin:'16px 0 4px'}}>{price}</div>
-      <div style={{fontSize:'13px', color:'#7a8a9a', marginBottom:'24px'}}>{priceSub}</div>
+      <div style={{fontSize:'13px', color:'#7a8a9a', marginBottom: tagline ? '12px' : '24px'}}>{priceSub}</div>
+      {tagline && <div style={{fontSize:'12px', color:'#c8a84b', fontStyle:'italic', marginBottom:'20px', lineHeight:'1.5'}}>{tagline}</div>}
       <ul style={{listStyle:'none', marginBottom:'28px'}}>
         {features.map((f, i) => (
           <li key={i} style={{fontSize:'13px', color: f.locked ? '#3a4a5a' : '#aabbcc', padding:'7px 0', borderBottom:'1px solid rgba(255,255,255,0.04)', display:'flex', gap:'8px', alignItems:'flex-start'}}>

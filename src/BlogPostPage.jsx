@@ -90,7 +90,7 @@ export default function BlogPostPage({ slug, onNavigate, onLaunchApp }) {
             Your License. Your Future.
           </div>
           <p style={{color:'#7a8a9a', fontSize:'14px', marginBottom:'20px', lineHeight:'1.6'}}>
-            512 NEC-referenced practice questions for the California Journeyman exam.<br/>
+            462 NEC-referenced practice questions for the California Journeyman exam.<br/>
             Modules 1 & 2 free — no account needed.
           </p>
           <button onClick={() => { onLaunchApp && onLaunchApp() }} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'13px 28px', cursor:'pointer'}}>

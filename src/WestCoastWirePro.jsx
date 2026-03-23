@@ -1057,7 +1057,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock Full Access</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            Standard unlocks all 11 modules. Pro adds Code Sprint, Table Mastery, Missed Questions, High-Priority Drill &amp; more.
+            Standard unlocks all 11 modules — including Study Planner and Progress Dashboard. Pro adds the four highest-intensity exam tools: Code Sprint, Table Mastery, Missed Questions, and High-Priority Drill.
           </div>
         </div>
 
@@ -1070,7 +1070,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           },
           {
             name:"Pro", price:"$59.99", tag:"Best Value",
-            features:["Everything in Standard","Code Sprint — NEC Article Navigator","Full Table Mastery (10 tables, 113 cards)","Missed Questions review deck","High-Priority Drill","Study Planner + Progress Dashboard","Future question updates"],
+            pitch:"For the candidate who wants every available edge.", features:["Everything in Standard","Code Sprint — NEC article navigation under pressure","Full Table Mastery — 10 tables, 113 flashcards","Missed Questions deck — spaced repetition on your wrong answers","High-Priority Drill — 25 questions on the most-tested CA topics","Future question updates included"],
             accent:"#e8c878", tier:"pro"
           }
         ].map(plan => (
@@ -1082,6 +1082,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
               </div>
               <div style={{fontSize:"32px", fontWeight:"900", color:"#c8a84b"}}>{plan.price}</div>
             </div>
+            {plan.pitch && <div style={{fontSize:"12px", color:"#c8a84b", fontStyle:"italic", marginBottom:"12px", lineHeight:"1.5"}}>{plan.pitch}</div>}
             <ul style={{listStyle:"none", marginBottom:"16px"}}>
               {plan.features.map((f,i) => (
                 <li key={i} style={{fontSize:"13px", color:"#aabbcc", padding:"5px 0", borderBottom:"1px solid rgba(255,255,255,0.04)", display:"flex", gap:"8px"}}>

@@ -98,10 +98,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
             researching, asking questions, and hitting walls.
           </p>
           <p style={s.p}>
-            At one point I drove seven hours to Oakland — that's where the California DLSE (Department of Labor Standards Enforcement) office is — just to try to get
-            real information about passing the journeyman exam and finding apprenticeship work.
-            Seven hours. Because I couldn't find what I needed any other way, and I wasn't
-            willing to give up.
+            The DLSE office is in Oakland — seven hours from where I was living. I made that drive because I couldn't find the information I needed anywhere else, and giving up wasn't an option.
           </p>
           <p style={s.p}>
             That's the background I carry into everything I do in this trade. I know what it

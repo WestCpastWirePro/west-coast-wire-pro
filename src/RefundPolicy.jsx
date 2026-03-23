@@ -5,7 +5,7 @@ export default function RefundPolicy({ onHome , onNavigate }) {
     <LegalLayout
 onNavigate={onNavigate}       title="Refund Policy"
       subtitle="We want you to feel confident purchasing West Coast Wire Pro."
-      lastUpdated="January 1, 2026"
+      lastUpdated="March 23, 2026"
       onHome={onHome}
     >
 

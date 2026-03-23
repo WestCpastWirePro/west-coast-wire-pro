@@ -5,7 +5,7 @@ export default function TermsOfService({ onHome , onNavigate }) {
     <LegalLayout
 onNavigate={onNavigate}       title="Terms of Service"
       subtitle="Please read these terms before purchasing or using West Coast Wire Pro."
-      lastUpdated="January 1, 2026"
+      lastUpdated="March 23, 2026"
       onHome={onHome}
     >
 

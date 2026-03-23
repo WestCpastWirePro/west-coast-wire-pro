@@ -223,7 +223,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
               <div style={s.ctaTitle}>The Foundation Is the Journeyman Exam</div>
               <div style={s.ctaBody}>
                 Every path in California electrical — journeyman, C-10, business owner — starts with
-                passing this test. 512 NEC-referenced questions to get you there.
+                passing this test. 462 NEC-referenced questions to get you there.
               </div>
               <div style={s.ctaBtns}>
                 <button style={s.btnGold} onClick={onLaunchApp}>Start Free Practice</button>
@@ -264,7 +264,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Start Studying</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, margin:'0 0 12px', fontFamily:"'Georgia', serif"}}>
-              512 practice questions. Modules 1 & 2 + Table Mastery free.
+              462 practice questions. Modules 1 & 2 always free.
             </p>
             <button style={s.btnGold} onClick={onLaunchApp}>Try Free ⚡</button>
           </div>

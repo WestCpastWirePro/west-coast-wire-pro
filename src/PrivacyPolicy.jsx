@@ -5,7 +5,7 @@ export default function PrivacyPolicy({ onHome , onNavigate }) {
     <LegalLayout
 onNavigate={onNavigate}       title="Privacy Policy"
       subtitle="We collect as little as possible and never sell your data."
-      lastUpdated="January 1, 2026"
+      lastUpdated="March 23, 2026"
       onHome={onHome}
     >
 
