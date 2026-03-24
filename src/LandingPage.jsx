@@ -70,7 +70,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <div style={s.h1Line3}>Get Licensed.</div>
           </h1>
           <p style={s.heroSub}>
-            The world's largest asset manager says America is running out of electricians. <strong style={{color:'#d8e0e8'}}>Your California Journeyman license is your ticket in.</strong> 462 original practice questions, every answer NEC referenced.
+            BlackRock — the world's largest asset manager — says America is running out of electricians. <strong style={{color:'#d8e0e8'}}>Your California Journeyman license is your ticket in.</strong> 462 original practice questions, every answer NEC referenced.
           </p>
           <div style={s.heroCtas}>
             <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
@@ -79,7 +79,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={{marginTop:'12px'}}>
             <button onClick={() => onNavigate && onNavigate('demo')}
-              style={{background:'none', border:'none', color:'#4a5a6a', fontSize:'12px', cursor:'pointer', padding:0, textDecoration:'underline'}}>
+              style={{background:'none', border:'1px solid rgba(200,168,75,0.25)', color:'#c8a84b', fontSize:'12px', cursor:'pointer', padding:'6px 14px', borderRadius:'4px', textDecoration:'none'}}>
               Try a 5-question demo first →
             </button>
           </div>
@@ -250,7 +250,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <section style={s.ctaBanner}>
         <div style={s.ctaBannerEmoji}>⚡</div>
         <h2 style={s.ctaH2}>Ready to <span style={{color:'#c8a84b'}}>Wire Up</span><br/>Your Future?</h2>
-        <p style={s.ctaP}>Modules 1 & 2 + 2 Table Mastery drills — free. No account, no credit card.</p>
+        <p style={s.ctaP}>Modules 1 & 2 free — 76 questions, no account, no credit card.</p>
         <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Studying Free</button>
         <div style={{marginTop:'16px'}}>
           <button
@@ -286,7 +286,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               <button key={p} style={{...s.footerLink, background:'none', border:'none', cursor:'pointer', textAlign:'left', padding:0}} onClick={() => onNavigate && onNavigate(p)}>{l}</button>
             ))}
             <div style={{fontSize:'10px', color:'#4a5a6a', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase', margin:'8px 0 2px'}}>Legal</div>
-            {[['Privacy Policy','privacy'],['Terms of Service','terms'],['Refund Policy','refund'],['Redeem Code','redeem']].map(([l,p]) => (
+            {[['Privacy Policy','privacy'],['Terms of Service','terms'],['Refund Policy','refund'],['Restore Access','redeem']].map(([l,p]) => (
               <button key={p} style={{...s.footerLink, background:'none', border:'none', cursor:'pointer', fontSize:'11px', color:'#4a5a6a', textAlign:'left', padding:0}} onClick={() => onNavigate && onNavigate(p)}>{l}</button>
             ))}
           </div>

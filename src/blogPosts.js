@@ -181,10 +181,10 @@ Start with Modules 1 & 2 free at westcoastwirepro.com — no account needed.
     title: "BlackRock Just Said America Is Running Out of Electricians — Here's What That Means for Your License",
     date: 'March 11, 2026',
     category: 'Industry News',
-    excerpt: "The world's largest asset manager committed $100M to skilled trades training today — and electricians are at the center of it. Here's why your California Journeyman license has never been worth more.",
+    excerpt: "The world's largest asset manager committed $100M to skilled trades training in early 2026 — and electricians are at the center of it. Here's why your California Journeyman license has never been worth more.",
     readTime: '5 min read',
     content: `
-BlackRock — the world's largest asset manager, managing $14 trillion — announced a $100 million initiative today specifically to train skilled trades workers. Electricians were named first.
+BlackRock — the world's largest asset manager, managing $14 trillion — announced a $100 million initiative specifically to train skilled trades workers. Electricians were named first.
 
 CEO Larry Fink put it plainly: "We're going to run out of electricians that we need to build out AI data centers. We just don't have enough."
 

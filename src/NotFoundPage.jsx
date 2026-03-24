@@ -31,7 +31,7 @@ export default function NotFoundPage({ onHome, onNavigate }) {
               ["Exam Guide", "exam-info"],
               ["Study Tips", "study-tips"],
               ["Contact", "contact"],
-              ["Redeem Code", "redeem"],
+              ["Restore Access", "redeem"],
             ].map(([label, page]) => (
               <button key={page}
                 style={{padding:"6px 12px", borderRadius:"6px", border:"1px solid #2a3a54", background:"transparent", color:"#8899aa", cursor:"pointer", fontSize:"12px", fontWeight:"600"}}
