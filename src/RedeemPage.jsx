@@ -114,48 +114,6 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
             </div>
           </div>
 
-          {/* Divider */}
-          <div style={{display:'flex', alignItems:'center', gap:'12px', marginBottom:'20px'}}>
-            <div style={{flex:1, height:'1px', background:'rgba(255,255,255,0.07)'}}/> 
-            <span style={{fontSize:'11px', color:'#4a5a6a', textTransform:'uppercase', letterSpacing:'1px'}}>or enter a code</span>
-            <div style={{flex:1, height:'1px', background:'rgba(255,255,255,0.07)'}}/>
-          </div>
-
-          {/* Fallback — access code for older purchases */}
-          <div style={{fontSize:'12px', color:'#4a5a6a', marginBottom:'12px', textAlign:'left'}}>
-            If you purchased before March 2026 and have a code from your receipt:
-          </div>
-
-          {/* Code input */}
-          <div style={s.inputWrap}>
-            <input
-              style={{
-                ...s.input,
-                borderColor: status === 'error' ? '#e74c3c'
-                           : code.length === 14 ? 'rgba(200,168,75,0.5)'
-                           : 'rgba(200,168,75,0.2)',
-              }}
-              type="text"
-              placeholder="XXXX-XXXX-XXXX"
-              value={code}
-              onChange={handleChange}
-              onKeyDown={e => e.key === 'Enter' && handleSubmit()}
-              maxLength={14}
-              spellCheck={false}
-              autoCorrect="off"
-              autoCapitalize="characters"
-            />
-            {status === 'error' && (
-              <div style={s.errMsg}>{errMsg}</div>
-            )}
-          </div>
-
-          <button
-            style={{...s.btnGold, opacity: status === 'loading' ? 0.7 : 1, cursor: status === 'loading' ? 'wait' : 'pointer'}}
-            onClick={handleSubmit}
-            disabled={status === 'loading'}>
-            {status === 'loading' ? 'Verifying...' : 'Unlock With Code ⚡'}
-          </button>
 
           <div style={s.helpDivider} />
 

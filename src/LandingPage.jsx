@@ -62,7 +62,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </button>
           <div style={s.heroBadge}>
             <span style={s.badgeDot} />
-            California Exam Prep · 2020 NEC · Updated 2026
+            California · As of 2026, the exam is based on the 2020 NEC
           </div>
           <h1 style={s.h1}>
             <div style={s.h1Line1}>Electricians Are</div>
@@ -108,10 +108,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
             {/* TRUST SIGNAL */}
       <div style={{background:'rgba(200,168,75,0.04)', borderTop:'1px solid rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'center', gap:'16px', flexWrap:'wrap'}}>
-        <span style={{fontSize:'22px'}}>⚡</span>
-        <p style={{margin:0, fontSize:'13px', color:'#8899aa', lineHeight:'1.6', textAlign:'center', maxWidth:'620px'}}>
-          Questions developed from NEC 2020 content and electrical trade resources using AI, reviewed by a <strong style={{color:'#d8e0e8'}}>licensed California journeyman electrician</strong> against the codebook. <button onClick={() => onNavigate && onNavigate('about')} style={{background:'none',border:'none',color:'#c8a84b',cursor:'pointer',fontSize:'13px',padding:0,textDecoration:'underline'}}>Learn more →</button>
-        </p>
       </div>
 
       {/* HOW IT WORKS */}
@@ -219,7 +215,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Full Table Mastery — 10 tables, 113 flashcards', locked:false},
               {text:'Missed Questions deck — spaced repetition on your wrong answers', locked:false},
               {text:'High-Priority Drill — 25 questions on the most-tested CA exam topics', locked:false},
-              {text:'Future question updates included', locked:false},
             ]}
             btnLabel="Get Pro Access"
             btnStyle="outline"

@@ -116,7 +116,7 @@ const FAQS = [
       },
       {
         q: "What's the difference between Standard and Pro access?",
-        a: "Standard ($29.99) unlocks all 462 questions across all 11 modules, Exam Simulator, Diagnostic Quiz, Study Planner, Progress Dashboard, NEC Reference, Calculations tool, Glossary, and progress saved across sessions. Pro ($59.99) adds the four highest-intensity exam tools: Code Sprint (NEC article navigation under pressure), Full Table Mastery (10 NEC tables, 113 flashcards), Missed Questions review deck (spaced repetition on your wrong answers), and High-Priority Drill (25 questions on the most heavily weighted CA exam topics). Pro also includes future question updates at no charge. If you want every available edge going into exam day, Pro is built for that."
+        a: "Standard ($29.99) unlocks all 462 questions across all 11 modules, Exam Simulator, Diagnostic Quiz, Study Planner, Progress Dashboard, NEC Reference, Calculations tool, Glossary, and progress saved across sessions. Pro ($59.99) adds the four highest-intensity exam tools: Code Sprint (NEC article navigation under pressure), Full Table Mastery (10 NEC tables, 113 flashcards), Missed Questions review deck (spaced repetition on your wrong answers), and High-Priority Drill (25 questions on the most heavily weighted CA exam topics). If you want every available edge going into exam day, Pro is built for that."
       },
       {
         q: "I bought access but the app is locked. What do I do?",

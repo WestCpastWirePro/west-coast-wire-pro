@@ -679,6 +679,10 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       setScreen("paywall");
       return;
     }
+    if (shuffled.length === 0) {
+      alert("No questions match your current filters. Try selecting different modules or difficulty levels.");
+      return;
+    }
     setQuizQuestions(shuffled);
     setQIndex(0);
     setSelected(null);
@@ -860,7 +864,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
               <div>
                 <div style={{fontSize:"14px", fontWeight:"700", color:"#d8e0e8"}}>Resume where you left off</div>
                 <div style={{fontSize:"12px", color:"#7a8a9a"}}>
-                  Question {savedSession.qIndex + 1} of {savedSession.quizQuestions?.length} · {savedSession.answered?.filter(a=>a.correct).length || 0} correct
+                  Question {savedSession.qIndex + 1} of {savedSession.quizQuestions?.length} · {savedSession.answered?.filter(a=>a.correct).length || 0} correct · Resumes in untimed mode
                   {savedSession.savedAt && (' · Saved ' + new Date(savedSession.savedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}))}
                 </div>
               </div>
@@ -1070,7 +1074,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           },
           {
             name:"Pro", price:"$59.99", tag:"Best Value",
-            pitch:"For the candidate who wants every available edge.", features:["Everything in Standard","Code Sprint — NEC article navigation under pressure","Full Table Mastery — 10 tables, 113 flashcards","Missed Questions deck — spaced repetition on your wrong answers","High-Priority Drill — 25 questions on the most-tested CA topics","Future question updates included"],
+            pitch:"For the candidate who wants every available edge.", features:["Everything in Standard","Code Sprint — NEC article navigation under pressure","Full Table Mastery — 10 tables, 113 flashcards","Missed Questions deck — spaced repetition on your wrong answers","High-Priority Drill — 25 questions on the most-tested CA topics",],
             accent:"#e8c878", tier:"pro"
           }
         ].map(plan => (

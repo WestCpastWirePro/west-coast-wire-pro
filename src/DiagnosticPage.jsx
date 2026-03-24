@@ -145,8 +145,9 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
 
   const handleAnswer = (i) => {
     if (selected !== null) return;
-    setSelected(i);
     const q = deck[idx];
+    if (!q) return; // Guard against undefined question
+    setSelected(i);
     const newAnswered = [...answered, { qid: q.id, mod: q.mod, correct: i === q.ans, locked: q.locked }];
     setAnswered(newAnswered);
     // Auto-save after every answer
@@ -229,6 +230,13 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
 
   if (phase === "quiz") {
     const q = deck[idx];
+
+    // Guard: if deck is empty or q is undefined, go to results gracefully
+    if (!q || deck.length === 0) {
+      setPhase("results");
+      return null;
+    }
+
     const pct = Math.round((idx / deck.length) * 100);
 
     return (

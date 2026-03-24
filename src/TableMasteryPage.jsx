@@ -360,7 +360,7 @@ function Drill({ tableId, data, onBack, onComplete }) {
           <div style={s.logo}>{data.title}</div>
           <div style={{ fontSize:"11px", color:"#8899aa" }}>{data.subtitle}</div>
         </div>
-        <button style={{ ...s.btn, ...s.btnGray, padding:"6px 14px", fontSize:"12px" }} onClick={onBack}>← Tables</button>
+        <button style={{ ...s.btn, ...s.btnGray, padding:"6px 14px", fontSize:"12px" }} onClick={() => { if (total === 0 || window.confirm('Leave this drill? Your progress on this table will be lost.')) onBack(); }}>← Tables</button>
       </div>
 
       {/* Progress */}
@@ -443,7 +443,9 @@ const TABLE_ORDER = [
 
 export default function TableMasteryPage({ onHome, access , onNavigate }) {
   const [active, setActive]   = useState(null);
-  const [scores, setScores]   = useState({});  // tableId → last pct
+  const [scores, setScores]   = useState(() => {
+    try { const v = localStorage.getItem('wrp_mastery_scores'); return v ? JSON.parse(v) : {}; } catch(e) { return {}; }
+  });  // tableId → last pct
 
   const isPro = access === "pro";
   const isFree = !access || access === "free" || access === "standard";
@@ -453,7 +455,11 @@ export default function TableMasteryPage({ onHome, access , onNavigate }) {
   const canAccess = (id) => isPro ? true : FREE_TABLES.includes(id);
 
   function handleComplete(tableId, pct) {
-    setScores(prev => ({ ...prev, [tableId]: pct }));
+    setScores(prev => {
+      const next = { ...prev, [tableId]: pct };
+      try { localStorage.setItem('wrp_mastery_scores', JSON.stringify(next)); } catch(e) {}
+      return next;
+    });
   }
 
   if (active) {
