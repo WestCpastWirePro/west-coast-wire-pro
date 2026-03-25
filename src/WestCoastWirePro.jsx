@@ -796,7 +796,15 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     </>
   );
 
-  if (screen === "home") return (
+  // ── EXAM COUNTDOWN ──────────────────────────────────────────────────────
+  const examDate = (() => { try { return localStorage.getItem('wrp_exam_date') || ''; } catch(e) { return ''; } })();
+  const daysUntilExam = (() => {
+    if (!examDate) return null;
+    const diff = new Date(examDate) - new Date();
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  })();
+
+    if (screen === "home") return (
     <div style={styles.app}>
       {GlobalMenu}
       <div style={{...styles.header, padding:"12px 16px"}}>
