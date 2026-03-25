@@ -197,10 +197,11 @@ export default function App() {
     const params = new URLSearchParams(window.location.search)
     const token = params.get('token')
     const tier  = params.get('grant')
+    const email = params.get('email')
     fetch('/api/verify-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: token }),
+      body: JSON.stringify({ code: token, ...(email ? { email } : {}) }),
     })
       .then(r => r.json())
       .then(data => {

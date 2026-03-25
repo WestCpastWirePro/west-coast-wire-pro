@@ -1,13 +1,12 @@
 import crypto from 'crypto';
 
-// ── Admin Code Generator ───────────────────────────────────────────────────
-// Generates a manual access code for a customer who didn't receive theirs.
-// Protected by ADMIN_SECRET env var — never exposed to the public.
+// ── Admin Magic Link Generator ─────────────────────────────────────────────
+// Generates a personal magic link for a customer.
+// Protected by WIREREADY_ACCESS_SECRET env var.
 // Usage: POST /api/admin-grant { adminSecret, email, tier }
 // ──────────────────────────────────────────────────────────────────────────
 
-function generateManualCode(email, tier, secret) {
-  // Use email+tier as the payload for manual grants
+function generateToken(email, tier, secret) {
   const payload = `manual:${email.toLowerCase().trim()}:${tier}`;
   const hash = crypto.createHmac('sha256', secret).update(payload).digest('hex');
   const raw = hash.substring(0, 12).toUpperCase();
@@ -23,8 +22,8 @@ export default async function handler(req, res) {
 
   const { adminSecret, email, tier } = req.body;
 
-  // Verify admin secret
-  const expectedSecret = process.env.ADMIN_SECRET;
+  // Check against WIREREADY_ACCESS_SECRET (already set in Vercel)
+  const expectedSecret = process.env.WIREREADY_ACCESS_SECRET;
   if (!expectedSecret || adminSecret !== expectedSecret) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -33,8 +32,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'email and tier required' });
   }
 
-  const accessSecret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
-  const code = generateManualCode(email, tier, accessSecret);
+  const token = generateToken(email, tier, expectedSecret);
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://westcoastwirepro.com';
+  const magicLink = `https://westcoastwirepro.com/?grant=${tier}&token=${token}&email=${encodeURIComponent(email.toLowerCase().trim())}`;
 
-  return res.status(200).json({ code, email, tier });
+  return res.status(200).json({ token, email, tier, magicLink });
 }
