@@ -183,8 +183,13 @@ function resolveViewFromURL() {
   const manualToken = params.get('token');
   const manualTier  = params.get('grant');
   if (manualToken && manualTier && manualEmail && ['standard','pro'].includes(manualTier)) {
-    try { localStorage.setItem('wrp_access', manualTier) } catch(e) {}
-    window.history.replaceState({}, '', '/?app');
+    try {
+      localStorage.setItem('wrp_access', manualTier);
+      localStorage.removeItem('wrp_saved_session');
+      localStorage.removeItem('wrp_sim_session');
+      localStorage.removeItem('wrp_sprint_session');
+    } catch(e) {}
+    try { window.history.replaceState({}, '', '/?app') } catch(e) {}
     return 'app';
   }
   // Stripe magic link: ?grant=pro&token=XXXX-XXXX-XXXX (no email)
