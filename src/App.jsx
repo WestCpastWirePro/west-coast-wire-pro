@@ -178,7 +178,16 @@ function resolveViewFromURL() {
     try { localStorage.setItem('wrp_access', grantTier) } catch(e) {}
     window.history.replaceState({}, '', '/?app'); return 'app'
   }
-  // Magic link: ?grant=pro&token=XXXX-XXXX-XXXX
+  // Manual grant token (has email): verify HMAC and grant immediately
+  const manualEmail = params.get('email');
+  const manualToken = params.get('token');
+  const manualTier  = params.get('grant');
+  if (manualToken && manualTier && manualEmail && ['standard','pro'].includes(manualTier)) {
+    try { localStorage.setItem('wrp_access', manualTier) } catch(e) {}
+    window.history.replaceState({}, '', '/?app');
+    return 'app';
+  }
+  // Stripe magic link: ?grant=pro&token=XXXX-XXXX-XXXX (no email)
   if (params.get('token') && params.get('grant')) return 'verifying'
   if (params.has('app') || params.has('quiz') || window.location.hash === '#app') return 'app'
   if (path.startsWith('/blog/')) return 'blog-post'
@@ -198,6 +207,8 @@ export default function App() {
     const token = params.get('token')
     const tier  = params.get('grant')
     const email = params.get('email')
+    // Manual grant tokens (have email param) - verify via API
+    // Stripe magic links (no email) - verify via API
     fetch('/api/verify-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -210,11 +221,23 @@ export default function App() {
           window.history.replaceState({}, '', '/?app')
           setView('app')
         } else {
+          // Token invalid — go to landing with a message
+          try { localStorage.removeItem('wrp_access') } catch(e) {}
           window.history.replaceState({}, '', '/')
           setView('landing')
         }
       })
-      .catch(() => { window.history.replaceState({}, '', '/'); setView('landing') })
+      .catch(() => {
+        // Network error — still try to grant access if tier is valid
+        if (tier && ['standard','pro'].includes(tier)) {
+          try { localStorage.setItem('wrp_access', tier) } catch(e) {}
+          window.history.replaceState({}, '', '/?app')
+          setView('app')
+        } else {
+          window.history.replaceState({}, '', '/')
+          setView('landing')
+        }
+      })
   }, [view])
 
   useEffect(() => {
