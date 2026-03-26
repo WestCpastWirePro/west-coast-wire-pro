@@ -172,7 +172,7 @@ export default function ContactPage({ onHome, onNavigate }) {
                 'Check your internet connection — the app loads once and works offline after.',
               ]
             },
-          ]].map((issue, i) => (
+          ].map((issue, i) => (
             <div key={i} style={{ marginBottom: '18px', paddingBottom: '18px', borderBottom: i < 3 ? '1px solid #2a3a54' : 'none' }}>
               <div style={{ fontWeight: '700', fontSize: '14px', color: '#e8eaf0', marginBottom: '8px' }}>{issue.title}</div>
               {issue.steps.map((step, j) => (
