@@ -27,6 +27,7 @@ function VoltageDropCalc() {
   const [material, setMaterial] = useState("copper");
   const [cm, setCm] = useState("");
   const [mode, setMode] = useState("find-vd"); // find-vd | find-wire
+  const [voltage, setVoltage] = useState("120");
   const [result, setResult] = useState(null);
 
   const K = material === "copper" ? 12.9 : 21.2;
@@ -39,16 +40,16 @@ function VoltageDropCalc() {
       const CM = parseFloat(cm);
       if (isNaN(CM) || CM <= 0) { setResult({error:"Enter valid circular mils (CM)."}); return; }
       const vd = (multiplier * K * I * D) / CM;
-      const pct = (vd / (phase === "3" ? 208 : 120)) * 100;
+      const pct = (vd / parseFloat(voltage)) * 100;
       setResult({ vd: vd.toFixed(2), pct: pct.toFixed(1), steps: [
         `VD = (${multiplier} × ${K} × ${I}A × ${D}ft) / ${CM} CM`,
         `VD = ${(multiplier * K * I * D).toFixed(1)} / ${CM}`,
         `VD = ${vd.toFixed(2)} volts`,
-        `Percentage = ${vd.toFixed(2)}V / ${phase==="3"?208:120}V = ${pct.toFixed(1)}%`,
+        `Percentage = ${vd.toFixed(2)}V / ${voltage}V = ${pct.toFixed(1)}%`,
         pct <= 3 ? "✓ Within 3% recommendation (NEC 210.19 Note)" : "⚠️ Exceeds 3% recommendation — upsize conductor",
       ]});
     } else {
-      const allowedVD = phase === "3" ? 208 * 0.03 : 120 * 0.03;
+      const allowedVD = parseFloat(voltage) * 0.03;
       const cmNeeded = (multiplier * K * I * D) / allowedVD;
       const wireOptions = [
         {size:"14 AWG", cm:4110},{size:"12 AWG", cm:6530},{size:"10 AWG", cm:10380},

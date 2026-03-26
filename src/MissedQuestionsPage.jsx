@@ -68,7 +68,7 @@ export default function MissedQuestionsPage({ onHome, access , onNavigate }) {
         <div style={{fontSize:'14px', color:'#8899aa', lineHeight:'1.7', maxWidth:'340px', margin:'0 auto 24px'}}>
           Every question you get wrong automatically builds a review deck here. Spaced repetition until they stick. Pro feature.
         </div>
-        <button onClick={() => onNavigate('landing')}
+        <button onClick={() => onNavigate('upgrade')}
           style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'14px 28px', cursor:'pointer'}}>
           Upgrade to Pro →
         </button>

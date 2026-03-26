@@ -191,7 +191,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                   {code:'2020 NEC (NFPA 70)', desc:'The foundation. Articles 90 through 830 are fair game. Focus heavily on Chapters 1–4, which cover the most common work.', badge:'Primary'},
                   {code:'California Electrical Code (CEC)', desc:'California\'s amendments to the NEC. Where the CEC differs from the NEC, the CEC governs. Know the differences.', badge:'Required'},
                   {code:'Title 8, California Code of Regulations', desc:'Cal/OSHA electrical safety orders. Particularly 8 CCR § 2940 (electrical safety) and § 3314 (lockout/tagout). Tested in safety module.', badge:'Required'},
-                  {code:'Title 24, California Building Code', desc:'Energy efficiency requirements for electrical systems. LED lighting, occupancy sensors, solar interconnection. Module 11 focus.', badge:'Required'},
+                  {code:'Title 24, California Building Code', desc:'Energy efficiency requirements for electrical systems. LED lighting, occupancy sensors, solar interconnection. Module 12 focus.', badge:'Required'},
                   {code:'NFPA 70E', desc:'Standard for Electrical Safety in the Workplace. Arc flash, PPE categories, approach boundaries. Shows up in safety questions.', badge:'Supplemental'},
                 ].map(c => (
                   <div key={c.code} style={s.codeItem}>
@@ -283,9 +283,9 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 </div>
                 <div style={s.ctaBtns}>
                   <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
-                  <button style={s.btnGhost} onClick={() => onLaunchApp()}>Start Free — No Account Needed</button>
+                  
                 </div>
-                <div style={s.ctaNote}>Module 1 (30 questions) is always free. No account required.</div>
+                <div style={s.ctaNote}>Module 1 (31 questions) is always free. No account required.</div>
               </div>
 
             </Section>

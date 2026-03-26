@@ -96,8 +96,8 @@ export default async function handler(req, res) {
       try {
         const tierLabel = tier === 'pro' ? 'Pro' : 'Standard';
         const tierFeatures = tier === 'pro'
-          ? 'All 512 questions, exam simulation mode, missed question review, and saved progress across sessions.'
-          : 'All 512 questions across all 12 modules, timed & untimed modes, and difficulty filtering.';
+          ? 'All 462 questions, exam simulation, Missed Questions deck, Code Sprint, Table Mastery, and High-Priority Drill — everything you need to pass.'
+          : 'All 462 questions across all 11 modules, timed & untimed modes, difficulty filtering, Exam Simulator, and Study Planner.';
 
         const magicLink = `https://westcoastwirepro.com/?grant=${tier}&token=${accessCode}`;
 

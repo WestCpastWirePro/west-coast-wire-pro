@@ -900,7 +900,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
               <div>
                 <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px"}}>⚡ FREE TIER — Modules 1 &amp; 2</div>
-                <div style={{fontSize:"12px", color:"#8899aa"}}>Includes 2 free Table Mastery drills</div>
+                <div style={{fontSize:"12px", color:"#8899aa"}}>Table 310.16 &amp; Conduit Fill drills included</div>
               </div>
               <div style={{display:"flex", gap:"8px", flexWrap:"wrap"}}>
                 <button style={{...styles.btn, background:"transparent", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"12px", padding:"7px 14px"}}
@@ -985,7 +985,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🛠 STUDY TOOLS</div>
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
             {[
-              { icon:"🎯", label:"High-Priority Drill",   path:"/top-25",       pro:true  },
+              { icon:"🏆", label:"High-Priority Drill",   path:"/top-25",       pro:true  },
               { icon:"📖", label:"Code Sprint",        path:"/code-sprint",  pro:true  },
               { icon:"🎯", label:"Am I Ready?",        path:"/diagnostic",   pro:false },
               { icon:"📋", label:"Full Exam Sim",       path:"/simulator",    pro:false },
@@ -1184,7 +1184,6 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             ["🔁", "Missed Questions Deck", "Auto-builds a review deck from every question you've gotten wrong"],
             ["🎯", "High-Priority Drill", "25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline — not real exam questions"],
             ["📅", "Study Planner + Dashboard", "Custom schedule + score tracking across all your sessions"],
-            ["🔄", "Future Question Updates", "New questions added as the exam evolves — yours free, forever"],
           ].map(([icon, title, desc]) => (
             <div key={title} style={{display:"flex", gap:"12px", padding:"10px 0", borderBottom:"1px solid rgba(255,255,255,0.04)"}}>
               <span style={{fontSize:"18px", flexShrink:0}}>{icon}</span>

@@ -57,9 +57,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={s.heroGlow} />
         <div style={s.heroGrid} />
         <div style={s.heroContent}>
-          <button onClick={() => onNavigate && onNavigate('blog-post:blackrock-electrician-shortage')} style={{background:'rgba(200,168,75,0.08)',border:'1px solid rgba(200,168,75,0.3)',borderRadius:'4px',padding:'10px 16px',marginBottom:'20px',display:'inline-block',cursor:'pointer',transition:'background 0.2s'}} onMouseEnter={e=>e.currentTarget.style.background='rgba(200,168,75,0.15)'} onMouseLeave={e=>e.currentTarget.style.background='rgba(200,168,75,0.08)'}>
-            <span style={{color:'#c8a84b',fontSize:'12px',fontWeight:'700',letterSpacing:'1px',textTransform:'uppercase',fontFamily:"'Courier New',monospace"}}>⚡ BlackRock just committed $100M to electrician training — demand has never been higher →</span>
-          </button>
+
           <div style={s.heroBadge}>
             <span style={s.badgeDot} />
             California · As of 2026, the exam is based on the 2020 NEC
@@ -70,12 +68,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <div style={s.h1Line3}>Get Licensed.</div>
           </h1>
           <p style={s.heroSub}>
-            BlackRock — the world's largest asset manager — says America is running out of electricians. <strong style={{color:'#d8e0e8'}}>Your California Journeyman license is your ticket in.</strong> 462 original practice questions, every answer NEC referenced.
+            The demand for licensed California electricians has never been higher. <strong style={{color:'#d8e0e8'}}>Your Journeyman license is your ticket in.</strong> 462 original practice questions, every answer NEC referenced.
           </p>
           <div style={s.heroCtas}>
             <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
-            <button style={{...s.btnGhost, background:'none', border:'none', cursor:'pointer', fontFamily:'inherit'}}
-              onClick={() => onLaunchApp()}>Start Free — No Account Needed →</button>
           </div>
           <div style={{marginTop:'12px'}}>
             <button onClick={() => onNavigate && onNavigate('demo')}
@@ -107,7 +103,13 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       </header>
 
             {/* TRUST SIGNAL */}
-      <div style={{background:'rgba(200,168,75,0.04)', borderTop:'1px solid rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'center', gap:'16px', flexWrap:'wrap'}}>
+      <div style={{background:'rgba(200,168,75,0.04)', borderTop:'1px solid rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'center', gap:'32px', flexWrap:'wrap'}}>
+        {[['462','Practice Questions'],['11','Exam Modules'],['2020','NEC Edition'],['70%','Passing Score']].map(([val,label]) => (
+          <div key={label} style={{textAlign:'center'}}>
+            <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'28px', fontWeight:'900', color:'#c8a84b'}}>{val}</div>
+            <div style={{fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'2px'}}>{label}</div>
+          </div>
+        ))}
       </div>
 
       {/* HOW IT WORKS */}
@@ -187,7 +189,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             name="Standard"
             price="$29.99"
             priceSub="One-time · Instant access"
-            featured
             features={[
               {text:'All 11 modules — 462 questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
@@ -200,7 +201,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Code Sprint, Table Mastery, Missed Questions, High-Priority Drill', locked:true},
             ]}
             btnLabel="Get Standard Access ⚡"
-            btnStyle="gold"
+            btnStyle="outline"
             onBuy={() => openModal('standard')}
             isLoading={loading === 'standard'}
           />
@@ -208,6 +209,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             name="Pro"
             price="$59.99"
             priceSub="One-time · Instant access"
+            featured
             tagline="For the candidate who wants every available edge."
             features={[
               {text:'Everything in Standard', locked:false},
@@ -216,8 +218,8 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Missed Questions deck — spaced repetition on your wrong answers', locked:false},
               {text:'High-Priority Drill — 25 questions on the most-tested CA exam topics', locked:false},
             ]}
-            btnLabel="Get Pro Access"
-            btnStyle="outline"
+            btnLabel="Get Pro Access ⚡"
+            btnStyle="gold"
             onBuy={() => openModal('pro')}
             isLoading={loading === 'pro'}
           />
@@ -292,6 +294,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
         </div>
         <div style={{width:'100%', borderTop:'1px solid rgba(200,168,75,0.08)', paddingTop:'16px'}}>
+          <div style={{fontSize:'12px', color:'#4a5a6a', marginBottom:'8px'}}>Questions? <button onClick={() => onNavigate && onNavigate('contact')} style={{background:'none',border:'none',color:'#c8a84b',fontSize:'12px',cursor:'pointer',padding:0}}>Contact support →</button></div>
           <div style={s.footerCopy}>© 2026 West Coast Wire Pro Training. Built for California electricians.</div>
         </div>
       </footer>
@@ -318,7 +321,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
                 />
               )}
               <ModalOption
-                name={modalTier === 'standard' ? 'Standard — All 12 Modules' : 'Standard instead'}
+                name={modalTier === 'standard' ? 'Standard — All 11 Modules' : 'Standard instead'}
                 desc="462 questions · Timed mode · Score tracking"
                 price="$29.99"
                 onClick={() => handlePurchase('standard')}
@@ -362,7 +365,7 @@ function PlanCard({ name, price, priceSub, tagline, featured, features, btnLabel
   }
   return (
     <div style={planCard}>
-      {featured && <div style={{position:'absolute', top:'-1px', left:'50%', transform:'translateX(-50%)', background:'#c8a84b', color:'#0f1923', fontWeight:'800', fontSize:'11px', letterSpacing:'2px', textTransform:'uppercase', padding:'4px 16px', borderRadius:'0 0 4px 4px'}}>MOST POPULAR</div>}
+      {featured && <div style={{position:'absolute', top:'-1px', left:'50%', transform:'translateX(-50%)', background:'#c8a84b', color:'#0f1923', fontWeight:'800', fontSize:'11px', letterSpacing:'2px', textTransform:'uppercase', padding:'4px 16px', borderRadius:'0 0 4px 4px'}}>BEST VALUE</div>}
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'24px', fontWeight:'900', textTransform:'uppercase', marginBottom:'8px', marginTop: featured?'16px':'0'}}>{name}</div>
       <div style={{fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'52px', fontWeight:'900', color:'#c8a84b', lineHeight:'1', margin:'16px 0 4px'}}>{price}</div>
       <div style={{fontSize:'13px', color:'#7a8a9a', marginBottom: tagline ? '12px' : '24px'}}>{priceSub}</div>
@@ -402,7 +405,7 @@ function ModalOption({ name, desc, price, onClick, dim, isLoading }) {
 // ── Data ────────────────────────────────────────────────────
 
 const MODULES_DATA = [
-  {id:1, name:'Definitions & General', articles:'Articles 90, 100, 110', qCount:30, color:'#e74c3c'},
+  {id:1, name:'Definitions & General', articles:'Articles 90, 100, 110', qCount:31, color:'#e74c3c'},
   {id:2, name:'Wiring & Overcurrent', articles:'Articles 210, 215, 220, 240', qCount:45, color:'#e67e22'},
   {id:3, name:'Services & Feeders', articles:'Articles 215, 225, 230', qCount:35, color:'#f39c12'},
   {id:4, name:'Grounding & Bonding', articles:'Article 250', qCount:40, color:'#27ae60'},
@@ -411,7 +414,7 @@ const MODULES_DATA = [
   {id:7, name:'Special Occupancies', articles:'Articles 500–590', qCount:30, color:'#8e44ad'},
   {id:8, name:'Motors & Transformers', articles:'Articles 430, 450', qCount:40, color:'#c0392b'},
   {id:9, name:'Communications & Emergency', articles:'Articles 700–820', qCount:25, color:'#d35400'},
-  {id:10, name:'Calculations & Trade Math', articles:'Chapter 9, Table 310.16', qCount:60, color:'#1abc9c'},
+  {id:10, name:'Calculations & Trade Math', articles:'Chapter 9, Table 310.16', qCount:71, color:'#1abc9c'},
   {id:12, name:'Safety & Maintenance', articles:'NFPA 70E, Cal/OSHA', qCount:55, color:'#2c3e50', displayId:11},
 ]
 

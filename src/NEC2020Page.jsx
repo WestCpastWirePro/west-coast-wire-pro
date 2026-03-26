@@ -188,7 +188,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
                 California-specific note: California's Title 24 2022 update extended the solar
                 mandate to multi-family buildings and added battery storage requirements.
                 The CA exam may test the intersection of NEC Article 706 and California's
-                energy storage requirements. Module 11 in West Coast Wire Pro covers this.
+                energy storage requirements. Module 12 in West Coast Wire Pro covers this.
               </CallOut>
             </Section>
 
@@ -278,7 +278,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
             </div>
             <div style={s.ctaBtns}>
               <button style={s.btnGold} onClick={onLaunchApp}>Start Free — Modules 1 & 2 ⚡</button>
-              <button style={s.btnGhost} onClick={() => onLaunchApp()}>Start Free — No Account Needed</button>
+              
             </div>
           </div>
 

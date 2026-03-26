@@ -441,7 +441,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
             </div>
             <div style={s.ctaBtns}>
               <button style={s.btnGold} onClick={onLaunchApp}>Start Free — Modules 1 & 2 ⚡</button>
-              <button style={s.btnGhost} onClick={() => onLaunchApp()}>Start Free — No Account Needed</button>
+              
             </div>
           </div>
 

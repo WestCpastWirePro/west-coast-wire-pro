@@ -36,7 +36,7 @@ Check in with the front desk, show your IDs, and store everything except your co
 
 ## The Test Itself
 
-100 questions, 4 hours and 30 minutes. Most candidates finish in 2.5–3 hours.
+110 questions, 4 hours and 30 minutes. Most candidates finish in 2.5–3 hours.
 
 Questions are multiple choice — four options, one correct answer. You can flag questions and come back to them. Use this feature — don't spend 10 minutes on one calculation when you have 109 others to get through.
 

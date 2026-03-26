@@ -6,7 +6,7 @@ export default function ContactPage({ onHome, onNavigate }) {
 
   const subjects = [
     'General Question',
-    'I need my access code',
+    'I need my access link',
     'Technical issue with the app',
     'Refund request',
     'I passed — sharing my story!',
@@ -49,7 +49,7 @@ export default function ContactPage({ onHome, onNavigate }) {
         <div style={s.formCard}>
           <div style={s.sectionLabel}>📬 SEND US A MESSAGE</div>
           <p style={s.introText}>
-            Questions about your purchase, access codes, technical issues, refunds, or anything else —
+            Questions about your purchase, access links, technical issues, refunds, or anything else —
             fill out the form below and we'll get back to you within 1 business day. Responses to weekend messages go out Monday morning.
           </p>
 
@@ -140,37 +140,39 @@ export default function ContactPage({ onHome, onNavigate }) {
             {
               title: 'App is locked after purchase',
               steps: [
-                'Check your email for a confirmation from Stripe with your access code.',
-                "Go to the app and tap 'Enter Access Code →' on the paywall screen.",
-                "Enter the code exactly as shown — it's formatted XXXX-XXXX-XXXX.",
-                "Still not working? Use the contact form above and we'll fix it within 1 business day.",
+                'Check your email for a one-click access link from no-reply@westcoastwirepro.com.',
+                'Subject line: "Your West Coast Wire Pro Access — Click to Start Studying"',
+                'Check spam, promotions, and junk folders if you cannot find it.',
+                'Click the link in the email — it will unlock the app on your device instantly.',
+                "Still not working? Use the contact form above with your purchase email and we'll fix it within 1 business day.",
               ]
             },
             {
-              title: "I can't find my access code email",
+              title: "I can't find my access link email",
               steps: [
-                'Check your spam/junk folder — Stripe confirmation emails sometimes land there.',
-                "Search your inbox for 'West Coast Wire Pro' or 'receipt' from around the time you purchased.",
-                "Still can't find it? Use the contact form above with the email you purchased with and we'll resend it.",
+                "Search your inbox for 'West Coast Wire Pro' or check spam/junk folders.",
+                'The email comes from no-reply@westcoastwirepro.com — add it to your contacts.',
+                "If you still can't find it, contact us with the email you used to purchase and we'll resend your access link.",
               ]
             },
             {
               title: 'My progress was lost / app reset',
               steps: [
                 "Progress is saved in your browser's local storage. It can be cleared if you clear your browser history or switch browsers.",
-                'To avoid this, always use the same browser on the same device.',
-                'Your access code is permanent — re-enter it in the redeem screen and your access is restored instantly.',
+                'To avoid losing progress, bookmark your access email and use the same browser consistently.',
+                'Your access itself is tied to your email link — switching browsers only affects saved quiz progress, not your account.',
               ]
             },
             {
-              title: 'I want a refund',
+              title: 'The app is slow or not loading',
               steps: [
-                "We offer a 7-day refund if you've answered fewer than 50 questions.",
-                'Use the contact form above and include your order number or the email you used to purchase.',
-                'See our full Refund Policy for complete terms.',
+                'Try a hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac).',
+                'Clear your browser cache and reload.',
+                'Try a different browser (Chrome, Firefox, Safari).',
+                'Check your internet connection — the app loads once and works offline after.',
               ]
             },
-          ].map((issue, i) => (
+          ]].map((issue, i) => (
             <div key={i} style={{ marginBottom: '18px', paddingBottom: '18px', borderBottom: i < 3 ? '1px solid #2a3a54' : 'none' }}>
               <div style={{ fontWeight: '700', fontSize: '14px', color: '#e8eaf0', marginBottom: '8px' }}>{issue.title}</div>
               {issue.steps.map((step, j) => (
@@ -206,7 +208,7 @@ export default function ContactPage({ onHome, onNavigate }) {
             {[
               ['FAQ', 'faq'],
               ['Refund Policy', 'refund'],
-              ['Redeem Access Code', 'redeem'],
+              ['Restore Access', 'redeem'],
               ['Privacy Policy', 'privacy'],
               ['Terms of Service', 'terms'],
             ].map(([label, page]) => (

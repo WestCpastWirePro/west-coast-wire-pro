@@ -201,7 +201,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
             <div style={s.ctaSub}>Modules 1 & 2 + 2 Table Mastery drills — free. No account, no credit card.</div>
             <div style={s.ctaBtns}>
               <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
-              <button style={s.btnGhost} onClick={() => onLaunchApp()}>Start Free — No Account Needed</button>
+              
             </div>
           </div>
 

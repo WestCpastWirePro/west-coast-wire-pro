@@ -45,7 +45,7 @@ onNavigate={onNavigate}       title="Terms of Service"
           own personal study purposes.
         </P>
         <P>
-          <strong style={{color:'#d8e0e8'}}>Free tier:</strong> Access to Module 1 (30 questions) 
+          <strong style={{color:'#d8e0e8'}}>Free tier:</strong> Access to Module 1 (31 questions) 
           is provided at no charge with no purchase necessary.
         </P>
         <P>

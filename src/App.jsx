@@ -202,6 +202,26 @@ function resolveViewFromURL() {
   return 'landing'
 }
 
+
+class ErrorBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { hasError: false }; }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(err, info) { console.error('App error:', err, info); }
+  render() {
+    if (this.state.hasError) return (
+      <div style={{minHeight:'100vh',background:'#0a1016',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'16px',padding:'32px',textAlign:'center'}}>
+        <div style={{fontSize:'48px'}}>⚡</div>
+        <div style={{color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontSize:'20px',fontWeight:'900',textTransform:'uppercase'}}>Something went wrong</div>
+        <div style={{color:'#7a8a9a',fontSize:'14px',maxWidth:'340px',lineHeight:'1.6'}}>An unexpected error occurred. Try refreshing the page — your progress is saved.</div>
+        <button onClick={() => window.location.reload()} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'14px',textTransform:'uppercase',border:'none',borderRadius:'6px',padding:'12px 28px',cursor:'pointer',marginTop:'8px'}}>
+          Refresh Page
+        </button>
+      </div>
+    );
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [view, setView] = useState(() => resolveViewFromURL())
 
@@ -284,7 +304,7 @@ export default function App() {
   const getAccess = () => { try { return localStorage.getItem('wrp_access') || 'free' } catch(e) { return 'free' } }
 
   if (view === 'verifying') return <div style={{minHeight:'100vh',background:'#0a1016',display:'flex',alignItems:'center',justifyContent:'center',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontSize:'18px',textTransform:'uppercase',letterSpacing:'2px'}}>⚡ Unlocking Access...</div>
-  if (view === 'app') return <WestCoastWirePro onHome={goHome} onNavigate={navigate} />
+  if (view === 'app') return <ErrorBoundary><WestCoastWirePro onHome={goHome} onNavigate={navigate} /></ErrorBoundary>
 
   // All other views get the persistent GlobalNav
   const launchApp = () => navigate('app')

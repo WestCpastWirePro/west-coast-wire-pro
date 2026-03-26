@@ -124,7 +124,7 @@ const FAQS = [
       },
       {
         q: "How were the practice questions written?",
-        a: "Questions were developed using AI trained on the NEC 2020, electrical trade publications, and publicly available exam prep materials, then reviewed by a licensed California journeyman electrician against the codebook. They are original questions — not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
+        a: "Questions were developed from NEC 2020 content and electrical trade knowledge, reviewed by a licensed California journeyman electrician against the codebook. They are original questions — not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
       },
       {
         q: "If I fail the exam, can I keep using the app?",

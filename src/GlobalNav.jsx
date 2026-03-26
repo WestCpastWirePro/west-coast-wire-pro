@@ -71,10 +71,10 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp }) {
 
         {/* DESKTOP NAV */}
         <div className="gn-desktop" style={{alignItems:'center',gap:'28px'}}>
-          <a href="/#how-it-works" style={{color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",transition:'color 0.2s'}}
-            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>How It Works</a>
-          <a href="/#pricing" style={{color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",transition:'color 0.2s'}}
-            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>Pricing</a>
+          <button onClick={() => { if(window.location.pathname === '/') { document.getElementById('how-it-works')?.scrollIntoView({behavior:'smooth'}); } else { onHome && onHome(); setTimeout(() => document.getElementById('how-it-works')?.scrollIntoView({behavior:'smooth'}), 300); }}} style={{background:'none',border:'none',color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",cursor:'pointer',transition:'color 0.2s'}}
+            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>How It Works</button>
+          <button onClick={() => { if(window.location.pathname === '/') { document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'}); } else { onHome && onHome(); setTimeout(() => document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'}), 300); }}} style={{background:'none',border:'none',color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",cursor:'pointer',transition:'color 0.2s'}}
+            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>Pricing</button>
           <GnDropdown label="Study Tools" onNavigate={nav} items={[
             {label:'Start Free — No Account Needed', page:'landing'},
             {label:'Diagnostic Test', page:'diagnostic'},

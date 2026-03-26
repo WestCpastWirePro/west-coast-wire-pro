@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPost } from './blogPosts.js'
+import { getPost, blogPosts } from './blogPosts.js'
 
 // Simple markdown-ish renderer — handles ## headers, **bold**, *italic*, plain paragraphs
 function renderContent(text) {
@@ -97,6 +97,29 @@ export default function BlogPostPage({ slug, onNavigate, onLaunchApp }) {
             ⚡ Start Studying Free
           </button>
         </div>
+
+        {/* Related Posts */}
+        {blogPosts.filter(p => p.slug !== post.slug).slice(0, 2).length > 0 && (
+          <div style={{marginTop:'48px', borderTop:'1px solid rgba(200,168,75,0.15)', paddingTop:'40px'}}>
+            <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', fontFamily:"'Courier New',monospace", marginBottom:'20px'}}>
+              More Articles
+            </div>
+            <div style={{display:'flex', flexDirection:'column', gap:'16px'}}>
+              {blogPosts.filter(p => p.slug !== post.slug).slice(0, 2).map(related => (
+                <div key={related.slug}
+                  onClick={() => nav('blog-post:' + related.slug)}
+                  style={{background:'#111820', border:'1px solid rgba(200,168,75,0.15)', borderRadius:'8px', padding:'20px 24px', cursor:'pointer', transition:'border-color 0.2s'}}
+                  onMouseEnter={e => e.currentTarget.style.borderColor='rgba(200,168,75,0.4)'}
+                  onMouseLeave={e => e.currentTarget.style.borderColor='rgba(200,168,75,0.15)'}
+                >
+                  <div style={{fontSize:'11px', color:'#c8a84b', fontWeight:'700', letterSpacing:'1px', textTransform:'uppercase', marginBottom:'8px'}}>{related.category}</div>
+                  <div style={{color:'#d8e0e8', fontWeight:'700', fontSize:'15px', lineHeight:'1.4', marginBottom:'6px'}}>{related.title}</div>
+                  <div style={{color:'#7a8a9a', fontSize:'13px'}}>{related.readTime} · {related.date}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Back to blog */}
         <div style={{marginTop:'32px', textAlign:'center'}}>
