@@ -39,7 +39,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
       <div style={{margin:"0 16px 0", padding:"10px 14px", background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"6px", display:"flex", alignItems:"flex-start", gap:"10px"}}>
         <span style={{fontSize:"16px", flexShrink:0}}>ℹ️</span>
         <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.6"}}>
-          <strong style={{color:"#c8a84b"}}>Information current as of 2024.</strong> Exam format, fees, and eligibility requirements can change. Verify current requirements at <a href="https://www.dir.ca.gov/dlse/dlseECPU.html" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>dosh.ca.gov</a> and <a href="https://www.psionline.com" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>psionline.com</a> before scheduling your exam.
+          <strong style={{color:"#c8a84b"}}>Information current as of 2026.</strong> Exam format, fees, and eligibility requirements can change. Verify current requirements at <a href="https://www.dir.ca.gov/dlse/dlseECPU.html" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>dosh.ca.gov</a> and <a href="https://www.psionline.com" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>psionline.com</a> before scheduling your exam.
         </div>
       </div>
 
@@ -138,8 +138,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               <P>
                 A passing score is <strong style={s.strong}>70% or higher</strong>.
                 You will receive your result immediately upon finishing at the testing center.
-                If you do not pass, you must wait 60 days before reapplying to retake the exam. There is a $100 retake fee. Submit your retake application to DLSE at the same address as your original application.
-                of another examination fee.
+                If you do not pass, you must wait 60 days before reapplying to retake the exam. There is a $100 retake fee. Submit your retake application to the DLSE at the same address as your original application.
               </P>
               <CallOut>
                 The 4.5-hour time limit works out to about 2.5 minutes per question. Most

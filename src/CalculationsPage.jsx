@@ -155,7 +155,7 @@ function MotorCalc() {
     const ocpd = fla * 2.5; // Inverse time breaker 250%
     setResult({ fla, branchConductor: branchConductor.toFixed(1), ocpd: ocpd.toFixed(1),
       steps: [
-        `FLA from NEC Table 430.24${phase==="1"?"8":"0"} = ${fla}A`,
+        `FLA from NEC Table ${phase==="1"?"430.248":"430.250"} = ${fla}A`,
         `Branch circuit conductor = FLA × 125% = ${fla} × 1.25 = ${branchConductor.toFixed(1)}A`,
         `Max OCPD (inverse time breaker) = FLA × 250% = ${fla} × 2.5 = ${ocpd.toFixed(1)}A`,
         `Round up to next standard breaker size (240.6): ${[15,20,25,30,35,40,45,50,60,70,80,90,100,110,125,150,175,200].find(b=>b>=ocpd)}A`,

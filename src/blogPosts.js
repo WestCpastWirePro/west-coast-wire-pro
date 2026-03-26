@@ -28,7 +28,7 @@ PSI Exams is the third-party testing company that administers the California Jou
 
 The California Journeyman exam is open book, but **PSI provides the NEC 2020 codebook at the testing center. You do not bring your own.** No tabs, no highlights, no handwritten notes — it is a clean, unmarked copy. Anything you wrote in your personal codebook stays home.
 
-This is confirmed by WECA (Western Electrical Contractors Association) and multiple official sources: the NEC code books are provided at the testing sites. You are allowed to bring a basic, non-programmable calculator. Everything else stays in the locker PSI provides.
+This is confirmed by WECA (Western Electrical Contractors Association) and multiple official sources: the NEC code books are provided at the testing sites. Personal calculators are not permitted — PSI provides an on-screen calculator in the testing software. Everything else stays in the locker PSI provides.
 
 ## What Happens When You Arrive
 

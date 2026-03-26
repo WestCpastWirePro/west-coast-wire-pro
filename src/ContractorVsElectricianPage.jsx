@@ -42,7 +42,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
           <div style={{background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"6px", padding:"10px 14px", marginBottom:"24px", display:"flex", alignItems:"flex-start", gap:"10px"}}>
             <span style={{fontSize:"16px", flexShrink:0}}>ℹ️</span>
             <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.6"}}>
-              <strong style={{color:"#c8a84b"}}>License requirements current as of 2024.</strong> Fees, bond amounts, and experience requirements can change. Verify current requirements at <a href="https://www.cslb.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>cslb.ca.gov</a> and <a href="https://www.dir.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>dir.ca.gov</a> before applying.
+              <strong style={{color:"#c8a84b"}}>License requirements current as of 2026.</strong> Fees, bond amounts, and experience requirements can change. Verify current requirements at <a href="https://www.cslb.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>cslb.ca.gov</a> and <a href="https://www.dir.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>dir.ca.gov</a> before applying.
             </div>
           </div>
 

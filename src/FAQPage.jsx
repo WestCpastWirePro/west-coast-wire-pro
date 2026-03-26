@@ -86,7 +86,7 @@ const FAQS = [
       },
       {
         q: "What modules are most heavily tested?",
-        a: "Based on exam patterns, the most heavily tested areas are: Wiring & Materials (Module 3), Branch Circuits & Feeders (Module 4), Services (Module 5), Motors (Module 7), and Grounding & Bonding (Module 6)."
+        a: "Based on exam patterns, the most heavily tested areas are: Wiring & Overcurrent (Module 2), Services & Feeders (Module 3), Grounding & Bonding (Module 4), Motors & Transformers (Module 8), and Calculations & Trade Math (Module 10). Article 250 (Grounding & Bonding) and motor circuit sizing (Article 430) consistently appear in large numbers on the CA exam."
       },
       {
         q: "How do I know if I'm ready to take the exam?",

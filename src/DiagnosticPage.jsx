@@ -45,8 +45,8 @@ const RECOMMENDATIONS = {
     "Take a full 110-question timed exam simulation 2 weeks before your test date.",
   ],
   high: [
-    "Strong performance. Focus on Hard difficulty questions in your weakest modules.",
-    "Focus on Hard difficulty questions in your weakest modules for maximum score improvement.",
+    "Strong performance. Target Hard difficulty questions in your weakest modules — that's where the exam margin is won.",
+    "Run a full 110-question timed simulation and review every miss. At this level, the goal is eliminating the last 15–20% of errors.",
   ],
 };
 

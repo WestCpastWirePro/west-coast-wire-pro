@@ -42,7 +42,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
           <div style={{background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"6px", padding:"10px 14px", marginBottom:"24px", display:"flex", alignItems:"flex-start", gap:"10px"}}>
             <span style={{fontSize:"16px", flexShrink:0}}>ℹ️</span>
             <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.6"}}>
-              <strong style={{color:"#c8a84b"}}>Wage data current as of 2024.</strong> California electrician wages change regularly. Verify current wage rates with the <a href="https://www.dir.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>CA Department of Industrial Relations</a> or your local IBEW before making career decisions.
+              <strong style={{color:"#c8a84b"}}>Wage figures sourced from BLS OEWS May 2024 survey.</strong> California electrician wages change regularly. Verify current wage rates with the <a href="https://www.dir.ca.gov" target="_blank" rel="noopener noreferrer" style={{color:"#c8a84b"}}>CA Department of Industrial Relations</a> or your local IBEW before making career decisions.
             </div>
           </div>
 

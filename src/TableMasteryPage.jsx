@@ -34,7 +34,7 @@ const CARD_DATA = {
     cards: [
       { front:"14 AWG copper · 60°C",  back:"15A",  hint:"Smallest common wire — 15A circuit" },
       { front:"12 AWG copper · 60°C",  back:"20A",  hint:"Standard 20A circuit" },
-      { front:"12 AWG copper · 90°C",  back:"25A",  hint:"Higher temp column for derating math" },
+      { front:"12 AWG copper · 90°C",  back:"30A",  hint:"Higher temp column for derating math — 14 AWG is 25A at 90°C" },
       { front:"10 AWG copper · 60°C",  back:"30A",  hint:"30A circuits (dryers, water heaters)" },
       { front:"10 AWG copper · 75°C",  back:"35A",  hint:"75°C column — most commercial equip" },
       { front:"8 AWG copper · 60°C",   back:"40A",  hint:"40A — EV chargers, ranges" },
@@ -105,9 +105,9 @@ const CARD_DATA = {
     ref: "NEC Chapter 9, Table 5",
     why: "Used with Table 4 to calculate how many wires fit in a conduit. Sum of areas ÷ conduit area.",
     cards: [
-      { front:"14 AWG THWN — area",  back:"0.0097 in²", hint:"Smallest — 7 fit in ½\" EMT at 40%" },
-      { front:"12 AWG THWN — area",  back:"0.0133 in²", hint:"Common — 5 fit in ½\" EMT at 40%" },
-      { front:"10 AWG THWN — area",  back:"0.0211 in²", hint:"Larger — 4 fit in ½\" EMT" },
+      { front:"14 AWG THWN — area",  back:"0.0097 in²", hint:"12 fit in ½\" EMT at 40% (0.122÷0.0097)" },
+      { front:"12 AWG THWN — area",  back:"0.0133 in²", hint:"9 fit in ½\" EMT at 40% (0.122÷0.0133)" },
+      { front:"10 AWG THWN — area",  back:"0.0211 in²", hint:"5 fit in ½\" EMT at 40% (0.122÷0.0211)" },
       { front:"8 AWG THWN — area",   back:"0.0366 in²", hint:"3 fit in ½\" EMT at 40%" },
       { front:"6 AWG THWN — area",   back:"0.0507 in²", hint:"2 fit in ½\" EMT at 40%" },
       { front:"4 AWG THWN — area",   back:"0.0824 in²", hint:"Fits in ¾\" EMT (3+)" },

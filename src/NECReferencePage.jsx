@@ -143,10 +143,10 @@ const TABLES = [
   },
   {
     id: "service-sizing",
-    title: "Service Load Calculation — Residential (Standard Method)",
+    title: "Service Load Calculation — Residential (Optional Method)",
     ref: "NEC 220.82",
     tag: "Calculations",
-    note: "Optional method for dwellings. Uses 100% of first 10 kVA of general loads, 40% of remainder.",
+    note: "Optional method for dwellings (NEC 220.82). Uses 100% of first 10 kVA of general loads, 40% of remainder. Standard method uses Article 220.40–220.53.",
     headers: ["Load Type", "Demand Factor", "Notes"],
     rows: [
       ["General lighting (3 VA/sq ft)", "100%", "All square footage"],
@@ -188,9 +188,9 @@ const TABLES = [
     note: "Required clear space in front of electrical equipment. Condition depends on what's across from the equipment.",
     headers: ["Condition", "0–150V", "151–600V"],
     rows: [
-      ["Condition 1 — exposed live parts on one side, grounded on other", "3 ft", "3 ft"],
-      ["Condition 2 — exposed live parts on both sides", "3 ft", "3.5 ft"],
-      ["Condition 3 — exposed live parts on both sides (unguarded)", "3 ft", "4 ft"],
+      ["Condition 1 — exposed live parts on one side only, no live or grounded parts on the other side", "3 ft", "3 ft"],
+      ["Condition 2 — exposed live parts on one side, grounded parts on the other side", "3 ft", "3.5 ft"],
+      ["Condition 3 — exposed live parts on both sides (operator between)", "3 ft", "4 ft"],
     ]
   },
 ];
