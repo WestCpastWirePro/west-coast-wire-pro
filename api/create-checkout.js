@@ -34,7 +34,7 @@ export default async function handler(req, res) {
   // upgrade:true means Standard user paying the $30 difference to reach Pro
   const priceKey = (tier === 'pro' && upgrade) ? 'pro_upgrade' : tier;
 
-  if (!tier || !PRICES[priceKey] === undefined) {
+  if (!tier || PRICES[priceKey] === undefined) {
     return res.status(400).json({ error: 'Invalid plan selected' });
   }
 

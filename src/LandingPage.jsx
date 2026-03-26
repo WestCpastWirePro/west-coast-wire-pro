@@ -1,5 +1,5 @@
 // LandingPage — v2
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 // ── Stripe checkout ───────────────────────────────────────────────────────────
 // Calls the /api/create-checkout serverless function, which creates a
@@ -34,12 +34,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [modalTier, setModalTier] = useState('standard')
   const [loading, setLoading] = useState(null)
   const [payError, setPayError] = useState('')
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   // Close menu on outside click
 

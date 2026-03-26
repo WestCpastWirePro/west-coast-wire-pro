@@ -91,6 +91,7 @@ const PAGE_PATHS = {
   blog: '/blog',
   'code-sprint': '/code-sprint',
   demo: '/demo',
+  'admin-grant': '/admin-grant',
 }
 
 const PAGE_META = {
