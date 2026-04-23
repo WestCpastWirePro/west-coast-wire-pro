@@ -5,6 +5,33 @@
 
 export const blogPosts = [
   {
+    slug: 'lowes-250-million-electrician-training-2026',
+    title: "Lowe's Just Bet $250 Million on Electricians. Your Timing Just Got Better.",
+    date: 'April 22, 2026',
+    category: 'Industry News',
+    excerpt: "Lowe's is putting $250 million toward training new electricians. Here's what it actually means if you're already studying for the California journeyman exam.",
+    readTime: '3 min read',
+    content: `
+On April 7, 2026, Lowe's announced they're putting $250 million toward training 250,000 new tradespeople by 2035 — electricians included. That's five times what they committed back in 2023.
+
+What it means for you: the industry knows it's short on electricians, and that shortage isn't going away anytime soon.
+
+## What's Actually Happening in California Right Now
+
+EV chargers going in on every other street. Solar on every other roof. Data centers popping up across the Inland Empire. Panel upgrades to handle heat pumps and induction ranges. Every one of those jobs needs a licensed electrician, and there aren't enough of us to go around.
+
+The Associated Builders and Contractors estimates the country is short about 350,000 construction workers this year. Next year, 456,000. Lowe's CEO Marvin Ellison put it plainly: as AI takes over the desk jobs, the hands-on trades matter more, not less. You can't write a line of code that pulls wire.
+
+## The Catch in the Lowe's News
+
+That $250 million goes to community colleges and nonprofits to train new apprentices. Even if every dollar lands tomorrow, those folks are years away from sitting for the journeyman exam. You, on the other hand, are studying right now.
+
+That's your edge. You're not the pipeline — you're already in it. Pass the exam, get your license, and you're in the market before the Lowe's-funded apprentices finish their first year of school.
+
+Keep studying. The work is coming.
+    `,
+  },
+  {
     slug: 'ca-journeyman-exam-day-guide',
     title: "What to Expect at the PSI Testing Center — CA Journeyman Exam Day",
     date: 'March 21, 2026',
