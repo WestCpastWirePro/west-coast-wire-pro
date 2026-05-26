@@ -171,7 +171,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
               {text:'Set your exam date & see your countdown', locked:false},
-              {text:'Modules 3–12 (424 questions)', locked:true},
+              {text:'Modules 3–12 (425 questions)', locked:true},
               {text:'Table Mastery — 8 more NEC tables', locked:true},
               {text:'Progress saved & missed question deck', locked:true},
             ]}

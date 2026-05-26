@@ -284,7 +284,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                   <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
                   
                 </div>
-                <div style={s.ctaNote}>Module 1 (31 questions) is always free. No account required.</div>
+                <div style={s.ctaNote}>Module 1 (30 questions) is always free. No account required.</div>
               </div>
 
             </Section>
