@@ -85,7 +85,7 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={s.sub}>
           {tier === 'pro'
             ? 'You have every tool: Code Sprint, Full Table Mastery, Missed Questions deck, and High-Priority Drill — all yours. Go pass this exam.'
-            : 'All 462 questions across all 11 modules are now unlocked. Upgrade to Pro anytime for Code Sprint, Table Mastery, Missed Questions, and more.'}
+            : 'All 500 questions across all 12 modules are now unlocked. Upgrade to Pro anytime for Code Sprint, Table Mastery, Missed Questions, and more.'}
         </div>
         <div style={s.divider} />
         <button style={s.btn} onClick={onEnterApp}>

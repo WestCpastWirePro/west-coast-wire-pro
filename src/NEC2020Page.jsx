@@ -43,7 +43,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
       <div style={s.alertBar}>
         <span style={s.alertIcon}>⚠️</span>
         <span style={s.alertText}>
-          <strong style={{color:'#e8c878'}}>California exam note:</strong> The CA General Electrician exam is based on the 2020 NEC with California amendments. If your study materials reference the 2017 edition, several rules covered below will be wrong on the exam.
+          <strong style={{color:'#e8c878'}}>California exam note:</strong> The CA General Electrician exam is based on the 2023 NEC with California amendments. If your study materials reference the 2017 or 2020 edition, several rules may be wrong on the exam.
         </span>
       </div>
 
@@ -260,7 +260,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
               </div>
 
               <CallOut>
-                West Coast Wire Pro is based entirely on the 2020 NEC with California amendments.
+                West Coast Wire Pro is based entirely on the 2023 NEC with California amendments.
                 Every question in the AFCI, GFCI, and wiring modules reflects the current
                 code — not the 2017 edition.
               </CallOut>
@@ -271,9 +271,9 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
           {/* CTA */}
           <div style={s.ctaBlock}>
             <div style={s.ctaBolt}>⚡</div>
-            <div style={s.ctaTitle}>Practice 2020 NEC Questions</div>
+            <div style={s.ctaTitle}>Practice 2023 NEC Questions</div>
             <div style={s.ctaBody}>
-              Every question in West Coast Wire Pro is written to the 2020 NEC and California
+              Every question in West Coast Wire Pro is written to the 2023 NEC and California
               amendments. Modules 1 & 2 + 2 Table Mastery drills free — no account needed.
             </div>
             <div style={s.ctaBtns}>
@@ -306,7 +306,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Key Facts</div>
             {[
-              ['Current edition', '2020 NEC'],
+              ['Current edition', '2023 NEC'],
               ['Previous edition', '2017 NEC'],
               ['CA adoption', '2023'],
               ['Next edition', '2023 NEC (not yet adopted in CA)'],
@@ -326,8 +326,8 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
             ))}
           </div>
           <div style={{...s.sideCard, borderColor:'rgba(200,168,75,0.3)', background:'rgba(200,168,75,0.04)'}}>
-            <div style={s.sideTitle}>Practice 2020 NEC</div>
-            <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'14px'}}>512 questions written to the 2020 NEC. Modules 1 & 2 always free.</p>
+            <div style={s.sideTitle}>Practice 2023 NEC</div>
+            <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'14px'}}>500 questions written to the 2023 NEC. Modules 1 & 2 always free.</p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'10px', width:'100%'}} onClick={onLaunchApp}>Try Free ⚡</button>
           </div>
         </aside>

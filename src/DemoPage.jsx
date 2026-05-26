@@ -25,15 +25,15 @@ const DEMO_QUESTIONS = [
     modColor: '#e67e22',
     ref: 'NEC 210.8(A)',
     diff: 'Medium',
-    q: 'GFCI protection is required in which dwelling locations per the 2020 NEC?',
+    q: 'Per the 2023 NEC, GFCI protection is required for kitchen receptacles in dwelling units:',
     opts: [
-      'Bathrooms and kitchens only',
-      'Anywhere within 6 feet of water',
-      'Bathrooms, garages, outdoors, crawl spaces, unfinished basements, kitchen countertop within 6 ft of sink, and boathouses',
-      'All receptacles in the dwelling unit',
+      'Only within 6 feet of a sink',
+      'Only on countertop receptacles',
+      'All kitchen receptacles, including countertop and non-countertop locations',
+      'Only in kitchens that have a dishwasher circuit',
     ],
     ans: 2,
-    exp: "The 2020 NEC significantly expanded GFCI requirements. The full list now includes bathrooms, garages, outdoors, crawl spaces, unfinished basements, kitchen countertops within 6 feet of a sink, and boathouses. This is one of the most-updated and most-tested areas on the CA exam.",
+    exp: "The 2023 NEC expanded §210.8(A)(6) to require GFCI protection for ALL kitchen receptacles in dwelling units — not just countertop receptacles within 6 feet of a sink. This is a key change from the 2020 NEC and one of the most-tested updates on the CA exam.",
   },
   {
     id: 3,
@@ -161,15 +161,15 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
 
             <div style={s.resultsMsg}>
               {pct === 100
-                ? "Perfect score — you're ready for the real thing. Unlock all 462 questions."
+                ? "Perfect score — you're ready for the real thing. Unlock all 500 questions."
                 : pct >= 60
-                ? "Solid start. The full app covers 462 questions across all 11 modules with detailed code explanations."
+                ? "Solid start. The full app covers 500 questions across all 12 modules with detailed code explanations."
                 : "These questions get harder. The full app builds you up module by module with explanations that teach, not just reveal answers."}
             </div>
 
             <div style={s.resultsCtaRow}>
               <button style={s.btnGold} onClick={onLaunchApp}>
-                ⚡ Unlock All 462 Questions
+                ⚡ Unlock All 500 Questions
               </button>
               <button style={s.btnGhost} onClick={restart}>
                 Retry Demo
@@ -290,7 +290,7 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
 
         <div style={s.footerNudge}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
-            This is a sample — the full app has 462 questions across 11 modules.
+            This is a sample — the full app has 500 questions across 12 modules.
           </span>
           <button style={s.nudgeBtn} onClick={onLaunchApp}>Unlock Free Module 1 →</button>
         </div>

@@ -199,12 +199,12 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
 
           {access === "free" && (
             <div style={{background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"8px", padding:"12px 14px", marginBottom:"12px", fontSize:"13px", color:"#c8a84b", lineHeight:"1.6"}}>
-              <strong>Free tier:</strong> You'll see questions from Modules 1 & 2 only. Upgrade to Standard or Pro to diagnose all 11 modules.
+              <strong>Free tier:</strong> You'll see questions from Modules 1 & 2 only. Upgrade to Standard or Pro to diagnose all 12 modules.
             </div>
           )}
           <div style={s.card}>
             {[
-              ["📋","22 questions","2 per module across all 11 modules"],
+              ["📋","24 questions","2 per module across all 12 modules"],
               ["🕐","~10 minutes","No time pressure"],
               ["📊","Module breakdown","See your weak spots instantly"],
               ["📚","Study plan","Custom recommendations after"],
@@ -270,7 +270,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
               <div style={{fontSize:"28px", marginBottom:"10px"}}>🔒</div>
               <div style={{fontSize:"14px", fontWeight:"700", color:"#c8a84b", marginBottom:"6px"}}>This module is locked</div>
               <div style={{fontSize:"13px", color:"#7a8a9a", lineHeight:"1.6", marginBottom:"16px"}}>
-                Upgrade to Standard or Pro to see questions from all 11 modules in your diagnostic.
+                Upgrade to Standard or Pro to see questions from all 12 modules in your diagnostic.
               </div>
               <button style={{...s.btn, ...s.btnGold, width:"100%"}} onClick={next}>
                 Skip → {idx+1 >= deck.length ? "See My Results" : "Next Question"}

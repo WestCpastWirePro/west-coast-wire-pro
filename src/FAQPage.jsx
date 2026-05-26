@@ -28,7 +28,7 @@ const FAQS = [
       },
       {
         q: "What NEC edition does the California exam use?",
-        a: "As of 2023, California adopted the 2020 NEC. The exam tests 2020 NEC content. Verify the current adopted edition with the CA DIR at dir.ca.gov before scheduling your exam."
+        a: "California is currently adopting the 2023 NEC. The exam tests 2023 NEC content. Verify the current adopted edition with the CA DIR at dir.ca.gov before scheduling your exam."
       },
       {
         q: "Can I bring a calculator?",
@@ -108,7 +108,7 @@ const FAQS = [
       },
       {
         q: "Do I need a codebook to use this app?",
-        a: "Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2020 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you'll need on exam day, when PSI hands you an unmarked codebook and the clock starts."
+        a: "Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2023 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you'll need on exam day, when PSI hands you an unmarked codebook and the clock starts."
       },
       {
         q: "Do I need internet to use the app?",
@@ -116,7 +116,7 @@ const FAQS = [
       },
       {
         q: "What's the difference between Standard and Pro access?",
-        a: "Standard ($29.99) unlocks all 462 questions across all 11 modules, Exam Simulator, Diagnostic Quiz, Study Planner, Progress Dashboard, NEC Reference, Calculations tool, Glossary, and progress saved across sessions. Pro ($59.99) adds the four highest-intensity exam tools: Code Sprint (NEC article navigation under pressure), Full Table Mastery (10 NEC tables, 113 flashcards), Missed Questions review deck (spaced repetition on your wrong answers), and High-Priority Drill (25 questions on the most heavily weighted CA exam topics). If you want every available edge going into exam day, Pro is built for that."
+        a: "Standard ($29.99) unlocks all 500 questions across all 12 modules, Exam Simulator, Diagnostic Quiz, Study Planner, Progress Dashboard, NEC Reference, Calculations tool, Glossary, and progress saved across sessions. Pro ($59.99) adds the four highest-intensity exam tools: Code Sprint (NEC article navigation under pressure), Full Table Mastery (10 NEC tables, 113 flashcards), Missed Questions review deck (spaced repetition on your wrong answers), and High-Priority Drill (25 questions on the most heavily weighted CA exam topics). If you want every available edge going into exam day, Pro is built for that."
       },
       {
         q: "I bought access but the app is locked. What do I do?",
@@ -124,7 +124,7 @@ const FAQS = [
       },
       {
         q: "How were the practice questions written?",
-        a: "Questions were developed from NEC 2020 content and electrical trade knowledge, reviewed by a licensed California journeyman electrician against the codebook. They are original questions — not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
+        a: "Questions were developed from 2023 NEC content and electrical trade knowledge, reviewed by a licensed California journeyman electrician against the codebook. They are original questions — not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
       },
       {
         q: "If I fail the exam, can I keep using the app?",

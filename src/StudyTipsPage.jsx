@@ -93,13 +93,13 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
 
               <TipBlock icon="✗" color="#e74c3c" title="Studying only from field experience">
                 Your field knowledge is valuable context, but habits built on the job — especially
-                on older installations — may not match current code. The exam tests 2020 NEC.
+                on older installations — may not match current code. The exam tests 2023 NEC.
                 Some things you do every day might be wrong by the book. Study the book.
               </TipBlock>
 
-              <TipBlock icon="✗" color="#e74c3c" title="Using 2017 NEC materials for a 2020 exam">
-                AFCI expanded to all dwelling rooms in 2020. GFCI now covers washing machines
-                and dishwashers. If your study materials are based on the 2017 edition, several
+              <TipBlock icon="✗" color="#e74c3c" title="Using 2020 NEC materials for a 2023 exam">
+                The 2023 NEC expanded GFCI to all kitchen receptacles (not just countertop).
+                If your study materials are based on the 2020 edition, several
                 of your answers will be wrong. Verify which edition your materials use before
                 you start.
               </TipBlock>
@@ -436,7 +436,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
             <div style={s.ctaBolt}>⚡</div>
             <div style={s.ctaTitle}>Start Practicing Today</div>
             <div style={s.ctaBody}>
-              462 questions. 11 modules. Every answer tied to the exact NEC section.
+              500 questions. 12 modules. Every answer tied to the exact NEC section.
               Built by a California journeyman electrician and trade school instructor. Modules 1 & 2 always free.
             </div>
             <div style={s.ctaBtns}>
@@ -468,7 +468,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
         <aside style={{...s.sidebar, display: isMobile ? "none" : "flex"}}>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Quick Stats</div>
-            {[['Questions','110'],['Time','4.5 hours'],['Passing','70%'],['Edition','2020 NEC'],['Pass rate','Low']].map(([k,v]) => (
+            {[['Questions','110'],['Time','4.5 hours'],['Passing','70%'],['Edition','2023 NEC'],['Pass rate','Low']].map(([k,v]) => (
               <div key={k} style={s.sideRow}><span style={s.sideKey}>{k}</span><span style={s.sideVal}>{v}</span></div>
             ))}
           </div>
@@ -483,7 +483,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, borderColor:'rgba(200,168,75,0.3)', background:'rgba(200,168,75,0.04)'}}>
             <div style={s.sideTitle}>Practice the Exam</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'14px'}}>
-              462 questions covering everything in this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
+              500 questions covering everything in this guide. Modules 1 & 2 + 2 Table Mastery drills always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'10px', width:'100%'}} onClick={onLaunchApp}>
               Try Free ⚡

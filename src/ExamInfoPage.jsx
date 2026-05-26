@@ -27,7 +27,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
             <span style={s.crumbDot}>·</span>
             <span style={s.crumb}>PSI Services</span>
             <span style={s.crumbDot}>·</span>
-            <span style={s.crumb}>2020 NEC</span>
+            <span style={s.crumb}>2023 NEC</span>
             <span style={s.crumbDot}>·</span>
             <span style={s.crumb}>Updated 2026</span>
           </div>
@@ -179,7 +179,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
 
             <Section id="codes" title="Which Codes to Study">
               <P>
-                The California exam is based primarily on the <strong style={s.strong}>2020 National Electrical Code
+                The California exam is based primarily on the <strong style={s.strong}>2023 National Electrical Code
                 (NFPA 70)</strong>, which is the current edition adopted in California.
                 However, California adds its own amendments and additional requirements
                 that are equally testable.
@@ -187,7 +187,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
 
               <div style={s.codeList}>
                 {[
-                  {code:'2020 NEC (NFPA 70)', desc:'The foundation. Articles 90 through 830 are fair game. Focus heavily on Chapters 1–4, which cover the most common work.', badge:'Primary'},
+                  {code:'2023 NEC (NFPA 70)', desc:'The foundation. Articles 90 through 830 are fair game. Focus heavily on Chapters 1–4, which cover the most common work.', badge:'Primary'},
                   {code:'California Electrical Code (CEC)', desc:'California\'s amendments to the NEC. Where the CEC differs from the NEC, the CEC governs. Know the differences.', badge:'Required'},
                   {code:'Title 8, California Code of Regulations', desc:'Cal/OSHA electrical safety orders. Particularly 8 CCR § 2940 (electrical safety) and § 3314 (lockout/tagout). Tested in safety module.', badge:'Required'},
                   {code:'Title 24, California Building Code', desc:'Energy efficiency requirements for electrical systems. LED lighting, occupancy sensors, solar interconnection. Module 12 focus.', badge:'Required'},
@@ -220,7 +220,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 Several factors contribute to the difficulty:
               </P>
               <Ul items={[
-                'Broad scope — 110 questions spanning 11 content areas means no single topic can be ignored',
+                'Broad scope — 110 questions spanning 12 content areas means no single topic can be ignored',
                 'Calculation questions — trade math (load calculations, conduit fill, motor sizing) requires actual computation under time pressure',
                 'Time pressure — the exam is open book, but 4.5 hours for 110 questions goes fast if you\'re looking up every answer',
                 'Question wording — questions often test nuance and exception clauses, not just the general rule',
@@ -276,7 +276,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 <div style={s.ctaBolt}>⚡</div>
                 <div style={s.ctaTitle}>West Coast Wire Pro is built for this exam.</div>
                 <div style={s.ctaBody}>
-                  462 questions across all 11 modules. Every answer tied to the exact NEC or
+                  500 questions across all 12 modules. Every answer tied to the exact NEC or
                   California code section. Timed mode, module filtering, difficulty levels.
                   Built by a California journeyman electrician and trade school instructor.
                 </div>
@@ -304,7 +304,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               ['Location', 'PSI Testing Centers'],
               ['Reference', 'Open book — NEC permitted'],
               ['Calculator', 'Provided on-screen'],
-              ['Code', '2020 NEC + CA amendments'],
+              ['Code', '2023 NEC + CA amendments'],
             ].map(([k, v]) => (
               <div key={k} style={s.sideRow}>
                 <span style={s.sideKey}>{k}</span>
@@ -316,7 +316,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
           <div style={{...s.sideCard, background:'linear-gradient(135deg, rgba(200,168,75,0.08), rgba(200,168,75,0.03))', border:'1px solid rgba(200,168,75,0.3)'}}>
             <div style={s.sideTitle}>Start Preparing</div>
             <p style={{fontSize:'13px', color:'#7a8a9a', lineHeight:1.6, marginBottom:'16px'}}>
-              462 questions. 11 modules. Every answer NEC-referenced. Modules 1 & 2 always free.
+              500 questions. 12 modules. Every answer NEC-referenced. Modules 1 & 2 always free.
             </p>
             <button style={{...s.btnGold, fontSize:'13px', padding:'11px 16px', width:'100%'}} onClick={onLaunchApp}>
               ⚡ Try Free Now

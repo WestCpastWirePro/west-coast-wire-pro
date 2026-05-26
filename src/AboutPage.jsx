@@ -166,7 +166,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
             <CredItem num="14" label="Years in the Trade" />
             <CredItem num="4" label="Years Teaching Electricians" />
             <CredItem num="100s" label="Students Per Semester" />
-            <CredItem num="462" label="Practice Questions" />
+            <CredItem num="500" label="Practice Questions" />
           </div>
 
 
@@ -192,7 +192,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
             electrician's life, not the other way around.
           </p>
           <p style={s.p}>
-            462 questions. 11 modules. Modules 1 & 2 + 2 Table Mastery drills always free.
+            500 questions. 12 modules. Modules 1 & 2 + 2 Table Mastery drills always free.
           </p>
 
           {/* CTA */}

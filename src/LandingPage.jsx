@@ -34,7 +34,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [modalTier, setModalTier] = useState('standard')
   const [loading, setLoading] = useState(null)
   const [payError, setPayError] = useState('')
-  const [bannerDismissed, setBannerDismissed] = useState(false)
 
   // Close menu on outside click
 
@@ -47,20 +46,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   return (
     <div style={s.root}>
 
-      {/* NEC TRANSITION BANNER */}
-      {!bannerDismissed && (
-        <div style={s.necBanner}>
-          <span style={s.necBannerText}>
-            ⚡ <strong>Update in Progress:</strong> California is transitioning to the 2023 NEC in June 2026. We are actively updating all content. Questions currently based on 2020 NEC.
-          </span>
-          <button
-            onClick={() => setBannerDismissed(true)}
-            style={s.necBannerClose}
-            aria-label="Dismiss notice"
-          >✕</button>
-        </div>
-      )}
-
       {/* HERO */}
       <header style={s.hero}>
         <div style={s.heroGlow} />
@@ -69,7 +54,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
           <div style={s.heroBadge}>
             <span style={s.badgeDot} />
-            California · As of 2026, the exam is based on the 2020 NEC
+            California · As of 2026, the exam is based on the 2023 NEC
           </div>
           <h1 style={s.h1}>
             <div style={s.h1Line1}>Electricians Are</div>
@@ -77,7 +62,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             <div style={s.h1Line3}>Get Licensed.</div>
           </h1>
           <p style={s.heroSub}>
-            The demand for licensed California electricians has never been higher. <strong style={{color:'#d8e0e8'}}>Your Journeyman license is your ticket in.</strong> 462 original practice questions, every answer NEC referenced.
+            The demand for licensed California electricians has never been higher. <strong style={{color:'#d8e0e8'}}>Your Journeyman license is your ticket in.</strong> 500 original practice questions, every answer NEC referenced.
           </p>
           <div style={s.heroCtas}>
             <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
@@ -97,8 +82,8 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           </div>
           <div style={s.heroStats}>
             {[
-              ['462','Practice Questions'],
-              ['11','Exam Modules'],
+              ['500','Practice Questions'],
+              ['12','Exam Modules'],
               ['3','Difficulty Levels'],
               ['100%','NEC Referenced'],
             ].map(([num, label]) => (
@@ -113,7 +98,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
             {/* TRUST SIGNAL */}
       <div style={{background:'rgba(200,168,75,0.04)', borderTop:'1px solid rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'center', gap:'32px', flexWrap:'wrap'}}>
-        {[['462','Practice Questions'],['11','Exam Modules'],['2020','NEC Edition'],['70%','Passing Score']].map(([val,label]) => (
+        {[['500','Practice Questions'],['12','Exam Modules'],['2023','NEC Edition'],['70%','Passing Score']].map(([val,label]) => (
           <div key={label} style={{textAlign:'center'}}>
             <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontSize:'28px', fontWeight:'900', color:'#c8a84b'}}>{val}</div>
             <div style={{fontSize:'11px', color:'#7a8a9a', textTransform:'uppercase', letterSpacing:'1px', marginTop:'2px'}}>{label}</div>
@@ -148,7 +133,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       {/* MODULES */}
       <section id="modules" style={s.sectionDark}>
         <SectionLabel>// EXAM COVERAGE</SectionLabel>
-        <SectionTitle>All 11 Modules.<br/>Every Topic.</SectionTitle>
+        <SectionTitle>All 12 Modules.<br/>Every Topic.</SectionTitle>
         <div style={s.modulesGrid}>
           {MODULES_DATA.map(m => (
             <div key={m.id} style={{...s.moduleCard, '--accent': m.color}}>
@@ -186,7 +171,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
               {text:'Set your exam date & see your countdown', locked:false},
-              {text:'Modules 3–11 (386 questions)', locked:true},
+              {text:'Modules 3–12 (424 questions)', locked:true},
               {text:'Table Mastery — 8 more NEC tables', locked:true},
               {text:'Progress saved & missed question deck', locked:true},
             ]}
@@ -199,7 +184,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             price="$29.99"
             priceSub="One-time · Instant access"
             features={[
-              {text:'All 11 modules — 462 questions', locked:false},
+              {text:'All 12 modules — 500 questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed & untimed modes', locked:false},
               {text:'Exam Simulator (full 110Q)', locked:false},
@@ -242,10 +227,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <SectionTitle>Common Questions.</SectionTitle>
         <div style={s.faqGrid}>
           {[
-            ['Which exam does this prepare me for?','The California General Electrician (Journeyman) certification exam administered by PSI Services on behalf of DLSE/DIR. Questions based on 2020 NEC and California codes (Title 8 Cal/OSHA and Title 24 CEC).'],
-            ['Is this the actual exam content?','No — these are original practice questions developed from NEC 2020 content and electrical trade resources using AI, then reviewed by a licensed California journeyman electrician. The actual PSI exam questions are proprietary, owned by the DLSE, and not available to any prep company or training site anywhere.'],
-            ['What NEC edition is used?','The 2020 NEC (NFPA 70), which is the current adopted edition in California.'],
-            ['Do I need a codebook to use this app?','Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2020 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you will need on exam day, when PSI hands you an unmarked codebook and the clock starts.'],
+            ['Which exam does this prepare me for?','The California General Electrician (Journeyman) certification exam administered by PSI Services on behalf of DLSE/DIR. Questions based on the 2023 NEC and California codes (Title 8 Cal/OSHA and Title 24 CEC).'],
+            ['Is this the actual exam content?','No — these are original practice questions developed from 2023 NEC content and electrical trade resources, then reviewed by a licensed California journeyman electrician against the codebook. The actual PSI exam questions are proprietary, owned by the DLSE, and not available to any prep company or training site anywhere.'],
+            ['What NEC edition is used?','The 2023 NEC (NFPA 70), which is the current adopted edition in California.'],
+            ['Do I need a codebook to use this app?','Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2023 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you will need on exam day, when PSI hands you an unmarked codebook and the clock starts.'],
             ['Is this a subscription?','No. One-time payment, yours forever. No recurring charges, no expiration dates. Study at your own pace until you pass.'],
             ['Does it work on my phone?','Yes. West Coast Wire Pro is fully mobile-optimized. Works on phone, tablet, and laptop.'],
           ].map(([q, a]) => (
@@ -330,8 +315,8 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
                 />
               )}
               <ModalOption
-                name={modalTier === 'standard' ? 'Standard — All 11 Modules' : 'Standard instead'}
-                desc="462 questions · Timed mode · Score tracking"
+                name={modalTier === 'standard' ? 'Standard — All 12 Modules' : 'Standard instead'}
+                desc="500 questions · Timed mode · Score tracking"
                 price="$29.99"
                 onClick={() => handlePurchase('standard')}
                 dim={modalTier === 'pro'}
@@ -414,7 +399,7 @@ function ModalOption({ name, desc, price, onClick, dim, isLoading }) {
 // ── Data ────────────────────────────────────────────────────
 
 const MODULES_DATA = [
-  {id:1, name:'Definitions & General', articles:'Articles 90, 100, 110', qCount:31, color:'#e74c3c'},
+  {id:1, name:'Definitions & General', articles:'Articles 90, 100, 110', qCount:30, color:'#e74c3c'},
   {id:2, name:'Wiring & Overcurrent', articles:'Articles 210, 215, 220, 240', qCount:45, color:'#e67e22'},
   {id:3, name:'Services & Feeders', articles:'Articles 215, 225, 230', qCount:35, color:'#f39c12'},
   {id:4, name:'Grounding & Bonding', articles:'Article 250', qCount:40, color:'#27ae60'},
@@ -423,8 +408,9 @@ const MODULES_DATA = [
   {id:7, name:'Special Occupancies', articles:'Articles 500–590', qCount:30, color:'#8e44ad'},
   {id:8, name:'Motors & Transformers', articles:'Articles 430, 450', qCount:40, color:'#c0392b'},
   {id:9, name:'Communications & Emergency', articles:'Articles 700–820', qCount:25, color:'#d35400'},
-  {id:10, name:'Calculations & Trade Math', articles:'Chapter 9, Table 310.16', qCount:71, color:'#1abc9c'},
-  {id:12, name:'Safety & Maintenance', articles:'NFPA 70E, Cal/OSHA', qCount:55, color:'#2c3e50', displayId:11},
+  {id:10, name:'Calculations & Trade Math', articles:'Chapter 9, Table 310.16', qCount:60, color:'#1abc9c'},
+  {id:11, name:'California-Specific', articles:'CSLB, DIR, Cal/OSHA, Title 24', qCount:50, color:'#e67e22'},
+  {id:12, name:'Safety & Maintenance', articles:'NFPA 70E, Cal/OSHA', qCount:55, color:'#2c3e50', displayId:12},
 ]
 
 // ── Styles ──────────────────────────────────────────────────
