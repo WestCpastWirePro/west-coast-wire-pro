@@ -59,7 +59,7 @@ function VoltageDropCalc() {
       ];
       const wire = wireOptions.find(w => w.cm >= cmNeeded);
       setResult({ cmNeeded: Math.ceil(cmNeeded), wire: wire?.size || "500 kcmil+", steps: [
-        `Allowed VD = ${phase==="3"?208:120}V × 3% = ${allowedVD.toFixed(2)}V`,
+        `Allowed VD = ${voltage}V × 3% = ${allowedVD.toFixed(2)}V`,
         `CM = (${multiplier} × ${K} × ${I}A × ${D}ft) / ${allowedVD.toFixed(2)}V`,
         `CM = ${(multiplier * K * I * D).toFixed(1)} / ${allowedVD.toFixed(2)}`,
         `CM needed = ${Math.ceil(cmNeeded).toLocaleString()} CM`,
@@ -140,7 +140,8 @@ function MotorCalc() {
   const [result, setResult] = useState(null);
 
   // FLA values from NEC Table 430.248 (single phase) and 430.250 (three phase)
-  const FLA_1PH = { "0.5":4.9,"0.75":6.9,"1":8,"1.5":10,"2":12,"3":17,"5":28,"7.5":40,"10":50 };
+  const FLA_1PH_115 = { "0.5":9.8,"0.75":13.8,"1":16,"1.5":20,"2":24,"3":34,"5":56,"7.5":80,"10":100 }; // 115V
+  const FLA_1PH_230 = { "0.5":4.9,"0.75":6.9,"1":8,"1.5":10,"2":12,"3":17,"5":28,"7.5":40,"10":50 };   // 230V
   const FLA_3PH_240 = { "0.5":2,"0.75":2.8,"1":3.6,"1.5":5.2,"2":6.8,"3":9.6,"5":15.2,"7.5":22,"10":28,"15":42,"20":54,"25":68,"30":80,"40":104,"50":130,"60":154,"75":192,"100":248 };
   const FLA_3PH_480 = Object.fromEntries(Object.entries(FLA_3PH_240).map(([k,v])=>[k,v/2]));
 
@@ -148,14 +149,14 @@ function MotorCalc() {
     const h = parseFloat(hp);
     if (isNaN(h)) { setResult({error:"Enter valid HP."}); return; }
     let fla;
-    if (phase === "1") fla = FLA_1PH[hp];
+    if (phase === "1") fla = voltage === "120" ? FLA_1PH_115[hp] : FLA_1PH_230[hp];
     else fla = voltage === "480" ? FLA_3PH_480[hp] : FLA_3PH_240[hp];
     if (!fla) { setResult({error:"FLA not found for this combination. Check NEC Table 430.248/250."}); return; }
     const branchConductor = fla * 1.25;
     const ocpd = fla * 2.5; // Inverse time breaker 250%
     setResult({ fla, branchConductor: branchConductor.toFixed(1), ocpd: ocpd.toFixed(1),
       steps: [
-        `FLA from NEC Table ${phase==="1"?"430.248":"430.250"} = ${fla}A`,
+        `FLA from NEC Table ${phase==="1"?"430.248":"430.250"} (${voltage}V) = ${fla}A`,
         `Branch circuit conductor = FLA × 125% = ${fla} × 1.25 = ${branchConductor.toFixed(1)}A`,
         `Max OCPD (inverse time breaker) = FLA × 250% = ${fla} × 2.5 = ${ocpd.toFixed(1)}A`,
         `Round up to next standard breaker size (240.6): ${[15,20,25,30,35,40,45,50,60,70,80,90,100,110,125,150,175,200].find(b=>b>=ocpd)}A`,

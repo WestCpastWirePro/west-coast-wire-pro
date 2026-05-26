@@ -6,7 +6,7 @@
 //   • Interleaved practice: mixed articles > blocked chapter study
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 
-// ─── NEC 2020 Article Data ────────────────────────────────────────────────────
+// ─── NEC 2023 Article Data ────────────────────────────────────────────────────
 // Each entry: { id, article, title, chapter, chapterName, scenario, hint, distractors }
 const ARTICLES = [
   // Chapter 1 — General

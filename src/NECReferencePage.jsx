@@ -161,13 +161,13 @@ const TABLES = [
   },
   {
     id: "afci-gfci",
-    title: "AFCI & GFCI Requirements (2020 NEC)",
+    title: "AFCI & GFCI Requirements (2023 NEC)",
     ref: "NEC 210.12, 210.8",
     tag: "Protection",
-    note: "2020 NEC expanded AFCI to nearly all dwelling locations. Know which locations require each type.",
+    note: "2023 NEC requires AFCI in all habitable rooms and GFCI in all kitchen receptacles (not just countertop). Know which locations require each type.",
     headers: ["Location", "AFCI Required", "GFCI Required"],
     rows: [
-      ["Kitchens", "✓ Yes", "✓ Yes (countertop)"],
+      ["Kitchens", "✓ Yes", "✓ Yes (all receptacles)"],
       ["Bedrooms", "✓ Yes", "—"],
       ["Living/family/dining rooms", "✓ Yes", "—"],
       ["Hallways and closets", "✓ Yes", "—"],
