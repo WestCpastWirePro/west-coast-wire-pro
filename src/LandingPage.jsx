@@ -34,6 +34,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
   const [modalTier, setModalTier] = useState('standard')
   const [loading, setLoading] = useState(null)
   const [payError, setPayError] = useState('')
+  const [bannerDismissed, setBannerDismissed] = useState(false)
 
   // Close menu on outside click
 
@@ -45,6 +46,20 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
   return (
     <div style={s.root}>
+
+      {/* NEC TRANSITION BANNER */}
+      {!bannerDismissed && (
+        <div style={s.necBanner}>
+          <span style={s.necBannerText}>
+            ⚡ <strong>Update in Progress:</strong> California is transitioning to the 2023 NEC in June 2026. We are actively updating all content. Questions currently based on 2020 NEC.
+          </span>
+          <button
+            onClick={() => setBannerDismissed(true)}
+            style={s.necBannerClose}
+            aria-label="Dismiss notice"
+          >✕</button>
+        </div>
+      )}
 
       {/* HERO */}
       <header style={s.hero}>
@@ -416,6 +431,9 @@ const MODULES_DATA = [
 
 const styles = {
   root: {fontFamily:"'Segoe UI', Arial, sans-serif", background:'#0a1016', color:'#d8e0e8', overflowX:'hidden'},
+  necBanner: {display:'flex', alignItems:'center', justifyContent:'space-between', gap:'16px', background:'rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.3)', padding:'11px clamp(16px,4vw,40px)', flexWrap:'wrap'},
+  necBannerText: {fontSize:'13px', color:'#c8a84b', lineHeight:'1.55', flex:'1', minWidth:'0'},
+  necBannerClose: {background:'none', border:'1px solid rgba(200,168,75,0.3)', color:'#c8a84b', fontSize:'13px', lineHeight:'1', cursor:'pointer', padding:'4px 8px', borderRadius:'2px', flexShrink:0, opacity:'0.75', transition:'opacity 0.15s'},
   bolt: {fontSize:'22px'},
   wordmark: {fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'20px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase'},
   wordmarkThin: {color:'#d8e0e8', fontWeight:'400'},
