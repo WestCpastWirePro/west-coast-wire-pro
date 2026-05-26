@@ -789,7 +789,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     chip: { padding:"6px 14px", borderRadius:"20px", border:"1px solid #2a3a54", cursor:"pointer", fontSize:"13px", display:"inline-block", margin:"4px", transition:"all 0.2s" },
     chipActive: { background:"#c8a84b", color:"#0f1923", border:"1px solid #c8a84b", fontWeight:"700" },
     chipInactive: { background:"#1a2840", color:"#8899aa" },
-    optionBtn: { width:"100%", textAlign:"left", padding:"14px 18px", borderRadius:"8px", border:"2px solid #2a3a54", cursor:"pointer", marginBottom:"10px", fontSize:"14px", lineHeight:"1.4", transition:"all 0.2s", background:"#1a2840", color:"#e8eaf0" },
+    optionBtn: { width:"100%", textAlign:"left", padding:"16px 18px", borderRadius:"8px", border:"2px solid #2a3a54", cursor:"pointer", marginBottom:"10px", fontSize:"16px", lineHeight:"1.5", transition:"all 0.2s", background:"#1a2840", color:"#e8eaf0", fontWeight:"500" },
     optionCorrect: { border:"2px solid #27ae60", background:"rgba(39,174,96,0.15)", color:"#2ecc71" },
     optionWrong: { border:"2px solid #e74c3c", background:"rgba(231,76,60,0.15)", color:"#e74c3c" },
     optionSelected: { border:"2px solid #c8a84b", background:"rgba(200,168,75,0.1)" },
@@ -1328,7 +1328,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             </div>
           )}
 
-          <div style={{...styles.card, fontSize:"16px", lineHeight:"1.6", fontWeight:"500", marginTop:"0"}}>
+          <div style={{...styles.card, fontSize:"19px", lineHeight:"1.65", fontWeight:"600", marginTop:"0", letterSpacing:"-0.1px"}}>
             {q.q}
           </div>
 
