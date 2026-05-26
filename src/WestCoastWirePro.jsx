@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // ═══════════════════════════════════════════════════════════
-// WIREREADY PRO — 462-QUESTION CA ELECTRICIAN EXAM PREP APP
+// WIREREADY PRO — 500-QUESTION CA ELECTRICIAN EXAM PREP APP
 // All questions original field knowledge, no NEC text reproduced
 // ═══════════════════════════════════════════════════════════
 
@@ -534,6 +534,7 @@ const MODULES = [
   {id:8,name:"Motors & Transformers",color:"#c0392b",articles:"Articles 430, 450"},
   {id:9,name:"Communications & Emergency",color:"#d35400",articles:"Articles 700-800"},
   {id:10,name:"Calculations & Trade Math",color:"#1abc9c",articles:"Chapter 9, Table 310.16"},
+  {id:11,name:"California-Specific",color:"#e67e22",articles:"CSLB, DIR, Cal/OSHA, Title 24"},
   {id:12,name:"Safety, Maintenance & Repair",color:"#2c3e50",articles:"NFPA 70E, Cal/OSHA"},
 ];
 
@@ -609,7 +610,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     try { return localStorage.getItem("wrp_access") || "free"; } catch(e) { return "free"; }
   });
   const FREE_MODS = [1, 2]; // Modules 1 & 2 free always
-  const PAID_MODS = [3,4,5,6,7,8,9,10,12];
+  const PAID_MODS = [3,4,5,6,7,8,9,10,11,12];
   const [selectedMods, setSelectedMods] = useState([]);
   const [selectedDiffs, setSelectedDiffs] = useState([]);
   const [quizQuestions, setQuizQuestions] = useState([]);
@@ -929,7 +930,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         <div style={{...styles.card, background:"linear-gradient(135deg,#1a2840,#162030)", borderColor:"#c8a84b"}}>
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📋 EXAM COVERAGE</div>
           <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>
-            462 original questions covering all 11 modules of the California General Electrician (Journeyman) exam. Based on the 2020 NEC.
+            500 questions covering all 12 modules of the California General Electrician (Journeyman) exam. Based on the 2023 NEC.
           </div>
         </div>
 
@@ -1107,7 +1108,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock Full Access</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            Standard unlocks all 11 modules — including Study Planner and Progress Dashboard. Pro adds the four highest-intensity exam tools: Code Sprint, Table Mastery, Missed Questions, and High-Priority Drill.
+            Standard unlocks all 12 modules — including Study Planner and Progress Dashboard. Pro adds the four highest-intensity exam tools: Code Sprint, Table Mastery, Missed Questions, and High-Priority Drill.
           </div>
         </div>
 
@@ -1115,7 +1116,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         {[
           {
             name:"Standard", price:"$29.99", tag:"Most Popular",
-            features:["All 11 modules — 462 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Exam Simulator (110Q)","NEC Reference & Calculations","Progress saved"],
+            features:["All 12 modules — 500 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Exam Simulator (110Q)","NEC Reference & Calculations","Progress saved"],
             accent:"#c8a84b", tier:"standard"
           },
           {
@@ -1199,7 +1200,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"48px", marginBottom:"12px"}}>🏆</div>
           <div style={{fontSize:"24px", fontWeight:"800", color:"#a855f7", marginBottom:"8px"}}>Upgrade to Pro</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            You already have all 462 questions. Pro adds the tools that turn practice into mastery.
+            You already have all 500 questions. Pro adds the tools that turn practice into mastery.
           </div>
         </div>
 
