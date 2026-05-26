@@ -5,6 +5,37 @@
 
 export const blogPosts = [
   {
+    slug: 'ai-data-centers-california-electrician-demand-2026',
+    title: "AI Is Building Data Centers Across California. Someone Has to Wire Them.",
+    date: 'May 25, 2026',
+    category: 'Industry News',
+    excerpt: "Every AI data center under construction in California needs thousands of hours of licensed electrical work. The buildout is accelerating — and the state doesn't have enough journeymen to keep up.",
+    readTime: '3 min read',
+    content: `
+The AI infrastructure boom isn't abstract. It's happening in Livermore, Sacramento, San Jose, the Inland Empire, and a dozen other California markets right now — in the form of massive data center campuses that need more electrical capacity than most small cities.
+
+Microsoft. Google. Meta. Amazon. Oracle. Every one of them has announced or broken ground on new California facilities in the past 18 months. A single hyperscale data center can draw 100 to 500 megawatts of power. The electrical work to get there — switchgear, feeders, distribution panels, UPS systems, emergency generators, grounding — is enormous. And it all requires licensed journeymen.
+
+## The Numbers
+
+The U.S. data center construction market is projected to grow from $37 billion in 2024 to over $60 billion by 2027. California is one of the top three states for new capacity. The construction pipeline is full.
+
+Meanwhile, the Bureau of Labor Statistics projects electrician employment to grow 11% nationally through 2033 — faster than almost any other trade. In California, the growth is steeper. The combination of electrification mandates, EV infrastructure, wildfire grid hardening, and now AI data centers has pushed demand past what the licensed workforce can absorb.
+
+## What This Means If You're Studying Right Now
+
+Data center work pays at the top of the journeyman scale. The projects are long — years, not months. Union and non-union shops alike are chasing the same pool of licensed electricians.
+
+Your journeyman card is the entry point. Without it, you're doing the labor. With it, you're doing the work that can't be delegated — the sizing, the code compliance, the inspections. That's where the leverage is.
+
+## The Exam Is Still the Gate
+
+The license exam doesn't care about the market. It cares whether you know the NEC. But the market is a good reason to pass it sooner rather than later.
+
+The buildout isn't slowing down. The licensing backlog in California means every passing exam date matters more than it did a year ago. Get through the gate while the demand is there.
+    `,
+  },
+  {
     slug: 'lowes-250-million-electrician-training-2026',
     title: "Lowe's Just Bet $250 Million on Electricians. Your Timing Just Got Better.",
     date: 'April 22, 2026',
