@@ -5,49 +5,6 @@
 
 export const blogPosts = [
   {
-    slug: 'wireready-pro-500-questions-update-may-2026',
-    title: "500 New Questions, All From the 2023 NEC. WireReady Pro Just Got a Lot Harder (In a Good Way).",
-    date: 'May 25, 2026',
-    category: 'Product Update',
-    excerpt: "We rewrote every single question in WireReady Pro from scratch using only the 2023 NEC codebook. 500 questions. 12 modules. No internet sources — just the book you'll have in front of you on exam day.",
-    readTime: '2 min read',
-    content: `
-Every question in WireReady Pro has been replaced.
-
-Not updated. Not tweaked. **Replaced from scratch**, using only the 2023 National Electrical Code as the source — the same edition on the desk at your PSI testing center.
-
-## Why We Did It
-
-The old questions were written from general electrical knowledge. Good enough, but not tight enough. The California journeyman exam pulls directly from the code. If a question isn't traceable to a specific NEC article, table, or section, it's training you to guess instead of look.
-
-So we threw them out and started over.
-
-## What's New
-
-**500 questions across 12 modules**, written with one rule: if it isn't in the 2023 NEC, it doesn't go in the question bank.
-
-- Every answer traced to a specific NEC reference (e.g. *NEC 110.14(C)(1)(b)*, *Table 250.122*, *NEC 430.52*)
-- Every explanation written to show *why* the answer is correct — not just what it is
-- Difficulty distribution tuned to the actual exam: ~20% easy, ~50% medium, ~30% hard
-- Module 11 covers California-specific rules: CSLB, DIR certification hours, Cal/OSHA Title 8, and Title 24 Energy Code
-
-## The Table Mastery Fixes
-
-While we were in there, we also audited the Table Mastery flashcards and Calculations Helper and fixed several data errors:
-
-- **4 AWG conduit fill hint was wrong** — three 4 AWG THWN conductors don't fit in ¾″ EMT. Fixed.
-- **Motor FLA at 120V** — the calculator was showing 230V values for 120V single-phase motors. Fixed (1HP at 120V is 16A, not 8A).
-- **Kitchen GFCI updated to 2023 code** — the reference table now correctly shows GFCI required on all kitchen receptacles, not just countertop.
-- **Voltage drop display** — the "find wire size" calculator was showing the wrong voltage in its step-by-step output. Fixed.
-
-## Start a Module
-
-Each module is a focused drill: pick your difficulty, pick your topic, and get moving. The exam is 110 questions in 4.5 hours. That's 2.5 minutes per question. The only way to get comfortable with that pace is repetition.
-
-The 500 questions are ready. So is the clock.
-    `,
-  },
-  {
     slug: 'lowes-250-million-electrician-training-2026',
     title: "Lowe's Just Bet $250 Million on Electricians. Your Timing Just Got Better.",
     date: 'April 22, 2026',
