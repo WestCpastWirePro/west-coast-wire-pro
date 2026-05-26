@@ -166,7 +166,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             features={[
               {text:'Module 1 — Definitions & General', locked:false},
               {text:'Module 2 — Wiring & Overcurrent', locked:false},
-              {text:'76 practice questions (Modules 1 & 2)', locked:false},
+              {text:'75 practice questions (Modules 1 & 2)', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
@@ -417,9 +417,6 @@ const MODULES_DATA = [
 
 const styles = {
   root: {fontFamily:"'Segoe UI', Arial, sans-serif", background:'#0a1016', color:'#d8e0e8', overflowX:'hidden'},
-  necBanner: {display:'flex', alignItems:'center', justifyContent:'space-between', gap:'16px', background:'rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.3)', padding:'11px clamp(16px,4vw,40px)', flexWrap:'wrap'},
-  necBannerText: {fontSize:'13px', color:'#c8a84b', lineHeight:'1.55', flex:'1', minWidth:'0'},
-  necBannerClose: {background:'none', border:'1px solid rgba(200,168,75,0.3)', color:'#c8a84b', fontSize:'13px', lineHeight:'1', cursor:'pointer', padding:'4px 8px', borderRadius:'2px', flexShrink:0, opacity:'0.75', transition:'opacity 0.15s'},
   bolt: {fontSize:'22px'},
   wordmark: {fontFamily:"'Arial Black', Arial, sans-serif", fontWeight:'900', fontSize:'20px', color:'#c8a84b', letterSpacing:'1px', textTransform:'uppercase'},
   wordmarkThin: {color:'#d8e0e8', fontWeight:'400'},
