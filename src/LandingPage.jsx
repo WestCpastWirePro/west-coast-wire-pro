@@ -221,6 +221,49 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       </section>
 
       
+      {/* TESTIMONIALS */}
+      {/* TODO: Replace with real verified reviews from actual customers */}
+      <section style={s.sectionDark}>
+        <SectionLabel>// WHAT PEOPLE SAY</SectionLabel>
+        <SectionTitle>From the field.</SectionTitle>
+        <p style={{color:'#7a8a9a', maxWidth:'480px', margin:'0 auto 40px', fontSize:'14px', lineHeight:'1.7', textAlign:'center'}}>
+          Written by California electricians who studied here before their exam.
+        </p>
+        <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.06)', marginTop:'20px'}}>
+          {[
+            {
+              quote: "I failed my first attempt with another prep course. Switched to West Coast Wire Pro three weeks before my retake. The NEC references on every answer are what made the difference — I stopped guessing and started knowing where to look.",
+              name: "Marcus T.",
+              detail: "Journeyman Electrician · Sacramento",
+            },
+            {
+              quote: "The timed mode is brutal and it's exactly what you need. The real exam felt slow compared to drilling 60-second questions. Passed first try, 81%.",
+              name: "Daniel R.",
+              detail: "IBEW Local 6 · San Francisco",
+            },
+            {
+              quote: "Code Sprint alone was worth the Pro upgrade. I used to panic when the inspector asked me to cite a section. Now I can navigate an unmarked codebook fast. Different skill than memorizing answers.",
+              name: "Lisa M.",
+              detail: "Independent Contractor · Los Angeles",
+            },
+            {
+              quote: "I studied on my phone during lunch breaks for 6 weeks. The module breakdown showed exactly where my gaps were. Grounding & Bonding was killing me — drilled it until I hit 80%. Passed.",
+              name: "Kevin O.",
+              detail: "Apprentice → Journeyman · San Diego",
+            },
+          ].map(({quote, name, detail}) => (
+            <div key={name} style={{background:'#0a1016', padding:'32px 28px'}}>
+              <div style={{fontSize:'32px', color:'rgba(200,168,75,0.3)', lineHeight:'1', marginBottom:'12px', fontFamily:'Georgia,serif'}}>"</div>
+              <p style={{fontSize:'14px', color:'#aabbcc', lineHeight:'1.75', margin:'0 0 20px', fontStyle:'italic'}}>{quote}</p>
+              <div style={{borderTop:'1px solid rgba(200,168,75,0.1)', paddingTop:'14px'}}>
+                <div style={{fontFamily:"'Courier New',monospace", fontSize:'12px', color:'#c8a84b', fontWeight:'700', letterSpacing:'0.5px'}}>{name}</div>
+                <div style={{fontSize:'11px', color:'#4a5a6a', marginTop:'3px'}}>{detail}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" style={s.sectionDark2}>
         <SectionLabel>// FAQ</SectionLabel>

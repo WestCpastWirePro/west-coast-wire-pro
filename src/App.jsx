@@ -1,38 +1,47 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import GlobalNav            from './GlobalNav.jsx'
 import LandingPage          from './LandingPage.jsx'
-import WestCoastWirePro         from './WestCoastWirePro.jsx'
-import SuccessPage          from './SuccessPage.jsx'
-import PrivacyPolicy        from './PrivacyPolicy.jsx'
-import TermsOfService       from './TermsOfService.jsx'
-import RefundPolicy         from './RefundPolicy.jsx'
-import RedeemPage           from './RedeemPage.jsx'
-import AboutPage            from './AboutPage.jsx'
-import ExamInfoPage         from './ExamInfoPage.jsx'
-import StudyTipsPage        from './StudyTipsPage.jsx'
-import ContactPage             from './ContactPage.jsx'
-import NEC2020Page             from './NEC2020Page.jsx'
-import NotFoundPage            from './NotFoundPage.jsx'
-import ProgressDashboard       from './ProgressDashboard.jsx'
-import Top25Page             from './Top25Page.jsx'
-import TableMasteryPage        from './TableMasteryPage.jsx'
-import GlossaryPage            from './GlossaryPage.jsx'
-import ExamDayPage             from './ExamDayPage.jsx'
-import SalaryPage              from './SalaryPage.jsx'
-import ContractorVsElectricianPage from './ContractorVsElectricianPage.jsx'
-import DiagnosticPage       from './DiagnosticPage.jsx'
-import ExamSimulatorPage    from './ExamSimulatorPage.jsx'
-import NECReferencePage     from './NECReferencePage.jsx'
-import CalculationsPage     from './CalculationsPage.jsx'
-import StudyPlannerPage     from './StudyPlannerPage.jsx'
-import FAQPage              from './FAQPage.jsx'
-import MissedQuestionsPage  from './MissedQuestionsPage.jsx'
-import AdminGrantPage       from './AdminGrantPage.jsx'
-import BlogPage             from './BlogPage.jsx'
-import CodeSprintPage       from './CodeSprintPage.jsx'
-import BlogPostPage         from './BlogPostPage.jsx'
-import DemoPage             from './DemoPage.jsx'
 import { blogPosts }        from './blogPosts.js'
+
+const WestCoastWirePro         = React.lazy(() => import('./WestCoastWirePro.jsx'))
+const SuccessPage              = React.lazy(() => import('./SuccessPage.jsx'))
+const PrivacyPolicy            = React.lazy(() => import('./PrivacyPolicy.jsx'))
+const TermsOfService           = React.lazy(() => import('./TermsOfService.jsx'))
+const RefundPolicy             = React.lazy(() => import('./RefundPolicy.jsx'))
+const RedeemPage               = React.lazy(() => import('./RedeemPage.jsx'))
+const AboutPage                = React.lazy(() => import('./AboutPage.jsx'))
+const ExamInfoPage             = React.lazy(() => import('./ExamInfoPage.jsx'))
+const StudyTipsPage            = React.lazy(() => import('./StudyTipsPage.jsx'))
+const ContactPage              = React.lazy(() => import('./ContactPage.jsx'))
+const NEC2020Page              = React.lazy(() => import('./NEC2020Page.jsx'))
+const NotFoundPage             = React.lazy(() => import('./NotFoundPage.jsx'))
+const ProgressDashboard        = React.lazy(() => import('./ProgressDashboard.jsx'))
+const Top25Page                = React.lazy(() => import('./Top25Page.jsx'))
+const TableMasteryPage         = React.lazy(() => import('./TableMasteryPage.jsx'))
+const GlossaryPage             = React.lazy(() => import('./GlossaryPage.jsx'))
+const ExamDayPage              = React.lazy(() => import('./ExamDayPage.jsx'))
+const SalaryPage               = React.lazy(() => import('./SalaryPage.jsx'))
+const ContractorVsElectricianPage = React.lazy(() => import('./ContractorVsElectricianPage.jsx'))
+const DiagnosticPage           = React.lazy(() => import('./DiagnosticPage.jsx'))
+const ExamSimulatorPage        = React.lazy(() => import('./ExamSimulatorPage.jsx'))
+const NECReferencePage         = React.lazy(() => import('./NECReferencePage.jsx'))
+const CalculationsPage         = React.lazy(() => import('./CalculationsPage.jsx'))
+const StudyPlannerPage         = React.lazy(() => import('./StudyPlannerPage.jsx'))
+const FAQPage                  = React.lazy(() => import('./FAQPage.jsx'))
+const MissedQuestionsPage      = React.lazy(() => import('./MissedQuestionsPage.jsx'))
+const AdminGrantPage           = React.lazy(() => import('./AdminGrantPage.jsx'))
+const BlogPage                 = React.lazy(() => import('./BlogPage.jsx'))
+const CodeSprintPage           = React.lazy(() => import('./CodeSprintPage.jsx'))
+const BlogPostPage             = React.lazy(() => import('./BlogPostPage.jsx'))
+const DemoPage                 = React.lazy(() => import('./DemoPage.jsx'))
+
+function PageLoader() {
+  return (
+    <div style={{minHeight:'60vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#0a1016'}}>
+      <div style={{color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontSize:'14px',textTransform:'uppercase',letterSpacing:'3px',opacity:0.7}}>⚡ Loading...</div>
+    </div>
+  )
+}
 
 const ROUTES = {
   '/privacy': 'privacy',              '/privacy-policy': 'privacy',
@@ -306,7 +315,7 @@ export default function App() {
   const getAccess = () => { try { return localStorage.getItem('wrp_access') || 'free' } catch(e) { return 'free' } }
 
   if (view === 'verifying') return <div style={{minHeight:'100vh',background:'#0a1016',display:'flex',alignItems:'center',justifyContent:'center',color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontSize:'18px',textTransform:'uppercase',letterSpacing:'2px'}}>⚡ Unlocking Access...</div>
-  if (view === 'app') return <ErrorBoundary><WestCoastWirePro onHome={goHome} onNavigate={navigate} /></ErrorBoundary>
+  if (view === 'app') return <ErrorBoundary><Suspense fallback={<PageLoader/>}><WestCoastWirePro onHome={goHome} onNavigate={navigate} /></Suspense></ErrorBoundary>
 
   // All other views get the persistent GlobalNav
   const launchApp = () => navigate('app')
@@ -352,7 +361,9 @@ export default function App() {
     <>
       {globalNav}
       <ScrollButtons />
-      {pageContent}
+      <Suspense fallback={<PageLoader/>}>
+        {pageContent}
+      </Suspense>
     </>
   )
 }

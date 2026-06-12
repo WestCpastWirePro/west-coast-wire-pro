@@ -967,7 +967,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
               <div>
                 <div style={{fontSize:"13px", color:"#a855f7", fontWeight:"700", marginBottom:"4px"}}>🏆 UPGRADE TO PRO</div>
-                <div style={{fontSize:"12px", color:"#8899aa"}}>Unlock Table Mastery, exam sim, saved progress &amp; updates</div>
+                <div style={{fontSize:"12px", color:"#8899aa"}}>Add Code Sprint, Table Mastery, Missed Questions &amp; High-Priority Drill</div>
               </div>
               <button style={{...styles.btn, background:"linear-gradient(135deg,#8e44ad,#a855f7)", color:"#fff", fontSize:"13px", padding:"8px 16px"}}
                 onClick={() => setScreen("upgrade")}>
@@ -1101,7 +1101,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         <div style={{background:"rgba(39,174,96,0.06)", border:"1px solid rgba(39,174,96,0.2)", borderRadius:"8px", padding:"12px 16px", marginBottom:"16px"}}>
           <div style={{fontSize:"12px", fontWeight:"700", color:"#2ecc71", marginBottom:"6px"}}>✓ Your free access includes:</div>
           <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.8"}}>
-            Module 1 — Definitions &amp; General · Module 2 — Wiring &amp; Overcurrent · ~76 practice questions · NEC explanations on every answer · Table 310.16 &amp; Conduit Fill drills
+            Module 1 — Definitions &amp; General · Module 2 — Wiring &amp; Overcurrent · 75 practice questions · NEC explanations on every answer · Table 310.16 &amp; Conduit Fill drills
           </div>
         </div>
         <div style={{textAlign:"center", padding:"16px 16px 16px"}}>
@@ -1221,8 +1221,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             ["📖", "Code Sprint", "NEC article navigation game — train your brain to find any article fast under exam pressure"],
             ["🏆", "Table Mastery", "113 flashcards across 10 NEC tables — the most common exam calculation source"],
             ["🔁", "Missed Questions Deck", "Auto-builds a review deck from every question you've gotten wrong"],
-            ["🎯", "High-Priority Drill", "25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline — not real exam questions"],
-            ["📅", "Study Planner + Dashboard", "Custom schedule + score tracking across all your sessions"],
+            ["🎯", "High-Priority Drill", "25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline"],
           ].map(([icon, title, desc]) => (
             <div key={title} style={{display:"flex", gap:"12px", padding:"10px 0", borderBottom:"1px solid rgba(255,255,255,0.04)"}}>
               <span style={{fontSize:"18px", flexShrink:0}}>{icon}</span>

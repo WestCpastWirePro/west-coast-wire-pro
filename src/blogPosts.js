@@ -5,6 +5,413 @@
 
 export const blogPosts = [
   {
+    slug: 'nec-table-310-16-conductor-ampacity-guide',
+    title: "How to Read NEC Table 310.16 for the California Journeyman Exam",
+    date: 'June 5, 2026',
+    category: 'Exam Prep',
+    excerpt: "Table 310.16 is the most-referenced table on the California journeyman exam. Here's exactly how to read it, which column to use, and the values you need to have memorized cold.",
+    readTime: '6 min read',
+    content: `
+Table 310.16 — officially titled "Allowable Ampacities of Insulated Conductors Rated Up to and Including 2000 Volts, 60°C Through 90°C, Not More Than Three Current-Carrying Conductors in Raceway, Cable, or Earth" — is the single most important table in the NEC for the CA journeyman exam.
+
+You will use it on virtually every conductor sizing question. If you walk into the PSI test center and can't read it fluently, you will miss points you shouldn't miss.
+
+This article breaks it down completely.
+
+## The Three Temperature Columns
+
+Table 310.16 has three conductor ampacity columns based on insulation temperature rating:
+
+**60°C column** — Use this for older wiring, simple applications, or when the conductor type requires it (e.g., TW). Lowest ampacities.
+
+**75°C column** — This is the column you'll use most often. Most modern commercial and industrial equipment (panelboard lugs, breaker terminals, switch terminals) is rated 75°C. Most exam questions resolve here.
+
+**90°C column** — Used for conductors with 90°C-rated insulation (THHN, THWN-2, XHHW-2). You can use this column for **derating calculations** — but you typically can't use it for the final connected ampacity unless the equipment is specifically listed for 90°C terminations.
+
+## The Termination Rule (NEC 110.14(C))
+
+This is the rule that trips people up most:
+
+The final ampacity of a conductor is limited by the **lowest-rated component** in the circuit — the conductor, the termination, or the equipment.
+
+In practice: almost all equipment you'll encounter in the field and on the exam is rated 75°C. So even if you're installing THHN (rated 90°C), you use the **75°C column** for your ampacity at the termination.
+
+Exception: equipment rated over 100A (or conductors larger than 1 AWG) — use 75°C column. Smaller equipment — use 60°C column unless marked otherwise.
+
+The 90°C rating isn't wasted — it's used as the **starting point for correction and adjustment calculations** (temperature derating, conduit fill factors). But the result gets capped at 75°C for the termination.
+
+## Key Values to Memorize
+
+For the exam, you need these 75°C copper values cold:
+
+- **14 AWG: 20A** (but max OCPD = 15A per 240.4(D))
+- **12 AWG: 25A** (but max OCPD = 20A per 240.4(D))
+- **10 AWG: 35A** (max OCPD = 30A per 240.4(D))
+- **8 AWG: 50A**
+- **6 AWG: 65A**
+- **4 AWG: 85A**
+- **3 AWG: 100A**
+- **2 AWG: 115A**
+- **1 AWG: 130A**
+- **1/0 AWG: 150A**
+- **2/0 AWG: 175A**
+- **3/0 AWG: 200A**
+- **4/0 AWG: 230A**
+
+The ones that catch people: 3/0 AWG = 200A (commonly used for 200A services), and the small-conductor limits where 240.4(D) overrides the table ampacity for OCPD sizing.
+
+## Temperature Derating (Correction Factors)
+
+Table 310.16 assumes an ambient temperature of 30°C (86°F). If the installation environment is hotter, you must derate.
+
+The correction factors are listed at the bottom of Table 310.16. Key ones for the exam:
+
+- **31–35°C ambient:** 90°C conductors × 0.91
+- **36–40°C ambient:** 90°C conductors × 0.82
+- **41–45°C ambient:** 90°C conductors × 0.71
+
+Attic installations on a hot day, conduit running through a boiler room, conductors in direct sun — these trigger derating.
+
+## Conduit Fill Derating (NEC 310.15(C)(1))
+
+If more than 3 current-carrying conductors are in a raceway, you must also apply conduit fill adjustment factors from Table 310.15(C)(1):
+
+- **4–6 conductors: 80%**
+- **7–9 conductors: 70%**
+- **10–20 conductors: 50%**
+
+These multiply against the conductor's table ampacity. If both temperature correction and conduit fill apply, both factors multiply together.
+
+**Example:** THHN 12 AWG in a raceway with 6 current-carrying conductors, 40°C ambient.
+- Start with 90°C column: 30A
+- Temperature correction at 40°C: × 0.82 = 24.6A
+- Conduit fill (6 conductors): × 0.80 = 19.7A
+- Final derated ampacity: 19.7A
+
+The OCPD is still capped at 20A per 240.4(D), and the termination ampacity uses 75°C = 25A. The derated value (19.7A) tells you what the conductor can actually carry continuously under those conditions — which is below both limits, so the 20A breaker adequately protects the conductor at this load.
+
+## What the Exam Tests
+
+Exam questions on Table 310.16 typically test one of these scenarios:
+
+1. **Direct lookup:** "What is the ampacity of 2 AWG copper THWN at 75°C?" → 115A
+2. **Termination column selection:** "A 90°C conductor connects to a 75°C-rated lug. Which column applies?" → 75°C
+3. **Derating calculation:** Temperature correction and/or fill factor applied to find adjusted ampacity
+4. **Small conductor limits:** Does 240.4(D) override the calculated ampacity for OCPD sizing?
+
+Know the 75°C copper column cold, understand the termination rule, and practice derating calculations. Those three areas cover the vast majority of Table 310.16 questions on the CA exam.
+    `,
+  },
+  {
+    slug: 'voltage-drop-calculation-ca-journeyman-exam',
+    title: "Voltage Drop Calculations for the CA Journeyman Exam — The Formula, the Steps, and What the NEC Actually Says",
+    date: 'May 30, 2026',
+    category: 'Exam Prep',
+    excerpt: "Voltage drop is on every CA journeyman exam. Here's the exact formula, a step-by-step example, and the NEC limits you need to know — including the difference between what's required and what's recommended.",
+    readTime: '7 min read',
+    content: `
+Voltage drop questions appear on every California journeyman exam. They're calculation questions, which means you either know the formula and work the numbers, or you don't.
+
+The good news: once you understand what the formula is actually calculating, it's not complicated. The bad news: most study materials explain it in ways that create confusion about what the NEC actually requires.
+
+Here's the straight version.
+
+## What Is Voltage Drop?
+
+Voltage drop is the reduction in voltage between the source (panel) and the load (device) caused by the resistance of the conductors.
+
+Every conductor has resistance. Current flowing through that resistance creates a voltage drop. Long runs, small conductors, and high currents all make it worse.
+
+At the load, voltage drop means less voltage — which means motors run hotter, lights are dimmer, and sensitive electronics can malfunction or fail.
+
+## What the NEC Actually Requires (and Recommends)
+
+Here's where most people get confused.
+
+**The NEC does not mandate voltage drop limits as a general rule.** There is no Article 230 code section that says "thou shalt not exceed 3%." What the NEC does is include **informational notes** — which are not enforceable requirements — recommending:
+
+- **Branch circuits:** Voltage drop should not exceed **3%** (NEC 210.19(A)(1) Informational Note No. 4)
+- **Feeders:** Voltage drop should not exceed **3%** (NEC 215.2(A)(1) Informational Note No. 2)
+- **Combined total** (feeder + branch circuit): Should not exceed **5%**
+
+For the CA exam, the PSI content outline tests voltage drop calculations. Use the 3% branch circuit and 5% combined limits when the question asks you to verify compliance or find the minimum wire size.
+
+## The Formula
+
+For single-phase circuits (and for the exam, this is what you'll almost always use):
+
+**VD = (2 × K × I × L) / CM**
+
+Where:
+- **VD** = voltage drop (in volts)
+- **K** = resistivity constant (**12.9 for copper**, 21.2 for aluminum)
+- **I** = current in amperes (the load current)
+- **L** = one-way length of the circuit in feet
+- **CM** = circular mil area of the conductor (from NEC Chapter 9, Table 9)
+
+The factor of **2** accounts for the round-trip path — current goes out on the hot conductor and returns on the neutral.
+
+To find **percent voltage drop:** VD% = (VD / Source Voltage) × 100
+
+## Common Circular Mil Values
+
+You'll need these from memory or the table:
+
+- **14 AWG: 4,110 CM**
+- **12 AWG: 6,530 CM**
+- **10 AWG: 10,380 CM**
+- **8 AWG: 16,510 CM**
+- **6 AWG: 26,240 CM**
+- **4 AWG: 41,740 CM**
+- **2 AWG: 66,360 CM**
+
+## Step-by-Step Example
+
+**Problem:** A 120V, 20A single-phase circuit runs 75 feet (one-way) to a load. What is the voltage drop using 12 AWG copper THWN? Is it within the 3% limit?
+
+**Step 1 — Identify values:**
+- K = 12.9 (copper)
+- I = 20A
+- L = 75 ft (one-way)
+- CM = 6,530 (12 AWG)
+
+**Step 2 — Calculate VD:**
+VD = (2 × 12.9 × 20 × 75) / 6,530
+VD = 38,700 / 6,530
+**VD = 5.93 volts**
+
+**Step 3 — Calculate percent:**
+VD% = (5.93 / 120) × 100
+**VD% = 4.9%**
+
+**Step 4 — Check against limit:**
+4.9% exceeds the 3% recommendation. 12 AWG is not adequate for this run at this load.
+
+**Step 5 — Find minimum wire size:**
+
+Rearrange the formula to solve for CM:
+CM = (2 × K × I × L) / VD allowed
+
+Maximum VD allowed = 120V × 0.03 = 3.6V
+
+CM = (2 × 12.9 × 20 × 75) / 3.6
+CM = 38,700 / 3.6
+CM = **10,750**
+
+Next standard conductor above 10,750 CM: **10 AWG = 10,380 CM** — not quite enough. Go to **8 AWG = 16,510 CM** ✓
+
+## Finding the Minimum Wire Size
+
+The process is always:
+
+1. Calculate max allowable VD in volts (source voltage × % limit)
+2. Rearrange formula to solve for CM
+3. Look up the next standard conductor size that meets or exceeds that CM value
+
+This is the most commonly tested voltage drop scenario on the CA exam.
+
+## Three-Phase Circuits
+
+For three-phase circuits, remove the factor of 2 and replace with √3 (1.732):
+
+**VD = (1.732 × K × I × L) / CM**
+
+Three-phase voltage drop questions are less common on the journeyman exam but do appear. Know which formula to use.
+
+## What to Practice
+
+- Work at least 10 single-phase voltage drop problems from start to finish
+- Practice finding the minimum conductor size (solving for CM, then looking up the next standard conductor)
+- Know the K value for copper (12.9) cold — aluminum (21.2) appears occasionally
+- Know the CM values for 12, 10, 8, and 6 AWG copper — these come up most often
+    `,
+  },
+  {
+    slug: 'california-journeyman-electrician-exam-pass-rate',
+    title: "California Journeyman Electrician Exam Pass Rate — What the Numbers Mean and How to Beat Them",
+    date: 'May 18, 2026',
+    category: 'Exam Prep',
+    excerpt: "The California General Electrician exam has a first-time pass rate under 50%. Here's what that number actually tells you, which modules cause the most failures, and what separates the people who pass from those who retake.",
+    readTime: '5 min read',
+    content: `
+Let's be direct about what you're walking into.
+
+The California General Electrician (Journeyman) exam — administered by PSI on behalf of the California Division of Labor Standards Enforcement — has a **first-attempt pass rate under 50%** for most testing periods. The exact number isn't published by the state, but industry data and reporting from trade schools consistently put it in the **40–50% range**.
+
+That means more people who sit for this exam fail it the first time than pass it.
+
+Understanding why matters more than the number itself.
+
+## What the Exam Actually Tests
+
+The exam is 110 questions. You have 4.5 hours. The passing score is 70%. PSI publishes a content outline that breaks down the question distribution by subject area — this is the closest thing to a blueprint you'll find.
+
+The heavily weighted areas are where the first-time failures happen most:
+
+**Wiring Methods and Materials (Articles 300–392)** consistently produces the most missed questions. It covers conduit types, bend limits, support requirements, fill calculations, and wiring in special locations. The rules are specific, numerous, and easy to confuse.
+
+**Grounding and Bonding (Article 250)** is the second most common failure point. Article 250 is long, technically precise, and has numerous exceptions and special cases. The distinction between grounding electrode conductors, equipment grounding conductors, grounding electrode conductors, and bonding jumpers trips up experienced electricians.
+
+**Calculations** — voltage drop, conduit fill, load calculations, motor circuit sizing — require math under time pressure. People who haven't drilled calculations enough guess on these and lose 5–10 points they should have.
+
+**California-specific rules** (Title 8 Cal/OSHA, Title 24 CEC) are tested and not covered in most NEC-only prep materials.
+
+## Why People Fail on the First Attempt
+
+The most common failure patterns:
+
+**They studied the wrong way.** Re-reading the NEC or a textbook builds familiarity, not recall. The exam asks you to retrieve information, not recognize it. Active practice — answering questions without looking at notes — is the only way to build the retrieval pathways that work under exam pressure.
+
+**They ran out of time.** 4.5 hours for 110 questions is 2.5 minutes per question. That sounds like a lot until you're on question 80 and the clock is at 30 minutes. People who haven't trained at exam pace discover this problem at the worst possible time.
+
+**They couldn't navigate the codebook.** The PSI exam is open book — they hand you an **unmarked NEC codebook** with no tabs, no highlights, no personal notes. Candidates who relied on memorized article numbers without understanding the book's structure waste critical minutes searching. Candidates who've drilled the codebook's organization find the reference they need in 20 seconds and move on.
+
+**They under-studied specific modules.** A candidate who scored 90% on Definitions and 40% on Wiring Methods will fail. The exam weights modules proportionally — if you're weak in a heavily tested area, no amount of strength elsewhere compensates.
+
+## What Separates the People Who Pass
+
+From pattern analysis across exam prep programs and trade school data:
+
+**Consistent daily practice over weeks, not cramming.** Memory consolidates during sleep. Ten days of 45-minute sessions builds stronger recall than one 7-hour day the week before the exam.
+
+**Drilling missed questions specifically.** Every wrong answer is information about a knowledge gap. The most effective final-week preparation is targeted review of your weakest areas, not re-doing questions you already know.
+
+**Timed practice sessions.** Pacing is a skill. You build it by practicing under time pressure, not by knowing the material.
+
+**Codebook navigation practice.** The open-book format is an advantage only if you know how to use it quickly. It becomes a liability if you're searching during the exam.
+
+## How to Use This
+
+The 40–50% first-attempt pass rate isn't a reason to be discouraged. It's a reason to prepare differently than the people who fail.
+
+Most first-time failures come from recognizable gaps: wrong study method, untrained pacing, weak codebook navigation, or specific module deficiencies. Every one of those is fixable before your exam date.
+
+The people who pass aren't more intelligent or more experienced than the people who fail. They practiced in a way that built the right skills. That's it.
+    `,
+  },
+  {
+    slug: 'nec-article-430-motor-branch-circuit-calculations',
+    title: "NEC Article 430 Motor Calculations — What Every CA Journeyman Candidate Needs to Know",
+    date: 'May 8, 2026',
+    category: 'Exam Prep',
+    excerpt: "Motor branch circuit calculations follow a specific NEC framework that's heavily tested on the CA journeyman exam. Here's the step-by-step process for conductor sizing, OCPD selection, and feeder calculations.",
+    readTime: '8 min read',
+    content: `
+Motor circuits in NEC Article 430 follow a different sizing framework than general branch circuits. The rules are specific, the percentages matter, and the exam tests them repeatedly.
+
+Here's the complete framework you need.
+
+## The Key Distinction: FLA vs. FLC
+
+Before anything else: know the difference between **FLA** and **FLC**.
+
+**FLA (Full Load Amperes)** — the actual ampere draw on the motor nameplate.
+
+**FLC (Full Load Current)** — the value from the NEC motor tables (Tables 430.247 through 430.250).
+
+For conductor sizing and OCPD selection, the NEC uses **FLC from the tables** — not the nameplate FLA. The nameplate is used for overload protection sizing.
+
+This is one of the most-tested distinctions on the CA exam. Read the question carefully to know which value it's asking for.
+
+## Step 1: Find the FLC
+
+The NEC provides FLC tables for:
+- **Table 430.248** — Single-phase AC motors
+- **Table 430.250** — Three-phase AC motors
+
+Look up the motor horsepower and voltage to get the FLC. These tables are open-book, but knowing the common values speeds you up:
+
+Three-phase, 460V motors (Table 430.250):
+- **1 HP: 2.1A**
+- **5 HP: 7.6A**
+- **10 HP: 14A**
+- **15 HP: 21A**
+- **20 HP: 27A**
+- **25 HP: 34A**
+- **30 HP: 40A**
+- **50 HP: 65A**
+
+## Step 2: Size the Branch Circuit Conductors
+
+Per **NEC 430.22**, branch circuit conductors supplying a single motor shall have an ampacity of not less than **125% of the motor FLC**.
+
+**Formula:** Conductor ampacity ≥ FLC × 1.25
+
+**Example:** 10 HP, 460V, three-phase motor.
+FLC = 14A (from Table 430.250)
+Minimum conductor ampacity = 14 × 1.25 = **17.5A**
+
+From Table 310.16 at 75°C: 12 AWG copper = 25A → adequate (next size up from 17.5A isn't needed since 25A ≥ 17.5A).
+
+## Step 3: Select the Short-Circuit and Ground-Fault Protection
+
+This is where Article 430 diverges significantly from general circuit rules. Motor overcurrent protection has two separate functions:
+
+1. **Short-circuit and ground-fault protection** (branch circuit OCPD — the breaker or fuse)
+2. **Overload protection** (separate device sized for actual motor nameplate current)
+
+For short-circuit and ground-fault protection, use **Table 430.52**. Maximum ratings:
+
+| Protection Type | Single-Phase | Three-Phase |
+|---|---|---|
+| Non-time-delay fuse | 300% of FLC | 300% of FLC |
+| Dual-element (time-delay) fuse | 175% | 175% |
+| Inverse time breaker | 250% | 250% |
+
+**Example:** 10 HP, 460V, three-phase motor with inverse time breaker.
+Maximum OCPD = 14A × 2.50 = 35A
+Next standard size at or below 35A: **35A circuit breaker**
+
+**Important:** If the calculated maximum doesn't correspond to a standard OCPD size, use the next lower standard size — unless the motor won't start on that size, in which case the next higher is permitted up to the maximum percentages.
+
+## Step 4: Size the Overload Protection
+
+Overload protection is separate from branch circuit protection. It protects the motor from sustained overloads that won't trip a standard breaker fast enough to prevent motor damage.
+
+Per **NEC 430.52(C)(1)**, individual overload protection rating:
+- Motors with a service factor of 1.15 or higher, or with a temperature rise of 40°C or less: **125% of nameplate FLA**
+- All other motors: **115% of nameplate FLA**
+
+Note: This uses **nameplate FLA**, not table FLC.
+
+## Motor Feeder Calculations
+
+When a feeder supplies multiple motors, the calculation is different from a single motor circuit.
+
+Per **NEC 430.24**:
+Feeder ampacity = **(Largest motor FLC × 1.25) + (sum of all other motor FLCs)**
+
+**Example:** A feeder serves three motors:
+- Motor A: 20 HP, 460V (FLC = 27A) — largest
+- Motor B: 10 HP, 460V (FLC = 14A)
+- Motor C: 5 HP, 460V (FLC = 7.6A)
+
+Feeder ampacity = (27 × 1.25) + 14 + 7.6
+= 33.75 + 14 + 7.6
+= **55.35A minimum**
+
+From Table 310.16 at 75°C, 6 AWG copper = 65A → use 6 AWG.
+
+## The Motor Feeder OCPD
+
+For the feeder overcurrent device, use the largest branch circuit OCPD for any motor in the group, plus the FLC of all other motors.
+
+Per **NEC 430.62**:
+Maximum feeder OCPD = (largest motor branch OCPD rating) + (sum of FLC of all other motors)
+
+## What the Exam Tests
+
+Motor questions on the CA exam typically fall into one of these categories:
+
+1. **Conductor sizing:** "What is the minimum ampacity for branch circuit conductors supplying a [X] HP, [voltage] motor?" → FLC × 1.25
+2. **OCPD selection:** "What is the maximum [fuse/breaker] rating for a [X] HP motor?" → FLC × Table 430.52 percentage
+3. **Feeder calculation:** "A feeder supplies three motors with FLCs of X, Y, and Z. What is the minimum feeder ampacity?" → largest FLC × 1.25 + sum of rest
+4. **FLA vs FLC distinction:** "Which value is used to size branch circuit conductors for a motor?" → FLC from the table, not nameplate FLA
+
+Know the 125% conductor rule, the Table 430.52 percentages, and the feeder formula. Those three cover the majority of Article 430 exam questions.
+    `,
+  },
+  {
     slug: 'ai-data-centers-california-electrician-demand-2026',
     title: "AI Is Building Data Centers Across California. Someone Has to Wire Them.",
     date: 'May 25, 2026',
