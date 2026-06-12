@@ -310,7 +310,7 @@ export default function App() {
 
   // All other views get the persistent GlobalNav
   const launchApp = () => navigate('app')
-  const globalNav = <GlobalNav onHome={goHome} onNavigate={navigate} onLaunchApp={launchApp} />
+  const globalNav = <GlobalNav onHome={goHome} onNavigate={navigate} onLaunchApp={launchApp} currentPage={view} />
 
   let pageContent
   if (view === '404')              pageContent = <NotFoundPage onHome={goHome} onNavigate={navigate} />

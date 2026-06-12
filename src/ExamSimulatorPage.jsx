@@ -276,7 +276,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
           <div style={{display:"flex", flexWrap:"wrap", gap:"6px"}}>
             {questions.map((_, i) => (
               <button key={i} onClick={()=>setIdx(i)}
-                style={{width:"32px", height:"32px", borderRadius:"6px", border:"none", cursor:"pointer", fontSize:"11px", fontWeight:"700",
+                style={{width:"40px", height:"40px", borderRadius:"6px", border:"none", cursor:"pointer", fontSize:"11px", fontWeight:"700",
                   background: i===idx ? "#c8a84b" : answers[i]!==undefined ? "#27ae60" : "#2a3a54",
                   color: i===idx ? "#0f1923" : answers[i]!==undefined ? "#fff" : "#8899aa"}}>
                 {i+1}

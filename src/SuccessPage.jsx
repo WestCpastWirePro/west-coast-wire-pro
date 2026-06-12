@@ -9,6 +9,13 @@ import { useState, useEffect } from 'react'
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function SuccessPage({ onEnterApp }) {
+  // Inject keyframes for spinner once
+  if (typeof document !== 'undefined' && !document.getElementById('wrp-spin-style')) {
+    const style = document.createElement('style')
+    style.id = 'wrp-spin-style'
+    style.textContent = '@keyframes wrp-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }'
+    document.head.appendChild(style)
+  }
   const [status, setStatus] = useState('verifying') // verifying | success | error
   const [tier, setTier] = useState('')
   const [accessCode, setAccessCode] = useState('')
@@ -110,7 +117,7 @@ export default function SuccessPage({ onEnterApp }) {
 const styles = {
   page: {minHeight:'100vh', background:'#0a1016', display:'flex', alignItems:'center', justifyContent:'center', padding:'24px'},
   card: {background:'#111820', border:'1px solid rgba(200,168,75,0.3)', borderRadius:'12px', padding:'48px clamp(20px,5vw,40px)', maxWidth:'480px', width:'100%', textAlign:'center'},
-  spinner: {fontSize:'48px', animation:'spin 1s linear infinite', marginBottom:'16px'},
+  spinner: {fontSize:'48px', animation:'wrp-spin 1s linear infinite', marginBottom:'16px'},
   title: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'28px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'12px'},
   tierBadge: {display:'inline-block', background:'rgba(200,168,75,0.15)', border:'1px solid rgba(200,168,75,0.4)', color:'#c8a84b', fontFamily:"'Courier New', monospace", fontSize:'12px', letterSpacing:'2px', padding:'6px 16px', borderRadius:'3px', marginBottom:'20px'},
   sub: {fontSize:'15px', color:'#7a8a9a', lineHeight:'1.7', marginBottom:'24px'},
