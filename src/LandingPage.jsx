@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 // ── Stripe checkout ───────────────────────────────────────────────────────────
 // Calls the /api/create-checkout serverless function, which creates a
 // Stripe Checkout Session and returns a redirect URL.
-async function startCheckout(tier, setLoading) {
+async function startCheckout(tier, setLoading, setPayError) {
   setLoading(tier)
   try {
     const res = await fetch('/api/create-checkout', {
@@ -39,7 +39,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
 
 
   const openModal = (tier) => { setModalTier(tier); setModalOpen(true) }
-  const handlePurchase = (tier) => startCheckout(tier, setLoading)
+  const handlePurchase = (tier) => startCheckout(tier, setLoading, setPayError)
 
   const s = styles
 
