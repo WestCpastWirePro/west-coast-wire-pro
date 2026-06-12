@@ -461,7 +461,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
         </div>
 
         <div style={{marginBottom:'28px'}}>
-          <div style={{color:'#7a8a9a', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>NEC 2020 Book Map</div>
+          <div style={{color:'#7a8a9a', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>NEC 2023 Book Map</div>
           <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'6px'}}>
             {CHAPTERS.map(ch => (
               <div key={ch.num} style={{background:'rgba(255,255,255,0.03)', border:`1px solid ${ch.color}33`, borderRadius:'6px', padding:'8px 12px', display:'flex', gap:'10px', alignItems:'center'}}>

@@ -130,7 +130,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
 
   const generate = () => {
     if (!examDate) { setError("Please select your exam date."); return; }
-    const result = buildPlan(examDate, parseInt(dailyMins), weakMods);
+    const result = buildPlan(examDate, parseInt(dailyMins), weakMods, access);
     if (result.error) { setError(result.error); setPlan(null); return; }
     setError("");
     setPlan(result);

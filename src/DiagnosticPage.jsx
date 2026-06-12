@@ -174,7 +174,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
             <div style={{fontSize:"40px", marginBottom:"12px"}}>🎯</div>
             <div style={{fontSize:"20px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Readiness Diagnostic</div>
             <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"16px"}}>
-              22 questions across all 11 exam modules. Takes about 10 minutes. You'll get a readiness score and a breakdown showing exactly where to focus your study time.
+              24 questions across all 12 exam modules. Takes about 10 minutes. You'll get a readiness score and a breakdown showing exactly where to focus your study time.
             </div>
           </div>
 
