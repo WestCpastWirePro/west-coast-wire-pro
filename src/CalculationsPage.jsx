@@ -103,6 +103,16 @@ function VoltageDropCalc() {
             <label style={s.label}>One-Way Distance (ft)</label>
             <input style={s.input} type="number" placeholder="e.g. 150" value={distance} onChange={e=>setDistance(e.target.value)}/>
           </div>
+          <div>
+            <label style={s.label}>System Voltage</label>
+            <select style={{...s.input}} value={voltage} onChange={e=>setVoltage(e.target.value)}>
+              <option value="120">120V</option>
+              <option value="208">208V</option>
+              <option value="240">240V</option>
+              <option value="277">277V</option>
+              <option value="480">480V</option>
+            </select>
+          </div>
           {mode==="find-vd" && (
             <div style={{gridColumn:"1/-1"}}>
               <label style={s.label}>Conductor Size (Circular Mils)</label>
@@ -399,6 +409,11 @@ export default function CalculationsPage({ onHome , onNavigate }) {
         </div>
       )}
 
+      {active && (
+        <div style={{padding:'12px 16px 0'}}>
+          <button style={{...s.btnSm, background:'#2a3a54', color:'#8899aa'}} onClick={()=>setActive(null)}>← Back</button>
+        </div>
+      )}
       {active === "vd" && <VoltageDropCalc />}
       {active === "motor" && <MotorCalc />}
       {active === "transformer" && <TransformerCalc />}

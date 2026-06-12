@@ -246,7 +246,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <section style={s.ctaBanner}>
         <div style={s.ctaBannerEmoji}>⚡</div>
         <h2 style={s.ctaH2}>Ready to <span style={{color:'#c8a84b'}}>Wire Up</span><br/>Your Future?</h2>
-        <p style={s.ctaP}>Modules 1 & 2 free — 76 questions, no account, no credit card.</p>
+        <p style={s.ctaP}>Modules 1 & 2 free — 75 questions, no account, no credit card.</p>
         <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Studying Free</button>
         <div style={{marginTop:'16px'}}>
           <button

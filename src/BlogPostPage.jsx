@@ -1,7 +1,7 @@
 import React from 'react'
 import { getPost, blogPosts } from './blogPosts.js'
 
-// Simple markdown-ish renderer — handles ## headers, **bold**, *italic*, plain paragraphs
+// Simple markdown-ish renderer — handles ## headers, **bold**, *italic*, [links](url), ---, plain paragraphs
 function renderContent(text) {
   return text.trim().split('\n\n').map((block, i) => {
     const trimmed = block.trim()
@@ -15,10 +15,16 @@ function renderContent(text) {
       )
     }
 
-    // Inline formatting
-    const formatted = trimmed.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/).map((part, j) => {
+    if (trimmed === '---') {
+      return <hr key={i} style={{border:'none', borderTop:'1px solid rgba(200,168,75,0.2)', margin:'32px 0'}} />
+    }
+
+    // Inline formatting: **bold**, *italic*, [text](url)
+    const formatted = trimmed.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/).map((part, j) => {
       if (part.startsWith('**') && part.endsWith('**')) return <strong key={j} style={{color:'#d8e0e8'}}>{part.slice(2,-2)}</strong>
       if (part.startsWith('*') && part.endsWith('*')) return <em key={j} style={{color:'#d8e0e8'}}>{part.slice(1,-1)}</em>
+      const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+      if (linkMatch) return <a key={j} href={linkMatch[2]} style={{color:'#c8a84b', textDecoration:'underline'}}>{linkMatch[1]}</a>
       return part
     })
 
