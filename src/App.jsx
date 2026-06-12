@@ -31,6 +31,7 @@ import AdminGrantPage       from './AdminGrantPage.jsx'
 import BlogPage             from './BlogPage.jsx'
 import CodeSprintPage       from './CodeSprintPage.jsx'
 import BlogPostPage         from './BlogPostPage.jsx'
+import DemoPage             from './DemoPage.jsx'
 import { blogPosts }        from './blogPosts.js'
 
 const ROUTES = {
