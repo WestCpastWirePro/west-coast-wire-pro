@@ -63,6 +63,69 @@ Keep studying. The work is coming.
     `,
   },
   {
+    slug: 'how-to-pass-california-journeyman-exam',
+    title: "How to Pass the California Journeyman Electrician Exam (What Actually Trips People Up)",
+    date: 'April 14, 2026',
+    category: 'Exam Prep',
+    excerpt: "The material isn't the hard part — you've got 8,000 hours in. What kills people on this exam is speed and navigation. Here's what actually trips people up, and what to do about it.",
+    readTime: '7 min read',
+    content: `
+If you're reading this, you're probably a few weeks out from your exam date and starting to feel that low hum of dread. Good. That means you're taking it seriously. Let's talk about what actually matters.
+
+## How Hard Is the California Journeyman Electrician Exam, Really?
+
+Here's the honest answer from guys who've been through it: the material isn't the hard part. You've already got 8,000 hours in. You know how to wire a panel, size a feeder, terminate a service. What kills people on this exam is speed and navigation — 110 questions (10 of these are unscored pretest questions, but you won't know which ones), 4 hours and 30 minutes, open book.
+
+That "open book" part sounds like a gift until you're sitting there with the 2023 NEC in front of you, the clock running, and you can't remember if the answer is in Article 250 or Article 408. You know the concept. You just can't find it fast enough.
+
+Pass rate estimates for the general electrician exam hover around 50% or lower on first attempts. That's not because half the test-takers don't know electrical work. It's because half of them run out of time, second-guess themselves into changing right answers to wrong ones, or get stuck flipping through the same three chapters looking for one table.
+
+## What's the Hardest Part of the Exam?
+
+Ask around and you'll hear the same categories come up over and over:
+
+Wiring Methods and Materials. Article 300 general requirements, then the specific articles for each wiring method — NM, MC, EMT, conduit fill, support spacing. There's a lot of "permitted/not permitted" detail that's easy to mix up between methods.
+
+Calculations. Voltage drop, conductor sizing with derating, motor circuits, load calculations. These aren't conceptually hard — they're formula-and-table problems. But under time pressure, one wrong table lookup early in a multi-step problem tanks the whole answer.
+
+Grounding and Bonding. Article 250. Everyone's weak here because it's genuinely confusing — GEC sizing, EGC sizing, bonding jumpers, when something needs to be insulated vs. bare. The tables (250.66, 250.122) get tested hard.
+
+Motors. Article 430. FLA tables, the 125%/115%/250% rules for different components, and knowing which percentage applies to which part of the circuit (conductors vs. OCPD vs. controller).
+
+If you came out of your apprenticeship strong in residential and you're weak on motors and three-phase calculations, that's normal — and it's exactly the kind of gap that shows up on your score report if you fail.
+
+## How to Study for the California Journeyman Exam
+
+1. Stop reading and start retrieving. Reading the codebook cover to cover feels productive. It isn't — not by itself. Your brain needs to practice finding information under pressure, not just recognizing it when you see it. Practice questions that force you to produce an answer, then check it, build the kind of memory that survives a testing room.
+
+2. Time yourself from day one. Don't wait until the week before to start practicing under a clock. If you consistently take 3 minutes per question in practice, you're going to run out of time on the real thing — 110 questions in 270 minutes is about 2.5 minutes per question, and some of those minutes need to go toward calculations.
+
+3. Drill your weak categories, not your strong ones. It feels good to breeze through questions on stuff you already know. It doesn't move your score. If grounding and bonding is your weak spot, that's where your study time needs to go — even though it's less fun.
+
+4. Learn to navigate the code by keyword, not by memory. You will not memorize the entire NEC, and you don't need to. What you need is the ability to take a question, identify the keyword ("dwelling unit," "continuous load," "wet location"), and go straight to the right article without wandering. This is a trainable skill — but only if you practice it specifically, which most study methods don't do.
+
+5. Take a full practice exam under real conditions. Same time limit, same question count, no pausing. The first time most people do this, they're shocked at how the clock feels different than doing 20 questions at a time. Better to get that shock in practice than on exam day.
+
+## How Many Questions Is the California Journeyman Exam?
+
+110 questions (10 unscored pretest questions mixed in, indistinguishable from the rest), 4 hours and 30 minutes, multiple choice, computer-based through PSI. You need 70% to pass. Results are immediate.
+
+## What Should I Bring to the Exam?
+
+Your NEC codebook (the current adopted edition — California is transitioning to the 2023 NEC), two forms of government-issued photo ID, and nothing else. PSI provides scratch paper, a pencil, and an on-screen calculator. You can tab your codebook with manufacturer tabs, highlight it, and write in it ahead of time — just not during the exam.
+
+## The Bottom Line
+
+The guys who pass aren't necessarily the best electricians in the room. They're the ones who can move through 110 questions without getting stuck, who know their weak spots and shored them up beforehand, and who've practiced finding answers in the code fast enough that the clock doesn't beat them.
+
+That's a different skill than field work, and it's a skill you can build — but it takes the right kind of practice.
+
+---
+
+West Coast Wire Pro is built around exactly this — Code Sprint trains article navigation under time pressure, High-Priority Drill focuses on the categories that fail people most, and the Full Exam Simulator runs the real 110-question, 4.5-hour format so exam day isn't a surprise. [Start free — Modules 1 & 2, no account needed.](/)
+    `,
+  },
+  {
     slug: 'ca-journeyman-exam-day-guide',
     title: "What to Expect at the PSI Testing Center — CA Journeyman Exam Day",
     date: 'March 21, 2026',
