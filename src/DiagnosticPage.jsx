@@ -56,8 +56,8 @@ const savePut  = (key, val) => { try { localStorage.setItem(key, JSON.stringify(
 const saveClear = (key) => { try { localStorage.removeItem(key); } catch(e) {} };
 
 function ReportButton({ qid, qText }) {
-  const [state, setState] = React.useState('idle');
-  const [note, setNote]   = React.useState('');
+  const [state, setState] = useState('idle');
+  const [note, setNote]   = useState('');
   const submit = async () => {
     if (state === 'sending') return;
     setState('sending');
