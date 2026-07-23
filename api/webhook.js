@@ -1,6 +1,11 @@
 import Stripe from 'stripe';
 import crypto from 'crypto';
 
+// Disable Vercel's body parser so we can read raw bytes for Stripe signature verification
+export const config = {
+  api: { bodyParser: false },
+};
+
 // ─── ACCESS CODE GENERATION ───────────────────────────────────────────────────
 //
 // When a payment succeeds, we generate a unique access code tied to the
@@ -47,24 +52,24 @@ export default async function handler(req, res) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
+  // Read raw body (bodyParser is disabled above so we must do this manually)
+  const rawBody = await new Promise((resolve, reject) => {
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+
   // Verify the webhook signature (proves it's really from Stripe, not a fake request)
   let event;
   try {
     const sig = req.headers['stripe-signature'];
 
     if (webhookSecret) {
-      // Production: verify signature
-      // Note: Vercel parses req.body as JSON by default, we need raw body for signature
-      // The rawBody trick below handles this
-      const rawBody = typeof req.body === 'string'
-        ? req.body
-        : JSON.stringify(req.body);
-
       event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
     } else {
-      // Development: skip signature verification (webhook secret not set yet)
       console.warn('⚠️  STRIPE_WEBHOOK_SECRET not set — skipping signature verification');
-      event = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      event = JSON.parse(rawBody);
     }
   } catch (err) {
     console.error('Webhook signature failed:', err.message);
