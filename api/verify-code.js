@@ -34,11 +34,12 @@ export default async function handler(req, res) {
         process.env.SUPABASE_URL,
         process.env.SUPABASE_SERVICE_ROLE_KEY
       );
-      const { data } = await supabase
+      const { data, error: sbErr } = await supabase
         .from('access_tokens')
         .select('plan, email')
         .eq('token', code)
-        .single();
+        .maybeSingle();
+      if (sbErr) { console.error('Supabase error:', sbErr.message); return res.status(200).json({ valid: false, error: 'Verification failed' }); }
       if (data) {
         await supabase
           .from('access_tokens')
@@ -48,9 +49,10 @@ export default async function handler(req, res) {
         return res.status(200).json({ valid: true, tier: data.plan });
       }
     } catch (err) {
-      return res.status(200).json({ valid: false, error: 'Supabase error: ' + err.message });
+      console.error('Supabase lookup error:', err.message);
+      return res.status(200).json({ valid: false, error: 'Verification failed' });
     }
-    return res.status(200).json({ valid: false, error: 'Token not found in DB' });
+    return res.status(200).json({ valid: false, error: 'Token not found' });
   }
 
   const accessSecret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
