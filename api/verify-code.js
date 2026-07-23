@@ -48,9 +48,9 @@ export default async function handler(req, res) {
         return res.status(200).json({ valid: true, tier: data.plan });
       }
     } catch (err) {
-      console.error('Supabase lookup error:', err.message);
+      return res.status(200).json({ valid: false, error: 'Supabase error: ' + err.message });
     }
-    return res.status(200).json({ valid: false, error: 'Token not found' });
+    return res.status(200).json({ valid: false, error: 'Token not found in DB' });
   }
 
   const accessSecret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
