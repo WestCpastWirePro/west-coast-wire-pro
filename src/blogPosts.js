@@ -5,38 +5,173 @@
 
 export const blogPosts = [
   {
-    slug: 'california-electrician-demand-2026-wildfires-olympics',
-    title: "Why Right Now Is the Best Time in Years to Get Your CA Journeyman License",
+    slug: 'sce-undergrounding-altadena-malibu-electrician-work',
+    title: "SCE Is Burying 153 Miles of Power Lines in LA. That's Years of Electrical Work.",
     date: 'July 23, 2026',
     category: 'Industry News',
-    excerpt: "The LA wildfires, the 2028 Olympics, a wave of retiring journeymen, and the biggest infrastructure buildout in California history are all hitting at the same time. Here's what that means if you're working toward your license.",
-    readTime: '5 min read',
+    excerpt: "After the January wildfires, Southern California Edison released its plan to underground power lines across Altadena and Malibu. Here's what that actually means in terms of work, timeline, and what kind of electricians get hired for it.",
+    readTime: '4 min read',
     content: `
-SCE just dropped a plan to underground 153 circuit miles of distribution lines across Altadena and Malibu. That's the direct response to the January wildfires — put the lines in the ground so they stop starting fires. 130 of those miles are going into high fire risk areas inside the actual burn scars.
+Southern California Edison released its distribution infrastructure rebuilding plan after the January 2026 wildfires, and the numbers are worth paying attention to if you're in the trade.
 
-That's years of work. Multi-year, sustained, can't-do-it-remotely, boots-on-the-ground electrical work in two of LA's most built-up communities. And that's one utility's plan for one fire season.
+153 circuit miles of overhead distribution lines are getting put underground. 130 of those miles are in high fire risk areas inside the burn scars of Altadena and Malibu. The remaining 23 miles cover parts of Altadena outside the high fire risk zone but still affected by the fires.
 
-Meanwhile LA is two years out from the 2028 Olympics. Venue upgrades, housing, broadcast infrastructure, temporary power — the bulk of that construction has to be done before 2028. Not during. Before. If you're getting licensed in the next year you're walking into the build. Wait two more years and you're cleaning up after the party.
+The reason is pretty straightforward — overhead lines in dry, steep terrain ignite fires. Undergrounding removes that risk. California's been pushing utilities toward this for years, and the January fires accelerated the timeline considerably.
 
-Then there's the stuff that was already going on before any of this: data centers going up faster than permits can keep up, EV charging infrastructure getting bolted onto commercial buildings everywhere, California's grid being completely restructured for renewable load. California EDD is projecting 9% job growth for electricians through 2030 and that projection was made before the wildfire rebuilding plan existed.
+## What undergrounding actually involves
 
-## The workforce math doesn't add up
+This isn't a quick job. Undergrounding distribution lines means trenching, conduit installation, pulling new cable, installing pad-mounted transformers and switchgear, terminating at every service point, and commissioning the whole system before the overhead lines come down. In dense residential neighborhoods like Altadena, that's slow, methodical, permit-heavy work street by street.
 
-A huge chunk of licensed journeymen in California are at or near retirement age. The people who got licensed in the 80s and 90s are getting out. There aren't enough people coming up behind them to replace the hours.
+The crews doing this aren't just digging trenches. You need licensed electricians for the termination work, transformer connections, metering, and switchgear. The trenching might go to general labor but the electrical side requires journeyman-level credentials.
 
-That's the actual reason wages are where they are. Median hourly for CA electricians was $36.80 in 2024, well above the state median. Top earners are at $52+ an hour. That's not because electricians got better at negotiating — it's supply and demand doing exactly what it's supposed to do.
+## How long does a project like this take?
 
-Some programs are filling open spots within minutes of posting them. Minutes.
+SCE hasn't published a specific completion timeline but projects of this scope in similar terrain run 3-5 years minimum. Altadena alone has roughly 11,000 structures in the affected area. Working street by street through that kind of density, with underground work in areas that also need to be rebuilt from the ground up, is not fast.
 
-## The license is the bottleneck
+This is sustained work. Not a 6-month spike that disappears.
 
-If you're already in the trade and putting in hours, you're ahead of most people trying to get into this. The actual constraint is the license. The California Journeyman Electrician exam (through PSI, based on the 2023 NEC) is a 100-question test with roughly a 40% first-attempt pass rate. It's not a formality.
+## This is one utility's response to one fire season
 
-The work is there. The wages are there. The question is whether you're licensed to go get it.
+SCE covers Southern California. PG&E has been doing its own undergrounding push in Northern California fire risk areas for the past several years. The state has mandated billions in grid hardening spending across multiple utilities.
 
-That's what [West Coast Wire Pro](https://westcoastwirepro.com) is for. 500 practice questions built specifically for the CA Journeyman exam — not a generic study app, not a national prep course recycled from another state's test. It's organized by the same modules PSI uses, with detailed explanations for every question so you understand why the answer is what it is, not just what to bubble in.
+What happened in January 2026 didn't create a new policy direction — it accelerated one that was already in motion. The electrical infrastructure work tied to wildfire mitigation in California is a long-term pipeline, not a single project.
 
-The market's not waiting. Neither should you.
+## What this means if you're getting licensed
+
+The type of work SCE is funding is exactly the type of work a journeyman electrician does. If you're working toward your California General Electrician (Journeyman) license, the job market you're walking into has this pipeline running in the background on top of everything else already driving demand.
+
+The exam is a real obstacle — 100 questions from the 2023 NEC, roughly 40% pass rate on the first attempt. [West Coast Wire Pro](https://westcoastwirepro.com) was built specifically for the California Journeyman exam, with 500 practice questions tied to the 2023 code and explanations that tell you why each answer is right, not just what to pick.
+
+The work is there. The question is whether you're licensed for it.
+    `.trim(),
+  },
+  {
+    slug: 'la-2028-olympics-electrician-jobs-california',
+    title: "The 2028 LA Olympics Construction Window Is Closing. Are You Licensed?",
+    date: 'July 23, 2026',
+    category: 'Industry News',
+    excerpt: "The bulk of Olympic construction in Los Angeles has to be done before 2028, not during it. If you get your journeyman license in the next year, you're walking into the build. Wait two years and you're cleaning up after the party.",
+    readTime: '4 min read',
+    content: `
+Los Angeles is hosting the 2028 Summer Olympics. Two years out, the construction picture looks like this: venue upgrades, athlete villages, broadcast infrastructure, transportation improvements, and temporary power systems for events across the city — all of it needs to be substantially complete before athletes and cameras arrive.
+
+That's the thing about Olympic construction people outside the industry don't always think about. The work doesn't happen during the Games. It has to be done before them. The 2028 opening ceremony is July 14, 2028. That's not a soft deadline.
+
+## What's actually being built
+
+The LA 2028 footprint is different from some past Olympics because LA already has existing venues from the 1984 Games. The approach has been renovation and upgrade rather than building from scratch, which actually means more retrofit electrical work — older buildings getting brought up to current code, new power distribution systems going into existing structures, broadcast and telecom infrastructure layered onto venues that weren't designed for it.
+
+Athlete housing is going in at UCLA and USC. New and upgraded venues are being prepared across the metro area. The transportation corridor improvements that feed into the Olympic experience include electrified bus rapid transit and station infrastructure. All of this has significant electrical scope.
+
+## The timeline pressure is real
+
+Most of the heavy construction needs to be done 6-12 months before the Games for testing, commissioning, and logistics setup. That puts the real crunch window in 2026-2027. We're in it right now.
+
+Contractors working Olympic-adjacent projects in LA right now need licensed electricians. Not apprentices waiting on hours, not helpers — licensed journeymen who can pull permits, sign off on work, and run jobs. The credential gap is what separates who gets called for this work and who doesn't.
+
+## After 2028
+
+The legacy infrastructure from the Olympics doesn't disappear. Upgraded venues stay in use. Improved transit runs. Athlete housing at UCLA and USC becomes student housing. The work done for 2028 has a long tail.
+
+But the build cycle itself — the part with the most concentrated electrical work — is happening now. If you're working toward your California Journeyman license, this is the context you're walking into.
+
+## The exam is the gate
+
+The California General Electrician exam through PSI is 100 questions based on the 2023 NEC. Roughly 40% of people pass on the first try. It's not a rubber stamp.
+
+[West Coast Wire Pro](https://westcoastwirepro.com) has 500 practice questions built specifically for this exam, organized by the same content areas PSI tests. Every question has a full explanation so you understand the underlying code, not just the answer to that one question.
+
+The construction window is open. The question is whether your license is.
+    `.trim(),
+  },
+  {
+    slug: 'california-electrician-shortage-wages-retirement-wave',
+    title: "California Is Running Out of Journeyman Electricians. Here's What That Means for Wages.",
+    date: 'July 23, 2026',
+    category: 'Industry News',
+    excerpt: "A large share of California's licensed journeymen are near retirement age. The people replacing them aren't coming fast enough. That supply gap is already showing up in wages — and it's not going away.",
+    readTime: '4 min read',
+    content: `
+The median hourly wage for electricians in California hit $36.80 in 2024. The top 10% are clearing $52 an hour. That puts the top earners well above $100,000 a year in a trade that doesn't require a four-year degree.
+
+Those numbers aren't the result of some organized wage campaign. They're basic supply and demand. And the supply side of the equation is getting tighter, not looser.
+
+## Who's leaving
+
+A significant portion of California's licensed journeymen are at or near retirement age. The people who got their credentials in the 1980s and 1990s, who built careers through the construction booms of the following decades, are getting out. Some are already gone.
+
+The trade doesn't replace itself automatically. Becoming a licensed journeyman in California takes years of documented field experience before you even sit for the exam. You can't fast-track it. There's no shortcut from zero to licensed in 12 months.
+
+That lag between demand rising and supply responding is where wages live.
+
+## The demand side isn't softening
+
+California EDD projects 9% job growth for electricians through 2030. That projection was published before the January 2026 wildfires created a separate multi-year infrastructure rebuilding pipeline. Before SCE announced its plan to underground 153 miles of distribution lines. Before the 2028 Olympics construction crunch fully hit.
+
+The number of things pulling on licensed electricians in California right now is unusually high. Wildfire grid hardening. Olympic construction. EV charging infrastructure going into commercial buildings across the state. Data centers. Residential and commercial construction that never really stopped.
+
+Add it all up and the gap between how many licensed journeymen California has and how many it needs isn't closing anytime soon.
+
+## What this means in practice
+
+If you're already in the trade and working your hours, you're in the right place. The credentials matter more than they ever have because the work exists and the licensed people to do it are getting scarcer.
+
+Some certification programs around the state have reported filling available spots within minutes of posting openings. That's not hype — it's the market working.
+
+## The exam is the actual bottleneck
+
+None of the wage or demand picture helps you if you're not licensed. The California Journeyman Electrician exam (PSI, 100 questions, 2023 NEC) has roughly a 40% first-attempt pass rate. It's the gate between working in the trade and being licensed to run work in the trade.
+
+[West Coast Wire Pro](https://westcoastwirepro.com) is 500 practice questions built specifically for the CA Journeyman exam. Not a general electrical study tool — questions written from the 2023 NEC, organized by the same modules PSI uses, with full explanations for every answer. The goal is to go into the test having already seen the concepts, not encountering them cold.
+
+The wages are there. The work is there. The only question is whether you're licensed to go get it.
+    `.trim(),
+  },
+  {
+    slug: 'california-ev-charging-data-centers-electrician-jobs-2026',
+    title: "EV Charging and Data Centers Are Quietly Driving Massive Electrician Demand in California",
+    date: 'July 23, 2026',
+    category: 'Industry News',
+    excerpt: "Before the wildfires and the Olympics, two other forces were already reshaping electrical work in California. EV charging infrastructure and data center construction aren't going away — and they need licensed journeymen to build them.",
+    readTime: '4 min read',
+    content: `
+The wildfire rebuilding and the 2028 Olympics get the headlines right now, but there are two other demand drivers for California electricians that were already running before any of that — and will keep running long after.
+
+EV charging infrastructure and data centers. Neither is a temporary project. Both are baseline, ongoing work that's going to need licensed electricians in California for the foreseeable future.
+
+## EV charging: it's not just Tesla superchargers
+
+The visible part of EV charging is the stuff you see at highway rest stops and mall parking lots. The less visible part — and the part with more sustained electrical work — is the commercial and multifamily buildout happening across the state.
+
+California law now requires EV-ready infrastructure in new construction. Existing commercial properties are retrofitting. Multifamily buildings are getting charging added to parking structures. Fleet operators — delivery companies, municipalities, school districts with electric buses — are building out dedicated charging depots.
+
+All of that is electrical work. Panel upgrades, new circuits, conduit runs, load calculations, metering. The residential end is relatively simple. The commercial and fleet end is not. A fleet depot for 50 electric buses has significant electrical scope. A parking structure retrofit for a commercial building is a real job.
+
+This work is being driven by a mandate, not a trend. California's EV targets aren't going away, which means the infrastructure buildout isn't going away either.
+
+## Data centers: the AI buildout is real
+
+Every major tech company is adding data center capacity. AI applications are power-hungry. Training and inference workloads require massive, stable power supply with redundant systems. California's existing data center footprint is being expanded, and new facilities are being permitted and built.
+
+Data center electrical work is specialized. These facilities run on large UPS systems, redundant feeders, precision cooling tied to electrical distribution, emergency generators, and monitoring systems that touch every circuit in the building. They need licensed electricians who understand commercial power distribution at scale, not just residential work.
+
+The demand for this isn't cyclical. Companies aren't building data centers to mothball them. Once built, data centers need ongoing maintenance, upgrades, and expansion. It's recurring work.
+
+## California's grid is being restructured underneath all of this
+
+The EV load and the data center load are both landing on a grid that California is simultaneously rebuilding for renewable energy. Solar and wind add power intermittently, which means more battery storage infrastructure, more sophisticated grid management, more points where the grid needs physical electrical work done.
+
+California EDD's 9% job growth projection for electricians through 2030 is built on this baseline. The wildfire rebuilding and Olympic construction are additions to that baseline, not replacements for it.
+
+## The credential gap
+
+All of this work requires licensed journeymen in California — people who can pull permits, take legal responsibility for the work, and sign off on inspections. The ratio of available work to available licensed electricians is favorable right now and getting more so.
+
+The California Journeyman Electrician exam is the credential that opens the door to this work. 100 questions, 2023 NEC, roughly 40% first-attempt pass rate.
+
+[West Coast Wire Pro](https://westcoastwirepro.com) has 500 practice questions built specifically for the CA Journeyman exam — organized by PSI's content areas, with full explanations for every answer. If you're putting in hours and working toward the exam, it's the most direct prep available for what's actually tested.
+
+The work is there. Build toward the license.
     `.trim(),
   },
   {
