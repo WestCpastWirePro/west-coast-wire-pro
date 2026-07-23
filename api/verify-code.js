@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import crypto from 'crypto';
+import { createClient } from '@supabase/supabase-js';
 
 function generateAccessCode(sessionId, tier) {
   const secret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
@@ -25,6 +26,32 @@ export default async function handler(req, res) {
 
   const { code, sessionId, email } = req.body;
   if (!code) return res.status(400).json({ valid: false, error: 'No code provided' });
+
+  // ── Supabase token (64-char hex from Stripe webhook) ─────────────────────
+  if (/^[0-9a-f]{64}$/.test(code)) {
+    try {
+      const supabase = createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY
+      );
+      const { data } = await supabase
+        .from('access_tokens')
+        .select('plan, email')
+        .eq('token', code)
+        .single();
+      if (data) {
+        await supabase
+          .from('access_tokens')
+          .update({ accessed_at: new Date().toISOString() })
+          .eq('token', code)
+          .is('accessed_at', null);
+        return res.status(200).json({ valid: true, tier: data.plan });
+      }
+    } catch (err) {
+      console.error('Supabase lookup error:', err.message);
+    }
+    return res.status(200).json({ valid: false, error: 'Token not found' });
+  }
 
   const accessSecret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
 
