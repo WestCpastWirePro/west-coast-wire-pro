@@ -5,6 +5,41 @@
 
 export const blogPosts = [
   {
+    slug: 'california-electrician-demand-2026-wildfires-olympics',
+    title: "Why Right Now Is the Best Time in Years to Get Your CA Journeyman License",
+    date: 'July 23, 2026',
+    category: 'Industry News',
+    excerpt: "The LA wildfires, the 2028 Olympics, a wave of retiring journeymen, and the biggest infrastructure buildout in California history are all hitting at the same time. Here's what that means if you're working toward your license.",
+    readTime: '5 min read',
+    content: `
+SCE just dropped a plan to underground 153 circuit miles of distribution lines across Altadena and Malibu. That's the direct response to the January wildfires — put the lines in the ground so they stop starting fires. 130 of those miles are going into high fire risk areas inside the actual burn scars.
+
+That's years of work. Multi-year, sustained, can't-do-it-remotely, boots-on-the-ground electrical work in two of LA's most built-up communities. And that's one utility's plan for one fire season.
+
+Meanwhile LA is two years out from the 2028 Olympics. Venue upgrades, housing, broadcast infrastructure, temporary power — the bulk of that construction has to be done before 2028. Not during. Before. If you're getting licensed in the next year you're walking into the build. Wait two more years and you're cleaning up after the party.
+
+Then there's the stuff that was already going on before any of this: data centers going up faster than permits can keep up, EV charging infrastructure getting bolted onto commercial buildings everywhere, California's grid being completely restructured for renewable load. California EDD is projecting 9% job growth for electricians through 2030 and that projection was made before the wildfire rebuilding plan existed.
+
+## The workforce math doesn't add up
+
+A huge chunk of licensed journeymen in California are at or near retirement age. The people who got licensed in the 80s and 90s are getting out. There aren't enough people coming up behind them to replace the hours.
+
+That's the actual reason wages are where they are. Median hourly for CA electricians was $36.80 in 2024, well above the state median. Top earners are at $52+ an hour. That's not because electricians got better at negotiating — it's supply and demand doing exactly what it's supposed to do.
+
+Some programs are filling open spots within minutes of posting them. Minutes.
+
+## The license is the bottleneck
+
+If you're already in the trade and putting in hours, you're ahead of most people trying to get into this. The actual constraint is the license. The California Journeyman Electrician exam (through PSI, based on the 2023 NEC) is a 100-question test with roughly a 40% first-attempt pass rate. It's not a formality.
+
+The work is there. The wages are there. The question is whether you're licensed to go get it.
+
+That's what [West Coast Wire Pro](https://westcoastwirepro.com) is for. 500 practice questions built specifically for the CA Journeyman exam — not a generic study app, not a national prep course recycled from another state's test. It's organized by the same modules PSI uses, with detailed explanations for every question so you understand why the answer is what it is, not just what to bubble in.
+
+The market's not waiting. Neither should you.
+    `.trim(),
+  },
+  {
     slug: 'nec-table-310-16-conductor-ampacity-guide',
     title: "How to Read NEC Table 310.16 for the California Journeyman Exam",
     date: 'June 5, 2026',
