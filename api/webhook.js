@@ -101,8 +101,8 @@ export default async function handler(req, res) {
       try {
         const tierLabel = tier === 'pro' ? 'Pro' : 'Standard';
         const tierFeatures = tier === 'pro'
-          ? 'All 462 questions, exam simulation, Missed Questions deck, Code Sprint, Table Mastery, and High-Priority Drill — everything you need to pass.'
-          : 'All 462 questions across all 11 modules, timed & untimed modes, difficulty filtering, Exam Simulator, and Study Planner.';
+          ? 'All 500 questions, exam simulation, Missed Questions deck, Code Sprint, Table Mastery, and High-Priority Drill — everything you need to pass.'
+          : 'All 500 questions across all 12 modules, timed & untimed modes, difficulty filtering, Exam Simulator, and Study Planner.';
 
         const magicLink = `https://westcoastwirepro.com/?grant=${tier}&token=${accessCode}`;
 
@@ -115,7 +115,7 @@ export default async function handler(req, res) {
           body: JSON.stringify({
             from: 'West Coast Wire Pro <noreply@westcoastwirepro.com>',
             to: email,
-            subject: `⚡ Your West Coast Wire Pro ${tierLabel} Access — One Click to Start`,
+            subject: `Your West Coast Wire Pro Access — Click to Start Studying`,
             html: `
               <div style="background:#0a1016;padding:40px 20px;font-family:'Segoe UI',Arial,sans-serif;max-width:520px;margin:0 auto;">
                 <div style="text-align:center;margin-bottom:32px;">

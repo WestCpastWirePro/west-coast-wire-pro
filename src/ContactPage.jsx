@@ -140,7 +140,7 @@ export default function ContactPage({ onHome, onNavigate }) {
             {
               title: 'App is locked after purchase',
               steps: [
-                'Check your email for a one-click access link from no-reply@westcoastwirepro.com.',
+                'Check your email for a one-click access link from noreply@westcoastwirepro.com.',
                 'Subject line: "Your West Coast Wire Pro Access — Click to Start Studying"',
                 'Check spam, promotions, and junk folders if you cannot find it.',
                 'Click the link in the email — it will unlock the app on your device instantly.',
@@ -151,7 +151,7 @@ export default function ContactPage({ onHome, onNavigate }) {
               title: "I can't find my access link email",
               steps: [
                 "Search your inbox for 'West Coast Wire Pro' or check spam/junk folders.",
-                'The email comes from no-reply@westcoastwirepro.com — add it to your contacts.',
+                'The email comes from noreply@westcoastwirepro.com — add it to your contacts.',
                 "If you still can't find it, contact us with the email you used to purchase and we'll resend your access link.",
               ]
             },
