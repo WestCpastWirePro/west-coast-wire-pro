@@ -184,26 +184,7 @@ function resolveViewFromURL() {
   const path   = window.location.pathname
   if (params.get('success') === 'true')   return 'success'
   if (params.get('cancelled') === 'true') return 'landing'
-  const grantTier = params.get('grant'); const grantKey = params.get('key');
-  if (grantTier && grantKey === 'wcwp2026admin' && ['standard','pro'].includes(grantTier)) {
-    try { localStorage.setItem('wrp_access', grantTier) } catch(e) {}
-    window.history.replaceState({}, '', '/?app'); return 'app'
-  }
-  // Manual grant token (has email): verify HMAC and grant immediately
-  const manualEmail = params.get('email');
-  const manualToken = params.get('token');
-  const manualTier  = params.get('grant');
-  if (manualToken && manualTier && manualEmail && ['standard','pro'].includes(manualTier)) {
-    try {
-      localStorage.setItem('wrp_access', manualTier);
-      localStorage.removeItem('wrp_saved_session');
-      localStorage.removeItem('wrp_sim_session');
-      localStorage.removeItem('wrp_sprint_session');
-    } catch(e) {}
-    try { window.history.replaceState({}, '', '/?app') } catch(e) {}
-    return 'app';
-  }
-  // Stripe magic link: ?grant=pro&token=XXXX-XXXX-XXXX (no email)
+  // Any magic link (Stripe or manual admin grant): verify via API before granting
   if (params.get('token') && params.get('grant')) return 'verifying'
   if (params.has('app') || params.has('quiz') || window.location.hash === '#app') return 'app'
   if (path.startsWith('/blog/')) return 'blog-post'

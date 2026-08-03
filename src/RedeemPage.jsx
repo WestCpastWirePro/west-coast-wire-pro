@@ -18,7 +18,7 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
           <div style={{background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.25)', borderRadius:'8px', padding:'20px', marginBottom:'20px', textAlign:'left'}}>
             <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b', textTransform:'uppercase', letterSpacing:'1px', marginBottom:'10px'}}>⚡ Use Your Access Link</div>
             <div style={{fontSize:'13px', color:'#8a9aaa', lineHeight:'1.7'}}>
-              When you purchased, we emailed you a one-click access link from <strong style={{color:'#d8e0e8'}}>no-reply@westcoastwirepro.com</strong>. Find that email and tap the link — it will restore your access instantly.<br/><br/>
+              When you purchased, we emailed you a one-click access link from <strong style={{color:'#d8e0e8'}}>noreply@westcoastwirepro.com</strong>. Find that email and tap the link — it will restore your access instantly.<br/><br/>
               <strong style={{color:'#d8e0e8'}}>Subject line:</strong> &#34;Your West Coast Wire Pro Access — Click to Start Studying&#34;<br/>
               <strong style={{color:'#d8e0e8'}}>Also check:</strong> Spam, Promotions, or Junk folders.
             </div>

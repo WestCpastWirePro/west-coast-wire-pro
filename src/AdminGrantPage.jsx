@@ -33,7 +33,7 @@ export default function AdminGrantPage() {
         body: JSON.stringify({ adminSecret, email: email.trim().toLowerCase(), tier }),
       })
       const data = await res.json()
-      if (data.code) {
+      if (data.token) {
         setResult(data)
       } else {
         setError(data.error || 'Failed to generate code')
@@ -103,16 +103,16 @@ export default function AdminGrantPage() {
             <div style={{fontSize:'13px', color:'#27ae60', fontWeight:'700', marginBottom:'8px'}}>✅ Code Generated</div>
             <div style={{fontSize:'12px', color:'#7a8a9a', marginBottom:'4px'}}>Email: {result.email}</div>
             <div style={{fontSize:'12px', color:'#7a8a9a', marginBottom:'12px'}}>Tier: {result.tier}</div>
-            <div style={{fontSize:'28px', fontFamily:"'Courier New',monospace", color:'#c8a84b', letterSpacing:'4px', fontWeight:'700', marginBottom:'12px'}}>
-              {result.code}
+            <div style={{fontSize:'12px', fontFamily:"'Courier New',monospace", color:'#c8a84b', wordBreak:'break-all', marginBottom:'12px', lineHeight:'1.6'}}>
+              {result.magicLink}
             </div>
             <button style={{...s.btn, background:'rgba(200,168,75,0.1)', border:'1px solid #c8a84b', color:'#c8a84b', marginBottom:'0'}}
-              onClick={() => navigator.clipboard.writeText(result.code)}>
-              Copy Code
+              onClick={() => navigator.clipboard.writeText(result.magicLink)}>
+              Copy Magic Link
             </button>
             <div style={{marginTop:'12px', fontSize:'12px', color:'#7a8a9a', lineHeight:'1.6'}}>
-              Send this code to <strong style={{color:'#d8e0e8'}}>{result.email}</strong>.<br/>
-              They enter it at <strong style={{color:'#c8a84b'}}>westcoastwirepro.com/redeem</strong>
+              Send this link to <strong style={{color:'#d8e0e8'}}>{result.email}</strong>.<br/>
+              One click restores their access instantly.
             </div>
           </div>
         )}
