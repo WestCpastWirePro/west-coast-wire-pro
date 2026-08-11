@@ -106,50 +106,6 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         ))}
       </div>
 
-      {/* HOW IT WORKS */}
-      <section id="how-it-works" style={s.sectionDark2}>
-        <SectionLabel>// HOW IT WORKS</SectionLabel>
-        <SectionTitle>Built on how<br/>memory actually works.</SectionTitle>
-        <p style={{color:'#7a8a9a', maxWidth:'520px', margin:'0 auto 40px', fontSize:'14px', lineHeight:'1.7', textAlign:'center'}}>
-          Built on active recall and spaced repetition — the two study methods with the strongest evidence base in learning science.
-        </p>
-        <div style={s.steps}>
-          {[
-            ['01','🎯','Answer First, Always','Every session starts with a question, not a reading. Forcing your brain to retrieve an answer — even wrong — builds stronger memory than re-reading ever does. This is active recall, the most evidence-backed study method in cognitive psychology.'],
-            ['02','⚡','Timed Like the Real Exam','4.5 hours for 110 questions is 2.5 minutes each. Timed mode trains you to work at exam pace, not study pace. Research shows that practicing under test conditions — same time pressure, same format — directly improves test performance.'],
-            ['03','📖','Every Answer Cites the Code','After each question you see the exact NEC article, the reasoning, and what the code actually says. You learn where the rule lives, not just what it is. On an open-book exam, that is the difference between confirming an answer in 20 seconds and spending 3 minutes searching.'],
-            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve — reviewing right before you forget resets it. This is spaced repetition, and drilling your missed questions in the final week is the highest-ROI study move you can make.'],
-          ].map(([num, icon, title, text]) => (
-            <div key={num} style={s.step}>
-              <div style={s.stepNum}>{num}</div>
-              <div style={s.stepIcon}>{icon}</div>
-              <div style={s.stepTitle}>{title}</div>
-              <p style={s.stepText}>{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* MODULES */}
-      <section id="modules" style={s.sectionDark}>
-        <SectionLabel>// EXAM COVERAGE</SectionLabel>
-        <SectionTitle>All 12 Modules.<br/>Every Topic.</SectionTitle>
-        <div style={s.modulesGrid}>
-          {MODULES_DATA.map(m => (
-            <div key={m.id} style={{...s.moduleCard, '--accent': m.color}}>
-              <div style={{height:'2px', background: m.color, borderRadius:'1px', marginBottom:'16px'}} />
-              <div style={s.modNum}>MODULE {String(m.displayId || m.id).padStart(2,'0')}</div>
-              <div style={s.modName}>{m.name}</div>
-              <div style={s.modArticles}>{m.articles}</div>
-              <div>
-                <span style={s.modCount}>{m.qCount} Questions</span>
-                {(m.id === 1 || m.id === 2) && <span style={s.freeTag}>FREE</span>}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* PRICING */}
       {payError && <div style={{background:'rgba(231,76,60,0.15)', border:'1px solid rgba(231,76,60,0.4)', color:'#e74c3c', padding:'12px 20px', borderRadius:'8px', margin:'0 clamp(20px,5vw,40px) 16px', fontSize:'14px', textAlign:'center'}}>{payError}</div>}
       <section id="pricing" style={s.sectionDark2}>
@@ -217,6 +173,50 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             onBuy={() => openModal('pro')}
             isLoading={loading === 'pro'}
           />
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how-it-works" style={s.sectionDark2}>
+        <SectionLabel>// HOW IT WORKS</SectionLabel>
+        <SectionTitle>Built on how<br/>memory actually works.</SectionTitle>
+        <p style={{color:'#7a8a9a', maxWidth:'520px', margin:'0 auto 40px', fontSize:'14px', lineHeight:'1.7', textAlign:'center'}}>
+          Built on active recall and spaced repetition — the two study methods with the strongest evidence base in learning science.
+        </p>
+        <div style={s.steps}>
+          {[
+            ['01','🎯','Answer First, Always','Every session starts with a question, not a reading. Forcing your brain to retrieve an answer — even wrong — builds stronger memory than re-reading ever does. This is active recall, the most evidence-backed study method in cognitive psychology.'],
+            ['02','⚡','Timed Like the Real Exam','4.5 hours for 110 questions is 2.5 minutes each. Timed mode trains you to work at exam pace, not study pace. Research shows that practicing under test conditions — same time pressure, same format — directly improves test performance.'],
+            ['03','📖','Every Answer Cites the Code','After each question you see the exact NEC article, the reasoning, and what the code actually says. You learn where the rule lives, not just what it is. On an open-book exam, that is the difference between confirming an answer in 20 seconds and spending 3 minutes searching.'],
+            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve — reviewing right before you forget resets it. This is spaced repetition, and drilling your missed questions in the final week is the highest-ROI study move you can make.'],
+          ].map(([num, icon, title, text]) => (
+            <div key={num} style={s.step}>
+              <div style={s.stepNum}>{num}</div>
+              <div style={s.stepIcon}>{icon}</div>
+              <div style={s.stepTitle}>{title}</div>
+              <p style={s.stepText}>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* MODULES */}
+      <section id="modules" style={s.sectionDark}>
+        <SectionLabel>// EXAM COVERAGE</SectionLabel>
+        <SectionTitle>All 12 Modules.<br/>Every Topic.</SectionTitle>
+        <div style={s.modulesGrid}>
+          {MODULES_DATA.map(m => (
+            <div key={m.id} style={{...s.moduleCard, '--accent': m.color}}>
+              <div style={{height:'2px', background: m.color, borderRadius:'1px', marginBottom:'16px'}} />
+              <div style={s.modNum}>MODULE {String(m.displayId || m.id).padStart(2,'0')}</div>
+              <div style={s.modName}>{m.name}</div>
+              <div style={s.modArticles}>{m.articles}</div>
+              <div>
+                <span style={s.modCount}>{m.qCount} Questions</span>
+                {(m.id === 1 || m.id === 2) && <span style={s.freeTag}>FREE</span>}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -488,7 +488,7 @@ const styles = {
   stepNum: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'48px', fontWeight:'900', color:'rgba(200,168,75,0.5)', lineHeight:'1', marginBottom:'12px', letterSpacing:'-2px'},
   stepIcon: {fontSize:'26px', marginBottom:'12px'},
   stepTitle: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'20px', fontWeight:'900', textTransform:'uppercase', color:'#d8e0e8', marginBottom:'8px'},
-  stepText: {fontSize:'13px', color:'#7a8a9a', lineHeight:'1.6'},
+  stepText: {fontSize:'15px', color:'#7a8a9a', lineHeight:'1.7'},
   modulesGrid: {display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(230px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', marginTop:'50px', border:'1px solid rgba(200,168,75,0.06)'},
   moduleCard: {background:'#0a1016', padding:'24px 20px', transition:'background 0.2s'},
   modNum: {fontFamily:"'Courier New', monospace", fontSize:'10px', color:'#7a8a9a', letterSpacing:'2px', marginBottom:'6px'},
@@ -506,7 +506,7 @@ const styles = {
   faqGrid: {display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', marginTop:'50px'},
   faqItem: {background:'#111820', padding:'28px'},
   faqQ: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'17px', fontWeight:'900', textTransform:'uppercase', color:'#c8a84b', marginBottom:'10px'},
-  faqA: {fontSize:'13px', color:'#7a8a9a', lineHeight:'1.7'},
+  faqA: {fontSize:'15px', color:'#7a8a9a', lineHeight:'1.8'},
   ctaBanner: {background:'linear-gradient(135deg,#111820,#1a2535)', borderTop:'2px solid #c8a84b', padding:'80px clamp(20px,5vw,40px)', textAlign:'center', position:'relative', overflow:'hidden'},
   ctaBannerEmoji: {position:'absolute', fontSize:'260px', opacity:'0.03', top:'50%', left:'50%', transform:'translate(-50%,-50%)', pointerEvents:'none'},
   ctaH2: {fontFamily:"'Arial Black', Arial, sans-serif", fontSize:'clamp(32px, 6vw, 68px)', fontWeight:'900', textTransform:'uppercase', lineHeight:'1', marginBottom:'16px'},

@@ -779,23 +779,23 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
   const mod = q ? MODULES.find(m=>m.id===q.mod) : null;
 
   const styles = {
-    app: { fontFamily:"'Segoe UI',system-ui,sans-serif", background:"#0f1923", minHeight:"100vh", color:"#e8eaf0", padding:"0" },
+    app: { fontFamily:"'Segoe UI',system-ui,sans-serif", background:"#f4f6f9", minHeight:"100vh", color:"#1a2840", padding:"0" },
     header: { background:"linear-gradient(135deg,#1a2840,#0f1923)", borderBottom:"2px solid #c8a84b", padding:"16px 20px", display:"flex", alignItems:"center", gap:"12px" },
     logo: { fontSize:"22px", fontWeight:"800", color:"#c8a84b", letterSpacing:"-0.5px" },
     badge: { background:"#c8a84b", color:"#0f1923", fontSize:"11px", fontWeight:"700", padding:"2px 8px", borderRadius:"20px" },
-    card: { background:"#1a2840", border:"1px solid #2a3a54", borderRadius:"12px", padding:"20px", margin:"12px 16px" },
+    card: { background:"#ffffff", border:"1px solid #d0d8e8", borderRadius:"12px", padding:"20px", margin:"12px 16px" },
     btn: { padding:"12px 24px", borderRadius:"8px", border:"none", cursor:"pointer", fontWeight:"700", fontSize:"15px", transition:"all 0.2s" },
     btnGold: { background:"linear-gradient(135deg,#c8a84b,#e8c878)", color:"#0f1923" },
-    btnGray: { background:"#2a3a54", color:"#8899aa" },
-    chip: { padding:"6px 14px", borderRadius:"20px", border:"1px solid #2a3a54", cursor:"pointer", fontSize:"13px", display:"inline-block", margin:"4px", transition:"all 0.2s" },
+    btnGray: { background:"#e4e8f2", color:"#3a4a5a" },
+    chip: { padding:"6px 14px", borderRadius:"20px", border:"1px solid #c8d0e0", cursor:"pointer", fontSize:"13px", display:"inline-block", margin:"4px", transition:"all 0.2s" },
     chipActive: { background:"#c8a84b", color:"#0f1923", border:"1px solid #c8a84b", fontWeight:"700" },
-    chipInactive: { background:"#1a2840", color:"#8899aa" },
-    optionBtn: { width:"100%", textAlign:"left", padding:"16px 18px", borderRadius:"8px", border:"2px solid #2a3a54", cursor:"pointer", marginBottom:"10px", fontSize:"16px", lineHeight:"1.5", transition:"all 0.2s", background:"#1a2840", color:"#e8eaf0", fontWeight:"500" },
-    optionCorrect: { border:"2px solid #27ae60", background:"rgba(39,174,96,0.15)", color:"#2ecc71" },
-    optionWrong: { border:"2px solid #e74c3c", background:"rgba(231,76,60,0.15)", color:"#e74c3c" },
-    optionSelected: { border:"2px solid #c8a84b", background:"rgba(200,168,75,0.1)" },
+    chipInactive: { background:"#eef1f8", color:"#3a5070" },
+    optionBtn: { width:"100%", textAlign:"left", padding:"16px 18px", borderRadius:"8px", border:"2px solid #d0d8e8", cursor:"pointer", marginBottom:"10px", fontSize:"16px", lineHeight:"1.5", transition:"all 0.2s", background:"#ffffff", color:"#1a2840", fontWeight:"500" },
+    optionCorrect: { border:"2px solid #27ae60", background:"rgba(39,174,96,0.12)", color:"#1a6635" },
+    optionWrong: { border:"2px solid #e74c3c", background:"rgba(231,76,60,0.12)", color:"#b02a1a" },
+    optionSelected: { border:"2px solid #c8a84b", background:"rgba(200,168,75,0.12)" },
     tag: { fontSize:"11px", padding:"3px 8px", borderRadius:"4px", fontWeight:"700", display:"inline-block" },
-    progress: { height:"6px", background:"#2a3a54", borderRadius:"3px", overflow:"hidden" },
+    progress: { height:"6px", background:"#d0d8e8", borderRadius:"3px", overflow:"hidden" },
     progressBar: { height:"100%", borderRadius:"3px", background:"linear-gradient(90deg,#c8a84b,#e8c878)", transition:"width 0.3s" },
     timer: { fontSize:"24px", fontWeight:"800", fontVariantNumeric:"tabular-nums" },
   };
@@ -874,8 +874,8 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", gap:"10px"}}>
               <span style={{fontSize:"20px"}}>📅</span>
               <div>
-                <div style={{fontSize:"13px", fontWeight:"700", color:"#d8e0e8"}}>Exam in <span style={{color: daysUntilExam <= 14 ? "#e74c3c" : daysUntilExam <= 30 ? "#f39c12" : "#c8a84b"}}>{daysUntilExam} days</span></div>
-                <div style={{fontSize:"11px", color:"#7a8a9a"}}>
+                <div style={{fontSize:"13px", fontWeight:"700", color:"#1a2840"}}>Exam in <span style={{color: daysUntilExam <= 14 ? "#c0392b" : daysUntilExam <= 30 ? "#d68910" : "#b8902a"}}>{daysUntilExam} days</span></div>
+                <div style={{fontSize:"11px", color:"#4a5a6a"}}>
                   {daysUntilExam <= 7 ? "⚠️ Final week — run full simulations daily" :
                    daysUntilExam <= 14 ? "🎯 Two weeks out — focus on weak modules" :
                    daysUntilExam <= 30 ? "📊 One month — drill your gaps" :
@@ -897,7 +897,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         )}
         {!examDate && (
           <button onClick={() => { window.history.pushState({}, '', '/planner'); window.location.reload(); }}
-            style={{width:"100%", background:"rgba(200,168,75,0.04)", border:"1px dashed rgba(200,168,75,0.2)", borderRadius:"10px", padding:"10px 16px", marginBottom:"16px", display:"flex", alignItems:"center", gap:"10px", cursor:"pointer", color:"#5a6a7a", fontSize:"12px", textAlign:"left"}}>
+            style={{width:"100%", background:"rgba(200,168,75,0.07)", border:"1px dashed rgba(180,140,40,0.35)", borderRadius:"10px", padding:"10px 16px", marginBottom:"16px", display:"flex", alignItems:"center", gap:"10px", cursor:"pointer", color:"#3a5070", fontSize:"12px", textAlign:"left"}}>
             <span style={{fontSize:"16px"}}>📅</span>
             <span>Set your exam date to see your countdown →</span>
           </button>
@@ -909,8 +909,8 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", gap:"10px", marginBottom:"10px"}}>
               <span style={{fontSize:"22px"}}>📍</span>
               <div>
-                <div style={{fontSize:"14px", fontWeight:"700", color:"#d8e0e8"}}>Resume where you left off</div>
-                <div style={{fontSize:"12px", color:"#7a8a9a"}}>
+                <div style={{fontSize:"14px", fontWeight:"700", color:"#1a2840"}}>Resume where you left off</div>
+                <div style={{fontSize:"12px", color:"#4a5a6a"}}>
                   Question {savedSession.qIndex + 1} of {savedSession.quizQuestions?.length} · {savedSession.answered?.filter(a=>a.correct).length || 0} correct · Resumes in untimed mode
                   {savedSession.savedAt && (' · Saved ' + new Date(savedSession.savedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}))}
                 </div>
@@ -927,9 +927,9 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </div>
         )}
 
-        <div style={{...styles.card, background:"linear-gradient(135deg,#1a2840,#162030)", borderColor:"#c8a84b"}}>
-          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📋 EXAM COVERAGE</div>
-          <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>
+        <div style={{...styles.card, background:"linear-gradient(135deg,rgba(200,168,75,0.08),rgba(200,168,75,0.03))", borderColor:"#c8a84b"}}>
+          <div style={{fontSize:"13px", color:"#b8902a", fontWeight:"700", marginBottom:"6px"}}>📋 EXAM COVERAGE</div>
+          <div style={{fontSize:"14px", color:"#2a3a54", lineHeight:"1.6"}}>
             500 questions covering all 12 modules of the California General Electrician (Journeyman) exam. Based on the 2023 NEC.
           </div>
         </div>
@@ -939,7 +939,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
               <div>
                 <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px"}}>⚡ FREE TIER — Modules 1 &amp; 2</div>
-                <div style={{fontSize:"12px", color:"#8899aa"}}>Table 310.16 &amp; Conduit Fill drills included</div>
+                <div style={{fontSize:"12px", color:"#4a5a6a"}}>Table 310.16 &amp; Conduit Fill drills included</div>
               </div>
               <div style={{display:"flex", gap:"8px", flexWrap:"wrap"}}>
                 <button style={{...styles.btn, background:"transparent", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"12px", padding:"7px 14px"}}
@@ -954,7 +954,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             </div>
             {/* Already paid restore link — always visible for free tier */}
             <div style={{marginTop:"10px", paddingTop:"10px", borderTop:"1px solid rgba(200,168,75,0.15)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-              <div style={{fontSize:"12px", color:"#7a8a9a"}}>Already purchased? Your access is tied to your email.</div>
+              <div style={{fontSize:"12px", color:"#4a5a6a"}}>Already purchased? Your access is tied to your email.</div>
               <button onClick={() => onNavigate && onNavigate('redeem')}
                 style={{background:"none", border:"1px solid rgba(200,168,75,0.35)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"5px 12px", borderRadius:"4px", cursor:"pointer", fontFamily:"'Arial Black',Arial,sans-serif", textTransform:"uppercase", letterSpacing:"0.3px", whiteSpace:"nowrap"}}>
                 🔓 Restore Access
@@ -967,7 +967,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
               <div>
                 <div style={{fontSize:"13px", color:"#a855f7", fontWeight:"700", marginBottom:"4px"}}>🏆 UPGRADE TO PRO</div>
-                <div style={{fontSize:"12px", color:"#8899aa"}}>Add Code Sprint, Table Mastery, Missed Questions &amp; High-Priority Drill</div>
+                <div style={{fontSize:"12px", color:"#4a5a6a"}}>Add Code Sprint, Table Mastery, Missed Questions &amp; High-Priority Drill</div>
               </div>
               <button style={{...styles.btn, background:"linear-gradient(135deg,#8e44ad,#a855f7)", color:"#fff", fontSize:"13px", padding:"8px 16px"}}
                 onClick={() => setScreen("upgrade")}>
@@ -977,8 +977,8 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </div>
         )}
         <div style={styles.card}>
-          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>📚 SELECT MODULES</div>
-          <div style={{marginBottom:"8px", fontSize:"12px", color:"#8899aa"}}>Tap to include (empty = all modules)</div>
+          <div style={{fontSize:"13px", color:"#7a5e10", fontWeight:"700", marginBottom:"12px"}}>📚 SELECT MODULES</div>
+          <div style={{marginBottom:"8px", fontSize:"12px", color:"#4a5a6a"}}>Tap to include (empty = all modules)</div>
           {MODULES.map(m => {
             const isLocked = access === "free" && PAID_MODS.includes(m.id);
             return (
@@ -993,7 +993,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         </div>
 
         <div style={styles.card}>
-          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🎯 DIFFICULTY</div>
+          <div style={{fontSize:"13px", color:"#7a5e10", fontWeight:"700", marginBottom:"12px"}}>🎯 DIFFICULTY</div>
           {["Easy","Medium","Hard"].map(d => (
             <span key={d} style={{...styles.chip, ...(selectedDiffs.includes(d)?styles.chipActive:styles.chipInactive)}}
               onClick={() => setSelectedDiffs(s => s.includes(d)?s.filter(x=>x!==d):[...s,d])}>
@@ -1003,17 +1003,17 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         </div>
 
         <div style={styles.card}>
-          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>⚙️ QUIZ SETTINGS</div>
+          <div style={{fontSize:"13px", color:"#7a5e10", fontWeight:"700", marginBottom:"12px"}}>⚙️ QUIZ SETTINGS</div>
           <div style={{marginBottom:"12px"}}>
-            <div style={{fontSize:"12px", color:"#8899aa", marginBottom:"8px"}}>Questions per quiz:</div>
+            <div style={{fontSize:"12px", color:"#4a5a6a", marginBottom:"8px"}}>Questions per quiz:</div>
             {[10,25,50,100].map(n => (
               <span key={n} style={{...styles.chip, ...(quizSize===n?styles.chipActive:styles.chipInactive)}}
                 onClick={() => setQuizSize(n)}>{n}</span>
             ))}
           </div>
           <div style={{display:"flex", alignItems:"center", gap:"12px"}}>
-            <span style={{fontSize:"12px", color:"#8899aa"}}>Timed mode (60 sec/question):</span>
-            <div style={{width:"44px", height:"24px", borderRadius:"12px", background:timedMode?"#c8a84b":"#2a3a54", cursor:"pointer", display:"flex", alignItems:"center", padding:"2px", transition:"all 0.2s"}}
+            <span style={{fontSize:"12px", color:"#4a5a6a"}}>Timed mode (60 sec/question):</span>
+            <div style={{width:"44px", height:"24px", borderRadius:"12px", background:timedMode?"#c8a84b":"#9aaac0", cursor:"pointer", display:"flex", alignItems:"center", padding:"2px", transition:"all 0.2s"}}
               onClick={() => setTimedMode(t=>!t)}>
               <div style={{width:"20px", height:"20px", borderRadius:"50%", background:"white", transition:"all 0.2s", transform:timedMode?"translateX(20px)":"translateX(0)"}}/>
             </div>
@@ -1286,7 +1286,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </button>
           {/* Progress in center */}
           <div style={{flex:1, margin:"0 12px"}}>
-            <div style={{fontSize:"12px", color:"#8899aa", marginBottom:"4px"}}>{qIndex+1} of {quizQuestions.length}</div>
+            <div style={{fontSize:"12px", color:"#6a7a8a", marginBottom:"4px"}}>{qIndex+1} of {quizQuestions.length}</div>
             <div style={{...styles.progress}}>
               <div style={{...styles.progressBar, width:`${progress*100}%`}}/>
             </div>
@@ -1343,7 +1343,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
               }
               return (
                 <button key={i} style={style} onClick={() => handleAnswer(i)}>
-                  <span style={{fontWeight:"700", marginRight:"8px", color:"#c8a84b"}}>{String.fromCharCode(65+i)}.</span>{opt}
+                  <span style={{fontWeight:"700", marginRight:"8px", color:"#9a7a20"}}>{String.fromCharCode(65+i)}.</span>{opt}
                 </button>
               );
             })}
@@ -1353,12 +1353,12 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
           {(showExp || timeExpired) && (
             <div style={{...styles.card, borderColor: selected===q.ans?"#27ae60":"#e74c3c", background: selected===q.ans?"rgba(39,174,96,0.1)":"rgba(231,76,60,0.1)"}}>
-              <div style={{fontSize:"13px", fontWeight:"700", color: timeExpired&&selected===null?"#f39c12":selected===q.ans?"#2ecc71":"#e74c3c", marginBottom:"8px"}}>
+              <div style={{fontSize:"14px", fontWeight:"700", color: timeExpired&&selected===null?"#d68910":selected===q.ans?"#1a6635":"#b02a1a", marginBottom:"8px"}}>
                 {timeExpired && selected===null ? "⏰ TIME'S UP" : selected===q.ans ? "✓ CORRECT" : "✗ INCORRECT"}
               </div>
-              <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>{q.exp}</div>
-              <div style={{marginTop:"8px", fontSize:"12px", color:"#c8a84b", fontWeight:"600"}}>{q.ref}</div>
-              <div style={{marginTop:"12px", paddingTop:"10px", borderTop:"1px solid rgba(255,255,255,0.06)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+              <div style={{fontSize:"15px", color:"#1a2840", lineHeight:"1.7"}}>{q.exp}</div>
+              <div style={{marginTop:"8px", fontSize:"13px", color:"#b8902a", fontWeight:"700"}}>{q.ref}</div>
+              <div style={{marginTop:"12px", paddingTop:"10px", borderTop:"1px solid rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                 <ReportButton qid={q.id} qText={q.q} />
               </div>
             </div>

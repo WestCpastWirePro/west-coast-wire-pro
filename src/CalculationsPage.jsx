@@ -8,15 +8,16 @@ const s = {
   btn: { padding:"12px 24px", borderRadius:"8px", border:"none", cursor:"pointer", fontWeight:"700", fontSize:"15px" },
   btnGold: { background:"linear-gradient(135deg,#c8a84b,#e8c878)", color:"#0f1923" },
   btnGray: { background:"#2a3a54", color:"#8899aa" },
-  btnSm: { padding:"8px 16px", borderRadius:"6px", border:"none", cursor:"pointer", fontWeight:"700", fontSize:"13px" },
-  input: { width:"100%", background:"#0f1923", border:"1px solid #2a3a54", borderRadius:"8px", padding:"10px 14px", color:"#e8eaf0", fontSize:"14px", outline:"none", boxSizing:"border-box" },
-  label: { fontSize:"12px", color:"#8899aa", marginBottom:"4px", display:"block", fontWeight:"600" },
+  btnSm: { padding:"8px 16px", borderRadius:"6px", border:"none", cursor:"pointer", fontWeight:"700", fontSize:"14px" },
+  input: { width:"100%", background:"#0f1923", border:"1px solid #2a3a54", borderRadius:"8px", padding:"10px 14px", color:"#e8eaf0", fontSize:"15px", outline:"none", boxSizing:"border-box" },
+  label: { fontSize:"14px", color:"#8899aa", marginBottom:"4px", display:"block", fontWeight:"600" },
   step: { background:"#0f1923", border:"1px solid #2a3a54", borderRadius:"8px", padding:"12px 14px", marginBottom:"8px" },
-  stepNum: { fontSize:"11px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px" },
-  formula: { fontFamily:"monospace", fontSize:"14px", color:"#e8c878", background:"rgba(200,168,75,0.08)", padding:"8px 12px", borderRadius:"6px", margin:"8px 0" },
-  result: { fontSize:"24px", fontWeight:"800", color:"#c8a84b", textAlign:"center", padding:"16px", background:"rgba(200,168,75,0.08)", borderRadius:"8px", border:"1px solid rgba(200,168,75,0.3)" },
-  resultSub: { fontSize:"13px", color:"#8899aa", textAlign:"center", marginTop:"4px" },
-  errorBox: { background:"rgba(231,76,60,0.1)", border:"1px solid #e74c3c", borderRadius:"8px", padding:"12px", color:"#e74c3c", fontSize:"13px", margin:"8px 16px" },
+  stepNum: { fontSize:"12px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px" },
+  formula: { fontFamily:"monospace", fontSize:"15px", color:"#e8c878", background:"rgba(200,168,75,0.08)", padding:"8px 12px", borderRadius:"6px", margin:"8px 0" },
+  result: { fontSize:"28px", fontWeight:"800", color:"#c8a84b", textAlign:"center", padding:"16px", background:"rgba(200,168,75,0.08)", borderRadius:"8px", border:"1px solid rgba(200,168,75,0.3)" },
+  resultSub: { fontSize:"14px", color:"#8899aa", textAlign:"center", marginTop:"4px" },
+  errorBox: { background:"rgba(231,76,60,0.1)", border:"1px solid #e74c3c", borderRadius:"8px", padding:"12px", color:"#e74c3c", fontSize:"14px", margin:"8px 16px" },
+  ctaBanner: { background:"linear-gradient(135deg,rgba(200,168,75,0.12),rgba(200,168,75,0.05))", border:"1px solid rgba(200,168,75,0.45)", borderRadius:"12px", padding:"20px", margin:"12px 16px 24px" },
 };
 
 // ── VOLTAGE DROP ──────────────────────────────────────────────
@@ -71,7 +72,7 @@ function VoltageDropCalc() {
   return (
     <div>
       <div style={s.card}>
-        <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>⚡ VOLTAGE DROP CALCULATOR</div>
+        <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>⚡ VOLTAGE DROP CALCULATOR</div>
         <div style={{display:"flex", gap:"8px", marginBottom:"12px"}}>
           {["find-vd","find-wire"].map(m => (
             <button key={m} style={{...s.btnSm, background:mode===m?"#c8a84b":"#2a3a54", color:mode===m?"#0f1923":"#8899aa"}}
@@ -125,11 +126,11 @@ function VoltageDropCalc() {
       {result?.error && <div style={s.errorBox}>{result.error}</div>}
       {result && !result.error && (
         <div style={s.card}>
-          <div style={{fontSize:"12px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
           {result.steps.map((step, i) => (
             <div key={i} style={s.step}>
               <div style={s.stepNum}>STEP {i+1}</div>
-              <div style={{fontFamily:"monospace", fontSize:"13px", color:"#e8eaf0"}}>{step}</div>
+              <div style={{fontFamily:"monospace", fontSize:"15px", color:"#e8eaf0"}}>{step}</div>
             </div>
           ))}
           <div style={{marginTop:"12px"}}>
@@ -178,7 +179,7 @@ function MotorCalc() {
   return (
     <div>
       <div style={s.card}>
-        <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>⚙️ MOTOR SIZING CALCULATOR</div>
+        <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>⚙️ MOTOR SIZING CALCULATOR</div>
         <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"10px", marginBottom:"10px"}}>
           <div>
             <label style={s.label}>Horsepower</label>
@@ -210,8 +211,8 @@ function MotorCalc() {
       {result?.error && <div style={s.errorBox}>{result.error}</div>}
       {result && !result.error && (
         <div style={s.card}>
-          <div style={{fontSize:"12px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
-          {result.steps.map((step, i) => <div key={i} style={s.step}><div style={s.stepNum}>STEP {i+1}</div><div style={{fontFamily:"monospace", fontSize:"13px", color:"#e8eaf0"}}>{step}</div></div>)}
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
+          {result.steps.map((step, i) => <div key={i} style={s.step}><div style={s.stepNum}>STEP {i+1}</div><div style={{fontFamily:"monospace", fontSize:"15px", color:"#e8eaf0"}}>{step}</div></div>)}
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:"10px", marginTop:"12px"}}>
             {[["FLA", result.fla + "A"], ["Min Conductor", result.branchConductor + "A"], ["Max OCPD", result.ocpd + "A"]].map(([label, val]) => (
               <div key={label} style={{textAlign:"center", padding:"12px", background:"rgba(200,168,75,0.08)", borderRadius:"8px", border:"1px solid rgba(200,168,75,0.2)"}}>
@@ -257,7 +258,7 @@ function TransformerCalc() {
   return (
     <div>
       <div style={s.card}>
-        <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🔌 TRANSFORMER SIZING</div>
+        <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🔌 TRANSFORMER SIZING</div>
         <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"10px", marginBottom:"10px"}}>
           <div>
             <label style={s.label}>kVA Rating</label>
@@ -284,8 +285,8 @@ function TransformerCalc() {
       {result?.error && <div style={s.errorBox}>{result.error}</div>}
       {result && !result.error && (
         <div style={s.card}>
-          <div style={{fontSize:"12px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
-          {result.steps.map((step, i) => <div key={i} style={s.step}><div style={s.stepNum}>STEP {i+1}</div><div style={{fontFamily:"monospace", fontSize:"13px", color:"#e8eaf0"}}>{step}</div></div>)}
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
+          {result.steps.map((step, i) => <div key={i} style={s.step}><div style={s.stepNum}>STEP {i+1}</div><div style={{fontFamily:"monospace", fontSize:"15px", color:"#e8eaf0"}}>{step}</div></div>)}
         </div>
       )}
     </div>
@@ -321,7 +322,7 @@ function BoxFillCalc() {
   return (
     <div>
       <div style={s.card}>
-        <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>📦 BOX FILL CALCULATOR</div>
+        <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>📦 BOX FILL CALCULATOR</div>
         <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"10px", marginBottom:"10px"}}>
           <div>
             <label style={s.label}>Largest Wire Size</label>
@@ -334,7 +335,7 @@ function BoxFillCalc() {
             </select>
           </div>
           <div>
-            <label style={s.label}>Current-Carrying Conductors</label>
+            <label style={s.label}>All Conductors (hot, neutral, travelers — not grounds)</label>
             <input style={s.input} type="number" placeholder="e.g. 4" value={conductors} onChange={e=>setConductors(e.target.value)}/>
           </div>
           <div>
@@ -360,8 +361,8 @@ function BoxFillCalc() {
       </div>
       {result && (
         <div style={s.card}>
-          <div style={{fontSize:"12px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
-          {result.steps.map((step, i) => <div key={i} style={s.step}><div style={s.stepNum}>STEP {i+1}</div><div style={{fontFamily:"monospace", fontSize:"13px", color:"#e8eaf0"}}>{step}</div></div>)}
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"10px"}}>STEP-BY-STEP SOLUTION</div>
+          {result.steps.map((step, i) => <div key={i} style={s.step}><div style={s.stepNum}>STEP {i+1}</div><div style={{fontFamily:"monospace", fontSize:"15px", color:"#e8eaf0"}}>{step}</div></div>)}
           <div style={{...s.result, marginTop:"12px"}}>{result.total} in³ required</div>
         </div>
       )}
@@ -394,17 +395,27 @@ export default function CalculationsPage({ onHome , onNavigate }) {
                 <span style={{fontSize:"28px"}}>{c.icon}</span>
                 <div style={{flex:1}}>
                   <div style={{fontWeight:"700", fontSize:"15px", color:"#e8eaf0"}}>{c.label}</div>
-                  <div style={{fontSize:"12px", color:"#8899aa", marginTop:"2px"}}>{c.desc}</div>
+                  <div style={{fontSize:"14px", color:"#8899aa", marginTop:"2px"}}>{c.desc}</div>
                 </div>
                 <span style={{color:"#c8a84b", fontSize:"18px"}}>›</span>
               </div>
             </div>
           ))}
           <div style={{...s.card, borderColor:"rgba(200,168,75,0.3)", background:"rgba(200,168,75,0.04)"}}>
-            <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>💡 Exam Tip</div>
-            <div style={{fontSize:"13px", color:"#aabbcc", lineHeight:"1.5"}}>
+            <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>💡 Exam Tip</div>
+            <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.5"}}>
               The California journeyman exam typically includes 6–10 calculation problems. Know voltage drop, motor sizing, and box fill cold — they show up every time.
             </div>
+          </div>
+          <div style={s.ctaBanner}>
+            <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📝 See These on the Real CA Journeyman Exam</div>
+            <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"14px"}}>
+              Calculation questions like these appear on every exam. Practice them in full exam context — 500 original NEC-referenced questions across all 12 modules.
+            </div>
+            <button onClick={() => onNavigate && onNavigate('landing')}
+              style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"15px"}}>
+              Get All 500 Practice Questions →
+            </button>
           </div>
         </div>
       )}
@@ -418,6 +429,18 @@ export default function CalculationsPage({ onHome , onNavigate }) {
       {active === "motor" && <MotorCalc />}
       {active === "transformer" && <TransformerCalc />}
       {active === "boxfill" && <BoxFillCalc />}
+      {active && (
+        <div style={s.ctaBanner}>
+          <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📝 See How This Shows Up on the Real Exam</div>
+          <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"14px"}}>
+            Calculation questions appear on every CA Journeyman exam — typically 6–10. Practice the full 500 questions with step-by-step NEC explanations for every answer.
+          </div>
+          <button onClick={() => onNavigate && onNavigate('landing')}
+            style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"15px"}}>
+            Get All 500 Practice Questions →
+          </button>
+        </div>
+      )}
     </div>
   );
 }
