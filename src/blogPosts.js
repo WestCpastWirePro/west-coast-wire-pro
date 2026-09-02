@@ -5,6 +5,86 @@
 
 export const blogPosts = [
   {
+    slug: 'how-hard-is-california-journeyman-electrician-exam',
+    title: "How Hard Is the California Journeyman Electrician Exam?",
+    date: 'September 2, 2026',
+    category: 'Exam Prep',
+    excerpt: "Fewer than half of first-time test-takers pass. Here's why the CA journeyman exam is harder than most people expect — and what that actually means for how you prepare.",
+    readTime: '5 min read',
+    content: `
+The honest answer: harder than most people expect, for reasons that have nothing to do with electrical work itself.
+
+Fewer than half of first-time test-takers pass the California General Electrician (Journeyman) exam on their first attempt. The commonly cited figure is around 40–50%. That's not a rumor — it's consistent across trade school data, industry reports, and IBEW training center numbers.
+
+If you've got your 8,000 hours and you know your way around a panel, that number might surprise you. It surprised a lot of people sitting in the PSI testing center.
+
+## What the Exam Actually Is
+
+The California Journeyman Electrician exam is administered by PSI on behalf of the California Division of Labor Standards Enforcement. It's 110 questions, 4.5 hours, multiple choice, computer-based. You need 70% to pass — 77 correct answers out of 110.
+
+It's open book. PSI provides an unmarked 2023 NEC codebook at the testing center. You don't bring your own, and you can't bring personal notes or tabs.
+
+That open-book format is the first thing that misleads people about the difficulty.
+
+## Why "Open Book" Doesn't Mean What People Think
+
+The NEC is over 1,000 pages. If you plan to look up most of your answers, you will run out of time. 4.5 hours sounds like a lot until you're 60 questions in and the clock says 90 minutes left.
+
+The candidates who pass use the codebook to *confirm* answers they already know. They flip to a table in 15 seconds, verify a number, and move on. The candidates who fail are still reading Article 250 on question 40.
+
+Open book is an advantage only if you've done the work beforehand. If you haven't, it's a liability.
+
+## The Format That Catches People Off Guard
+
+**110 questions, 4.5 hours.** That's 2.5 minutes per question on average — and some of those minutes need to go to multi-step calculations. Voltage drop, motor sizing, box fill, conduit fill. Each one takes setup time.
+
+If you've never practiced under a clock, your first time doing it in a PSI testing room is a bad time to find out what that feels like.
+
+**10 questions are unscored pretests.** They're mixed in with the real questions and you won't know which ones. So you work all 110 as if they count.
+
+**Results are immediate.** You submit, the screen shows your score and pass/fail. If you fail, you wait 60 days to retest.
+
+## What the Content Actually Covers
+
+The exam draws from the PSI content outline, which maps to the NEC by subject area. The heavily weighted areas:
+
+**Wiring Methods and Materials (Articles 300–392)** — the most commonly failed section. Covers conduit types, fill calculations, bend limits, support intervals, and permitted and prohibited locations for each wiring method. The rules are specific and easy to confuse between methods.
+
+**Grounding and Bonding (Article 250)** — the longest article in the NEC. GEC sizing, bonding jumpers, grounding electrode requirements, when conductors need to be insulated vs. bare. Heavily tested and genuinely complex.
+
+**Calculations** — voltage drop, conductor sizing with derating, motor circuits, load calculations. Not conceptually difficult, but multi-step. One wrong table lookup early throws off everything after it.
+
+**California-specific rules** — Title 8 Cal/OSHA and Title 24 CEC content. Most general electrician study materials don't cover this, which is why people who study from non-CA-specific resources miss questions they shouldn't.
+
+## So How Hard Is It?
+
+It depends entirely on how you prepare.
+
+The material itself isn't beyond someone who's put in their apprenticeship hours. You've seen most of it in the field. The difficulty is the format: retrieval under time pressure, from a 1,000-page book, on topics you may not have used hands-on in years.
+
+People who fail aren't generally failing because they don't know electrical work. They're failing because:
+
+- They studied passively — re-reading instead of answering questions
+- They never practiced under a clock
+- They had weak spots in specific modules and didn't drill them
+- They couldn't navigate the codebook fast enough under pressure
+
+Every one of those is fixable before your exam date.
+
+## What Preparing the Right Way Looks Like
+
+**Practice answering questions, not reading.** Active recall builds the memory that works under test pressure. Re-reading the NEC feels productive but doesn't build the retrieval pathways you need.
+
+**Time yourself from day one.** If you practice at your own pace and then sit a timed exam, the clock will feel different. It always does. Train at exam pace so it isn't a surprise.
+
+**Know your weak modules and drill them specifically.** Grounding and bonding, wiring methods, and calculations are where most points are lost. Strength in easy areas doesn't compensate for weakness in heavily tested ones.
+
+**Learn to navigate the codebook before exam day.** You should be able to get from any scenario to the right NEC article in under 30 seconds. That's a trainable skill — but only if you practice it deliberately.
+
+The exam is hard. It doesn't have to beat you. [West Coast Wire Pro](https://westcoastwirepro.com) was built specifically for the California Journeyman exam — 500 practice questions tied to the 2023 NEC, organized by the same content areas PSI tests, with full explanations for every answer. Modules 1 and 2 are free, no account needed.
+    `.trim(),
+  },
+  {
     slug: 'nec-calculators-free',
     title: "We Just Made Every Calculator on This Site Free. Here's Why.",
     date: 'September 2, 2026',
