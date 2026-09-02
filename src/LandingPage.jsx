@@ -96,6 +96,23 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         </div>
       </header>
 
+      {/* FREE CALCULATORS CALLOUT */}
+      <div style={{background:'linear-gradient(135deg,rgba(200,168,75,0.13),rgba(200,168,75,0.04))', borderBottom:'2px solid rgba(200,168,75,0.3)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'20px', flexWrap:'wrap'}}>
+        <div>
+          <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'clamp(14px,2.5vw,17px)', color:'#e8eaf0', marginBottom:'4px'}}>
+            Free Electrical Calculators — No Account Required
+          </div>
+          <div style={{fontSize:'13px', color:'#8899aa', lineHeight:'1.5'}}>
+            Voltage Drop · Motor Sizing · Transformer · Box Fill — full step-by-step solutions, NEC referenced
+          </div>
+        </div>
+        <button
+          onClick={() => onNavigate && onNavigate('calculations')}
+          style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0f1923', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'13px', textTransform:'uppercase', letterSpacing:'0.5px', padding:'12px 22px', borderRadius:'6px', border:'none', cursor:'pointer', whiteSpace:'nowrap', flexShrink:0}}>
+          Open Calculators →
+        </button>
+      </div>
+
             {/* TRUST SIGNAL */}
       <div style={{background:'rgba(200,168,75,0.04)', borderTop:'1px solid rgba(200,168,75,0.1)', borderBottom:'1px solid rgba(200,168,75,0.1)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'center', gap:'32px', flexWrap:'wrap'}}>
         {[['500','Practice Questions'],['12','Exam Modules'],['2023','NEC Edition'],['70%','Passing Score']].map(([val,label]) => (

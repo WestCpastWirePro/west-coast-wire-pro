@@ -389,6 +389,15 @@ export default function CalculationsPage({ onHome , onNavigate }) {
           <div style={{padding:"0 16px 8px", fontSize:"13px", color:"#8899aa", lineHeight:"1.6"}}>
             Enter values and get a full step-by-step solution — the same format you'll need to show on the exam. Each calculator includes the relevant NEC article reference.
           </div>
+          <div style={{margin:"4px 16px 8px", background:"linear-gradient(135deg,rgba(200,168,75,0.12),rgba(200,168,75,0.04))", border:"1px solid rgba(200,168,75,0.35)", borderRadius:"10px", padding:"14px 16px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"14px", flexWrap:"wrap"}}>
+            <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", lineHeight:"1.5"}}>
+              Like these?<span style={{color:"#aabbcc", fontWeight:"400"}}> Get 500 practice questions for the CA journeyman exam — every answer NEC referenced.</span>
+            </div>
+            <button onClick={() => onNavigate && onNavigate('landing')}
+              style={{...s.btnSm, ...s.btnGold, whiteSpace:"nowrap", flexShrink:0}}>
+              See Pricing →
+            </button>
+          </div>
           {CALCS.map(c => (
             <div key={c.id} style={{...s.card, cursor:"pointer"}} onClick={()=>setActive(c.id)}>
               <div style={{display:"flex", gap:"14px", alignItems:"center"}}>
