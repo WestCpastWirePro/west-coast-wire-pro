@@ -5,6 +5,47 @@
 
 export const blogPosts = [
   {
+    slug: 'nec-calculators-free',
+    title: "We Just Made Every Calculator on This Site Free. Here's Why.",
+    date: 'September 2, 2026',
+    category: 'Exam Prep',
+    excerpt: "Voltage drop, motor sizing, transformer, and box fill calculators are now free — no account, no purchase, no catch. Here's what changed and why.",
+    readTime: '4 min read',
+    content: `
+Voltage drop. Motor sizing. Transformer calculations. Box fill. These four calculations show up on almost every California journeyman exam, and they're exactly the kind of thing you either know cold or you don't. There's no faking your way through a box fill problem under a timer.
+
+We built calculators for all four a while back as part of the paid exam prep package. Starting today, they're free. No account, no purchase, no catch. Here's what changed and why.
+
+## The Free Calculators
+
+**Voltage Drop Calculator**
+Handles single phase and three phase circuits. Enter your values and get the full step by step solution, not just a final number, so you can see exactly how the math works instead of just trusting a black box.
+
+**Motor Sizing Calculator**
+Covers FLA, branch conductor sizing, and OCPD sizing in one place. This is one of the calculations people freeze on during the actual exam because it's a multi step process, not a single formula.
+
+**Transformer Calculator**
+Works out primary and secondary FLA along with OCPD sizing. Same idea as motor sizing: several steps chained together, and missing one step early throws off everything after it.
+
+**Box Fill Calculator**
+Runs the NEC 314.16 volume calculations. Deceptively simple looking, easy to get wrong if you're not careful about what actually counts toward fill.
+
+Every calculator shows the full solution path and references the relevant NEC article, because memorizing an answer without understanding where it comes from doesn't help you on exam day when the numbers are different.
+
+## Why We're Giving This Away
+
+Simple version: because charging for a calculator was never really the point. The point is helping people pass the California journeyman exam, and a tool that sits behind a paywall doesn't help anyone who doesn't already know we exist.
+
+If you use these calculators, get comfortable with them, and decide you want the full 500 question practice exam with every answer tied to its NEC 2023 code section, that's available too. But you don't have to buy anything to use the calculators. That part is just free now, permanently.
+
+## How to Use Them
+
+Head to the calculators page, pick the one you need, plug in your values, and you'll get the same step by step format you'll need to show on the actual exam. No sign up screen in your way.
+
+If you're studying for the California Journeyman Electrician exam and voltage drop, motor sizing, transformer, or box fill calculations have been giving you trouble, this is built for exactly that problem.
+    `.trim(),
+  },
+  {
     slug: 'sce-undergrounding-altadena-malibu-electrician-work',
     title: "SCE Is Burying 153 Miles of Power Lines in LA. That's Years of Electrical Work.",
     date: 'July 23, 2026',
