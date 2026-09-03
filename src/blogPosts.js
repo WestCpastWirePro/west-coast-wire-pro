@@ -5,6 +5,59 @@
 
 export const blogPosts = [
   {
+    slug: 'what-nobody-tells-you-california-journeyman-exam',
+    title: "What Nobody on YouTube Tells You About the CA Journeyman Exam",
+    date: 'September 3, 2026',
+    category: 'Exam Prep',
+    excerpt: "We analyzed 2,987 comments from people who took the CA journeyman exam. The advice people give is real. But there are gaps nobody talks about — and those gaps are where most people fail.",
+    readTime: '4 min read',
+    content: `
+We pulled 2,987 comments from 44 YouTube videos about the California journeyman electrician exam. Real people, real advice, five years of data.
+
+Most of what they say is true. Tab your book. Practice calculations. Know the NEC. That advice holds up in the data.
+
+But when you look at what is missing from those 2,987 comments, a different picture comes into focus.
+
+---
+
+## Nobody Recommends a Specific Resource With Confidence
+
+We tracked every mention of a specific product or resource across the full dataset. The most-mentioned resource appeared in less than 1% of comments. Tom Henry books came up in 0.2% of comments. Ugly's Electrical Reference: 0.4%. Community college prep classes: 0.9%.
+
+Those are not endorsements. Those are scattered mentions across thousands of comments, with no clear consensus behind any of them.
+
+What that tells you: people who passed the CA journeyman exam largely figured it out on their own, piecing together whatever they could find. There is no standard resource the community has rallied around for this exam the way other licensing exams have a go-to prep tool.
+
+That gap is real. And it is part of why the pass rate on this exam sits around 40 to 50 percent on the first attempt.
+
+## The Advice Splits Into Two Camps That Never Connect
+
+Read the comment sections long enough and a pattern shows up. About half the advice is about studying the code book. The other half is about doing practice problems. Almost nobody talks about doing both in a way that connects them.
+
+The most effective way to prepare for an open-book exam is to practice problems that force you to use the book. When you get a question wrong, you go find the answer in the NEC. You learn where it lives. You build the mental map that makes you fast on exam day.
+
+That is not what scattered YouTube advice produces. It produces people who read the NEC and people who do practice questions, operating in parallel, neither one reinforcing the other.
+
+## California-Specific Prep Is Almost Invisible
+
+The NEC applies nationwide. The California journeyman exam does not test the NEC the same way every other state does. It has a specific code year, a specific content outline, and calculation types that appear with predictable frequency on this exam specifically.
+
+The resources that get recommended in the comments are general electrical references. Books written for any electrician anywhere. Prep materials not built around the California exam.
+
+If you study from generic materials, you will be prepared for a generic exam. The California journeyman exam is not that.
+
+---
+
+## What This Means for How You Prepare
+
+The crowd knows the right categories of advice: navigate the NEC, practice calculations, do timed practice. What the crowd has not solved is where to go to do all of that in one place, built specifically for this exam.
+
+That is what West Coast Wire Pro is. 500 practice questions tied directly to NEC sections, so every wrong answer points you somewhere in the code to go learn. Four free calculators covering the exact calculation types that show up on the California exam: Voltage Drop, Motor Sizing, Transformer, and Box Fill.
+
+You do not need to spend weeks in comment sections. The pattern is already clear. The only question is whether you have the right tool to act on it.
+`,
+  },
+  {
     slug: 'what-people-say-about-passing-california-journeyman-exam',
     title: "We Analyzed 2,987 Comments on the California Journeyman Exam. Here's What Actually Helps.",
     date: 'September 2, 2026',
