@@ -89,6 +89,9 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
           ]}/>
           <GnDropdown label="Resources" onNavigate={nav} currentPage={currentPage} items={[
             {label:'Blog', page:'blog'},
+            {label:'What Nobody Tells You About the CA Exam', page:'blog-post:what-nobody-tells-you-california-journeyman-exam', indent:true},
+            {label:'We Analyzed 2,987 Comments on the CA Exam', page:'blog-post:what-people-say-about-passing-california-journeyman-exam', indent:true},
+            {divider:true},
             {label:'CA Journeyman Exam Guide', page:'exam-info'},
             {label:'How to Pass — Study Tips', page:'study-tips'},
             {label:'Exam Day Guide', page:'exam-day'},
@@ -146,7 +149,10 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
           ]} onNav={nav} currentPage={currentPage}/>
           <MobileDivider/>
           <MobileSection title="📋 Exam Resources" items={[
-            ['Blog','blog'],['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
+            ['Blog','blog'],
+            ['  → What Nobody Tells You About the CA Exam','blog-post:what-nobody-tells-you-california-journeyman-exam'],
+            ['  → We Analyzed 2,987 Comments on the CA Exam','blog-post:what-people-say-about-passing-california-journeyman-exam'],
+            ['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
             ['Exam Day Guide','exam-day'],
             ['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician'],
           ]} onNav={nav} currentPage={currentPage}/>
@@ -180,14 +186,18 @@ function GnDropdown({ label, items, onNavigate, currentPage }) {
         {label} <span style={{fontSize:'9px',opacity:0.7}}>{open?'▲':'▼'}</span>
       </button>
       {open && (
-        <div style={{position:'absolute',top:'calc(100% + 10px)',left:'50%',transform:'translateX(-50%)',background:'#1a2840',border:'1px solid rgba(200,168,75,0.25)',borderRadius:'10px',padding:'8px 0',minWidth:'220px',zIndex:600,boxShadow:'0 12px 40px rgba(0,0,0,0.5)'}}>
-          {items.map(({label,page})=>(
-            <button key={page}
-              style={{display:'block',width:'100%',textAlign:'left',padding:'9px 18px',background:page===currentPage?'rgba(200,168,75,0.1)':'none',border:'none',color:page===currentPage?'#c8a84b':'#b0bec5',fontSize:'13px',cursor:'pointer',transition:'all 0.15s',fontWeight:page===currentPage?'700':'500',fontFamily:"'Segoe UI',Arial,sans-serif"}}
-              className="gn-menu-item"
-              onClick={()=>onNavigate(page)}
-            >{label}{page===currentPage?' ←':''}</button>
-          ))}
+        <div style={{position:'absolute',top:'calc(100% + 10px)',left:'50%',transform:'translateX(-50%)',background:'#1a2840',border:'1px solid rgba(200,168,75,0.25)',borderRadius:'10px',padding:'8px 0',minWidth:'260px',zIndex:600,boxShadow:'0 12px 40px rgba(0,0,0,0.5)'}}>
+          {items.map((item, i) => {
+            if (item.divider) return <div key={i} style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'6px 12px'}}/>
+            const {label, page, indent} = item
+            return (
+              <button key={page}
+                style={{display:'block',width:'100%',textAlign:'left',padding:indent?'7px 18px 7px 28px':'9px 18px',background:page===currentPage?'rgba(200,168,75,0.1)':'none',border:'none',color:indent?(page===currentPage?'#c8a84b':'#8a9aaa'):page===currentPage?'#c8a84b':'#b0bec5',fontSize:indent?'12px':'13px',cursor:'pointer',transition:'all 0.15s',fontWeight:page===currentPage?'700':'500',fontFamily:"'Segoe UI',Arial,sans-serif"}}
+                className="gn-menu-item"
+                onClick={()=>onNavigate(page)}
+              >{indent && <span style={{color:'#c8a84b',marginRight:'6px',fontSize:'10px'}}>→</span>}{label}{page===currentPage?' ←':''}</button>
+            )
+          })}
         </div>
       )}
     </div>
