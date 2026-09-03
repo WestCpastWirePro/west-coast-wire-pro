@@ -34,6 +34,8 @@ That gap is real. And it is part of why the pass rate on this exam sits around 4
 
 Read the comment sections long enough and a pattern shows up. About half the advice is about studying the code book. The other half is about doing practice problems. Almost nobody talks about doing both in a way that connects them.
 
+![Venn diagram showing the two camps of CA journeyman exam prep - studying the NEC vs doing practice problems - with WCW Pro in the overlap|The overlap is where passing happens. Most study advice lives in one circle or the other. Source: westcoastwirepro.com](/blog/chart_venn.png)
+
 The most effective way to prepare for an open-book exam is to practice problems that force you to use the book. When you get a question wrong, you go find the answer in the NEC. You learn where it lives. You build the mental map that makes you fast on exam day.
 
 That is not what scattered YouTube advice produces. It produces people who read the NEC and people who do practice questions, operating in parallel, neither one reinforcing the other.
@@ -103,9 +105,9 @@ Community college and trade school prep classes came up most frequently (0.9% of
 
 The takeaway from the resources chart is not which product won. It is how low all the numbers are. Even the most-mentioned resource appears in less than 1% of comments. People are recommending preparation *strategies* far more than specific products — which tells you something about how scattered the prep landscape is.
 
-Here is how the top advice categories have shifted over the five-year period:
+Here is how the top advice categories shifted between 2021 and 2026:
 
-![Top CA journeyman exam advice categories by year, 2021-2026|Top 4 advice categories over time as a percentage of each year's comments. Source: westcoastwirepro.com](/blog/chart_trends.png)
+![How CA journeyman exam advice topics changed from 2021 to 2026|Each row shows one advice topic. The left column is 2021, the right is 2026. The change column shows whether it grew or shrank. Source: westcoastwirepro.com](/blog/chart_slope.png)
 
 ---
 
