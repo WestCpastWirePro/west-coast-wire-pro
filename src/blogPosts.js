@@ -4,6 +4,466 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 export const blogPosts = [
+  // ── DRAFTS: set draft: false to publish ─────────────────────────────────
+  {
+    draft: true,
+    slug: 'how-exam-advice-changed-2021-2026-california-journeyman',
+    title: "CA Journeyman Exam Advice in 2021 vs 2026: What Changed",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "We tracked the same exam advice topics across five years of YouTube comments. Some things got more urgent. Some faded. Here is what the data actually shows.",
+    readTime: '4 min read',
+    content: `
+Study advice for the California journeyman exam is not static. What people talk about in 2021 is not quite what they talk about in 2026. We tracked it.
+
+Our dataset covers 2,987 YouTube comments from 44 videos, pulled between February 2021 and September 2026. We coded every comment by topic, then broke the numbers down by year. Here is what moved.
+
+![How CA journeyman exam advice topics shifted between 2021 and 2026. Each row shows a topic with its percentage in each year and the change over time.|How the top advice topics shifted between 2021 and 2026. Source: westcoastwirepro.com](/blog/chart_slope.png)
+
+---
+
+## What Got More Urgent
+
+**Calculation practice went up.** More people are specifically calling out voltage drop, motor sizing, and box fill as things you need to drill before exam day. This tracks with what instructors and testing center staff have noted anecdotally: candidates who fail often cite the math sections as where they lost the most time.
+
+The exam itself has not changed dramatically. What has changed is how well-informed test-takers are going in. The ones who prepare specifically for calculations are passing. The ones who skim over them are not, and they are saying so in the comments.
+
+**NEC navigation is still the top topic.** That has not changed year over year. Every year, the most consistent advice is some version of: know your way around the code book. The open-book format rewards preparation, not reading speed.
+
+---
+
+## What Faded
+
+**General "study hard" advice dropped.** Earlier comments had a lot of vague encouragement: study every day, read the whole NEC, put in the hours. Newer comments are more specific. People are not just saying to study. They are saying which sections, which calculation types, which tables.
+
+That is good news for you. The crowd is getting smarter about what actually works. You do not have to figure it out from scratch.
+
+---
+
+## What Stayed Flat
+
+Field experience stayed consistent as a topic at around 8% of comments every year. People keep saying it matters. That is because it does. But it is not something you can manufacture quickly, which is why the rest of the advice has gotten more specific over time: if you cannot replicate field experience, you compensate with deliberate practice.
+
+---
+
+## What This Means for You
+
+The trend in the data is toward specificity. Vague advice is out. People who passed are now telling you exactly which calculation types showed up, which NEC sections tripped them up, and what they wish they had practiced more.
+
+West Coast Wire Pro was built with that specificity in mind. 500 questions tied to NEC sections, four free calculators covering the exact math that shows up on the exam. Not general prep. California prep.
+`,
+  },
+  {
+    draft: true,
+    slug: 'resources-people-recommend-california-journeyman-exam',
+    title: "What Resources Do People Actually Recommend for the CA Journeyman Exam?",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "We tracked every specific resource mentioned across 2,987 comments. The numbers are lower than you'd expect. Here's what that tells you about the state of CA exam prep.",
+    readTime: '4 min read',
+    content: `
+When someone asks for study advice on the CA journeyman exam, you expect a flood of recommendations. Books, courses, apps, websites. But when we tracked every specific resource mentioned across 2,987 YouTube comments, something interesting happened: the numbers were tiny.
+
+![Resources and products mentioned by name across 2,987 comments about the CA journeyman exam. Community college prep classes came up most, at 0.9 percent.|Specific resources mentioned across 2,987 comments. Source: westcoastwirepro.com](/blog/chart_resources.png)
+
+The most-mentioned resource appeared in less than 1% of comments. Not 10%, not 20%. Less than 1%.
+
+---
+
+## Breaking Down What People Mentioned
+
+**Community college and trade school prep classes (0.9%)** topped the list. These are often affiliated with JATC programs or local unions. Quality varies a lot by location. Some people swear by them. Others say they covered material that did not show up on their exam.
+
+**The NEC itself (0.5% for 2023 edition, 0.3% for 2020)** came up as a resource people had to specifically track down or buy for personal use before the test, since PSI provides an unmarked copy at the testing center. If you have not spent time with your own copy before exam day, you are navigating a book cold under pressure.
+
+**Ugly's Electrical Reference (0.4%)** is a pocket reference that gets mentioned as a general trade tool more than a specific exam prep resource. Useful for field work. Not a study guide.
+
+**Tom Henry books (0.2%)** showed up occasionally. These are workbooks used in some prep courses, particularly in Florida and other states. Less common in California-specific prep.
+
+---
+
+## Why the Numbers Are So Low
+
+This is the real takeaway. The California journeyman exam does not have a dominant prep resource the way some other licensing exams do. There is no single book or course that the community has rallied around and collectively endorsed.
+
+That absence is why so many people end up on YouTube at 11pm the week before their test, piecing together advice from comments sections.
+
+It is also why passing rates sit around 40 to 50 percent on the first attempt. Not because the exam is impossible. Because most people go in underprepared, using general resources that were not built for this specific test.
+
+---
+
+## What a California-Specific Tool Actually Looks Like
+
+The exam has a specific content outline. Specific calculation types appear with predictable frequency. Specific NEC articles are tested more than others. A prep tool built for this exam should reflect all of that.
+
+West Coast Wire Pro was built specifically for the California journeyman exam. 500 practice questions tied to NEC sections, four free calculators covering voltage drop, motor sizing, transformer calculations, and box fill. Not a general electrical study tool. A California exam tool.
+
+If you are going to spend time studying, spend it somewhere that knows which exam you are taking.
+`,
+  },
+  {
+    draft: true,
+    slug: 'managing-exam-anxiety-california-journeyman-electrician',
+    title: "You Studied. You're Still Nervous. Here's How to Handle Exam Anxiety on the CA Journeyman Test.",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "5.3% of comments in our dataset were specifically about anxiety, panic, and mental prep. People who felt ready still struggled on test day. Here is what actually helps.",
+    readTime: '4 min read',
+    content: `
+Here is something that surprised us in the data: 5.3% of comments across 2,987 total were specifically about anxiety, staying calm, and the mental side of the exam. Not about what to study. About how to handle the pressure once you are sitting down at the testing center.
+
+These were not comments from people who did not prepare. A lot of them came from people who passed. Preparation does not automatically fix anxiety. Knowing that ahead of time is worth something.
+
+---
+
+## Why This Exam Creates Pressure
+
+The CA journeyman exam is timed and it moves fast. 110 questions in 4.5 hours works out to about 2 minutes and 27 seconds per question. Some questions are quick reads. Some require multi-step calculations. That time pressure builds.
+
+Add in the fact that a fail means a 60-day wait before you can retest, and the stakes feel high in the room. People describe going blank on material they absolutely knew. Spending too long on one question and losing the rest of the exam to it. That is not a preparation failure. That is pressure doing what pressure does.
+
+---
+
+## The Pacing Strategy That Actually Helps
+
+The advice that shows up consistently in the comments is not "believe in yourself." It is more tactical than that.
+
+**Know you are allowed to skip questions.** Flag anything you are not sure about and come back. Do not spend five minutes on question 14 when you still have 96 questions ahead of you.
+
+**Set a rough checkpoint.** By the halfway mark of your time, you should be at least halfway through the questions. If you are behind, pick up the pace on easier reads.
+
+**Treat guessing as a last resort, not a first resort.** If you are stuck, eliminate the obviously wrong answers and make a reasoned pick. There is no penalty for wrong answers, so leaving something blank is always worse than an educated guess.
+
+**Do not catastrophize mid-test.** One hard question is not a sign that you are failing. The exam has 110 questions. A rough stretch of three or four does not define your result.
+
+---
+
+## The Part That Actually Reduces Anxiety
+
+Tactics help. But the real anxiety reducer is the one nobody wants to hear: being genuinely prepared.
+
+Not prepared-ish. Not "I read through the NEC" prepared. Prepared in the sense that you have looked up answers under time pressure before. That you have worked through voltage drop problems and box fill problems until the process is familiar. That you know roughly where to go in the code book before you need to go there.
+
+When the exam feels familiar, the anxiety drops. You have been here before. The room is new. The material is not.
+
+West Coast Wire Pro's 500 practice questions are designed to create that familiarity. Not just knowing the answers, but knowing the process. Use timed mode before exam day. The pressure you feel during timed practice is intentional. It is cheaper than feeling it for the first time at PSI.
+`,
+  },
+  {
+    draft: true,
+    slug: 'what-to-expect-psi-testing-center-california-journeyman-exam',
+    title: "What to Expect at the PSI Testing Center for the CA Journeyman Exam",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "Test day has nothing to do with electrical knowledge. It's logistics. Knowing what to expect removes variables so you can focus on the exam.",
+    readTime: '4 min read',
+    content: `
+Everything about test day that can be sorted out in advance should be sorted out in advance. Surprises at the testing center do not help your score. Here is exactly what to expect.
+
+![Timeline of what happens on CA journeyman exam day at the PSI testing center, from arrival through results.|What happens at the PSI testing center, step by step. Source: westcoastwirepro.com](/blog/chart_testday.png)
+
+---
+
+## Before You Walk In
+
+**Arrive 30 minutes early.** This is not a suggestion from PSI. It is a requirement. If you are late, you forfeit your exam and your fee. Build in buffer for traffic, parking, and finding the suite inside the building.
+
+**Bring government-issued photo ID.** Your name on the ID must match your name on your exam registration exactly. A driver's license or passport works. An expired ID does not. No ID, no exam, no refund.
+
+**Know the address.** PSI has multiple testing center locations throughout California. Verify you are going to the right one before the day of.
+
+---
+
+## When You Check In
+
+The proctor will verify your ID, take your photo, and have you sign in. You will empty your pockets. No phones, no watches, no notes, no personal copy of the NEC. If you have earplugs, some centers allow them and some require you to use theirs. Bring your own and ask.
+
+You get scratch paper and a pencil. You will use these for calculations. Write down your formulas before you start the exam questions.
+
+---
+
+## The Code Book They Give You
+
+PSI provides an unmarked 2023 NEC at your workstation. You do not bring your own. It is not tabbed. It is not highlighted. It is a clean copy.
+
+This is exactly why practicing with an unmarked copy matters. If your entire prep strategy involved tabs and color coding, you are navigating a different book on exam day.
+
+---
+
+## The Exam Itself
+
+110 multiple choice questions. 4.5 hours. Computer-based. You can flag questions and return to them. Use that feature.
+
+10 of the 110 questions are unscored pretests. PSI uses them to evaluate new questions for future exams. You will not know which ones they are, so you work all 110 as if they count.
+
+You need 77 correct answers to pass. That is 70%.
+
+---
+
+## When You Finish
+
+Submit your answers and your pass or fail result appears on screen. No waiting, no mail. You know immediately.
+
+If you pass, you will receive documentation from the California Division of Labor Standards Enforcement to move forward with your license application.
+
+If you fail, you wait 60 days before you can retest. Use that time. A fail with a specific score report tells you exactly where you lost points. That is information. Use it.
+
+---
+
+## The Only Variable Left Is the Exam Itself
+
+Everything above is knowable before exam day. The logistics, the rules, the format. The only remaining variable is whether you know the material well enough to work through 110 questions in 4.5 hours with an unmarked code book.
+
+That part is on you. West Coast Wire Pro's 500 practice questions are built to make that variable as small as possible before you walk in.
+`,
+  },
+  {
+    draft: true,
+    slug: 'how-to-use-practice-tests-california-journeyman-exam',
+    title: "How to Use Practice Tests for the CA Journeyman Exam (Most People Get the Timing Wrong)",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "Practice tests work. But starting them too early or using them the wrong way kills your confidence and wastes time. Here is the sequence that actually builds toward a passing score.",
+    readTime: '5 min read',
+    content: `
+Practice tests are the right tool. But they only work if you use them at the right point in your prep, and in the right way.
+
+The most common mistake: starting practice tests on day one of studying. You do not know enough yet to learn from getting things wrong. You just feel bad about it and start doubting whether you can pass. That is not useful.
+
+![Diagram showing the wrong way and right way to sequence practice tests for the CA journeyman exam. The wrong way is to start with tests immediately. The right way is code study first, then targeted practice, then full timed simulations.|The three phases of effective practice test prep. Source: westcoastwirepro.com](/blog/chart_practice_timing.png)
+
+---
+
+## Phase 1: Learn the Code First (2 to 4 Weeks)
+
+Before you do a single practice question, spend time in the NEC. Not reading it cover to cover. Using it. Work through problems that force you to look things up. Practice finding conductor ampacity in Table 310.15. Find the grounding electrode requirements in Article 250. Pull motor FLA from Table 430.250.
+
+The goal is not to memorize. The goal is to build a mental map of where things live so that when the exam asks you something, you know where to go.
+
+This phase is where most people skip ahead and regret it.
+
+---
+
+## Phase 2: First Practice Tests, Used for Diagnosis (1 to 2 Weeks)
+
+Once you have a working familiarity with the code, start practice questions. But do not use them to measure yourself yet. Use them to find your gaps.
+
+When you get something wrong, stop. Go to the NEC. Find where that answer lives. Read the section. Understand why the right answer is right, not just what it is.
+
+This is the phase where West Coast Wire Pro's format is useful. Every question is tied to a specific NEC section. When you miss a question, the NEC reference tells you exactly where to go. You are not guessing about what you need to study next.
+
+Track which categories you keep missing. Article 250 questions? Calculation questions? Wiring methods? That tells you where to spend your remaining time.
+
+---
+
+## Phase 3: Full Timed Simulations (Final Week)
+
+The last week before your exam, run full timed practice sessions. Sit down with a timer, work through a full set of questions, and do not allow yourself to pause or look anything up outside of the NEC.
+
+This phase has two purposes. First, it tells you whether your pace is good enough. If you are regularly finishing with time to spare, you are ready. If you are always running out of time, you need to work on your code book navigation speed before exam day.
+
+Second, it removes the novelty of the pressure. The first time you feel time pressure on 110 questions, you do not want it to be inside a PSI testing room. Feel it during practice first.
+
+---
+
+## What Practice Tests Cannot Do
+
+They cannot replace understanding. If you are just doing questions until you memorize the answer patterns, you will pass the practice tests and fail the real exam. The questions on your exam will not be the same ones. The underlying concepts will be.
+
+Use practice tests to check your understanding, not to build it. The code study in Phase 1 builds it. The practice questions in Phase 2 and 3 verify it.
+
+West Coast Wire Pro has 500 practice questions across 12 modules, all tied to NEC sections and written specifically for the California journeyman exam. Modules 1 and 2 are free with no account needed. Start there, see where you stand, and build your study plan around the gaps you find.
+`,
+  },
+  {
+    draft: true,
+    slug: 'field-experience-california-journeyman-exam',
+    title: "Does Field Experience Actually Help You Pass the CA Journeyman Exam?",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "8.1% of comments in our dataset specifically brought up field experience as a factor in passing. Here's what it actually gives you, and what to do if you don't have much of it.",
+    readTime: '4 min read',
+    content: `
+In our dataset of 2,987 YouTube comments, 8.1% specifically mentioned field experience as a factor in passing or failing the CA journeyman exam. That puts it third on the list of most-discussed topics, behind NEC navigation and calculation practice.
+
+It is real advice. And it is also the most frustrating kind, because you cannot manufacture years of field experience in the weeks before your exam.
+
+![Comparison showing what 5+ years of field experience gives you vs what you can do with less experience. Field experience helps you picture scenarios. Less experience requires more deliberate code study.|What field experience gives you and how to compensate without it. Source: westcoastwirepro.com](/blog/chart_field_experience.png)
+
+---
+
+## What Field Experience Actually Gives You
+
+People who work in the trade for years before sitting the exam tend to pass at higher rates, and it is not because they memorized more code. It is because they have context.
+
+When an exam question describes a 200-amp residential service entrance, someone with field experience can picture it. They know what the equipment looks like, how it connects, what goes wrong, why certain code requirements exist. That context makes it easier to reason through an answer even when you are not 100% sure of the exact code citation.
+
+When a question asks about motor branch circuit protection, someone who has wired motors knows the sequence intuitively. They are not learning the concept from scratch. They are confirming what they already understand.
+
+Field experience is not a substitute for knowing the code. But it makes the code make sense faster.
+
+---
+
+## What to Do If You Are Earlier in Your Career
+
+If you have two or three years in and you are eligible to sit the exam, you can still pass. You just need to compensate deliberately.
+
+**Work through the NEC actively, not passively.** Do not read it like a book. Use it like a reference. Find the answer to specific questions. Look up why a requirement exists, not just what it says. The more you use the code to solve problems, the more it starts to feel like field experience built on paper.
+
+**Prioritize the sections the exam leans on.** Wiring methods (Articles 300 to 392), grounding and bonding (Article 250), branch circuits and feeders (Articles 210 and 220), and motor circuits (Article 430) are the areas where field experience pays the biggest dividend. Spend extra time there.
+
+**Do not skip the calculations.** People with more field experience often have better intuition for whether an answer is in the right ballpark, which helps them catch calculation errors. If you are light on field experience, you need to practice calculations until the process is second nature and you can spot your own mistakes.
+
+---
+
+## The Honest Answer
+
+Yes, field experience helps. Electricians with more time in the trade pass at higher rates. That is real.
+
+But the exam tests code knowledge and calculation ability. Both of those are learnable before exam day, regardless of how much time you have spent in the field.
+
+West Coast Wire Pro's 500 NEC-tied practice questions are designed to build the kind of deliberate familiarity that supplements field experience. Every wrong answer sends you somewhere specific in the code to learn. Over time, that builds the context that field experience usually provides.
+
+You cannot fake the years. But you can close the gap.
+`,
+  },
+  {
+    draft: true,
+    slug: 'ca-journeyman-exam-calculations-voltage-drop-motor-box-fill',
+    title: "The 5 Calculations That Show Up on the CA Journeyman Exam",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "10% of comments in our dataset specifically called out calculation practice as critical. These are the five types that show up on the exam, what trips people up on each, and how to prepare.",
+    readTime: '5 min read',
+    content: `
+Calculation questions on the CA journeyman exam are not the majority of the test. But they are the ones that eat time if you are not ready for them. A multi-step problem that should take 90 seconds can swallow six minutes if you have to figure out the process mid-exam.
+
+10% of comments across our entire 2,987-comment dataset specifically called out calculation practice as something test-takers should prioritize. That is a real number. These are the five calculation types that keep coming up.
+
+![Chart showing the five calculations on the CA journeyman exam: voltage drop, motor sizing, transformer calculations, box fill, and conduit fill. Each row shows the formula and key note for that calculation type.|The five calculations you need to know cold. Source: westcoastwirepro.com](/blog/chart_calculations.png)
+
+---
+
+## 1. Voltage Drop
+
+Single phase: VD = (2 x K x I x D) / CM
+
+Three phase: VD = (1.732 x K x I x D) / CM
+
+K is 12.9 for copper and 21.2 for aluminum. D is the one-way distance in feet. CM is the circular mils of the conductor from Chapter 9, Table 8.
+
+The most common mistakes: forgetting to double the distance for single phase (the formula already accounts for it with the 2), using the wrong K value, or pulling from the wrong conductor table. The NEC does not mandate a specific voltage drop percentage as a code violation, but the commonly tested standard is 3% for branch circuits and 5% for the combined feeder and branch circuit.
+
+West Coast Wire Pro's Voltage Drop calculator lets you verify your hand calculations. If you get a different answer, trace back through each variable until you find where you went wrong.
+
+## 2. Motor Sizing
+
+Motor problems test whether you know which table to use and in which order. Start with Table 430.248 for single phase or Table 430.250 for three phase to find the full-load amperes (FLA) for the given horsepower and voltage.
+
+From there, the exam may ask you to size the branch circuit conductors (125% of FLA per 430.22), the overcurrent protection (varies by type and whether the motor is code letter rated), or the disconnecting means. Article 430 lays this out in sequence. Know the sequence.
+
+## 3. Transformer Calculations
+
+The two formulas you need: I = VA / V and I = KVA x 1000 / V.
+
+The exam will give you a transformer's KVA rating and voltage on one side, and ask you to find the current on the other. Know how to solve for primary current when given secondary specs, and vice versa. Also know that primary overcurrent protection for transformers is generally sized at 125% of primary FLA, per Article 450.
+
+## 4. Box Fill
+
+Box fill is a point-based system. Table 314.16(B) tells you how many cubic inches each item takes up: conductors by size, clamps, support fittings, devices, and equipment grounding conductors.
+
+The rules that trip people up: all equipment grounding conductors in the box count as a single conductor based on the largest EGC. A wiring device like a switch or outlet counts as two conductors based on the largest conductor connected to it. Count everything. Miss one category and your total is wrong.
+
+West Coast Wire Pro's Box Fill calculator walks through each component category. Use it until the system is second nature.
+
+## 5. Conduit Fill
+
+Maximum fill percentages: one conductor is 53%, two conductors is 31%, three or more conductors is 40%. These percentages apply to the internal cross-sectional area of the conduit.
+
+The actual area values for conductors are in Chapter 9, Table 5 (for insulated conductors). The conduit interior area values are in Chapter 9, Table 4, broken out by conduit type. The conduit type matters. EMT tables and RMC tables are different.
+
+The most common error: using the wrong conduit type's table, or mixing conductors of different sizes without looking up each one individually.
+
+---
+
+## How to Prepare for These
+
+Do not just read the formulas. Work through problems until the process is automatic. That means setting up the formula, identifying each variable, pulling the right table value, and checking your answer.
+
+West Coast Wire Pro's four free calculators cover voltage drop, motor sizing, transformer calculations, and box fill. Use them to check your hand work. When your answer does not match, that is where the learning happens. By exam day, the process should feel familiar enough that you are not discovering it under time pressure.
+`,
+  },
+  {
+    draft: true,
+    slug: 'nec-open-book-california-journeyman-exam',
+    title: "The CA Journeyman Exam Is Open Book. Here's Why That's Not as Easy as It Sounds.",
+    date: 'October 2026',
+    category: 'Exam Prep',
+    excerpt: "Open book sounds like a safety net. It isn't. The NEC is 1,000+ pages and you get 2 minutes 27 seconds per question. Here's what open book actually means for how you prepare.",
+    readTime: '5 min read',
+    content: `
+When people hear the CA journeyman exam is open book, they relax a little. That is a mistake.
+
+The NEC is over 1,000 pages. You have 4.5 hours and 110 questions. Do the math.
+
+![Infographic showing the time math of the CA journeyman exam: 110 questions, 4.5 hours, 2 minutes 27 seconds per question, 15 seconds to find something in the NEC.|The open book time trap. Source: westcoastwirepro.com](/blog/chart_time_math.png)
+
+2 minutes and 27 seconds per question on average. Some questions are quick reads. Some require multi-step calculations. That means some questions will eat 4 to 5 minutes, which means others need to go faster.
+
+If your plan is to look up most of your answers in the NEC, you will not finish in time. This is not a theory. It is what people who failed report over and over in the comments.
+
+---
+
+## What "Open Book" Actually Means
+
+The candidates who pass are not the ones who read the most. They are the ones who know where to look, fast.
+
+There is a difference between being able to find an answer eventually and being able to find it in 15 to 20 seconds under pressure. The first is passive familiarity. The second is active navigation.
+
+You build active navigation by using the code repeatedly over time. Not reading it. Using it. Working through problems that make you go find the answer. Every trip into the NEC builds a mental map: conductor ampacity lives in 310.15, grounding electrode requirements are in Part III of Article 250, motor FLA is in Tables 430.248 and 430.250, exceptions to fill requirements are at the end of the relevant table, not the beginning.
+
+By exam day, you are not searching. You are navigating.
+
+---
+
+## The Book PSI Gives You
+
+PSI provides an unmarked copy of the 2023 NEC at your workstation. You do not bring your own. It is a clean copy, no tabs, no highlights.
+
+If your entire prep strategy involved a heavily tabbed personal copy, you are walking into a different exam than the one you prepared for. The tabs helped you. Now they are gone.
+
+This is why understanding the structure of the NEC matters more than knowing where your tabs are. The structure does not change between your copy and PSI's copy. The tabs do.
+
+---
+
+## The Sections That Actually Show Up
+
+The exam does not test all 1,000 pages equally. It draws heavily from:
+
+**Wiring methods and materials (Articles 300 to 392).** This is the most commonly failed section. Conduit types, fill calculations, bend limits, support intervals, and what is permitted where. The rules are specific and easy to confuse between methods.
+
+**Grounding and bonding (Article 250).** The longest article in the NEC. Grounding electrode conductors, bonding jumpers, equipment grounding, when conductors need to be insulated versus bare. Heavily tested.
+
+**Branch circuits and feeders (Articles 210 and 220).** Sizing, protection, calculation methods for loads.
+
+**Motor circuits (Article 430).** Branch circuit conductors, overcurrent protection, disconnecting means.
+
+**Overcurrent protection (Article 240).** Where protection is required, where it can be omitted, sizing rules.
+
+If you know these sections well enough to navigate them in under 20 seconds, you have covered the majority of what you will be asked.
+
+---
+
+## Building the Navigation Speed
+
+The only way to build it is repetition with the code book open. Every time you work through a practice question and look up the answer, you are building the map.
+
+West Coast Wire Pro's 500 practice questions are each tied to a specific NEC section. Every question answered is one more trip into the code with a purpose. By the time you sit down at PSI, the relevant sections will not feel like strangers.
+
+Open book is an advantage. But only if you have done the work.
+`,
+  },
+  // ── END DRAFTS ─────────────────────────────────────────────────────────────
   {
     slug: 'what-nobody-tells-you-california-journeyman-exam',
     title: "What Nobody on YouTube Tells You About the CA Journeyman Exam",

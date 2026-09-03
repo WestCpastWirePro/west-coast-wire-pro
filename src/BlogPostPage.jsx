@@ -118,13 +118,13 @@ export default function BlogPostPage({ slug, onNavigate, onLaunchApp }) {
         </div>
 
         {/* Related Posts */}
-        {blogPosts.filter(p => p.slug !== post.slug).slice(0, 2).length > 0 && (
+        {blogPosts.filter(p => p.slug !== post.slug && !p.draft).slice(0, 2).length > 0 && (
           <div style={{marginTop:'48px', borderTop:'1px solid rgba(200,168,75,0.15)', paddingTop:'40px'}}>
             <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', fontFamily:"'Courier New',monospace", marginBottom:'20px'}}>
               More Articles
             </div>
             <div style={{display:'flex', flexDirection:'column', gap:'16px'}}>
-              {blogPosts.filter(p => p.slug !== post.slug).slice(0, 2).map(related => (
+              {blogPosts.filter(p => p.slug !== post.slug && !p.draft).slice(0, 2).map(related => (
                 <div key={related.slug}
                   onClick={() => nav('blog-post:' + related.slug)}
                   style={{background:'#111820', border:'1px solid rgba(200,168,75,0.15)', borderRadius:'8px', padding:'20px 24px', cursor:'pointer', transition:'border-color 0.2s'}}

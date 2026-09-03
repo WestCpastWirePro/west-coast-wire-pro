@@ -2,6 +2,7 @@ import { blogPosts } from './blogPosts.js'
 
 export default function BlogPage({ onHome, onNavigate }) {
   const nav = (to) => { onNavigate && onNavigate(to); window.scrollTo(0,0) }
+  const publishedPosts = blogPosts.filter(p => !p.draft)
 
   return (
     <div style={{minHeight:'100vh', background:'#0a1016', paddingTop:'clamp(80px,14vw,140px)'}}>
@@ -22,7 +23,7 @@ export default function BlogPage({ onHome, onNavigate }) {
 
         {/* Posts */}
         <div style={{display:'flex', flexDirection:'column', gap:'24px'}}>
-          {blogPosts.map(post => (
+          {publishedPosts.map(post => (
             <article key={post.slug}
               onClick={() => nav('blog-post:' + post.slug)}
               style={{background:'#111820', border:'1px solid rgba(200,168,75,0.15)', borderRadius:'8px', padding:'28px 32px', cursor:'pointer', transition:'border-color 0.2s'}}
