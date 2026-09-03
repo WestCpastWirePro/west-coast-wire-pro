@@ -19,6 +19,19 @@ function renderContent(text) {
       return <hr key={i} style={{border:'none', borderTop:'1px solid rgba(200,168,75,0.2)', margin:'32px 0'}} />
     }
 
+    // Image: ![alt|caption](url)
+    const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/)
+    if (imgMatch) {
+      const [, altRaw, src] = imgMatch
+      const [alt, caption] = altRaw.split('|')
+      return (
+        <figure key={i} style={{margin:'32px 0'}}>
+          <img src={src} alt={alt || ''} style={{width:'100%', borderRadius:'6px', border:'1px solid rgba(200,168,75,0.2)', display:'block'}} />
+          {caption && <figcaption style={{color:'#4a5a6a', fontSize:'12px', marginTop:'8px', lineHeight:'1.5'}}>{caption}</figcaption>}
+        </figure>
+      )
+    }
+
     // Inline formatting: **bold**, *italic*, [text](url)
     const formatted = trimmed.split(/(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)]+\))/).map((part, j) => {
       if (part.startsWith('**') && part.endsWith('**')) return <strong key={j} style={{color:'#d8e0e8'}}>{part.slice(2,-2)}</strong>
