@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 
 function generateAccessCode(sessionId, tier) {
-  const secret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
+  const secret = process.env.WIREREADY_ACCESS_SECRET;
   const payload = `${sessionId}:${tier}`;
   const hash = crypto.createHmac('sha256', secret).update(payload).digest('hex');
   const raw = hash.substring(0, 12).toUpperCase();
@@ -11,7 +11,7 @@ function generateAccessCode(sessionId, tier) {
 }
 
 function generateManualCode(email, tier, secret) {
-  const payload = `manual:${email.toLowerCase().trim()}:${tier}`;
+  const payload = `manual:${email.toLowerCase().trim()}:${tier}`; // secret validated above
   const hash = crypto.createHmac('sha256', secret).update(payload).digest('hex');
   const raw = hash.substring(0, 12).toUpperCase();
   return `${raw.slice(0,4)}-${raw.slice(4,8)}-${raw.slice(8,12)}`;
@@ -26,6 +26,11 @@ export default async function handler(req, res) {
 
   const { code, sessionId, email } = req.body;
   if (!code) return res.status(400).json({ valid: false, error: 'No code provided' });
+
+  if (!process.env.WIREREADY_ACCESS_SECRET) {
+    console.error('WIREREADY_ACCESS_SECRET is not set');
+    return res.status(500).json({ valid: false, error: 'Server misconfiguration' });
+  }
 
   // ── Supabase token (64-char hex from Stripe webhook) ─────────────────────
   if (/^[0-9a-f]{64}$/.test(code)) {
@@ -55,7 +60,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ valid: false, error: 'Token not found' });
   }
 
-  const accessSecret = process.env.WIREREADY_ACCESS_SECRET || 'dev-secret-replace-me';
+  const accessSecret = process.env.WIREREADY_ACCESS_SECRET;
 
   // ── Manual grant token (has email param) ──────────────────────────────────
   if (email) {
