@@ -14,7 +14,7 @@ function generateToken(email, tier, secret) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://westcoastwirepro.com');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -33,9 +33,6 @@ export default async function handler(req, res) {
   }
 
   const token = generateToken(email, tier, expectedSecret);
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://westcoastwirepro.com';
   const magicLink = `https://westcoastwirepro.com/?grant=${tier}&token=${token}&email=${encodeURIComponent(email.toLowerCase().trim())}`;
 
   return res.status(200).json({ token, email, tier, magicLink });

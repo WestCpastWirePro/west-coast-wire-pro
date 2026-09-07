@@ -65,12 +65,11 @@ export default async function handler(req, res) {
   try {
     const sig = req.headers['stripe-signature'];
 
-    if (webhookSecret) {
-      event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
-    } else {
-      console.warn('⚠️  STRIPE_WEBHOOK_SECRET not set — skipping signature verification');
-      event = JSON.parse(rawBody);
+    if (!webhookSecret) {
+      console.error('STRIPE_WEBHOOK_SECRET is not set — rejecting webhook');
+      return res.status(500).json({ error: 'Webhook not configured' });
     }
+    event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
   } catch (err) {
     console.error('Webhook signature failed:', err.message);
     return res.status(400).json({ error: `Webhook error: ${err.message}` });
@@ -104,7 +103,7 @@ export default async function handler(req, res) {
           ? 'All 500 questions, exam simulation, Missed Questions deck, Code Sprint, Table Mastery, and High-Priority Drill — everything you need to pass.'
           : 'All 500 questions across all 12 modules, timed & untimed modes, difficulty filtering, Exam Simulator, and Study Planner.';
 
-        const magicLink = `https://westcoastwirepro.com/?grant=${tier}&token=${accessCode}`;
+        const magicLink = `https://westcoastwirepro.com/?grant=${tier}&token=${accessCode}&session_id=${sessionId}`;
 
         await fetch('https://api.resend.com/emails', {
           method: 'POST',

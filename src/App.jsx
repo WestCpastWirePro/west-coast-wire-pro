@@ -222,15 +222,20 @@ export default function App() {
   useEffect(() => {
     if (view !== 'verifying') return
     const params = new URLSearchParams(window.location.search)
-    const token = params.get('token')
-    const tier  = params.get('grant')
-    const email = params.get('email')
+    const token     = params.get('token')
+    const tier      = params.get('grant')
+    const email     = params.get('email')
+    const sessionId = params.get('session_id')
     // Manual grant tokens (have email param) - verify via API
     // Stripe magic links (no email) - verify via API
     fetch('/api/verify-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: token, ...(email ? { email } : {}) }),
+      body: JSON.stringify({
+        code: token,
+        ...(email     ? { email }     : {}),
+        ...(sessionId ? { sessionId } : {}),
+      }),
     })
       .then(r => r.json())
       .then(data => {
@@ -239,22 +244,16 @@ export default function App() {
           window.history.replaceState({}, '', '/?app')
           setView('app')
         } else {
-          // Token invalid — go to landing with a message
+          // Token invalid — go to landing
           try { localStorage.removeItem('wrp_access') } catch(e) {}
           window.history.replaceState({}, '', '/')
           setView('landing')
         }
       })
       .catch(() => {
-        // Network error — still try to grant access if tier is valid
-        if (tier && ['standard','pro'].includes(tier)) {
-          try { localStorage.setItem('wrp_access', tier) } catch(e) {}
-          window.history.replaceState({}, '', '/?app')
-          setView('app')
-        } else {
-          window.history.replaceState({}, '', '/')
-          setView('landing')
-        }
+        // Network error — do not grant access, redirect to landing
+        window.history.replaceState({}, '', '/')
+        setView('landing')
       })
   }, [view])
 
