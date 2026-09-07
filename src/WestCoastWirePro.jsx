@@ -756,10 +756,6 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
       };
       localStorage.setItem('wrp_saved_session', JSON.stringify(session));
     } catch(e) {}
-    // Show email capture after 10 answers on free tier
-    if (access === 'free' && newAnswered.length === 10 && !emailDismissed) {
-      setShowEmailCapture(true);
-    }
   };
 
   const nextQ = () => {
@@ -868,6 +864,17 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
       <div style={{padding:"16px"}}>
 
+        {/* ── QUICK START ── */}
+        <div style={{marginBottom:"12px"}}>
+          <button style={{...styles.btn, ...styles.btnGold, width:"100%", fontSize:"18px", padding:"16px"}}
+            onClick={startQuiz}>
+            Start Practice Quiz ⚡
+          </button>
+          <div style={{fontSize:"11px", color:"#6a7a8a", textAlign:"center", marginTop:"6px"}}>
+            {selectedMods.length === 0 ? "All modules" : `${selectedMods.length} module${selectedMods.length>1?"s":""} selected`} · {quizSize} questions{timedMode ? " · Timed" : ""}
+          </div>
+        </div>
+
         {/* ── EXAM COUNTDOWN ── */}
         {daysUntilExam !== null && daysUntilExam > 0 && (
           <div style={{background:"linear-gradient(135deg,rgba(231,76,60,0.08),rgba(231,76,60,0.04))", border:"1px solid rgba(231,76,60,0.3)", borderRadius:"10px", padding:"12px 16px", marginBottom:"16px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"12px"}}>
@@ -883,7 +890,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
                 </div>
               </div>
             </div>
-            <button onClick={() => { window.history.pushState({}, '', '/planner'); window.location.reload(); }}
+            <button onClick={() => safeMenuNav('planner')}
               style={{background:"none", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"5px 10px", borderRadius:"4px", cursor:"pointer", whiteSpace:"nowrap", flexShrink:0}}>
               Study Plan →
             </button>
@@ -896,7 +903,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           </div>
         )}
         {!examDate && (
-          <button onClick={() => { window.history.pushState({}, '', '/planner'); window.location.reload(); }}
+          <button onClick={() => safeMenuNav('planner')}
             style={{width:"100%", background:"rgba(200,168,75,0.07)", border:"1px dashed rgba(180,140,40,0.35)", borderRadius:"10px", padding:"10px 16px", marginBottom:"16px", display:"flex", alignItems:"center", gap:"10px", cursor:"pointer", color:"#3a5070", fontSize:"12px", textAlign:"left"}}>
             <span style={{fontSize:"16px"}}>📅</span>
             <span>Set your exam date to see your countdown →</span>
@@ -1024,27 +1031,27 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"12px"}}>🛠 STUDY TOOLS</div>
           <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
             {[
-              { icon:"🏆", label:"High-Priority Drill",   path:"/top-25",       pro:true  },
-              { icon:"📖", label:"Code Sprint",        path:"/code-sprint",  pro:true  },
-              { icon:"🎯", label:"Am I Ready?",        path:"/diagnostic",   pro:false },
-              { icon:"📋", label:"Full Exam Sim",       path:"/simulator",    pro:false },
-              { icon:"🔁", label:"Missed Questions",    path:"/missed",       pro:true  },
-              { icon:"🏆", label:"Table Mastery",       path:"/mastery",      pro:true  },
-              { icon:"📅", label:"Study Planner",       path:"/planner",      pro:false },
-              { icon:"📖", label:"NEC Reference",       path:"/nec-reference",pro:false },
-              { icon:"🧮", label:"Calculations",        path:"/calculations", pro:false },
-              { icon:"📊", label:"My Progress",         path:"/progress",     pro:false },
-              { icon:"📚", label:"Glossary",            path:"/glossary",     pro:false },
-              { icon:"🗓️", label:"Exam Day Guide",      path:"/exam-day",     pro:false },
-              { icon:"💬", label:"FAQ",                 path:"/faq",          pro:false },
-              { icon:"📧", label:"Contact",             path:"/contact",      pro:false },
+              { icon:"🏆", label:"High-Priority Drill",   page:"top-25",       pro:true  },
+              { icon:"📖", label:"Code Sprint",        page:"code-sprint",  pro:true  },
+              { icon:"🎯", label:"Am I Ready?",        page:"diagnostic",   pro:false },
+              { icon:"📋", label:"Full Exam Sim",       page:"simulator",    pro:false },
+              { icon:"🔁", label:"Missed Questions",    page:"missed",       pro:true  },
+              { icon:"🏆", label:"Table Mastery",       page:"mastery",      pro:true  },
+              { icon:"📅", label:"Study Planner",       page:"planner",      pro:false },
+              { icon:"📖", label:"NEC Reference",       page:"nec-ref",pro:false },
+              { icon:"🧮", label:"Calculations",        page:"calculations", pro:false },
+              { icon:"📊", label:"My Progress",         page:"progress",     pro:false },
+              { icon:"📚", label:"Glossary",            page:"glossary",     pro:false },
+              { icon:"🗓️", label:"Exam Day Guide",      page:"exam-day",     pro:false },
+              { icon:"💬", label:"FAQ",                 page:"faq",          pro:false },
+              { icon:"📧", label:"Contact",             page:"contact",      pro:false },
             ].map(tool => {
               const locked = tool.pro && access !== "pro";
               return (
-                <button key={tool.path}
-                  style={{...styles.btn, ...styles.btnGray, display:"flex", alignItems:"center", gap:"8px", justifyContent:"flex-start", padding:"10px 12px", fontSize:"13px", borderRadius:"8px", opacity: locked ? 0.6 : 1, position:"relative"}}
-                  onClick={() => { window.history.pushState({}, '', tool.path); window.location.reload(); }}>
-                  <span style={{fontSize:"16px"}}>{locked ? "🔒" : tool.icon}</span>
+                <button key={tool.page}
+                  style={{...styles.btn, ...styles.btnGray, display:"flex", alignItems:"center", gap:"8px", justifyContent:"flex-start", padding:"10px 12px", fontSize:"13px", borderRadius:"8px", position:"relative"}}
+                  onClick={() => tool.pro && access !== 'pro' ? setScreen('upgrade') : safeMenuNav(tool.page)}>
+                  <span style={{fontSize:"16px"}}>{tool.icon}</span>
                   {tool.label}
                   {locked && <span style={{marginLeft:"auto", fontSize:"9px", color:"#c8a84b", fontWeight:"700", letterSpacing:"0.5px"}}>PRO</span>}
                 </button>
@@ -1301,7 +1308,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             {access === 'pro' ? (
               <button
                 style={{background:"rgba(200,168,75,0.15)", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"6px 10px", borderRadius:"6px", cursor:"pointer", letterSpacing:"0.3px", whiteSpace:"nowrap"}}
-                onClick={() => { saveSession(); setScreen("home"); }}>
+                onClick={() => setScreen("home")}>
                 💾 Save
               </button>
             ) : (
@@ -1454,6 +1461,21 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             })}
           </div>
 
+          {(() => {
+            const weakMods = MODULES.filter(m => {
+              const mqs = answered.filter(a => quizQuestions.find(q=>q.id===a.qid)?.mod===m.id);
+              if (!mqs.length) return false;
+              return Math.round((mqs.filter(a=>a.correct).length/mqs.length)*100) < 70;
+            });
+            return weakMods.length > 0 ? (
+              <div style={{padding:"0 16px 8px"}}>
+                <button style={{...styles.btn, background:"rgba(231,76,60,0.12)", color:"#e74c3c", border:"1px solid rgba(231,76,60,0.4)", width:"100%", fontSize:"14px", padding:"13px"}}
+                  onClick={() => { setSelectedMods(weakMods.map(m=>m.id)); setSelectedDiffs([]); startQuiz(); }}>
+                  🎯 Drill My {weakMods.length} Weak Module{weakMods.length>1?"s":""} Again
+                </button>
+              </div>
+            ) : null;
+          })()} 
           <div style={{display:"flex", gap:"12px", padding:"0 16px 8px"}}>
             <button style={{...styles.btn, ...styles.btnGold, flex:1}} onClick={startQuiz}>Try Again</button>
             <button style={{...styles.btn, ...styles.btnGray, flex:1}} onClick={()=>{setScreen("home");setSelectedMods([]);setSelectedDiffs([]);}}>Menu</button>
@@ -1462,7 +1484,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             <div style={{padding:"0 16px 24px"}}>
               {access === "pro" ? (
                 <button style={{...styles.btn, background:"rgba(231,76,60,0.12)", color:"#e74c3c", border:"1px solid #e74c3c", width:"100%", fontSize:"13px"}}
-                  onClick={() => { window.history.pushState({}, '', '/missed'); window.location.reload(); }}>
+                  onClick={() => safeMenuNav('missed')}>
                   🔁 Review {answered.filter(a=>!a.correct).length} Missed Questions
                 </button>
               ) : (

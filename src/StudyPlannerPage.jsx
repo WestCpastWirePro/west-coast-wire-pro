@@ -25,10 +25,10 @@ function buildPlan(examDate, dailyMins, weakMods, access) {
   const exam = new Date(examDate);
   exam.setHours(0,0,0,0);
   const daysUntil = Math.round((exam - today) / (1000*60*60*24));
-  if (daysUntil < 7) return { error: "You need at least 7 days. Select a later date." };
+  if (daysUntil < 1) return { error: "Please select a future date." };
   if (daysUntil > 180) return { error: "Please select an exam date within 6 months." };
 
-  const weeks = Math.floor(daysUntil / 7);
+  const weeks = Math.max(1, Math.floor(daysUntil / 7));
   const plan = [];
 
   // Allocate: 1 week per module if time allows, else compress
@@ -124,7 +124,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
       return Object.entries(modScores).filter(([,v])=>Math.round((v.correct/v.total)*100)<70).map(([k])=>parseInt(k));
     } catch(e) { return []; }
   });
-  const [plan, setPlan] = useState(null);
+  const [plan, setPlan] = useState(() => { try { const p = localStorage.getItem('wrp_plan'); return p ? JSON.parse(p) : null; } catch(e) { return null; } });
   const [error, setError] = useState("");
   const [expandedWeek, setExpandedWeek] = useState(null);
 
@@ -134,7 +134,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
     if (result.error) { setError(result.error); setPlan(null); return; }
     setError("");
     setPlan(result);
-    try { localStorage.setItem("wrp_exam_date", examDate); } catch(e) {}
+    try { localStorage.setItem("wrp_exam_date", examDate); localStorage.setItem("wrp_plan", JSON.stringify(result)); } catch(e) {}
     // Auto-expand current week
     const curr = result.plan.find(w => w.isCurrent);
     if (curr) setExpandedWeek(curr.week);
@@ -146,7 +146,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
   };
 
   const today = new Date();
-  const minDate = new Date(today); minDate.setDate(today.getDate() + 7);
+  const minDate = new Date(today); minDate.setDate(today.getDate() + 1);
   const maxDate = new Date(today); maxDate.setDate(today.getDate() + 180);
   const toISO = d => d.toISOString().split("T")[0];
 

@@ -87,11 +87,10 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
             {label:'Progress Dashboard', page:'progress'},
             {label:'Glossary', page:'glossary'},
           ]}/>
+          <button onClick={() => nav('blog')}
+            style={{background:'none',border:'none',color:currentPage==='blog'?'#c8a84b':'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",cursor:'pointer',transition:'color 0.2s'}}
+            onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>{if(currentPage!=='blog')e.target.style.color='#7a8a9a'}}>Blog</button>
           <GnDropdown label="Resources" onNavigate={nav} currentPage={currentPage} items={[
-            {label:'Blog', page:'blog'},
-            {label:'What Nobody Tells You About the CA Exam', page:'blog-post:what-nobody-tells-you-california-journeyman-exam', indent:true},
-            {label:'We Analyzed 2,987 Comments on the CA Exam', page:'blog-post:what-people-say-about-passing-california-journeyman-exam', indent:true},
-            {divider:true},
             {label:'CA Journeyman Exam Guide', page:'exam-info'},
             {label:'How to Pass — Study Tips', page:'study-tips'},
             {label:'Exam Day Guide', page:'exam-day'},
@@ -148,10 +147,13 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
             ['Progress Dashboard','progress'],['Glossary','glossary'],
           ]} onNav={nav} currentPage={currentPage}/>
           <MobileDivider/>
-          <MobileSection title="📋 Exam Resources" items={[
-            ['Blog','blog'],
-            ['  → What Nobody Tells You About the CA Exam','blog-post:what-nobody-tells-you-california-journeyman-exam'],
-            ['  → We Analyzed 2,987 Comments on the CA Exam','blog-post:what-people-say-about-passing-california-journeyman-exam'],
+          <MobileSection title="📝 Blog" items={[
+            ['Blog — All Articles','blog'],
+            ['What Nobody Tells You About the CA Exam','blog-post:what-nobody-tells-you-california-journeyman-exam'],
+            ['We Analyzed 2,987 Comments on the CA Exam','blog-post:what-people-say-about-passing-california-journeyman-exam'],
+          ]} onNav={nav} currentPage={currentPage}/>
+          <MobileDivider/>
+          <MobileSection title="📋 Resources" items={[
             ['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
             ['Exam Day Guide','exam-day'],
             ['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician'],

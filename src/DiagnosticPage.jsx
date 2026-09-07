@@ -19,18 +19,14 @@ const s = {
 // Build diagnostic deck: 1-2 questions per module, mix of difficulties
 function buildDeck(access) {
   const deck = [];
+  const freeMods = [1, 2];
   MODULES.forEach(m => {
     const pool = ALL_QUESTIONS.filter(q => q.mod === m.id);
-    if (access === "free" && m.id !== 1) {
-      // Free users get 2 questions from mod 1 only, 1 from others (no answers shown for locked)
-      deck.push({ ...pool[Math.floor(Math.random()*pool.length)], locked: true });
-    } else {
-      // 2 questions per module for paid
-      const shuffled = [...pool].sort(() => Math.random()-0.5);
-      deck.push(...shuffled.slice(0, 2));
-    }
+    if (access === "free" && !freeMods.includes(m.id)) return; // skip locked modules silently
+    const shuffled = [...pool].sort(() => Math.random()-0.5);
+    deck.push(...shuffled.slice(0, 2));
   });
-  return deck.sort(() => Math.random()-0.5).slice(0, 24);
+  return deck.sort(() => Math.random()-0.5);
 }
 
 const RECOMMENDATIONS = {
@@ -199,7 +195,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
 
           {access === "free" && (
             <div style={{background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.25)", borderRadius:"8px", padding:"12px 14px", marginBottom:"12px", fontSize:"13px", color:"#c8a84b", lineHeight:"1.6"}}>
-              <strong>Free tier:</strong> You'll see questions from Modules 1 & 2 only. Upgrade to Standard or Pro to diagnose all 12 modules.
+              <strong>Free tier:</strong> Diagnostic covers Modules 1 & 2. Upgrade to Standard or Pro to diagnose all 12 modules.
             </div>
           )}
           <div style={s.card}>
@@ -265,18 +261,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
             <div style={{fontSize:"16px", fontWeight:"600", lineHeight:"1.5"}}>{q.q}</div>
           </div>
 
-          {q.locked ? (
-            <div style={{...s.card, borderColor:"rgba(200,168,75,0.4)", textAlign:"center", padding:"24px 16px"}}>
-              <div style={{fontSize:"28px", marginBottom:"10px"}}>🔒</div>
-              <div style={{fontSize:"14px", fontWeight:"700", color:"#c8a84b", marginBottom:"6px"}}>This module is locked</div>
-              <div style={{fontSize:"13px", color:"#7a8a9a", lineHeight:"1.6", marginBottom:"16px"}}>
-                Upgrade to Standard or Pro to see questions from all 12 modules in your diagnostic.
-              </div>
-              <button style={{...s.btn, ...s.btnGold, width:"100%"}} onClick={next}>
-                Skip → {idx+1 >= deck.length ? "See My Results" : "Next Question"}
-              </button>
-            </div>
-          ) : q.opts.map((opt, i) => {
+          {q.opts.map((opt, i) => {
             let style = {...s.opt};
             if (selected !== null) {
               if (i === q.ans) style = {...s.opt, ...s.optCorrect};

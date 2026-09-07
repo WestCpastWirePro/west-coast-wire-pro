@@ -21,6 +21,7 @@ function fmt(ts) {
 export default function ProgressDashboard({ onHome, onNavigate, access }) {
   const [history, setHistory] = useState([]);
   const [missed, setMissed] = useState([]);
+  const [sortWorstFirst, setSortWorstFirst] = useState(true);
 
   useEffect(() => {
     try {
@@ -62,7 +63,7 @@ export default function ProgressDashboard({ onHome, onNavigate, access }) {
           <div style={{fontSize:"48px", marginBottom:"16px"}}>📊</div>
           <div style={{fontSize:"18px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px"}}>No Data Yet</div>
           <div style={{fontSize:"14px", color:"#8899aa", maxWidth:"300px", margin:"0 auto 24px", lineHeight:"1.6"}}>
-Complete a practice session and your scores, streaks, and module mastery will appear here. Progress is saved on this device — if you recently cleared your browser data, your history will have reset.
+            Complete a practice session and your scores, streaks, and module mastery will appear here. Progress is saved on this device — if you recently cleared your browser data, your history will have reset.
           </div>
           <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start a Practice Quiz ⚡</button>
           <div style={{marginTop:"12px", fontSize:"12px", color:"#4a5a6a"}}>Complete any quiz and your scores will appear here automatically.</div>
@@ -84,15 +85,22 @@ Complete a practice session and your scores, streaks, and module mastery will ap
     ? history[history.length-1].pct - history[history.length-2].pct
     : 0;
 
-  // Streak: consecutive days with at least 1 session
+  // Streak: consecutive days — allow today to not have a session yet without breaking streak
   const daySet = new Set(history.map(h => new Date(h.date).toDateString()));
   let streak = 0;
   const today = new Date();
+  let checkDate = new Date(today);
+  // If today hasn't been studied yet, start counting from yesterday
+  if (!daySet.has(checkDate.toDateString())) {
+    checkDate.setDate(checkDate.getDate() - 1);
+  }
   for (let i = 0; i < 60; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() - i);
-    if (daySet.has(d.toDateString())) streak++;
-    else if (i > 0) break;
+    if (daySet.has(checkDate.toDateString())) {
+      streak++;
+      checkDate.setDate(checkDate.getDate() - 1);
+    } else {
+      break;
+    }
   }
 
   // Module mastery from all history
@@ -107,10 +115,18 @@ Complete a practice session and your scores, streaks, and module mastery will ap
   const answered = modData.filter(m=>m.pct!==null);
   const unanswered = modData.filter(m=>m.pct===null);
 
+  // Readiness score: % of practiced modules above 70%
+  const modulesAbove70 = answered.filter(m=>m.pct>=70).length;
+  const readinessPct = answered.length ? Math.round((modulesAbove70/answered.length)*100) : 0;
+  const readinessColor = readinessPct>=80?"#2ecc71":readinessPct>=60?"#c8a84b":"#e74c3c";
+  const readinessLabel = readinessPct>=80?"Exam Ready":readinessPct>=60?"Getting Close":"Keep Drilling";
+
   // Score trend chart (last 10 sessions)
   const chartData = history.slice(-10);
   const chartMax = 100;
   const chartH = 80;
+
+  const sortedAnswered = [...answered].sort((a,b) => sortWorstFirst ? a.pct-b.pct : b.pct-a.pct);
 
   return (
     <div style={s.app}>
@@ -123,6 +139,16 @@ Complete a practice session and your scores, streaks, and module mastery will ap
         <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
       </div>
 
+      {/* Exam Readiness Banner */}
+      <div style={{margin:"12px 16px", background:"#1a2840", border:`2px solid ${readinessColor}`, borderRadius:"12px", padding:"16px 20px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"12px"}}>
+        <div>
+          <div style={{fontSize:"12px", color:"#8899aa", fontWeight:"700", textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"4px"}}>Exam Readiness</div>
+          <div style={{fontSize:"26px", fontWeight:"900", color:readinessColor}}>{readinessLabel}</div>
+          <div style={{fontSize:"12px", color:"#8899aa", marginTop:"2px"}}>{modulesAbove70} of {answered.length} modules above 70% · Overall avg {avgScore}%</div>
+        </div>
+        <div style={{fontSize:"44px", fontWeight:"900", color:readinessColor, flexShrink:0}}>{readinessPct}%</div>
+      </div>
+
       {/* Stat tiles */}
       <div style={{display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:"1px", background:"#2a3a54", margin:"12px 16px", borderRadius:"12px", overflow:"hidden"}}>
         {[
@@ -131,7 +157,10 @@ Complete a practice session and your scores, streaks, and module mastery will ap
           { label:"Questions Done", value:totalQ.toLocaleString(), color:"#e8eaf0" },
           { label:"Study Streak", value:`${streak} day${streak!==1?"s":""}`, color:streak>=7?"#2ecc71":streak>=3?"#c8a84b":"#8899aa" },
           { label:"Sessions", value:sessions, color:"#e8eaf0" },
-          { label:"Missed Queue", value:missed.length, color:missed.length>0?"#e74c3c":"#2ecc71" },
+          ...(access === 'pro'
+            ? [{ label:"Missed Queue", value:missed.length, color:missed.length>0?"#e74c3c":"#2ecc71" }]
+            : [{ label:"Last 5 Avg", value:`${last5avg}%`, color:last5avg>=70?"#2ecc71":last5avg>=50?"#c8a84b":"#e74c3c" }]
+          ),
         ].map(({label,value,color}) => (
           <div key={label} style={{background:"#1a2840", padding:"14px 16px"}}>
             <div style={{fontSize:"22px", fontWeight:"900", color}}>{value}</div>
@@ -196,8 +225,15 @@ Complete a practice session and your scores, streaks, and module mastery will ap
 
       {/* Module mastery */}
       <div style={s.card}>
-        <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"14px"}}>MODULE MASTERY</div>
-        {answered.sort((a,b)=>a.pct-b.pct).map(({mod,pct,correct,total}) => (
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"14px"}}>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700"}}>MODULE MASTERY</div>
+          <button
+            style={{background:"none", border:"1px solid rgba(200,168,75,0.3)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"4px 10px", borderRadius:"4px", cursor:"pointer"}}
+            onClick={() => setSortWorstFirst(v=>!v)}>
+            {sortWorstFirst ? "Show Best First" : "Show Worst First"}
+          </button>
+        </div>
+        {sortedAnswered.map(({mod,pct,correct,total}) => (
           <div key={mod.id} style={{marginBottom:"12px"}}>
             <div style={{display:"flex", justifyContent:"space-between", marginBottom:"4px"}}>
               <span style={{fontSize:"12px", color:"#aabbcc"}}>{mod.name}</span>
@@ -242,9 +278,9 @@ Complete a practice session and your scores, streaks, and module mastery will ap
               : last5avg >= 60
               ? `Recent average ${last5avg}% — improving. Focus on your weakest modules for another week before simulating.`
               : `Recent average ${last5avg}%. Slow down and drill one module at a time rather than mixing everything.`,
-            missed.length >= 10
+            access === 'pro' && missed.length >= 10
               ? `You have ${missed.length} questions in your Missed Questions deck. Clear those before your exam — they represent real gaps.`
-              : missed.length > 0
+              : access === 'pro' && missed.length > 0
               ? `${missed.length} missed questions queued. Run the Missed Questions deck to clear them.`
               : `No missed questions queued. Keep it up.`,
             streak >= 7
