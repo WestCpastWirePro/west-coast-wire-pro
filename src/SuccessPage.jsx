@@ -38,8 +38,8 @@ export default function SuccessPage({ onEnterApp }) {
     })
       .then(r => r.json())
       .then(data => {
-        if (!data || data.error === 'Code does not match this session') {
-          // Session ID is present but code check failed — don't grant access
+        if (!data?.valid) {
+          // Payment not confirmed or verification failed — don't grant access
           setStatus('error')
           return
         }

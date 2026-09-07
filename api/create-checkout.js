@@ -48,8 +48,9 @@ export default async function handler(req, res) {
     });
   }
 
-  const origin = req.headers.origin ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+  const origin = process.env.VERCEL_ENV === 'production'
+    ? 'https://westcoastwirepro.com'
+    : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
   // success_url always passes tier=pro so SuccessPage grants Pro access
   const successTier = (tier === 'pro' || upgrade) ? 'pro' : tier;
@@ -79,7 +80,7 @@ export default async function handler(req, res) {
       },
     });
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://westcoastwirepro.com');
     return res.status(200).json({ url: session.url });
 
   } catch (err) {
