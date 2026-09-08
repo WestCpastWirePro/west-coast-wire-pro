@@ -370,12 +370,125 @@ function BoxFillCalc() {
   );
 }
 
+// ── FORMULA REFERENCE CARD ────────────────────────────────────
+function RefCard() {
+  return (
+    <div>
+      <style>{`
+        @media print {
+          .wcw-no-print { display: none !important; }
+          body { background: white !important; color: #000 !important; }
+          @page { margin: 0.5in; size: letter; }
+        }
+      `}</style>
+      <div className="wcw-no-print" style={{margin:"12px 16px 0", display:"flex", gap:"8px"}}>
+        <button style={{...s.btn, ...s.btnGold, flex:1, fontSize:"14px", padding:"11px"}} onClick={() => window.print()}>
+          🖨️ Print / Save as PDF
+        </button>
+      </div>
+      <div style={{margin:"12px 16px", fontFamily:"'Segoe UI',sans-serif"}}>
+
+        {/* Voltage Drop */}
+        <div style={{background:"#1a2840", border:"1px solid #2a3a54", borderRadius:"10px", padding:"16px", marginBottom:"12px"}}>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"800", marginBottom:"10px"}}>⚡ VOLTAGE DROP · NEC 210.19 Note 3 / 215.2 Note 2</div>
+          <div style={{fontFamily:"monospace", fontSize:"13px", color:"#e8c878", background:"rgba(200,168,75,0.08)", padding:"10px 12px", borderRadius:"6px", marginBottom:"8px"}}>
+            VD = (K × I × D × Multiplier) ÷ CM
+          </div>
+          <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.8"}}>
+            K = 12.9 (copper) · 21.2 (aluminum)<br/>
+            Multiplier = 2 (single phase) · 1.732 (three phase)<br/>
+            D = one-way distance (ft) · I = current (A) · CM = circular mils<br/>
+            Max recommended: 3% branch circuit, 5% total system
+          </div>
+          <div style={{marginTop:"10px", fontSize:"11px", color:"#6a7a8a", fontStyle:"italic"}}>Common CM values: #14=4,110 · #12=6,530 · #10=10,380 · #8=16,510 · #6=26,240 · #4=41,740 · #2=66,360 · #1/0=105,600 · #2/0=133,100 · #4/0=211,600</div>
+        </div>
+
+        {/* Motor Sizing */}
+        <div style={{background:"#1a2840", border:"1px solid #2a3a54", borderRadius:"10px", padding:"16px", marginBottom:"12px"}}>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"800", marginBottom:"10px"}}>⚙️ MOTOR SIZING · NEC Article 430</div>
+          <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px", marginBottom:"8px"}}>
+            {[
+              ["Branch Conductor","FLA × 125% (min) · 430.22"],
+              ["OCPD (inv. time breaker)","FLA × 250% (max) · 430.52"],
+              ["OCPD (dual element fuse)","FLA × 175% (max) · 430.52"],
+              ["Overload protection","FLA × 115% · 430.32"],
+              ["FLA source (1Ø)","NEC Table 430.248"],
+              ["FLA source (3Ø)","NEC Table 430.250"],
+            ].map(([k,v]) => (
+              <div key={k} style={{background:"rgba(200,168,75,0.06)", borderRadius:"6px", padding:"8px 10px"}}>
+                <div style={{fontSize:"10px", color:"#8899aa", marginBottom:"2px"}}>{k}</div>
+                <div style={{fontSize:"12px", color:"#e8eaf0", fontWeight:"600"}}>{v}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{fontSize:"11px", color:"#6a7a8a", fontStyle:"italic"}}>Standard breaker sizes (240.6): 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 110, 125, 150, 175, 200A</div>
+        </div>
+
+        {/* Box Fill */}
+        <div style={{background:"#1a2840", border:"1px solid #2a3a54", borderRadius:"10px", padding:"16px", marginBottom:"12px"}}>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"800", marginBottom:"10px"}}>📦 BOX FILL · NEC 314.16 · Table 314.16(B)</div>
+          <div style={{display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:"6px", marginBottom:"8px"}}>
+            {[["#14","2.0 in³"],["#12","2.25 in³"],["#10","2.5 in³"],["#8","3.0 in³"],["#6","5.0 in³"]].map(([g,v]) => (
+              <div key={g} style={{textAlign:"center", background:"rgba(200,168,75,0.06)", borderRadius:"6px", padding:"8px 4px"}}>
+                <div style={{fontSize:"13px", fontWeight:"800", color:"#c8a84b"}}>{g}</div>
+                <div style={{fontSize:"11px", color:"#8899aa"}}>{v}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.7"}}>
+            Each conductor = 1× vol · Each device = 2× vol · All grounds = 1× vol · All clamps = 1× vol<br/>
+            Common boxes: 4" sq × 1.5" = 21 in³ · 4" sq × 2.125" = 30.3 in³
+          </div>
+        </div>
+
+        {/* Transformer */}
+        <div style={{background:"#1a2840", border:"1px solid #2a3a54", borderRadius:"10px", padding:"16px", marginBottom:"12px"}}>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"800", marginBottom:"10px"}}>🔌 TRANSFORMER · NEC 450.3</div>
+          <div style={{fontFamily:"monospace", fontSize:"13px", color:"#e8c878", background:"rgba(200,168,75,0.08)", padding:"10px 12px", borderRadius:"6px", marginBottom:"8px"}}>
+            {"FLA = (kVA × 1000) ÷ V  [1Ø]"}<br/>
+            {"FLA = (kVA × 1000) ÷ (V × 1.732)  [3Ø]"}
+          </div>
+          <div style={{fontSize:"12px", color:"#8899aa", lineHeight:"1.7"}}>
+            Primary OCPD: FLA × 125% · Secondary OCPD: FLA × 125%<br/>
+            No secondary OCPD: primary may be sized at 250%
+          </div>
+        </div>
+
+        {/* Key NEC References */}
+        <div style={{background:"#1a2840", border:"1px solid #2a3a54", borderRadius:"10px", padding:"16px", marginBottom:"8px"}}>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"800", marginBottom:"10px"}}>📖 KEY NEC ARTICLE QUICK REFERENCE</div>
+          <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"4px 16px"}}>
+            {[
+              ["Art. 90","Scope & purpose"],["Art. 100","Definitions"],["Art. 110","General requirements"],
+              ["Art. 210","Branch circuits"],["Art. 215","Feeders"],["Art. 220","Load calculations"],
+              ["Art. 230","Services"],["Art. 240","Overcurrent protection"],["Art. 250","Grounding & bonding"],
+              ["Art. 300","Wiring methods"],["Art. 310","Conductors"],["Art. 314","Boxes"],
+              ["Art. 404","Switches"],["Art. 408","Panelboards"],["Art. 430","Motors"],
+              ["Art. 450","Transformers"],["Art. 700","Emergency systems"],["Table 310.16","Ampacity (Cu/Al)"],
+            ].map(([a,d]) => (
+              <div key={a} style={{fontSize:"11px", padding:"3px 0", borderBottom:"1px solid #2a3a54", display:"flex", gap:"8px"}}>
+                <span style={{color:"#c8a84b", fontWeight:"700", flexShrink:0, minWidth:"70px"}}>{a}</span>
+                <span style={{color:"#8899aa"}}>{d}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{fontSize:"10px", color:"#4a5a6a", textAlign:"center", marginTop:"8px", marginBottom:"4px"}}>
+          West Coast Wire Pro · westcoastwirepro.com · CA Journeyman Electrician Exam Prep · NEC 2023
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── MAIN PAGE ─────────────────────────────────────────────────
 const CALCS = [
   { id:"vd", label:"Voltage Drop", icon:"⚡", desc:"Single & three phase, find VD or wire size" },
   { id:"motor", label:"Motor Sizing", icon:"⚙️", desc:"FLA, branch conductor, OCPD sizing" },
   { id:"transformer", label:"Transformer", icon:"🔌", desc:"Primary/secondary FLA and OCPD" },
   { id:"boxfill", label:"Box Fill", icon:"📦", desc:"NEC 314.16 volume calculations" },
+  { id:"ref", label:"Formula Reference Card", icon:"📄", desc:"All key formulas — printable one-page cheat sheet" },
 ];
 
 export default function CalculationsPage({ onHome , onNavigate }) {
@@ -438,7 +551,8 @@ export default function CalculationsPage({ onHome , onNavigate }) {
       {active === "motor" && <MotorCalc />}
       {active === "transformer" && <TransformerCalc />}
       {active === "boxfill" && <BoxFillCalc />}
-      {active && (
+      {active === "ref" && <RefCard />}
+      {active && active !== "ref" && (
         <div style={s.ctaBanner}>
           <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📝 See How This Shows Up on the Real Exam</div>
           <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"14px"}}>

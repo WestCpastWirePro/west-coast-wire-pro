@@ -198,9 +198,18 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
 
   return (
     <div style={s.app}>
+      <style>{`
+        @media print {
+          .wcw-no-print { display: none !important; }
+          .wcw-print-only { display: block !important; }
+          body { background: white !important; color: #000 !important; }
+          @page { margin: 0.6in; size: letter; }
+        }
+        .wcw-print-only { display: none; }
+      `}</style>
 
       <div style={{padding:"12px 0"}}>
-        <div style={s.card}>
+        <div className="wcw-no-print" style={s.card}>
           <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"14px"}}>📅 BUILD YOUR PLAN</div>
           <div style={{marginBottom:"12px"}}>
             <label style={s.label}>Exam Date</label>
@@ -249,7 +258,43 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
               <div style={{fontSize:"12px", color:"#8899aa", marginTop:"4px"}}>{plan.dailyMins} min/day = {Math.round(plan.dailyMins * plan.daysUntil / 60)} total hours</div>
             </div>
 
-            <div style={{padding:"0 16px"}}>
+            <div className="wcw-no-print" style={{margin:"0 16px 8px"}}>
+              <button style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"14px", padding:"11px"}} onClick={() => window.print()}>
+                🖨️ Print / Save as PDF
+              </button>
+            </div>
+
+            <div className="wcw-print-only">
+              <div style={{fontFamily:"'Segoe UI',sans-serif", color:"#000", padding:"8px 0 16px"}}>
+                <div style={{borderBottom:"3px solid #c8a84b", paddingBottom:"10px", marginBottom:"18px"}}>
+                  <div style={{fontSize:"22px", fontWeight:"900", color:"#1a2840"}}>West Coast Wire Pro — Study Plan</div>
+                  <div style={{fontSize:"12px", color:"#555", marginTop:"4px"}}>
+                    Exam in {plan.daysUntil} days · {plan.weeks} week{plan.weeks!==1?"s":""} · {plan.dailyMins} min/day · {Math.round(plan.dailyMins * plan.daysUntil / 60)} total hours · westcoastwirepro.com
+                  </div>
+                </div>
+                {plan.plan.map(week => (
+                  <div key={week.week} style={{marginBottom:"20px", pageBreakInside:"avoid"}}>
+                    <div style={{fontSize:"14px", fontWeight:"800", color:"#1a2840", borderBottom:"1px solid #c8a84b", paddingBottom:"4px", marginBottom:"8px"}}>
+                      {week.label} <span style={{fontWeight:"400", fontSize:"12px", color:"#666"}}>· {week.dates}</span>
+                    </div>
+                    {week.modules && <div style={{fontSize:"11px", color:"#444", marginBottom:"8px", fontStyle:"italic"}}>Modules: {week.modules}</div>}
+                    {week.tasks.map((task, i) => (
+                      <div key={i} style={{display:"flex", gap:"8px", marginBottom:"7px", alignItems:"flex-start"}}>
+                        <span style={{fontSize:"13px", flexShrink:0, lineHeight:"1.4"}}>{task.icon}</span>
+                        <div style={{fontSize:"12px", color:"#222", lineHeight:"1.45"}}>
+                          <strong>{task.day}:</strong> {task.task}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+                <div style={{borderTop:"1px solid #ccc", paddingTop:"10px", marginTop:"4px", fontSize:"11px", color:"#555", lineHeight:"1.7"}}>
+                  <strong>Study Rules:</strong> Never cram — 45–60 focused minutes beats 3 hours distracted. Run a full 110-question simulation at least 2 weeks before your exam. Scoring under 65%? Reschedule early (free). The Missed Questions deck is your best recovery tool — use it every week.
+                </div>
+              </div>
+            </div>
+
+            <div className="wcw-no-print" style={{padding:"0 16px"}}>
               <div style={{fontSize:"12px", color:"#8899aa", marginBottom:"8px"}}>TAP A WEEK TO EXPAND</div>
               {plan.plan.map(week => {
                 const isExpanded = expandedWeek === week.week;

@@ -86,24 +86,67 @@ export default function ExamDayPage({ onHome, onNavigate }) {
 
   return (
     <div style={s.app}>
+      <style>{`
+        @media print {
+          .wcw-no-print { display: none !important; }
+          .wcw-print-only { display: block !important; }
+          body { background: white !important; color: #000 !important; }
+          @page { margin: 0.6in; size: letter; }
+        }
+        .wcw-print-only { display: none; }
+      `}</style>
       <div style={s.header}>
         <span style={{fontSize:"28px"}}>⚡</span>
         <div style={{flex:1}}>
           <div style={s.logo}>Exam Day Guide</div>
           <div style={{fontSize:"12px", color:"#8899aa"}}>What to expect at the PSI testing center</div>
         </div>
-        <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
+        <div style={{display:"flex", gap:"8px", alignItems:"center"}}>
+          <button className="wcw-no-print" style={{...s.btn, background:"rgba(200,168,75,0.15)", color:"#c8a84b", border:"1px solid rgba(200,168,75,0.4)", padding:"8px 14px", fontSize:"13px"}} onClick={() => window.print()}>🖨️ Print</button>
+          <button style={{...s.btn, ...s.btnGray, padding:"8px 14px", fontSize:"13px"}} onClick={onHome}>Menu</button>
+        </div>
       </div>
 
       {/* Countdown banner if exam date is set */}
       <ExamCountdown />
 
-      <div style={{padding:"4px 0 8px"}}>
+      <div className="wcw-no-print" style={{padding:"4px 0 8px"}}>
         <div style={{padding:"0 16px 4px", fontSize:"13px", color:"#8899aa", lineHeight:"1.5"}}>
           Everything you need to know about the day itself — logistics, the PSI interface, strategy, and what happens after.
         </div>
       </div>
 
+      <div className="wcw-print-only">
+        <div style={{fontFamily:"'Segoe UI',sans-serif", color:"#000", padding:"16px 20px 0"}}>
+          <div style={{borderBottom:"3px solid #c8a84b", paddingBottom:"8px", marginBottom:"16px"}}>
+            <div style={{fontSize:"20px", fontWeight:"900", color:"#1a2840"}}>CA Journeyman Exam — Day-Of Guide</div>
+            <div style={{fontSize:"11px", color:"#555", marginTop:"4px"}}>West Coast Wire Pro · westcoastwirepro.com</div>
+          </div>
+          {SECTIONS.map((section, si) => (
+            <div key={si} style={{marginBottom:"16px", pageBreakInside:"avoid"}}>
+              <div style={{fontSize:"13px", fontWeight:"800", color:"#1a2840", borderBottom:"1px solid #c8a84b", paddingBottom:"3px", marginBottom:"7px"}}>{section.title}</div>
+              {section.content.map((item, j) => (
+                <div key={j} style={{marginBottom:"5px", fontSize:"11px", lineHeight:"1.5", color: item.type==="warn"?"#c0392b":item.type==="tip"?"#7a5e10":"#222"}}>
+                  {item.type==="warn" ? "⚠️ " : item.type==="tip" ? "💡 " : "✓ "}{item.text}
+                </div>
+              ))}
+            </div>
+          ))}
+          <div style={{borderTop:"2px solid #c8a84b", paddingTop:"10px", marginTop:"4px"}}>
+            <div style={{fontSize:"12px", fontWeight:"800", color:"#1a2840", marginBottom:"6px"}}>QUICK REFERENCE</div>
+            <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3px 24px"}}>
+              {[["Time allowed","4 hr 30 min"],["Questions","110 multiple choice"],["Passing score","70%"],["Result","Immediate on screen"],["NEC Codebook","Provided by PSI — no personal copy"],["Calculator","On-screen only (no personal)"],["Arrive","30 min early minimum"],["IDs","2 government-issued photo IDs"]].map(([k,v]) => (
+                <div key={k} style={{fontSize:"10px", padding:"3px 0", borderBottom:"1px solid #eee", display:"flex", justifyContent:"space-between", gap:"8px"}}>
+                  <span style={{color:"#666"}}>{k}</span>
+                  <span style={{fontWeight:"700", color:"#1a2840", textAlign:"right"}}>{v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="wcw-no-print">
       {SECTIONS.map((section, i) => (
         <div key={i}>
           <div style={{...s.card, cursor:"pointer", borderColor:open===i?"rgba(200,168,75,0.5)":"#2a3a54"}}
@@ -154,6 +197,7 @@ export default function ExamDayPage({ onHome, onNavigate }) {
           </button>
         </div>
       </div>
+      </div>{/* end wcw-no-print */}
     </div>
   );
 }
