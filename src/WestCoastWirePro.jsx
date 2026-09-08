@@ -524,18 +524,18 @@ const ALL_QUESTIONS = [
 // MODULE METADATA
 // ═══════════════════════════════════════════════════════════
 const MODULES = [
-  {id:1,name:"Definitions & General",color:"#e74c3c",articles:"Articles 90, 100, 110"},
-  {id:2,name:"Wiring & Overcurrent",color:"#e67e22",articles:"Articles 210, 215, 220, 240"},
-  {id:3,name:"Services & Feeders",color:"#f39c12",articles:"Articles 215, 225, 230"},
-  {id:4,name:"Grounding & Bonding",color:"#27ae60",articles:"Article 250"},
-  {id:5,name:"Wiring",color:"#16a085",articles:"Articles 300-392"},
-  {id:6,name:"Equipment General Use",color:"#2980b9",articles:"Articles 400-490"},
-  {id:7,name:"Special Occupancies",color:"#8e44ad",articles:"Articles 500-590"},
-  {id:8,name:"Motors & Transformers",color:"#c0392b",articles:"Articles 430, 450"},
-  {id:9,name:"Communications & Emergency",color:"#d35400",articles:"Articles 700-800"},
-  {id:10,name:"Calculations & Trade Math",color:"#1abc9c",articles:"Chapter 9, Table 310.16"},
-  {id:11,name:"California-Specific",color:"#e67e22",articles:"CSLB, DIR, Cal/OSHA, Title 24"},
-  {id:12,name:"Safety, Maintenance & Repair",color:"#2c3e50",articles:"NFPA 70E, Cal/OSHA"},
+  {id:1,name:"Definitions & General",color:"#e74c3c",icon:"📖",articles:"Articles 90, 100, 110"},
+  {id:2,name:"Wiring & Overcurrent",color:"#e67e22",icon:"⚡",articles:"Articles 210, 215, 220, 240"},
+  {id:3,name:"Services & Feeders",color:"#f39c12",icon:"🔌",articles:"Articles 215, 225, 230"},
+  {id:4,name:"Grounding & Bonding",color:"#27ae60",icon:"🔋",articles:"Article 250"},
+  {id:5,name:"Wiring",color:"#16a085",icon:"🪛",articles:"Articles 300-392"},
+  {id:6,name:"Equipment General Use",color:"#2980b9",icon:"🔧",articles:"Articles 400-490"},
+  {id:7,name:"Special Occupancies",color:"#8e44ad",icon:"🏭",articles:"Articles 500-590"},
+  {id:8,name:"Motors & Transformers",color:"#c0392b",icon:"⚙️",articles:"Articles 430, 450"},
+  {id:9,name:"Communications & Emergency",color:"#d35400",icon:"📡",articles:"Articles 700-800"},
+  {id:10,name:"Calculations & Trade Math",color:"#1abc9c",icon:"🧮",articles:"Chapter 9, Table 310.16"},
+  {id:11,name:"California-Specific",color:"#e67e22",icon:"🐻",articles:"CSLB, DIR, Cal/OSHA, Title 24"},
+  {id:12,name:"Safety, Maintenance & Repair",color:"#2c3e50",icon:"🦺",articles:"NFPA 70E, Cal/OSHA"},
 ];
 
 export { ALL_QUESTIONS, MODULES };
@@ -681,6 +681,35 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
   const modCounts = {};
   ALL_QUESTIONS.forEach(q => { modCounts[q.mod] = (modCounts[q.mod]||0)+1; });
+
+  const modHistory = (() => {
+    try {
+      const h = JSON.parse(localStorage.getItem("wrp_history") || "[]");
+      const stats = {};
+      h.forEach(e => (e.mods||[]).forEach(x => {
+        if (!x) return;
+        if (!stats[x.mod]) stats[x.mod] = {correct:0,total:0};
+        stats[x.mod].correct += x.correct;
+        stats[x.mod].total += x.total;
+      }));
+      return stats;
+    } catch(e) { return {}; }
+  })();
+
+  const streak = (() => {
+    try {
+      const h = JSON.parse(localStorage.getItem("wrp_history") || "[]");
+      const daySet = new Set(h.map(e => new Date(e.date).toDateString()));
+      let count = 0;
+      let checkDate = new Date();
+      if (!daySet.has(checkDate.toDateString())) checkDate.setDate(checkDate.getDate() - 1);
+      for (let i = 0; i < 60; i++) {
+        if (daySet.has(checkDate.toDateString())) { count++; checkDate.setDate(checkDate.getDate() - 1); }
+        else break;
+      }
+      return count;
+    } catch(e) { return 0; }
+  })();
 
   useEffect(() => {
     if (timedMode && screen === "quiz" && selected === null && !timeExpired) {
@@ -870,8 +899,9 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             onClick={startQuiz}>
             Start Practice Quiz ⚡
           </button>
-          <div style={{fontSize:"11px", color:"#6a7a8a", textAlign:"center", marginTop:"6px"}}>
-            {selectedMods.length === 0 ? "All modules" : `${selectedMods.length} module${selectedMods.length>1?"s":""} selected`} · {quizSize} questions{timedMode ? " · Timed" : ""}
+          <div style={{fontSize:"11px", color:"#6a7a8a", textAlign:"center", marginTop:"6px", display:"flex", justifyContent:"center", alignItems:"center", gap:"8px", flexWrap:"wrap"}}>
+            <span>{selectedMods.length === 0 ? "All modules" : `${selectedMods.length} module${selectedMods.length>1?"s":""} selected`} · {quizSize} questions{timedMode ? " · Timed" : ""}</span>
+            {streak > 0 && <span style={{fontWeight:"700", color:"#e67e22"}}>🔥 {streak} day{streak>1?"s":""}</span>}
           </div>
         </div>
 
@@ -985,18 +1015,43 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         )}
         <div style={styles.card}>
           <div style={{fontSize:"13px", color:"#7a5e10", fontWeight:"700", marginBottom:"12px"}}>📚 SELECT MODULES</div>
-          <div style={{marginBottom:"8px", fontSize:"12px", color:"#4a5a6a"}}>Tap to include (empty = all modules)</div>
+          <div style={{marginBottom:"10px", fontSize:"12px", color:"#4a5a6a"}}>Tap to include · empty = all modules</div>
+          <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}}>
           {MODULES.map(m => {
             const isLocked = access === "free" && PAID_MODS.includes(m.id);
+            const isSelected = selectedMods.includes(m.id);
+            const mStat = modHistory[m.id];
+            const mPct = mStat && mStat.total > 0 ? Math.round((mStat.correct/mStat.total)*100) : null;
             return (
-              <span key={m.id}
-                style={{...styles.chip, ...(selectedMods.includes(m.id)?styles.chipActive:styles.chipInactive), ...(isLocked?{opacity:0.55}:{})}}
+              <div key={m.id}
                 onClick={() => isLocked ? setScreen("paywall") : setSelectedMods(s => s.includes(m.id)?s.filter(x=>x!==m.id):[...s,m.id])}
-                title={isLocked ? "Upgrade to unlock this module" : ""}>
-                {isLocked ? "🔒 " : ""}{m.name} <span style={{opacity:0.7}}>({modCounts[m.id]||0})</span>
-              </span>
+                style={{
+                  borderRadius:"10px",
+                  border: isSelected ? `2px solid ${m.color}` : "2px solid #d0d8e8",
+                  background: isSelected ? `${m.color}18` : "#fff",
+                  padding:"10px",
+                  cursor:"pointer",
+                  opacity: isLocked ? 0.6 : 1,
+                  transition:"all 0.15s",
+                  userSelect:"none"
+                }}>
+                <div style={{display:"flex", alignItems:"flex-start", gap:"6px", marginBottom:"5px"}}>
+                  <span style={{fontSize:"17px", flexShrink:0}}>{isLocked ? "🔒" : m.icon}</span>
+                  <span style={{fontSize:"11px", fontWeight:"700", color: isSelected ? m.color : "#1a2840", lineHeight:"1.35"}}>{m.name}</span>
+                </div>
+                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom: mPct !== null ? "4px" : "0"}}>
+                  <span style={{fontSize:"10px", color:"#8899aa"}}>{modCounts[m.id]||0} Qs</span>
+                  {mPct !== null && <span style={{fontSize:"10px", fontWeight:"800", color: mPct>=70?"#27ae60":"#e74c3c"}}>{mPct}%</span>}
+                </div>
+                {mPct !== null && (
+                  <div style={{height:"3px", background:"#e0e8f0", borderRadius:"2px"}}>
+                    <div style={{height:"100%", borderRadius:"2px", width:`${mPct}%`, background: mPct>=70?"#27ae60":"#e74c3c"}}/>
+                  </div>
+                )}
+              </div>
             );
           })}
+          </div>
         </div>
 
         <div style={styles.card}>
@@ -1339,17 +1394,22 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             {q.q}
           </div>
 
+          <style>{`
+            @keyframes flashGreen{0%,100%{background:rgba(39,174,96,0.12)}40%{background:rgba(39,174,96,0.45)}}
+            @keyframes shakeRed{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+          `}</style>
           <div style={{margin:"0 16px"}}>
             {q.opts.map((opt, i) => {
               let style = {...styles.optionBtn};
+              let anim = {};
               if (selected !== null || timeExpired) {
-                if (i === q.ans) style = {...style, ...styles.optionCorrect};
-                else if (i === selected) style = {...style, ...styles.optionWrong};
+                if (i === q.ans) { style = {...style, ...styles.optionCorrect}; anim = {animation:"flashGreen 0.5s ease"}; }
+                else if (i === selected) { style = {...style, ...styles.optionWrong}; anim = {animation:"shakeRed 0.4s ease"}; }
               } else if (selected === i) {
                 style = {...style, ...styles.optionSelected};
               }
               return (
-                <button key={i} style={style} onClick={() => handleAnswer(i)}>
+                <button key={i} style={{...style,...anim}} onClick={() => handleAnswer(i)}>
                   <span style={{fontWeight:"700", marginRight:"8px", color:"#9a7a20"}}>{String.fromCharCode(65+i)}.</span>{opt}
                 </button>
               );
@@ -1432,12 +1492,40 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
           <button onClick={() => { setScreen("home"); setSelectedMods([]); setSelectedDiffs([]); }} style={{background:"none", border:"none", cursor:"pointer", padding:0, color:"inherit"}}><div style={styles.logo}>Quiz Results</div></button>
         </div>
         <div style={{padding:"16px"}}>
+          {passed && (() => {
+            const pieces = Array.from({length:28},(_,i)=>({
+              left:(i*3.7+i*i*0.13)%100,delay:i*0.06,
+              dur:1.6+(i%5)*0.35,size:i%3===0?10:7,
+              color:["#c8a84b","#27ae60","#e74c3c","#3498db","#9b59b6","#f39c12"][i%6],
+              round:i%2===0
+            }));
+            return (
+              <div style={{position:"fixed",top:0,left:0,right:0,height:"100vh",pointerEvents:"none",zIndex:9999,overflow:"hidden"}}>
+                <style>{`@keyframes cfall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}`}</style>
+                {pieces.map((p,i)=>(
+                  <div key={i} style={{position:"absolute",left:`${p.left}%`,top:"-16px",width:`${p.size}px`,height:`${p.size}px`,borderRadius:p.round?"50%":"2px",background:p.color,animation:`cfall ${p.dur}s ${p.delay}s ease-in forwards`}}/>
+                ))}
+              </div>
+            );
+          })()}
           <div style={{...styles.card, textAlign:"center", borderColor: passed?"#27ae60":"#e74c3c"}}>
-            <div style={{fontSize:"64px", fontWeight:"900", color: passed?"#2ecc71":"#e74c3c"}}>{finalPct}%</div>
-            <div style={{fontSize:"20px", fontWeight:"700", color: passed?"#2ecc71":"#e74c3c", marginBottom:"8px"}}>
-              {passed ? "PASS ✓" : "NEEDS WORK ✗"}
+            <div style={{display:"flex", justifyContent:"center", marginBottom:"8px"}}>
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="56" fill="none" stroke="#e0e8f0" strokeWidth="10"/>
+                <circle cx="70" cy="70" r="56" fill="none"
+                  stroke={passed?"#27ae60":"#e74c3c"} strokeWidth="10"
+                  strokeDasharray={`${2*Math.PI*56*finalPct/100} ${2*Math.PI*56}`}
+                  strokeLinecap="round"
+                  transform="rotate(-90 70 70)"
+                  style={{transition:"stroke-dasharray 0.8s ease"}}
+                />
+                <text x="70" y="63" textAnchor="middle" fontSize="28" fontWeight="900"
+                  fill={passed?"#2ecc71":"#e74c3c"} fontFamily="'Segoe UI',system-ui,sans-serif">{finalPct}%</text>
+                <text x="70" y="83" textAnchor="middle" fontSize="13" fontWeight="700"
+                  fill={passed?"#27ae60":"#e74c3c"} fontFamily="'Segoe UI',system-ui,sans-serif">{passed?"✓ PASS":"NEEDS WORK"}</text>
+              </svg>
             </div>
-            <div style={{fontSize:"14px", color:"#8899aa"}}>{score.correct} correct / {quizQuestions.length} questions</div>
+            <div style={{fontSize:"14px", color:"#8899aa"}}>{score.correct} correct out of {quizQuestions.length} questions</div>
           </div>
 
           <div style={styles.card}>
