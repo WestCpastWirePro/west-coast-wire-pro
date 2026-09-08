@@ -1166,45 +1166,75 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             Module 1 — Definitions &amp; General · Module 2 — Wiring &amp; Overcurrent · 75 practice questions · NEC explanations on every answer · Table 310.16 &amp; Conduit Fill drills
           </div>
         </div>
-        <div style={{textAlign:"center", padding:"16px 16px 16px"}}>
-          <div style={{fontSize:"48px", marginBottom:"12px"}}>🔓</div>
-          <div style={{fontSize:"24px", fontWeight:"800", color:"#c8a84b", marginBottom:"8px"}}>Unlock Full Access</div>
+        {daysUntilExam !== null && daysUntilExam > 0 && (
+          <div style={{background:"linear-gradient(135deg,rgba(231,76,60,0.1),rgba(231,76,60,0.05))", border:"1px solid rgba(231,76,60,0.4)", borderRadius:"8px", padding:"12px 16px", marginBottom:"16px", textAlign:"center"}}>
+            <div style={{fontSize:"15px", fontWeight:"800", color:"#e74c3c", marginBottom:"2px"}}>⏰ Exam in {daysUntilExam} days</div>
+            <div style={{fontSize:"12px", color:"#8899aa"}}>10 of 12 modules are currently locked. Don't walk in blind.</div>
+          </div>
+        )}
+        <div style={{textAlign:"center", padding:"16px 16px 8px"}}>
+          <div style={{fontSize:"48px", marginBottom:"10px"}}>⚡</div>
+          <div style={{fontSize:"26px", fontWeight:"900", color:"#c8a84b", marginBottom:"8px", lineHeight:"1.2"}}>Pass the CA Journeyman Exam</div>
           <div style={{fontSize:"14px", color:"#8899aa", lineHeight:"1.6", maxWidth:"340px", margin:"0 auto"}}>
-            Standard unlocks all 12 modules — including Study Planner and Progress Dashboard. Pro adds the four highest-intensity exam tools: Code Sprint, Table Mastery, Missed Questions, and High-Priority Drill.
+            500 NEC 2023-based questions with a full explanation on every answer. Free gives you 2 of 12 modules — unlock everything PSI tests.
           </div>
         </div>
 
         {/* Plan Cards */}
         {[
           {
-            name:"Standard", price:"$29.99", tag:"Most Popular",
-            features:["All 12 modules — 500 questions","Timed & untimed modes","Difficulty filtering","Module score breakdown","Exam Simulator (110Q)","NEC Reference & Calculations","Progress saved"],
-            accent:"#c8a84b", tier:"standard"
+            name:"Standard", price:"$29.99", tag:"FULL QUESTION BANK",
+            tagColor:"#c8a84b",
+            features:[
+              "All 12 modules — 500 practice questions",
+              "See exactly which modules you're weak in",
+              "Timed mode + difficulty filtering",
+              "110-question full Exam Simulator",
+              "NEC Reference + Calculations Helper",
+              "Study Planner with daily schedule",
+              "Progress Dashboard — track everything"
+            ],
+            tier:"standard"
           },
           {
-            name:"Pro", price:"$59.99", tag:"Best Value",
-            pitch:"For the candidate who wants every available edge.", features:["Everything in Standard","Code Sprint — NEC article navigation under pressure","Full Table Mastery — 10 tables, 113 flashcards","Missed Questions deck — spaced repetition on your wrong answers","High-Priority Drill — 25 questions on the most-tested CA topics",],
-            accent:"#e8c878", tier:"pro"
+            name:"Pro", price:"$59.99", tag:"MOST COMPLETE PREP",
+            tagColor:"#a855f7",
+            pitch:"Everything in Standard, plus 4 tools built for the hardest parts of the CA exam.",
+            features:[
+              "Everything in Standard",
+              "Code Sprint — find any NEC article in seconds under pressure",
+              "Table Mastery — 113 flashcards across 10 calculation tables",
+              "Missed Questions Deck — auto-reviews every wrong answer",
+              "High-Priority Drill — 25 Qs on the most-tested CA topics"
+            ],
+            tier:"pro"
           }
         ].map(plan => (
-          <div key={plan.tier} style={{...styles.card, borderColor: plan.tier==="standard"?"#c8a84b":"#2a3a54", marginBottom:"12px"}}>
+          <div key={plan.tier} style={{...styles.card,
+            borderColor: plan.tier==="pro"?"#8e44ad":"#c8a84b",
+            marginBottom:"12px",
+            background: plan.tier==="pro"?"linear-gradient(135deg,rgba(142,68,173,0.1),rgba(142,68,173,0.03))":"#ffffff"
+          }}>
             <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"12px"}}>
               <div>
-                <div style={{fontSize:"11px", color:"#c8a84b", fontWeight:"700", letterSpacing:"1px", marginBottom:"4px"}}>{plan.tag}</div>
+                <div style={{fontSize:"10px", color:plan.tagColor, fontWeight:"700", letterSpacing:"1.5px", marginBottom:"4px"}}>{plan.tag}</div>
                 <div style={{fontSize:"22px", fontWeight:"800"}}>{plan.name}</div>
               </div>
-              <div style={{fontSize:"32px", fontWeight:"900", color:"#c8a84b"}}>{plan.price}</div>
+              <div style={{fontSize:"32px", fontWeight:"900", color:plan.tagColor}}>{plan.price}</div>
             </div>
-            {plan.pitch && <div style={{fontSize:"12px", color:"#c8a84b", fontStyle:"italic", marginBottom:"12px", lineHeight:"1.5"}}>{plan.pitch}</div>}
+            {plan.pitch && <div style={{fontSize:"12px", color:"#8899aa", marginBottom:"12px", lineHeight:"1.55"}}>{plan.pitch}</div>}
             <ul style={{listStyle:"none", marginBottom:"16px"}}>
               {plan.features.map((f,i) => (
                 <li key={i} style={{fontSize:"13px", color:"#aabbcc", padding:"5px 0", borderBottom:"1px solid rgba(255,255,255,0.04)", display:"flex", gap:"8px"}}>
-                  <span style={{color:"#27ae60"}}>✓</span> {f}
+                  <span style={{color:"#27ae60", flexShrink:0}}>✓</span> {f}
                 </li>
               ))}
             </ul>
             <button
-              style={{...styles.btn, ...(plan.tier==="standard"?styles.btnGold:{background:"#2a3a54",color:"#c8a84b"}), width:"100%", fontSize:"16px"}}
+              style={{...styles.btn, width:"100%", fontSize:"16px",
+                background: plan.tier==="standard"?"linear-gradient(135deg,#c8a84b,#e8c878)":"linear-gradient(135deg,#8e44ad,#a855f7)",
+                color: plan.tier==="standard"?"#0f1923":"#fff"
+              }}
               onClick={async () => {
                 try {
                   const res = await fetch('/api/create-checkout', {
@@ -1218,7 +1248,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
                   alert('Something went wrong. Please try again.');
                 }
               }}>
-              Get {plan.name} Access — {plan.price}
+              Get {plan.name} — {plan.price}
             </button>
           </div>
         ))}
@@ -1269,18 +1299,18 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
         <div style={{...styles.card, borderColor:"#8e44ad", background:"linear-gradient(135deg,rgba(142,68,173,0.12),rgba(142,68,173,0.04))"}}>
           <div style={{display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"12px"}}>
             <div>
-              <div style={{fontSize:"11px", color:"#a855f7", fontWeight:"700", letterSpacing:"1px", marginBottom:"4px"}}>UPGRADE PRICE</div>
-              <div style={{fontSize:"22px", fontWeight:"800"}}>Standard → Pro</div>
+              <div style={{fontSize:"11px", color:"#a855f7", fontWeight:"700", letterSpacing:"1px", marginBottom:"4px"}}>ADD TO YOUR STANDARD PLAN</div>
+              <div style={{fontSize:"22px", fontWeight:"800"}}>Upgrade to Pro</div>
             </div>
             <div style={{textAlign:"right"}}>
-              <div style={{fontSize:"13px", color:"#5a6a7a", textDecoration:"line-through", marginBottom:"2px"}}>$59.99</div>
-              <div style={{fontSize:"32px", fontWeight:"900", color:"#a855f7"}}>$30</div>
+              <div style={{fontSize:"11px", color:"#7a8a9a", marginBottom:"2px"}}>upgrade price</div>
+              <div style={{fontSize:"32px", fontWeight:"900", color:"#a855f7"}}>+$30</div>
             </div>
           </div>
 
           <div style={{fontSize:"12px", color:"#a855f7", fontWeight:"700", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"1px"}}>What you're adding:</div>
           {[
-            ["📖", "Code Sprint", "NEC article navigation game — train your brain to find any article fast under exam pressure"],
+            ["📖", "Code Sprint", "Know where to find any NEC article in seconds — the skill that separates pass from fail on open-book questions"],
             ["🏆", "Table Mastery", "113 flashcards across 10 NEC tables — the most common exam calculation source"],
             ["🔁", "Missed Questions Deck", "Auto-builds a review deck from every question you've gotten wrong"],
             ["🎯", "High-Priority Drill", "25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline"],
