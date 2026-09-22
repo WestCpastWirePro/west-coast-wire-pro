@@ -465,6 +465,80 @@ Open book is an advantage. But only if you have done the work.
   },
   // ── END DRAFTS ─────────────────────────────────────────────────────────────
   {
+    slug: 'something-changed-2023-california-journeyman-exam',
+    title: 'Something Changed in 2023: What Five Years of California Journeyman Exam Comments Actually Show',
+    date: 'September 21, 2026',
+    category: 'Exam Prep',
+    excerpt: 'We tracked calculation advice, NEC navigation, and anxiety mentions year by year from 2021 to 2026. One number in 2023 doubled in a single year. Here is what the data shows and what it means for how you prepare right now.',
+    readTime: '6 min read',
+    content: `
+Something changed in 2023. Not in a vague "the exam is harder" way. The data shows it specifically.
+
+We spent weeks going through YouTube comment sections on every video we could find about the California journeyman exam so you don't have to. Thousands of comments across five years. Every piece of advice tracked and counted. The goal was to take the same hours of frustrating, contradictory searching that most people go through and turn it into something actually useful. Here is what we found.
+
+---
+
+## One Thing Worth Saying Up Front
+
+Nobody has the actual exam questions. Not us, not any prep course, not any study guide. The questions belong to the California Department of Labor Standards Enforcement and PSI. Any product claiming to sell "real exam questions" or a "bank of questions from the actual test" is not being straight with you. There is no legal way to get those questions.
+
+Passing this exam comes down to three things: knowing where information lives in the NEC, being fast enough to get there under time pressure, and knowing the calculation formulas cold. That is it. That is what the data in this article points to every single year.
+
+---
+
+## The Spike
+
+In 2022, mentions of calculation practice showed up in 7.1% of all comments from that year. In 2023 it jumped to 16.2%. That is more than double in a single year.
+
+![Line chart showing how CA journeyman exam advice topics shifted year over year from 2021 to 2026. Calculation practice spikes sharply in 2023 before declining.|Top advice categories as a percentage of each year's comments, 2021 to 2026. Source: westcoastwirepro.com](/blog/chart_trends.png)
+
+That spike lines up directly with California moving to the 2023 NEC. New cycle brought updated calculation requirements, surge protection changes, more AFCI and GFCI scope. People who had taken the exam before 2023 were giving advice based on a different test. Guys who sat for it in 2023 came back to the comment sections and kept saying the same thing: the calculations hit different. You have to actually know how to do them, not just recognize the formula.
+
+If you relied on advice from someone who passed in 2021 or 2022, that is why some of it may have felt off when you cracked open your NEC.
+
+---
+
+## What Happened After
+
+By 2024 the calculation mentions dropped back to 8.9%. By 2025 and 2026 they settled in the 5 to 8 percent range. Two things happened.
+
+First, prep resources caught up. Once the 2023 NEC had been the active code for a full cycle, people knew what to expect.
+
+Second, a different problem moved to the front. NEC navigation went from roughly 3 to 4 percent in 2021 and 2022 up to 7.5 percent in 2025. The tabbing and marking category went from near zero to 8.7 percent in the same year. Combined, those two things were the dominant prep theme by 2025.
+
+That pattern makes sense to anyone who has worked with the code book long enough. The calculation problem is fixable with reps. You grind the formulas until they are automatic. The speed problem is trickier, because it is not about knowing the answer, it is about getting to the right section fast enough that the answer actually matters.
+
+Guys who have been on the job a while already know roughly where things live in the NEC because they use it. The guys who are earlier in their apprenticeship have to build that mental map deliberately, through practice, not just by reading the code once.
+
+---
+
+## The One Number That Never Moved
+
+Across all six years in the data, mindset and anxiety mentions stayed between 4 and 13 percent every year. It does not spike when the code changes. It does not drop as prep resources improve.
+
+That should tell you something. The technical side of this exam is a solvable problem. More reps, better materials, more time in the code book. The part where you are sitting in a testing center with everything on the line and the clock running, that does not go away with more study hours. The people who mentioned managing it were not underprepared. They were often the ones who passed. They knew going in that it was going to be uncomfortable and they had a plan: skip the questions you are not sure about, come back to them, do not blow six minutes chasing something in the code when you are not even sure which article to look in.
+
+That is not a soft skill. That is exam strategy, and the data says people are still figuring it out the hard way.
+
+---
+
+## What This Means If You Are Studying Right Now
+
+The 2023 NEC is the current version for the California journeyman exam. The calculation spike is behind you, but the calculations are still on the test. What the most recent years in the data point to: the people passing right now are the ones who can move through the NEC fast and who have actually worked the math problems before, not just watched someone else do them.
+
+Three things the five-year trend points to directly:
+
+If your prep materials are not built around the 2023 NEC, check before you trust them. The code changed enough that advice from before 2023 can point you in the wrong direction on calculations specifically.
+
+NEC navigation speed is the thing showing up most consistently in recent data. Knowing where to look is not the same as being able to get there in time. That takes reps with the actual code book.
+
+Anxiety is not a sign that you are not ready. It is just part of the exam. Have a pacing strategy going in.
+
+---
+
+We went through the comment sections so you don't have to spend weeks feeling like you still have no clear answer. [West Coast Wire Pro](https://westcoastwirepro.com) is built for the current 2023 NEC exam version. 500 NEC-tied practice questions and four free calculators covering voltage drop, motor sizing, transformer calculations, and box fill. No shortcuts, no fake question banks. Just the prep that the data says works.`,
+  },
+  {
     slug: 'what-nobody-tells-you-california-journeyman-exam',
     title: "What Nobody on YouTube Tells You About the CA Journeyman Exam",
     date: 'September 3, 2026',
@@ -527,50 +601,111 @@ You do not need to spend weeks in comment sections. The pattern is already clear
     excerpt: "We pulled 2,987 YouTube comments from people who sat for the CA journeyman exam and coded every piece of advice into categories. Here are the real numbers on what actually comes up and what the crowd-sourced advice misses.",
     readTime: '7 min read',
     content: `
-When I was studying for the California journeyman electrician exam, I did what most people do: went to YouTube, Reddit, and Facebook groups and started reading. Weeks later I had dozens of tabs open and a list of conflicting advice that got longer every day.
+When I was studying for the California journeyman exam, I did what everyone does. Went to YouTube, started reading comments, ended up with a dozen tabs open and a list of advice that contradicted itself at every turn. Tab your book. Don't bother tabbing, just know where to look. Buy Tom Henry. Tom Henry is outdated. Take a prep course. Prep courses are a waste of money.
 
 Nobody agreed on anything. And nobody had numbers.
 
-So we built the numbers.
+So we went back and built the numbers for you.
+
+We spent weeks going through YouTube comments so you don't have to. Thousands of comments, dozens of videos, five years of data. Every piece of advice coded and counted. The goal was simple: instead of leaving you to wade through the same comment sections and come out just as confused as when you started, we did that work and put the actual numbers in front of you. Here is what they show.
 
 ---
 
-## The Methodology
+## One Thing Worth Saying Up Front
 
-We pulled 2,987 comments from 44 YouTube videos about passing the California journeyman electrician exam, published between February 2021 and September 2026. We filtered for comments that contained actual advice rather than congratulations or off-topic replies. 1,255 comments (42.0% of the dataset) contained at least one identifiable piece of advice. We coded those into 16 distinct categories. Every percentage uses 2,987 as the denominator. No cherry-picking.
+Nobody has the actual exam questions. Not us, not any prep course, not any study guide. The questions on the California journeyman exam belong to the California Department of Labor Standards Enforcement and PSI. Any product or service that claims to have "real exam questions" or a "question bank from the actual test" is not being straight with you. There is no legal way to obtain those questions.
 
-![What people actually say about passing the CA journeyman exam. Bar chart of 16 advice categories ranked by how often they appeared across 2,987 YouTube comments from 2021 to 2026.|Advice categories by % of all 2,987 comments. Source: westcoastwirepro.com](/blog/chart_advice_categories.png)
-
-The top finding: NEC navigation and tabbing together account for 11.5% of all comments, making it the most discussed topic. Calculation practice is second at 10.0%. Field experience is third at 8.1%.
-
-This data is the foundation for a full series of posts. Each one goes deep on a single topic from the dataset.
+What you can do is understand the code book well enough to find any answer under time pressure, know the formulas cold, and know which tables to go to for which problem. That is how people pass. That is what the data in this article points to. That is what we built West Coast Wire Pro around.
 
 ---
 
-## The Full Series
+## How We Did This
 
-**[What Nobody on YouTube Tells You About the CA Journeyman Exam](blog-post:what-nobody-tells-you-california-journeyman-exam)**: The two gaps in crowd-sourced advice that nobody talks about.
+We pulled 2,987 comments from 44 YouTube videos about passing the California journeyman electrician exam, published between February 2021 and September 2026. We filtered out promotional content and anything that was just congratulations or off-topic. 1,255 comments, 42% of the total, had at least one identifiable piece of advice. We coded those into 16 categories. Every percentage in this article uses the same denominator: 2,987 total comments. No cherry-picking.
 
-**The CA Journeyman Exam Is Open Book. Here's Why That's Not as Easy as It Sounds.**: Coming soon.
-
-**The 5 Calculations That Show Up on the CA Journeyman Exam**: Coming soon.
-
-**Does Field Experience Actually Help You Pass?**: Coming soon.
-
-**How to Use Practice Tests (Most People Get the Timing Wrong)**: Coming soon.
-
-**What to Expect at the PSI Testing Center**: Coming soon.
-
-**You Studied. You're Still Nervous. Here's How to Handle Exam Anxiety.**: Coming soon.
-
-**What Resources Do People Actually Recommend?**: Coming soon.
-
-**CA Journeyman Exam Advice in 2021 vs 2026: What Changed**: Coming soon.
+One thing we left out: no content from any exam prep product or course website. These are comments from electricians and apprentices who sat for the exam and came back to say what happened.
 
 ---
 
-[West Coast Wire Pro](https://westcoastwirepro.com) was built specifically for this exam. 500 NEC-tied practice questions and four free calculators covering voltage drop, motor sizing, transformer calculations, and box fill. Start with Modules 1 and 2 free.
-`,
+## The Numbers
+
+Here is every advice category that showed up in the data, ranked by how often it came up.
+
+![What people actually say about passing the CA journeyman exam. Bar chart of 16 advice categories ranked by how often they appeared across 2,987 YouTube comments from 2021 to 2026.|Advice categories by % of all 2,987 comments, 2021 to 2026. Comments could match more than one category. Source: westcoastwirepro.com](/blog/chart_advice_categories.png)
+
+A few things stand out right away.
+
+When you combine NEC code book navigation (6.1%) with tabbing and marking your book (5.4%), you get 11.5% of all comments touching on that theme. That is the single most discussed topic in the data once you group related ideas together. Nearly one in eight comments about this exam mentions knowing how to move through the NEC. That should tell you something about what the open book exam actually tests.
+
+Calculation practice is at 10.0% as its own category. These are not people saying math is important in a general way. These are specific mentions of voltage drop, motor sizing, transformer calculations, box fill, conduit fill, and load calculations. The exact problems that show up on the exam.
+
+Field experience at 8.1% is real advice, not filler. Guys with more time in the field pass at higher rates because they have already seen the scenarios. When a question describes a residential service entrance or a motor branch circuit, they can picture it. If you are earlier in your apprenticeship, you cannot shortcut the time you have not put in, but you can close the gap with more deliberate code work.
+
+Here is what people mentioned by name when it came to resources and products.
+
+![Resources and products mentioned by name across 2,987 comments about the CA journeyman exam. Community college prep classes came up most at 0.9 percent.|Specific resources mentioned across 2,987 comments. NEC 2020 and NEC 2023 listed separately. Source: westcoastwirepro.com](/blog/chart_resources.png)
+
+Community college and trade school prep classes came up most at 0.9% of comments. The NEC itself at 0.5% for 2023 and 0.3% for 2020. Ugly's Electrical Reference at 0.4%. Tom Henry books at 0.2%.
+
+The real takeaway from that chart is not which product won. It is how low all the numbers are. The most-mentioned resource appears in less than 1% of comments. People are way more likely to recommend a study approach than a specific product. That tells you how scattered the prep landscape is.
+
+Here is how the top categories shifted year over year.
+
+![Line chart showing how California journeyman exam advice topics shifted from 2021 to 2026. Calculation practice spiked sharply in 2023.|Top advice categories over time as a percentage of each year's comments. Source: westcoastwirepro.com](/blog/chart_trends.png)
+
+---
+
+## What the Data Actually Says to Do
+
+## Learn How to Move Through the NEC. Tab It If It Helps.
+
+11.5% of comments touched on this when you combine the navigation and tabbing categories. The California journeyman exam is open book, and the code book is the only resource you get in that room. Passing is not about memorizing the code. It is about being fast enough to find answers while the clock is running.
+
+Most people who bring up tabbing are not saying the tabs are magic. They are saying that when you have navigated the NEC enough times to know roughly where things live, tabbing helps you get there faster. The underlying skill is understanding how the code is structured: how chapters relate to articles, how articles relate to tables, where definitions are, where exceptions hide.
+
+West Coast Wire Pro's 500 practice questions are each tied to a specific NEC section. Every time you answer one and check your work, you are building a map of where things live in the code. That repetition is what makes you fast on exam day, whether your book is tabbed or not.
+
+## Work the Calculations Until They Are Automatic.
+
+10.0% of comments, second-largest category, and the one with the clearest gap between people who put in the reps and people who did not.
+
+The specific calculations that keep showing up in comments: voltage drop, motor sizing, transformer calculations, box fill, conduit fill. These follow formulas that, once you understand them, are repeatable. But you have to actually work through them multiple times before exam day so the process is familiar when you sit down, not something you are figuring out for the first time under pressure.
+
+West Coast Wire Pro has four free calculators built around the calculation types that show up on the California journeyman exam: Voltage Drop, Motor Sizing, Transformer, and Box Fill. Use them to check your hand calculations while you study. When your answer does not match, that is where the learning is.
+
+## Do Practice Questions Under Real Conditions.
+
+1.8% of comments mentioned practice tests specifically. That sounds low but it showed up consistently across all five years and the people who mentioned it framed it the same way every time: do them timed, treat them like the real exam, and do them after you have already studied, not as your first step.
+
+500 practice questions at West Coast Wire Pro, all written for the California journeyman exam, all tied to the NEC sections you will actually be tested on.
+
+## If You Are Short on Field Time, Compensate With Active Code Work.
+
+8.1% of comments. Electricians with more time in the field pass at higher rates because they have seen the work in real life. What you can do is study the code actively instead of passively. Work through problems that require you to look things up the same way the exam will. Do not read the NEC passively. Use it actively.
+
+## Have a Pacing Plan for Exam Day.
+
+5.3% of comments mentioned anxiety, staying calm, or the mental side of taking the exam. The consistent message: people who felt ready still struggled with time pressure and nerves in the testing center. The fix is not motivational. It is tactical. Know you can skip questions and come back. Know roughly how many questions per hour you need to answer. Do not spend six minutes on a problem you are not sure about on the first pass.
+
+---
+
+## What the Advice Misses
+
+Nobody is talking about an integrated approach. The advice splits into two camps: study the code book, or do practice problems. Almost nobody mentions doing both in a structured way where the practice problems are tied to specific NEC sections so that every wrong answer points you somewhere in the code to go learn. That gap between scattered prep and systematic prep is where most people leave points on the table.
+
+California-specific prep is also almost invisible in the resource recommendations. The NEC applies everywhere, but the California journeyman exam is not a generic NEC test. It has a specific scope, a specific code year, and calculation types that appear with predictable frequency. The most recommended resources are general electrical reference books, not products built around this specific exam.
+
+West Coast Wire Pro is built for the California journeyman exam specifically. The questions are written for that exam by someone who has been in the field, based on the actual content outline and the code sections that get tested. Not copied from the exam. Built around it.
+
+---
+
+## The Short Version
+
+We did the research so you don't have to spend weeks in comment sections feeling like you still don't have a clear answer. 2,987 comments, five years of data, coded and counted. The pattern is clear: know how to move through the NEC fast, practice the calculation types that appear on the exam, understand the code well enough to find answers not just recognize them, and do timed practice under realistic conditions before exam day.
+
+Learn the NEC, work the math, do real practice questions. Everything else in the comment section is noise.
+
+[West Coast Wire Pro](https://westcoastwirepro.com) covers all four. 500 NEC-tied practice questions and four free calculators built around the exact calculation types on the California exam. Start there.`,
   },
   {
     slug: 'how-hard-is-california-journeyman-electrician-exam',
