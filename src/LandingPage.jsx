@@ -28,6 +28,7 @@ async function startCheckout(tier, setLoading, setPayError) {
 
 
 
+
 // ── Circuit Animation ──────────────────────────────────────────────────────
 function CircuitAnimation() {
   const canvasRef = useRef(null)
@@ -37,108 +38,234 @@ function CircuitAnimation() {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     let animId
-    let particles = []
-    const GOLD = 'rgba(200,168,75,'
+    let traces = []
+    let signals = []
+    let chips = []
+    let lastTime = 0
+
+    const G = (a) => `rgba(200,168,75,${a})`
+    const STEP = 65
 
     function resize() {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
-      buildTraces()
+      build()
     }
 
-    let traces = []
-    function buildTraces() {
+    function build() {
       traces = []
-      const w = canvas.width
-      const h = canvas.height
-      const step = 80
-      const cols = Math.floor(w / step)
-      const rows = Math.floor(h / step)
-      for (let c = 0; c <= cols; c++) {
-        for (let r = 0; r < rows; r++) {
-          traces.push({ x1: c*step, y1: r*step, x2: c*step, y2: (r+1)*step })
+      signals = []
+      chips = []
+
+      const W = canvas.width
+      const H = canvas.height
+      const cols = Math.floor(W / STEP)
+      const rows = Math.floor(H / STEP)
+      const ox = (W - cols * STEP) / 2
+      const oy = (H - rows * STEP) / 2
+
+      const pt = (c, r) => ({ x: ox + c * STEP, y: oy + r * STEP })
+
+      // ─ IC chip outlines scattered at grid intersections ─
+      const chipCount = Math.max(3, Math.floor((cols * rows) / 30))
+      const chipPositions = new Set()
+      for (let i = 0; i < chipCount * 5 && chips.length < chipCount; i++) {
+        const c = 1 + Math.floor(Math.random() * (cols - 3))
+        const r = 1 + Math.floor(Math.random() * (rows - 3))
+        const key = `${c},${r}`
+        if (chipPositions.has(key)) continue
+        chipPositions.add(key)
+        const w = (2 + Math.floor(Math.random() * 2)) * STEP
+        const h = (1 + Math.floor(Math.random() * 2)) * STEP
+        chips.push({ x: ox + c * STEP, y: oy + r * STEP, w, h, pins: [] })
+      }
+
+      // ─ Build PCB traces: snaking horizontal + vertical paths ─
+      const edgeUsed = new Set()
+      const edge = (c1, r1, c2, r2) => {
+        const [ac, ar, bc, br] = c1 < c2 || (c1 === c2 && r1 < r2)
+          ? [c1, r1, c2, r2] : [c2, r2, c1, r1]
+        return `${ac},${ar}-${bc},${br}`
+      }
+
+      const wantTraces = Math.min(60, Math.floor((cols * rows) / 3))
+
+      for (let attempt = 0; attempt < wantTraces * 8 && traces.length < wantTraces; attempt++) {
+        let c = Math.floor(Math.random() * cols)
+        let r = Math.floor(Math.random() * rows)
+        const pts = [pt(c, r)]
+        let dir = Math.random() > 0.5 ? 'h' : 'v'
+        const segs = 2 + Math.floor(Math.random() * 5)
+
+        for (let s = 0; s < segs; s++) {
+          const len = 1 + Math.floor(Math.random() * 4)
+          const dc = dir === 'h' ? (Math.random() > 0.5 ? 1 : -1) : 0
+          const dr = dir === 'v' ? (Math.random() > 0.5 ? 1 : -1) : 0
+          let blocked = false
+
+          for (let k = 1; k <= len; k++) {
+            const nc = c + dc * k
+            const nr = r + dr * k
+            if (nc < 0 || nc > cols || nr < 0 || nr > rows) { blocked = true; break }
+            const e = edge(c + dc * (k - 1), r + dr * (k - 1), nc, nr)
+            if (edgeUsed.has(e)) { blocked = true; break }
+          }
+          if (blocked) break
+
+          for (let k = 1; k <= len; k++) {
+            const nc = c + dc * k
+            const nr = r + dr * k
+            const e = edge(c + dc * (k - 1), r + dr * (k - 1), nc, nr)
+            edgeUsed.add(e)
+            pts.push(pt(nc, nr))
+            c = nc; r = nr
+          }
+          dir = dir === 'h' ? 'v' : 'h'
+        }
+
+        if (pts.length >= 3) {
+          // compute segment lengths for signal travel
+          let totalLen = 0
+          const seglens = []
+          for (let i = 0; i < pts.length - 1; i++) {
+            const dx = pts[i + 1].x - pts[i].x
+            const dy = pts[i + 1].y - pts[i].y
+            const l = Math.sqrt(dx * dx + dy * dy)
+            seglens.push(l)
+            totalLen += l
+          }
+          traces.push({ pts, seglens, totalLen })
         }
       }
-      for (let r = 0; r <= rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          traces.push({ x1: c*step, y1: r*step, x2: (c+1)*step, y2: r*step })
-        }
-      }
-      spawnParticles()
+
+      // ─ Spawn initial signals ─
+      const sigCount = Math.min(25, Math.floor(traces.length * 0.55))
+      for (let i = 0; i < sigCount; i++) spawnSignal(true)
     }
 
-    function spawnParticles() {
-      particles = []
-      const count = Math.min(50, Math.floor((canvas.width * canvas.height) / 14000))
-      for (let i = 0; i < count; i++) spawnOne()
-    }
-
-    function spawnOne() {
+    function spawnSignal(stagger) {
       if (!traces.length) return
-      const tr = traces[Math.floor(Math.random() * traces.length)]
-      particles.push({
-        trace: tr, t: Math.random(),
-        speed: 0.003 + Math.random() * 0.006,
-        size: 1.5 + Math.random() * 2,
-        opacity: 0.5 + Math.random() * 0.5,
-        trail: []
+      const idx = Math.floor(Math.random() * traces.length)
+      const tr = traces[idx]
+      signals.push({
+        idx,
+        dist: stagger ? Math.random() * tr.totalLen : 0,
+        speed: 55 + Math.random() * 90,
+        trailLen: 50 + Math.random() * 80,
+        bright: 0.75 + Math.random() * 0.25,
+        size: 2 + Math.random() * 2
       })
     }
 
-    function draw() {
+    function posAt(tr, dist) {
+      let rem = Math.max(0, Math.min(dist, tr.totalLen))
+      for (let i = 0; i < tr.pts.length - 1; i++) {
+        if (rem <= tr.seglens[i]) {
+          const t = rem / tr.seglens[i]
+          return {
+            x: tr.pts[i].x + (tr.pts[i + 1].x - tr.pts[i].x) * t,
+            y: tr.pts[i].y + (tr.pts[i + 1].y - tr.pts[i].y) * t
+          }
+        }
+        rem -= tr.seglens[i]
+      }
+      return tr.pts[tr.pts.length - 1]
+    }
+
+    function draw(ts) {
+      const dt = Math.min((ts - lastTime) / 1000, 0.05)
+      lastTime = ts
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Traces
-      ctx.strokeStyle = GOLD + '0.07)'
-      ctx.lineWidth = 1
+      // ─ 1. Base traces ─
       traces.forEach(tr => {
-        ctx.beginPath(); ctx.moveTo(tr.x1, tr.y1); ctx.lineTo(tr.x2, tr.y2); ctx.stroke()
+        ctx.beginPath()
+        ctx.moveTo(tr.pts[0].x, tr.pts[0].y)
+        for (let i = 1; i < tr.pts.length; i++) ctx.lineTo(tr.pts[i].x, tr.pts[i].y)
+        ctx.strokeStyle = G(0.18)
+        ctx.lineWidth = 1.5
+        ctx.lineJoin = 'miter'
+        ctx.stroke()
       })
 
-      // Nodes at intersections
-      const step = 80
-      const cols = Math.floor(canvas.width / step)
-      const rows = Math.floor(canvas.height / step)
-      for (let c = 0; c <= cols; c++) {
-        for (let r = 0; r <= rows; r++) {
-          ctx.beginPath()
-          ctx.arc(c*step, r*step, 2, 0, Math.PI*2)
-          ctx.fillStyle = GOLD + '0.15)'
-          ctx.fill()
-        }
-      }
-
-      // Particles
-      const live = []
-      particles.forEach(p => {
-        p.t += p.speed
-        if (p.t > 1) { spawnOne(); return }
-        live.push(p)
-        const x = p.trace.x1 + (p.trace.x2 - p.trace.x1) * p.t
-        const y = p.trace.y1 + (p.trace.y2 - p.trace.y1) * p.t
-        p.trail.push({ x, y })
-        if (p.trail.length > 14) p.trail.shift()
-
-        // Trail fade
-        p.trail.forEach((pt, ti) => {
-          ctx.beginPath()
-          ctx.arc(pt.x, pt.y, p.size * 0.5, 0, Math.PI*2)
-          ctx.fillStyle = GOLD + ((ti / p.trail.length) * p.opacity * 0.35) + ')'
-          ctx.fill()
+      // ─ 2. Square pads at every node ─
+      const PAD = 5
+      const drawn = new Set()
+      traces.forEach(tr => {
+        tr.pts.forEach(p => {
+          const key = `${Math.round(p.x)},${Math.round(p.y)}`
+          if (drawn.has(key)) return
+          drawn.add(key)
+          ctx.fillStyle = G(0.28)
+          ctx.fillRect(p.x - PAD / 2, p.y - PAD / 2, PAD, PAD)
         })
-
-        // Glow halo
-        const g = ctx.createRadialGradient(x, y, 0, x, y, p.size * 5)
-        g.addColorStop(0, GOLD + (p.opacity * 0.55) + ')')
-        g.addColorStop(1, GOLD + '0)')
-        ctx.beginPath(); ctx.arc(x, y, p.size * 5, 0, Math.PI*2)
-        ctx.fillStyle = g; ctx.fill()
-
-        // Core dot
-        ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI*2)
-        ctx.fillStyle = GOLD + p.opacity + ')'; ctx.fill()
       })
-      particles = live
+
+      // ─ 3. IC chip outlines ─
+      chips.forEach(chip => {
+        ctx.strokeStyle = G(0.22)
+        ctx.lineWidth = 1.5
+        ctx.strokeRect(chip.x, chip.y, chip.w, chip.h)
+        // Pin stubs on top and bottom
+        const pinCount = Math.floor(chip.w / STEP) + 1
+        for (let p = 0; p <= pinCount; p++) {
+          const px = chip.x + p * (chip.w / pinCount)
+          ctx.beginPath(); ctx.moveTo(px, chip.y); ctx.lineTo(px, chip.y - 10)
+          ctx.stroke()
+          ctx.beginPath(); ctx.moveTo(px, chip.y + chip.h); ctx.lineTo(px, chip.y + chip.h + 10)
+          ctx.stroke()
+          ctx.fillStyle = G(0.28)
+          ctx.fillRect(px - 2.5, chip.y - 2.5, 5, 5)
+          ctx.fillRect(px - 2.5, chip.y + chip.h - 2.5, 5, 5)
+        }
+        // Center dot
+        ctx.fillStyle = G(0.12)
+        ctx.fillRect(chip.x + chip.w / 2 - 3, chip.y + chip.h / 2 - 3, 6, 6)
+      })
+
+      // ─ 4. Signals ─
+      const live = []
+      signals.forEach(sig => {
+        sig.dist += sig.speed * dt
+        const tr = traces[sig.idx]
+        if (sig.dist > tr.totalLen) { spawnSignal(false); return }
+        live.push(sig)
+
+        // Illuminated trail — draw lit trace segment behind signal
+        const trailStart = Math.max(0, sig.dist - sig.trailLen)
+        const TRAIL_STEPS = 24
+        for (let i = 0; i <= TRAIL_STEPS; i++) {
+          const d = trailStart + (sig.dist - trailStart) * (i / TRAIL_STEPS)
+          if (i < TRAIL_STEPS) {
+            const d2 = trailStart + (sig.dist - trailStart) * ((i + 1) / TRAIL_STEPS)
+            const p1 = posAt(tr, d)
+            const p2 = posAt(tr, d2)
+            const a = (i / TRAIL_STEPS) * sig.bright * 0.55
+            ctx.beginPath()
+            ctx.moveTo(p1.x, p1.y)
+            ctx.lineTo(p2.x, p2.y)
+            ctx.strokeStyle = G(a)
+            ctx.lineWidth = sig.size + 0.5
+            ctx.stroke()
+          }
+        }
+
+        // Signal head — square with glow
+        const pos = posAt(tr, sig.dist)
+        const hs = sig.size + 2
+
+        ctx.shadowBlur = 14
+        ctx.shadowColor = `rgba(200,168,75,${sig.bright})`
+        ctx.fillStyle = G(sig.bright)
+        ctx.fillRect(pos.x - hs / 2, pos.y - hs / 2, hs, hs)
+        ctx.shadowBlur = 0
+
+        // Outer glow ring
+        ctx.strokeStyle = G(sig.bright * 0.4)
+        ctx.lineWidth = 1
+        ctx.strokeRect(pos.x - hs, pos.y - hs, hs * 2, hs * 2)
+      })
+      signals = live
 
       animId = requestAnimationFrame(draw)
     }
@@ -146,7 +273,7 @@ function CircuitAnimation() {
     const ro = new ResizeObserver(resize)
     ro.observe(canvas)
     resize()
-    draw()
+    requestAnimationFrame(draw)
 
     return () => { cancelAnimationFrame(animId); ro.disconnect() }
   }, [])
