@@ -1,5 +1,5 @@
 // LandingPage — v2
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 // ── Stripe checkout ───────────────────────────────────────────────────────────
 // Calls the /api/create-checkout serverless function, which creates a
@@ -27,6 +27,138 @@ async function startCheckout(tier, setLoading, setPayError) {
 }
 
 
+
+// ── Circuit Animation ──────────────────────────────────────────────────────
+function CircuitAnimation() {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let animId
+    let particles = []
+    const GOLD = 'rgba(200,168,75,'
+
+    function resize() {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      buildTraces()
+    }
+
+    let traces = []
+    function buildTraces() {
+      traces = []
+      const w = canvas.width
+      const h = canvas.height
+      const step = 80
+      const cols = Math.floor(w / step)
+      const rows = Math.floor(h / step)
+      for (let c = 0; c <= cols; c++) {
+        for (let r = 0; r < rows; r++) {
+          traces.push({ x1: c*step, y1: r*step, x2: c*step, y2: (r+1)*step })
+        }
+      }
+      for (let r = 0; r <= rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          traces.push({ x1: c*step, y1: r*step, x2: (c+1)*step, y2: r*step })
+        }
+      }
+      spawnParticles()
+    }
+
+    function spawnParticles() {
+      particles = []
+      const count = Math.min(50, Math.floor((canvas.width * canvas.height) / 14000))
+      for (let i = 0; i < count; i++) spawnOne()
+    }
+
+    function spawnOne() {
+      if (!traces.length) return
+      const tr = traces[Math.floor(Math.random() * traces.length)]
+      particles.push({
+        trace: tr, t: Math.random(),
+        speed: 0.003 + Math.random() * 0.006,
+        size: 1.5 + Math.random() * 2,
+        opacity: 0.5 + Math.random() * 0.5,
+        trail: []
+      })
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Traces
+      ctx.strokeStyle = GOLD + '0.07)'
+      ctx.lineWidth = 1
+      traces.forEach(tr => {
+        ctx.beginPath(); ctx.moveTo(tr.x1, tr.y1); ctx.lineTo(tr.x2, tr.y2); ctx.stroke()
+      })
+
+      // Nodes at intersections
+      const step = 80
+      const cols = Math.floor(canvas.width / step)
+      const rows = Math.floor(canvas.height / step)
+      for (let c = 0; c <= cols; c++) {
+        for (let r = 0; r <= rows; r++) {
+          ctx.beginPath()
+          ctx.arc(c*step, r*step, 2, 0, Math.PI*2)
+          ctx.fillStyle = GOLD + '0.15)'
+          ctx.fill()
+        }
+      }
+
+      // Particles
+      const live = []
+      particles.forEach(p => {
+        p.t += p.speed
+        if (p.t > 1) { spawnOne(); return }
+        live.push(p)
+        const x = p.trace.x1 + (p.trace.x2 - p.trace.x1) * p.t
+        const y = p.trace.y1 + (p.trace.y2 - p.trace.y1) * p.t
+        p.trail.push({ x, y })
+        if (p.trail.length > 14) p.trail.shift()
+
+        // Trail fade
+        p.trail.forEach((pt, ti) => {
+          ctx.beginPath()
+          ctx.arc(pt.x, pt.y, p.size * 0.5, 0, Math.PI*2)
+          ctx.fillStyle = GOLD + ((ti / p.trail.length) * p.opacity * 0.35) + ')'
+          ctx.fill()
+        })
+
+        // Glow halo
+        const g = ctx.createRadialGradient(x, y, 0, x, y, p.size * 5)
+        g.addColorStop(0, GOLD + (p.opacity * 0.55) + ')')
+        g.addColorStop(1, GOLD + '0)')
+        ctx.beginPath(); ctx.arc(x, y, p.size * 5, 0, Math.PI*2)
+        ctx.fillStyle = g; ctx.fill()
+
+        // Core dot
+        ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI*2)
+        ctx.fillStyle = GOLD + p.opacity + ')'; ctx.fill()
+      })
+      particles = live
+
+      animId = requestAnimationFrame(draw)
+    }
+
+    const ro = new ResizeObserver(resize)
+    ro.observe(canvas)
+    resize()
+    draw()
+
+    return () => { cancelAnimationFrame(animId); ro.disconnect() }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{position:'absolute', inset:0, width:'100%', height:'100%', pointerEvents:'none', zIndex:0}}
+    />
+  )
+}
+
 // ── Scroll Buttons ────────────────────────────────────────────────────────
 
 export default function LandingPage({ onLaunchApp, onNavigate }) {
@@ -50,6 +182,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <header style={s.hero}>
         <div style={s.heroGlow} />
         <div style={s.heroGrid} />
+        <CircuitAnimation />
         <div style={s.heroContent}>
 
           <div style={s.heroBadge}>
