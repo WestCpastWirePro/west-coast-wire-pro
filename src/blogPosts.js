@@ -6,7 +6,7 @@
 export const blogPosts = [
   // ── DRAFTS: set draft: false to publish ─────────────────────────────────
   {
-    draft: true,
+    draft: false,
     slug: 'how-exam-advice-changed-2021-2026-california-journeyman',
     title: "CA Journeyman Exam Advice in 2021 vs 2026: What Changed",
     date: 'October 2026',
