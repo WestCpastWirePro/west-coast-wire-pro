@@ -24,7 +24,7 @@ const FAQS = [
       },
       {
         q: "What score do I need to pass?",
-        a: "70% — the exam does not penalize for wrong answers, so always guess rather than leave a question blank."
+        a: "70%  -  the exam does not penalize for wrong answers, so always guess rather than leave a question blank."
       },
       {
         q: "What NEC edition does the California exam use?",
@@ -32,7 +32,7 @@ const FAQS = [
       },
       {
         q: "Can I bring a calculator?",
-        a: "PSI generally does not allow personal calculators. An on-screen calculator is provided in the testing software. Check your specific exam confirmation for current policies — this can change."
+        a: "PSI generally does not allow personal calculators. An on-screen calculator is provided in the testing software. Check your specific exam confirmation for current policies  -  this can change."
       },
       {
         q: "How long does it take to get my results?",
@@ -49,11 +49,11 @@ const FAQS = [
       },
       {
         q: "Do I need to complete an apprenticeship?",
-        a: "No — an apprenticeship is not required, but it counts toward your 8,000-hour requirement. Many candidates qualify through documented on-the-job experience verified by their employer or union."
+        a: "No  -  an apprenticeship is not required, but it counts toward your 8,000-hour requirement. Many candidates qualify through documented on-the-job experience verified by their employer or union."
       },
       {
         q: "What's the difference between a General Electrician and a Residential Electrician?",
-        a: "A General (Journeyman) Electrician can work on all types of electrical systems — commercial, industrial, and residential. A Residential Electrician is limited to single-family dwellings and some light commercial work. The General license requires more experience and a harder exam."
+        a: "A General (Journeyman) Electrician can work on all types of electrical systems  -  commercial, industrial, and residential. A Residential Electrician is limited to single-family dwellings and some light commercial work. The General license requires more experience and a harder exam."
       },
       {
         q: "Can I take the exam if I'm still in an apprenticeship?",
@@ -70,11 +70,11 @@ const FAQS = [
       },
       {
         q: "How do I schedule my exam?",
-        a: "Once DLSE approves your application, you'll receive an eligibility notice. You then schedule directly with PSI — online at psiexams.com or by phone at (888) 818-5831. You have one year from your eligibility date to take the exam. PSI has 20 testing locations across California."
+        a: "Once DLSE approves your application, you'll receive an eligibility notice. You then schedule directly with PSI  -  online at psiexams.com or by phone at (888) 818-5831. You have one year from your eligibility date to take the exam. PSI has 20 testing locations across California."
       },
       {
         q: "What is the pass rate for the California General Electrician exam?",
-        a: "The DLSE does not publish official pass rate data, but industry data consistently puts the first-attempt pass rate around 50% or below — and repeat attempt rates are lower. This is one of the harder trade certification exams in California. Preparation matters significantly."
+        a: "The DLSE does not publish official pass rate data, but industry data consistently puts the first-attempt pass rate around 50% or below  -  and repeat attempt rates are lower. This is one of the harder trade certification exams in California. Preparation matters significantly."
       },
       {
         q: "How long should I study before the exam?",
@@ -82,7 +82,7 @@ const FAQS = [
       },
       {
         q: "Do I need to memorize the NEC?",
-        a: "Yes — even though the CA exam is open book, time is the real enemy. PSI provides an unmarked NEC codebook but you have 4.5 hours for 110 questions — about 2.5 minutes each. You cannot look up every answer. These drills are designed to burn NEC chapters, article citations, and key table values into memory so you can navigate the codebook at full speed. Know the most-tested tables cold: 310.16, 250.66, 430.52, and conduit fill. Know your calculation formulas without searching."
+        a: "Yes  -  even though the CA exam is open book, time is the real enemy. PSI provides an unmarked NEC codebook but you have 4.5 hours for 110 questions  -  about 2.5 minutes each. You cannot look up every answer. These drills are designed to burn NEC chapters, article citations, and key table values into memory so you can navigate the codebook at full speed. Know the most-tested tables cold: 310.16, 250.66, 430.52, and conduit fill. Know your calculation formulas without searching."
       },
       {
         q: "What modules are most heavily tested?",
@@ -90,7 +90,7 @@ const FAQS = [
       },
       {
         q: "How do I know if I'm ready to take the exam?",
-        a: "You're ready when you're consistently scoring 75–80% on full 110-question practice exams. Don't test until you've hit that threshold at least twice. Scoring 70% in practice leaves no margin — exam anxiety costs most people 5–10%."
+        a: "You're ready when you're consistently scoring 75–80% on full 110-question practice exams. Don't test until you've hit that threshold at least twice. Scoring 70% in practice leaves no margin  -  exam anxiety costs most people 5–10%."
       },
       {
         q: "What's the best way to use West Coast Wire Pro?",
@@ -104,11 +104,11 @@ const FAQS = [
 
       {
         q: "Are the questions similar to the real exam?",
-        a: "Our questions are original and built to match the format, difficulty, and NEC article distribution of the California journeyman exam. No prep company, training provider, or study site has access to the actual PSI exam questions — they are proprietary and owned exclusively by the DLSE. Every resource out there, including this one, is working from the same starting point: the NEC and the PSI content outline."
+        a: "Our questions are original and built to match the format, difficulty, and NEC article distribution of the California journeyman exam. No prep company, training provider, or study site has access to the actual PSI exam questions  -  they are proprietary and owned exclusively by the DLSE. Every resource out there, including this one, is working from the same starting point: the NEC and the PSI content outline."
       },
       {
         q: "Do I need a codebook to use this app?",
-        a: "Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2023 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you'll need on exam day, when PSI hands you an unmarked codebook and the clock starts."
+        a: "Not to study here  -  every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2023 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you'll need on exam day, when PSI hands you an unmarked codebook and the clock starts."
       },
       {
         q: "Do I need internet to use the app?",
@@ -124,15 +124,15 @@ const FAQS = [
       },
       {
         q: "How were the practice questions written?",
-        a: "Questions were developed from 2023 NEC content and electrical trade knowledge, reviewed by a licensed California journeyman electrician against the codebook. They are original questions — not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
+        a: "Questions were developed from 2023 NEC content and electrical trade knowledge, reviewed by a licensed California journeyman electrician against the codebook. They are original questions  -  not sourced from or affiliated with PSI or NFPA. No one has access to the actual PSI exam questions. They are proprietary and owned by the DLSE."
       },
       {
         q: "If I fail the exam, can I keep using the app?",
-        a: "Yes — your access never expires. Pay once and study as long as you need. If you don't pass on the first attempt, your full question bank, progress history, and all your tools are still right here waiting. A lot of people pass on their second attempt after going back through their weak modules."
+        a: "Yes  -  your access never expires. Pay once and study as long as you need. If you don't pass on the first attempt, your full question bank, progress history, and all your tools are still right here waiting. A lot of people pass on their second attempt after going back through their weak modules."
       },
       {
         q: "Is there a refund policy?",
-        a: "Yes. We offer a 7-day money-back guarantee — no questions asked. Contact us via our support form within 7 days of purchase with your order details and we'll process a full refund. See our Refund Policy for full terms."
+        a: "Yes. We offer a 7-day money-back guarantee  -  no questions asked. Contact us via our support form within 7 days of purchase with your order details and we'll process a full refund. See our Refund Policy for full terms."
       },
     ]
   },

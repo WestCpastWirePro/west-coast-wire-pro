@@ -13,7 +13,7 @@ onNavigate={onNavigate}       title="Refund Policy"
         <Highlight>
           <strong style={{color:'#d8e0e8'}}>7-Day Money-Back Guarantee.</strong> If you purchase 
           West Coast Wire Pro Standard or Pro and are not satisfied for any reason, contact us within 
-          7 days of your purchase date and we will issue a full refund — no questions asked.
+          7 days of your purchase date and we will issue a full refund  -  no questions asked.
         </Highlight>
         <P>
           We believe in the quality of our product. If it doesn't work for you, we don't want 
@@ -44,7 +44,7 @@ onNavigate={onNavigate}       title="Refund Policy"
         </P>
         <Ul items={[
           'Your request must be made within 7 calendar days of the original purchase date',
-          'Refunds apply to first-time purchases only — a second purchase of the same product is not eligible',
+          'Refunds apply to first-time purchases only  -  a second purchase of the same product is not eligible',
           'The purchase must have been made directly through westcoastwirepro.com',
         ]} />
         <P>
@@ -93,9 +93,9 @@ onNavigate={onNavigate}       title="Refund Policy"
 
       <Section title="Technical Issues">
         <P>
-          If you are experiencing a technical problem with West Coast Wire Pro — such as an access 
+          If you are experiencing a technical problem with West Coast Wire Pro  -  such as an access 
           code not working, content not loading, or a payment that went through but access was 
-          not granted — please contact us before requesting a refund. Most technical issues 
+          not granted  -  please contact us before requesting a refund. Most technical issues 
           can be resolved quickly.
         </P>
         <Highlight>

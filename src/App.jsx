@@ -106,31 +106,31 @@ const PAGE_PATHS = {
 }
 
 const PAGE_META = {
-  landing:           { title: 'West Coast Wire Pro — California Electrician Exam Prep', desc: '500 practice questions for the California General Electrician (Journeyman) exam. 12 modules, 2023 NEC-referenced answers, timed mode. Modules 1 & 2 + Table Mastery drills free — no account needed.' },
-  'exam-info':       { title: 'California Journeyman Electrician Exam — Complete Guide | West Coast Wire Pro', desc: 'Everything about the California General Electrician (Journeyman) exam: eligibility, format, pass rate, what codes to study, and how to prepare.' },
-  about:             { title: 'About West Coast Wire Pro — The Method & Our Story', desc: 'West Coast Wire Pro is built on active recall, spaced repetition, and exam simulation — the same methods used by top-stakes test prep in medicine and law, applied to the CA Journeyman exam.' },
+  landing:           { title: 'West Coast Wire Pro  -  California Electrician Exam Prep', desc: '500 practice questions for the California General Electrician (Journeyman) exam. 12 modules, 2023 NEC-referenced answers, timed mode. Modules 1 & 2 + Table Mastery drills free  -  no account needed.' },
+  'exam-info':       { title: 'California Journeyman Electrician Exam  -  Complete Guide | West Coast Wire Pro', desc: 'Everything about the California General Electrician (Journeyman) exam: eligibility, format, pass rate, what codes to study, and how to prepare.' },
+  about:             { title: 'About West Coast Wire Pro  -  The Method & Our Story', desc: 'West Coast Wire Pro is built on active recall, spaced repetition, and exam simulation  -  the same methods used by top-stakes test prep in medicine and law, applied to the CA Journeyman exam.' },
   'study-tips':      { title: 'How to Pass the CA Journeyman Electrician Exam | West Coast Wire Pro', desc: 'A straight-talk study guide from a California journeyman and trade school instructor. Timelines, module priorities, calculation drills, and test day strategy.' },
   contact:           { title: 'Contact & Support | West Coast Wire Pro', desc: 'Questions about your purchase, access codes, or technical issues? We respond within 24 hours Monday–Friday.' },
   faq:               { title: 'Frequently Asked Questions | West Coast Wire Pro', desc: 'Common questions about the California Journeyman exam, how West Coast Wire Pro works, access codes, pricing, and what to expect on exam day.' },
   salary:            { title: 'Electrician Salary in California 2025 | West Coast Wire Pro', desc: 'How much do electricians make in California? Apprentice, journeyman, and master electrician wages by region, plus how your license affects your earning potential.' },
-  'exam-day':        { title: 'Exam Day Guide — What to Expect at Your PSI Test Center | West Coast Wire Pro', desc: 'What to bring, what to expect, how the PSI testing center works, and last-minute tips from someone who has been there. The CA journeyman exam day guide.' },
-  'contractor-vs-electrician': { title: 'C-10 Contractor vs. Journeyman Electrician — What\'s the Difference? | West Coast Wire Pro', desc: 'Individual electrician certification vs. contractor license — what each requires, what work each authorizes, and which path is right for you in California.' },
-  glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms and electrical concepts — built for journeyman exam prep.' },
-  diagnostic:        { title: 'Readiness Diagnostic — Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
-  'code-sprint':     { title: 'Code Sprint — NEC Article Navigator Game | West Coast Wire Pro', desc: 'Race the clock to find any NEC article. Builds the spatial memory you need to navigate the code book fast on the California Journeyman exam.' },
-  demo:              { title: 'Free Demo — 5 Practice Questions | West Coast Wire Pro', desc: 'Try 5 free California Journeyman electrician exam practice questions before you commit. No account needed.' },
-  blog:              { title: 'Blog — Industry News & Study Tips for California Electricians | West Coast Wire Pro', desc: 'Industry news, exam strategy, and career insights for California electricians preparing for the Journeyman license exam.' },
-  simulator:         { title: 'Full Exam Simulator — 110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 12 modules weighted proportionally. Practice under real test conditions.' },
+  'exam-day':        { title: 'Exam Day Guide  -  What to Expect at Your PSI Test Center | West Coast Wire Pro', desc: 'What to bring, what to expect, how the PSI testing center works, and last-minute tips from someone who has been there. The CA journeyman exam day guide.' },
+  'contractor-vs-electrician': { title: 'C-10 Contractor vs. Journeyman Electrician  -  What\'s the Difference? | West Coast Wire Pro', desc: 'Individual electrician certification vs. contractor license  -  what each requires, what work each authorizes, and which path is right for you in California.' },
+  glossary:          { title: 'NEC & Electrical Terms Glossary | West Coast Wire Pro', desc: 'Plain-English definitions for NEC terms and electrical concepts  -  built for journeyman exam prep.' },
+  diagnostic:        { title: 'Readiness Diagnostic  -  Are You Ready for the CA Journeyman Exam? | West Coast Wire Pro', desc: 'Take a quick diagnostic test to see which NEC modules you\'ve mastered and which ones need more work before your California journeyman exam.' },
+  'code-sprint':     { title: 'Code Sprint  -  NEC Article Navigator Game | West Coast Wire Pro', desc: 'Race the clock to find any NEC article. Builds the spatial memory you need to navigate the code book fast on the California Journeyman exam.' },
+  demo:              { title: 'Free Demo  -  5 Practice Questions | West Coast Wire Pro', desc: 'Try 5 free California Journeyman electrician exam practice questions before you commit. No account needed.' },
+  blog:              { title: 'Blog  -  Industry News & Study Tips for California Electricians | West Coast Wire Pro', desc: 'Industry news, exam strategy, and career insights for California electricians preparing for the Journeyman license exam.' },
+  simulator:         { title: 'Full Exam Simulator  -  110 Questions, 4.5 Hours | West Coast Wire Pro', desc: 'Simulate the real California Journeyman exam: 110 questions, 4.5-hour timer, all 12 modules weighted proportionally. Practice under real test conditions.' },
   'nec-2020':        { title: 'NEC 2020 Code Changes for California Electricians | West Coast Wire Pro', desc: 'Key NEC 2020 changes affecting California electricians: AFCI expansion, GFCI updates, EV charging, solar storage, and more.' },
-  'nec-ref':         { title: 'NEC 2023 Quick Reference Guide | West Coast Wire Pro', desc: 'Fast-access NEC 2023 tables, key code sections, and calculation formulas for the California journeyman exam — without flipping through the whole codebook.' },
-  calculations:      { title: 'Free NEC Calculators — Voltage Drop, Motor Sizing, Box Fill | West Coast Wire Pro', desc: 'Free electrical calculators for the CA Journeyman exam: voltage drop, motor sizing, transformer FLA, and box fill — step-by-step with NEC article references. No login required.' },
+  'nec-ref':         { title: 'NEC 2023 Quick Reference Guide | West Coast Wire Pro', desc: 'Fast-access NEC 2023 tables, key code sections, and calculation formulas for the California journeyman exam  -  without flipping through the whole codebook.' },
+  calculations:      { title: 'Free NEC Calculators  -  Voltage Drop, Motor Sizing, Box Fill | West Coast Wire Pro', desc: 'Free electrical calculators for the CA Journeyman exam: voltage drop, motor sizing, transformer FLA, and box fill  -  step-by-step with NEC article references. No login required.' },
   planner:           { title: 'Personalized Study Planner | West Coast Wire Pro', desc: 'Build a custom study schedule for the California journeyman exam based on your weak modules, available time, and target test date.' },
   'top-25':          { title: 'High-Priority Drill | West Coast Wire Pro', desc: '25 practice questions mapped to the most heavily weighted topics on the CA exam per the PSI content outline.' },
-  mastery:           { title: 'NEC Table Mastery Drills | West Coast Wire Pro', desc: 'Flashcard-style drills for all 10 critical NEC 2023 tables — Table 310.16, conduit fill, motor FLA, and more. The fastest way to memorize what the exam tests.' },
+  mastery:           { title: 'NEC Table Mastery Drills | West Coast Wire Pro', desc: 'Flashcard-style drills for all 10 critical NEC 2023 tables  -  Table 310.16, conduit fill, motor FLA, and more. The fastest way to memorize what the exam tests.' },
   progress:          { title: 'Progress Dashboard | West Coast Wire Pro', desc: 'Track your scores by module, see your improvement over time, and identify your weakest areas before the California journeyman exam.' },
   privacy:           { title: 'Privacy Policy | West Coast Wire Pro', desc: 'How West Coast Wire Pro collects, uses, and protects your information.' },
   terms:             { title: 'Terms of Service | West Coast Wire Pro', desc: 'Terms and conditions for using West Coast Wire Pro.' },
-  refund:            { title: 'Refund Policy | West Coast Wire Pro', desc: '7-day refund policy for West Coast Wire Pro — full details on eligibility and how to request a refund.' },
+  refund:            { title: 'Refund Policy | West Coast Wire Pro', desc: '7-day refund policy for West Coast Wire Pro  -  full details on eligibility and how to request a refund.' },
 }
 
 function setPageMeta(view) {
@@ -205,7 +205,7 @@ class ErrorBoundary extends React.Component {
       <div style={{minHeight:'100vh',background:'#0a1016',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'16px',padding:'32px',textAlign:'center'}}>
         <div style={{fontSize:'48px'}}>⚡</div>
         <div style={{color:'#c8a84b',fontFamily:"'Arial Black',Arial,sans-serif",fontSize:'20px',fontWeight:'900',textTransform:'uppercase'}}>Something went wrong</div>
-        <div style={{color:'#7a8a9a',fontSize:'14px',maxWidth:'340px',lineHeight:'1.6'}}>An unexpected error occurred. Try refreshing the page — your progress is saved.</div>
+        <div style={{color:'#7a8a9a',fontSize:'14px',maxWidth:'340px',lineHeight:'1.6'}}>An unexpected error occurred. Try refreshing the page  -  your progress is saved.</div>
         <button onClick={() => window.location.reload()} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)',color:'#0a1016',fontFamily:"'Arial Black',Arial,sans-serif",fontWeight:'900',fontSize:'14px',textTransform:'uppercase',border:'none',borderRadius:'6px',padding:'12px 28px',cursor:'pointer',marginTop:'8px'}}>
           Refresh Page
         </button>
@@ -244,14 +244,14 @@ export default function App() {
           window.history.replaceState({}, '', '/?app')
           setView('app')
         } else {
-          // Token invalid — go to landing
+          // Token invalid  -  go to landing
           try { localStorage.removeItem('wrp_access') } catch(e) {}
           window.history.replaceState({}, '', '/')
           setView('landing')
         }
       })
       .catch(() => {
-        // Network error — do not grant access, redirect to landing
+        // Network error  -  do not grant access, redirect to landing
         window.history.replaceState({}, '', '/')
         setView('landing')
       })

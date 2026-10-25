@@ -1,7 +1,7 @@
 import React from 'react'
 import { getPost, blogPosts } from './blogPosts.js'
 
-// Simple markdown-ish renderer — handles ## headers, **bold**, *italic*, [links](url), ---, plain paragraphs
+// Simple markdown-ish renderer  -  handles ## headers, **bold**, *italic*, [links](url), ---, plain paragraphs
 function renderContent(text) {
   return text.trim().split('\n\n').map((block, i) => {
     const trimmed = block.trim()
@@ -61,7 +61,7 @@ export default function BlogPostPage({ slug, onNavigate, onLaunchApp }) {
       if (metaDesc) metaDesc.setAttribute('content', post.excerpt || post.title)
     }
     return () => {
-      document.title = 'West Coast Wire Pro — California Electrician Exam Prep'
+      document.title = 'West Coast Wire Pro  -  California Electrician Exam Prep'
     }
   }, [post])
 
@@ -110,7 +110,7 @@ export default function BlogPostPage({ slug, onNavigate, onLaunchApp }) {
           </div>
           <p style={{color:'#7a8a9a', fontSize:'14px', marginBottom:'20px', lineHeight:'1.6'}}>
             500 NEC-referenced practice questions for the California Journeyman exam.<br/>
-            Modules 1 & 2 free — no account needed.
+            Modules 1 & 2 free  -  no account needed.
           </p>
           <button onClick={() => { onLaunchApp && onLaunchApp() }} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'13px 28px', cursor:'pointer'}}>
             ⚡ Start Studying Free

@@ -20,7 +20,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
           <div style={s.label}>// LICENSE GUIDE</div>
           <h1 style={s.h1}>
             California Electrician vs.<br />
-            <span style={s.h1Gold}>General Contractor — What's the Difference?</span>
+            <span style={s.h1Gold}>General Contractor  -  What's the Difference?</span>
           </h1>
           <div style={s.meta}>
             <span style={s.metaItem}>⚡ West Coast Wire Pro</span>
@@ -64,19 +64,19 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
 
             <Section id="overview" title="The Short Answer">
               <P>
-                A <Strong>California Journeyman Electrician</Strong> is a craftsperson — licensed to perform
+                A <Strong>California Journeyman Electrician</Strong> is a craftsperson  -  licensed to perform
                 electrical work as an employee. You can legally wire buildings, supervise apprentices, and work
                 as a foreman. You cannot legally run your own electrical business, pull your own permits, or
                 contract directly with homeowners and general contractors.
               </P>
               <P>
-                A <Strong>C-10 Electrical Contractor</Strong> is a business license — it lets you legally
+                A <Strong>C-10 Electrical Contractor</Strong> is a business license  -  it lets you legally
                 operate an electrical contracting company, pull permits in your own name, hire employees,
                 and enter into contracts with clients. Most people get their journeyman license first, then
                 pursue the C-10 after accumulating the required field experience.
               </P>
               <P>
-                A <Strong>General B Contractor</Strong> is a broader construction license — it allows you
+                A <Strong>General B Contractor</Strong> is a broader construction license  -  it allows you
                 to oversee entire construction projects but generally requires hiring licensed specialty
                 subcontractors (like a C-10) for the electrical work, unless the project is primarily
                 framing, finish, or other general trade work.
@@ -97,7 +97,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
                   ["What it doesn't allow", "Run your own electrical business or pull permits"],
                   ["Renewal", "Every 3 years, 32 hours continuing education required"],
                   ["Exam cost", "Under $200"],
-                  ["Reciprocity", "Limited — other states may require additional testing"],
+                  ["Reciprocity", "Limited  -  other states may require additional testing"],
                 ].map(([k,v]) => (
                   <div key={k} style={s.moduleRow}>
                     <div style={{color:'#4a5a6a', fontFamily:"'Courier New', monospace", fontSize:'12px', width:'160px', flexShrink:0}}>{k}</div>
@@ -115,7 +115,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
 
             <Section id="c10" title="The C-10 Electrical Contractor License">
               <P>
-                The C-10 is issued by the California Contractors State License Board (CSLB) — a completely
+                The C-10 is issued by the California Contractors State License Board (CSLB)  -  a completely
                 different agency from the DLSE. It's a business license, not a personal trade credential.
               </P>
               <div style={s.moduleGrid}>
@@ -127,7 +127,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
                   ["Insurance required", "General liability + workers comp (if employees)"],
                   ["What it allows", "Run electrical contracting business, pull permits, hire workers"],
                   ["Annual fee", "~$300–$500 for license maintenance"],
-                  ["Qualifying individual", "One person must hold the license — can serve as RMO/RME"],
+                  ["Qualifying individual", "One person must hold the license  -  can serve as RMO/RME"],
                 ].map(([k,v]) => (
                   <div key={k} style={s.moduleRow}>
                     <div style={{color:'#4a5a6a', fontFamily:"'Courier New', monospace", fontSize:'12px', width:'160px', flexShrink:0}}>{k}</div>
@@ -138,7 +138,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
               <P>
                 The C-10 exam has two parts: a Law and Business exam (covers contract law, workers comp,
                 lien law, business practices) and a Trade exam (covers the NEC and electrical theory).
-                The journeyman exam you're studying for now is focused on the trade knowledge — much of that
+                The journeyman exam you're studying for now is focused on the trade knowledge  -  much of that
                 overlaps with the C-10 trade exam, making the journeyman prep valuable for both paths.
               </P>
             </Section>
@@ -158,7 +158,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
               </P>
               <P>
                 In practice, many electricians who grow into project management or construction management
-                roles eventually pursue a General B license — but they maintain their C-10 or their
+                roles eventually pursue a General B license  -  but they maintain their C-10 or their
                 C-10 subcontractors handle the actual electrical work. The General B opens the door to
                 taking on full construction projects (tenant improvements, light commercial builds, etc.)
                 rather than just the electrical scope.
@@ -209,11 +209,11 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
               </P>
               <P>
                 If you want to <Strong>be a general contractor who manages entire projects</Strong>
-                including electrical, plumbing, framing, and finish work — you'll want both a C-10
+                including electrical, plumbing, framing, and finish work  -  you'll want both a C-10
                 and eventually a General B. But again: journeyman first.
               </P>
               <P>
-                The exam you're preparing for right now — the California General Electrician exam — is
+                The exam you're preparing for right now  -  the California General Electrician exam  -  is
                 the foundation of all of it. Every path goes through that 110-question test.
               </P>
             </Section>
@@ -222,7 +222,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
               <div style={s.ctaBolt}>⚡</div>
               <div style={s.ctaTitle}>The Foundation Is the Journeyman Exam</div>
               <div style={s.ctaBody}>
-                Every path in California electrical — journeyman, C-10, business owner — starts with
+                Every path in California electrical  -  journeyman, C-10, business owner  -  starts with
                 passing this test. 500 NEC-referenced questions to get you there.
               </div>
               <div style={s.ctaBtns}>
@@ -236,7 +236,7 @@ export default function ContractorVsElectricianPage({ onHome, onLaunchApp, onNav
               <div style={s.relatedGrid}>
                 {[
                   { label:"CAREER GUIDE", name:"How Much Does a CA Journeyman Make?", page:"salary" },
-                  { label:"EXAM INFO", name:"California Journeyman Exam — Complete Guide", page:"exam-info" },
+                  { label:"EXAM INFO", name:"California Journeyman Exam  -  Complete Guide", page:"exam-info" },
                   { label:"STUDY GUIDE", name:"How to Pass the CA Journeyman Exam", page:"study-tips" },
                 ].map(r => (
                   <div key={r.page} style={s.relatedCard} onClick={() => onNavigate(r.page)}>

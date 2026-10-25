@@ -13,8 +13,8 @@ onNavigate={onNavigate}       title="Terms of Service"
         <P>
           These Terms of Service ("Terms") are a legally binding agreement between you and 
           West Coast Wire Pro ("we," "us," or "our"), 
-          the operator of West Coast Wire Pro at westcoastwirepro.com. By accessing or using West Coast Wire Pro — 
-          including the free tier — you agree to be bound by these Terms. If you do not agree, 
+          the operator of West Coast Wire Pro at westcoastwirepro.com. By accessing or using West Coast Wire Pro  -  
+          including the free tier  -  you agree to be bound by these Terms. If you do not agree, 
           do not use the service.
         </P>
         <P>
@@ -91,7 +91,7 @@ onNavigate={onNavigate}       title="Terms of Service"
         <Highlight>
           <strong style={{color:'#e8c878'}}>West Coast Wire Pro does not guarantee that you will pass 
           any examination.</strong> Practice questions are intended to help you build knowledge 
-          and familiarity with exam topics — they are not predictions of what will appear on 
+          and familiarity with exam topics  -  they are not predictions of what will appear on 
           your actual exam. Exam performance depends on many factors outside our control, 
           including your prior experience, study habits, and exam-day conditions.
         </Highlight>
@@ -104,8 +104,8 @@ onNavigate={onNavigate}       title="Terms of Service"
 
       <Section title="7. Intellectual Property">
         <P>
-          All content in West Coast Wire Pro — including but not limited to questions, answer choices, 
-          explanations, code references, software, design, and text — is the intellectual property 
+          All content in West Coast Wire Pro  -  including but not limited to questions, answer choices, 
+          explanations, code references, software, design, and text  -  is the intellectual property 
           of West Coast Wire Pro and is protected by 
           United States copyright law.
         </P>

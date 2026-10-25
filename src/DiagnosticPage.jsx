@@ -31,17 +31,17 @@ function buildDeck(access) {
 
 const RECOMMENDATIONS = {
   low: [
-    "Start with Module 1 (Definitions) — knowing core terminology is foundational to understanding everything else.",
+    "Start with Module 1 (Definitions)  -  knowing core terminology is foundational to understanding everything else.",
     "Use the study guide at /study-tips to build a structured week-by-week plan.",
     "Focus 30 minutes daily on reading NEC article explanations, not just answering questions.",
   ],
   mid: [
-    "You have a solid base. Target your weak modules specifically — drill them until you hit 80%+.",
+    "You have a solid base. Target your weak modules specifically  -  drill them until you hit 80%+.",
     "Practice trade math daily: voltage drop, conduit fill, and motor sizing appear on every exam.",
     "Take a full 110-question timed exam simulation 2 weeks before your test date.",
   ],
   high: [
-    "Strong performance. Target Hard difficulty questions in your weakest modules — that's where the exam margin is won.",
+    "Strong performance. Target Hard difficulty questions in your weakest modules  -  that's where the exam margin is won.",
     "Run a full 110-question timed simulation and review every miss. At this level, the goal is eliminating the last 15–20% of errors.",
   ],
 };
@@ -62,15 +62,15 @@ function ReportButton({ qid, qText }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          subject: `Question Issue Report — ID #${qid}`,
-          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz — user did not leave the session]`,
+          subject: `Question Issue Report  -  ID #${qid}`,
+          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz  -  user did not leave the session]`,
         }),
       });
       setState(res.ok ? 'done' : 'error');
     } catch { setState('error'); }
   };
   if (state === 'done') return (
-    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported — we'll review it. Keep going.</span>
+    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported  -  we'll review it. Keep going.</span>
   );
   if (state === 'idle') return (
     <button onClick={() => setState('open')} style={{background:"none",border:"none",cursor:"pointer",fontSize:"11px",color:"#4a5a6a",padding:"0",display:"inline-flex",alignItems:"center",gap:"4px"}}>
@@ -88,7 +88,7 @@ function ReportButton({ qid, qText }) {
           {state==='sending' ? 'Sending…' : 'Send Report'}
         </button>
         <button onClick={()=>{setState('idle');setNote('');}} style={{background:"none",border:"none",color:"#4a5a6a",fontSize:"11px",cursor:"pointer",padding:"5px 0"}}>Cancel</button>
-        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed — try again</span>}
+        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed  -  try again</span>}
       </div>
     </div>
   );
@@ -112,7 +112,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
   }, [inQuiz]);
 
   const safeNav = (fn) => (...args) => {
-    if (inQuiz && !window.confirm("Leave the diagnostic? Your progress will be saved — you can resume later.")) return;
+    if (inQuiz && !window.confirm("Leave the diagnostic? Your progress will be saved  -  you can resume later.")) return;
     fn(...args);
   };
   const safeHome = safeNav(onHome);
@@ -326,7 +326,7 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
         </div>
 
         <div style={s.card}>
-          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"14px"}}>MODULE BREAKDOWN — Lowest to Highest</div>
+          <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"14px"}}>MODULE BREAKDOWN  -  Lowest to Highest</div>
           {modResults.map(({mod, correct, total, pct:mp}) => (
             <div key={mod.id} style={{marginBottom:"12px"}}>
               <div style={{display:"flex", justifyContent:"space-between", marginBottom:"4px"}}>
@@ -352,10 +352,10 @@ export default function DiagnosticPage({ onNavigate, onHome, access }) {
 
         {modResults.filter(r=>r.pct<70).length > 0 && (
           <div style={s.card}>
-            <div style={{fontSize:"13px", color:"#e74c3c", fontWeight:"700", marginBottom:"8px"}}>⚠️ WEAK MODULES — Focus Here First</div>
+            <div style={{fontSize:"13px", color:"#e74c3c", fontWeight:"700", marginBottom:"8px"}}>⚠️ WEAK MODULES  -  Focus Here First</div>
             {modResults.filter(r=>r.pct<70).map(r => (
               <div key={r.mod.id} style={{fontSize:"13px", color:"#aabbcc", padding:"6px 0", borderBottom:"1px solid #2a3a54"}}>
-                🔴 {r.mod.name} — {r.pct}%
+                🔴 {r.mod.name}  -  {r.pct}%
               </div>
             ))}
           </div>

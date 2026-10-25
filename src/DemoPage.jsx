@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-// 5 handpicked demo questions — one from each of 5 different modules
+// 5 handpicked demo questions  -  one from each of 5 different modules
 // Chosen to be engaging, representative, and not too easy
 const DEMO_QUESTIONS = [
   {
     id: 1,
-    mod: 'Module 1 — Definitions & General',
+    mod: 'Module 1  -  Definitions & General',
     modColor: '#e74c3c',
     ref: 'NEC Article 100',
     diff: 'Easy',
@@ -17,11 +17,11 @@ const DEMO_QUESTIONS = [
       'Cross-sectional area measured in circular mils',
     ],
     ans: 1,
-    exp: "Ampacity = the current a conductor can carry continuously without exceeding its temperature rating. Every conductor sizing decision flows from this definition — it's the foundation of Chapter 3.",
+    exp: "Ampacity = the current a conductor can carry continuously without exceeding its temperature rating. Every conductor sizing decision flows from this definition  -  it's the foundation of Chapter 3.",
   },
   {
     id: 2,
-    mod: 'Module 2 — Wiring & Overcurrent',
+    mod: 'Module 2  -  Wiring & Overcurrent',
     modColor: '#e67e22',
     ref: 'NEC 210.8(A)',
     diff: 'Medium',
@@ -33,11 +33,11 @@ const DEMO_QUESTIONS = [
       'Only in kitchens that have a dishwasher circuit',
     ],
     ans: 2,
-    exp: "The 2023 NEC expanded §210.8(A)(6) to require GFCI protection for ALL kitchen receptacles in dwelling units — not just countertop receptacles within 6 feet of a sink. This is a key change from the 2020 NEC and one of the most-tested updates on the CA exam.",
+    exp: "The 2023 NEC expanded §210.8(A)(6) to require GFCI protection for ALL kitchen receptacles in dwelling units  -  not just countertop receptacles within 6 feet of a sink. This is a key change from the 2020 NEC and one of the most-tested updates on the CA exam.",
   },
   {
     id: 3,
-    mod: 'Module 4 — Grounding & Bonding',
+    mod: 'Module 4  -  Grounding & Bonding',
     modColor: '#27ae60',
     ref: 'NEC Table 250.122',
     diff: 'Hard',
@@ -49,11 +49,11 @@ const DEMO_QUESTIONS = [
       '8 AWG copper',
     ],
     ans: 2,
-    exp: "Per NEC Table 250.122: a 60A OCPD requires a minimum 10 AWG copper EGC. The EGC is sized from this table based on the rating of the OCPD — not the load current. Know Table 250.122 cold for the exam.",
+    exp: "Per NEC Table 250.122: a 60A OCPD requires a minimum 10 AWG copper EGC. The EGC is sized from this table based on the rating of the OCPD  -  not the load current. Know Table 250.122 cold for the exam.",
   },
   {
     id: 4,
-    mod: 'Module 8 — Motors & Transformers',
+    mod: 'Module 8  -  Motors & Transformers',
     modColor: '#c0392b',
     ref: 'NEC Table 430.52',
     diff: 'Hard',
@@ -69,7 +69,7 @@ const DEMO_QUESTIONS = [
   },
   {
     id: 5,
-    mod: 'Module 5 — Services & Disconnects',
+    mod: 'Module 5  -  Services & Disconnects',
     modColor: '#8e44ad',
     ref: 'NEC 230.71(A)',
     diff: 'Medium',
@@ -153,7 +153,7 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
                   <span style={{color: results[i]?.correct ? '#27ae60' : '#e74c3c', fontSize:'16px'}}>
                     {results[i]?.correct ? '✓' : '✗'}
                   </span>
-                  <span style={{fontSize:'12px', color:'#7a8a9a', flex:1}}>{q.mod.split('—')[1]?.trim()}</span>
+                  <span style={{fontSize:'12px', color:'#7a8a9a', flex:1}}>{q.mod.split(' - ')[1]?.trim()}</span>
                   <span style={{...s.diffTag, background: getDiffBg(q.diff)}}>{q.diff}</span>
                 </div>
               ))}
@@ -161,7 +161,7 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
 
             <div style={s.resultsMsg}>
               {pct === 100
-                ? "Perfect score — you're ready for the real thing. Unlock all 500 questions."
+                ? "Perfect score  -  you're ready for the real thing. Unlock all 500 questions."
                 : pct >= 60
                 ? "Solid start. The full app covers 500 questions across all 12 modules with detailed code explanations."
                 : "These questions get harder. The full app builds you up module by module with explanations that teach, not just reveal answers."}
@@ -177,7 +177,7 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
             </div>
 
             <div style={s.resultsNote}>
-              Modules 1 & 2 are always free — no payment needed.
+              Modules 1 & 2 are always free  -  no payment needed.
             </div>
           </div>
         </div>
@@ -203,13 +203,13 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
         </button>
       </nav>
 
-      {/* Hero intro — only shown before first answer on Q1 */}
+      {/* Hero intro  -  only shown before first answer on Q1 */}
       {current === 0 && selected === null && (
         <div style={s.introBanner}>
           <div style={s.introInner}>
             <span style={s.introBolt}>⚡</span>
             <div>
-              <div style={s.introTitle}>5 Sample Questions — Try Before You Buy</div>
+              <div style={s.introTitle}>5 Sample Questions  -  Try Before You Buy</div>
               <div style={s.introSub}>One question from each of 5 different modules. No account, no signup.</div>
             </div>
           </div>
@@ -290,7 +290,7 @@ export default function DemoPage({ onLaunchApp, onNavigate, onHome }) {
 
         <div style={s.footerNudge}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
-            This is a sample — the full app has 500 questions across 12 modules.
+            This is a sample  -  the full app has 500 questions across 12 modules.
           </span>
           <button style={s.nudgeBtn} onClick={onLaunchApp}>Unlock Free Module 1 →</button>
         </div>

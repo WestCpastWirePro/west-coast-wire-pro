@@ -29,7 +29,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
           </div>
           <p style={s.heroSub}>
             The California journeyman license is one of the highest-paying certifications
-            in the trades. Here's what the numbers actually look like — by region,
+            in the trades. Here's what the numbers actually look like  -  by region,
             union vs. non-union, and how far the license can take you.
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
                 California electricians earn significantly above the national average.
                 According to the U.S. Bureau of Labor Statistics May 2024 Occupational Employment
                 and Wage Statistics (OEWS) survey, the statewide median annual wage for electricians
-                in California is <Strong>$76,540</Strong> — compared to a national median of $62,350.
+                in California is <Strong>$76,540</Strong>  -  compared to a national median of $62,350.
               </P>
               <P>
                 The top 10% of California electricians earn <Strong>$136,710 or more</Strong> annually.
@@ -90,7 +90,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
               </div>
               <P>
                 Note: BLS OEWS data covers wage and salary workers and does not include self-employed
-                electricians. Data reflects all electricians in California, not specifically journeymen —
+                electricians. Data reflects all electricians in California, not specifically journeymen  - 
                 wages vary by experience level and certification.
               </P>
             </Section>
@@ -129,13 +129,13 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
 
             <Section id="union" title="Union vs. Non-Union">
               <P>
-                BLS wage data does not break down electrician wages by union status — those figures
+                BLS wage data does not break down electrician wages by union status  -  those figures
                 come from individual union local wage agreements, which are publicly available from
                 your local IBEW. If you want to know what IBEW Local 11 (LA) or Local 6 (SF) currently
                 pay journeymen, the most accurate source is the local's website or business manager.
               </P>
               <P>
-                What BLS data does show: California's 75th percentile electrician earns $103,720/year —
+                What BLS data does show: California's 75th percentile electrician earns $103,720/year  - 
                 which is roughly where well-compensated union journeymen in major metros land.
                 The 90th percentile at $136,710 reflects experienced foremen, specialty workers,
                 and those in the highest-paying markets.
@@ -144,7 +144,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
                 <Strong>Non-Union:</Strong> Often provides higher take-home pay at entry level due to
                 lower benefit overhead, but long-term total compensation including pension and
                 healthcare typically favors union employment. For prevailing wage public projects,
-                non-union workers receive the same wage rate as union scale — it's the benefits
+                non-union workers receive the same wage rate as union scale  -  it's the benefits
                 that differ.
               </P>
             </Section>
@@ -155,8 +155,8 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
                 {[
                   ["SPECIALTY WORK", "Specialty certifications in fire alarm, solar, or industrial controls typically command premium wages. Check current prevailing wage determinations at the CA DIR for publicly-funded project rates."],
                   ["FOREMAN / GF", "Foreman classifications typically pay above journeyman scale. Union agreements publish exact foreman differentials; non-union rates vary by employer."],
-                  ["SHIFT WORK", "Night shift and weekend differential pay is common on commercial projects — confirm current rates with your employer or union local."],
-                  ["PREVAILING WAGE", "Any publicly-funded project requires prevailing wage — typically union scale regardless of union membership. Current prevailing wage rates are published by the CA DIR at dir.ca.gov."],
+                  ["SHIFT WORK", "Night shift and weekend differential pay is common on commercial projects  -  confirm current rates with your employer or union local."],
+                  ["PREVAILING WAGE", "Any publicly-funded project requires prevailing wage  -  typically union scale regardless of union membership. Current prevailing wage rates are published by the CA DIR at dir.ca.gov."],
                   ["PER DIEM WORK", "Industrial and out-of-town projects often include per diem that is tax-free under IRS rules. Amounts vary by project and employer."],
                   ["OVERTIME", "California overtime triggers at 8 hours/day (not 40/week). Shops with heavy overtime volumes effectively pay significantly more annually than those limited to straight time."],
                 ].map(([title, body]) => (
@@ -187,7 +187,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
               </P>
               <P>
                 <Strong>Estimating / Project Management:</Strong> Many journeymen transition to office roles
-                — estimating, project management, and field superintendent work. These roles are
+                 -  estimating, project management, and field superintendent work. These roles are
                 increasingly in demand as experienced tradespeople who understand the field are rare in
                 management. BLS does not publish a specific category for this transition path.
               </P>
@@ -196,7 +196,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
             <Section id="worth-it" title="Is Getting the License Worth It?">
               <P>
                 The BLS data makes a strong case. The California statewide median for electricians is
-                $76,540 — $14,190 above the national median. The 75th percentile in California reaches
+                $76,540  -  $14,190 above the national median. The 75th percentile in California reaches
                 $103,720 and the 90th percentile $136,710, all per the May 2024 OEWS survey.
               </P>
               <P>
@@ -216,7 +216,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
               <div style={s.ctaTitle}>Ready to Earn It?</div>
               <div style={s.ctaBody}>
                 500 NEC-referenced practice questions across all 12 exam modules.
-                Modules 1 & 2 + 2 Table Mastery drills free — no account required.
+                Modules 1 & 2 + 2 Table Mastery drills free  -  no account required.
               </div>
               <div style={s.ctaBtns}>
                 <button style={s.btnGold} onClick={onLaunchApp}>Start Free Practice</button>
@@ -229,7 +229,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
               <div style={s.relatedGrid}>
                 {[
                   { label:"STUDY GUIDE", name:"How to Pass the CA Journeyman Exam", page:"study-tips" },
-                  { label:"EXAM INFO", name:"California Journeyman Exam — Complete Guide", page:"exam-info" },
+                  { label:"EXAM INFO", name:"California Journeyman Exam  -  Complete Guide", page:"exam-info" },
                   { label:"EXAM DAY", name:"What to Expect at the PSI Testing Center", page:"exam-day" },
                 ].map(r => (
                   <div key={r.page} style={s.relatedCard} onClick={() => onNavigate(r.page)}>
@@ -246,7 +246,7 @@ export default function SalaryPage({ onHome, onLaunchApp, onNavigate }) {
 
         <aside style={{...s.sidebar, display: isMobile ? "none" : "flex"}}>
           <div style={s.sideCard}>
-            <div style={s.sideTitle}>BLS 2024 — California</div>
+            <div style={s.sideTitle}>BLS 2024  -  California</div>
             {[
               ["Statewide median", "$76,540/yr"],
               ["25th percentile", "$59,420/yr"],

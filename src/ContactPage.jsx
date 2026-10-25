@@ -9,7 +9,7 @@ export default function ContactPage({ onHome, onNavigate }) {
     'I need my access link',
     'Technical issue with the app',
     'Refund request',
-    'I passed — sharing my story!',
+    'I passed  -  sharing my story!',
     'Other',
   ]
 
@@ -49,7 +49,7 @@ export default function ContactPage({ onHome, onNavigate }) {
         <div style={s.formCard}>
           <div style={s.sectionLabel}>📬 SEND US A MESSAGE</div>
           <p style={s.introText}>
-            Questions about your purchase, access links, technical issues, refunds, or anything else —
+            Questions about your purchase, access links, technical issues, refunds, or anything else  - 
             fill out the form below and we'll get back to you within 1 business day. Responses to weekend messages go out Monday morning.
           </p>
 
@@ -122,7 +122,7 @@ export default function ContactPage({ onHome, onNavigate }) {
 
               {status === 'error' && (
                 <div style={s.errorBox}>
-                  Something went wrong — please try again in a moment.
+                  Something went wrong  -  please try again in a moment.
                 </div>
               )}
 
@@ -135,15 +135,15 @@ export default function ContactPage({ onHome, onNavigate }) {
 
         {/* COMMON ISSUES */}
         <div style={s.card}>
-          <div style={s.sectionLabel}>🔧 COMMON ISSUES — QUICK FIXES</div>
+          <div style={s.sectionLabel}>🔧 COMMON ISSUES  -  QUICK FIXES</div>
           {[
             {
               title: 'App is locked after purchase',
               steps: [
                 'Check your email for a one-click access link from noreply@westcoastwirepro.com.',
-                'Subject line: "Your West Coast Wire Pro Access — Click to Start Studying"',
+                'Subject line: "Your West Coast Wire Pro Access  -  Click to Start Studying"',
                 'Check spam, promotions, and junk folders if you cannot find it.',
-                'Click the link in the email — it will unlock the app on your device instantly.',
+                'Click the link in the email  -  it will unlock the app on your device instantly.',
                 "Still not working? Use the contact form above with your purchase email and we'll fix it within 1 business day.",
               ]
             },
@@ -151,7 +151,7 @@ export default function ContactPage({ onHome, onNavigate }) {
               title: "I can't find my access link email",
               steps: [
                 "Search your inbox for 'West Coast Wire Pro' or check spam/junk folders.",
-                'The email comes from noreply@westcoastwirepro.com — add it to your contacts.',
+                'The email comes from noreply@westcoastwirepro.com  -  add it to your contacts.',
                 "If you still can't find it, contact us with the email you used to purchase and we'll resend your access link.",
               ]
             },
@@ -160,7 +160,7 @@ export default function ContactPage({ onHome, onNavigate }) {
               steps: [
                 "Progress is saved in your browser's local storage. It can be cleared if you clear your browser history or switch browsers.",
                 'To avoid losing progress, bookmark your access email and use the same browser consistently.',
-                'Your access itself is tied to your email link — switching browsers only affects saved quiz progress, not your account.',
+                'Your access itself is tied to your email link  -  switching browsers only affects saved quiz progress, not your account.',
               ]
             },
             {
@@ -169,7 +169,7 @@ export default function ContactPage({ onHome, onNavigate }) {
                 'Try a hard refresh: Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac).',
                 'Clear your browser cache and reload.',
                 'Try a different browser (Chrome, Firefox, Safari).',
-                'Check your internet connection — the app loads once and works offline after.',
+                'Check your internet connection  -  the app loads once and works offline after.',
               ]
             },
           ].map((issue, i) => (
@@ -191,7 +191,7 @@ export default function ContactPage({ onHome, onNavigate }) {
           {[
             ['Business Name', 'West Coast Wire Pro Training'],
             ['Contact', 'Use the form above'],
-            ['Product', 'West Coast Wire Pro — California Electrician Exam Prep'],
+            ['Product', 'West Coast Wire Pro  -  California Electrician Exam Prep'],
             ['Response Time', '1 business day (weekends → Monday)'],
           ].map(([label, val]) => (
             <div key={label} style={{ display: 'flex', gap: '12px', marginBottom: '8px', fontSize: '13px' }}>

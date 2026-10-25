@@ -19,7 +19,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
             <span style={s.h1Gold}>(Journeyman) Exam</span>
           </h1>
           <p style={s.heroSub}>
-            Everything you need to know before you sit for the exam —
+            Everything you need to know before you sit for the exam  - 
             eligibility, format, what's tested, pass rates, and how to prepare.
           </p>
           <div style={s.heroBreadcrumb}>
@@ -85,13 +85,13 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
 
             <Section id="overview" title="What Is the California General Electrician Exam?">
               <P>
-                The California General Electrician exam — commonly called the Journeyman exam —
+                The California General Electrician exam  -  commonly called the Journeyman exam  - 
                 is a licensing examination required by the California Department of Industrial
                 Relations (DIR) Division of Labor Standards Enforcement (DLSE) for electricians
                 seeking to work as a General Electrician (Journeyman) in the state.
               </P>
               <P>
-                Passing the exam is one of two requirements for licensure — the other being
+                Passing the exam is one of two requirements for licensure  -  the other being
                 documented work experience (8,000 hours as an apprentice or equivalent). The
                 exam itself is administered by PSI Services at testing centers throughout California.
               </P>
@@ -126,12 +126,12 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               <P>
                 The California General Electrician exam consists of <strong style={s.strong}>110 multiple-choice questions</strong> with
                 a time limit of <strong style={s.strong}>4.5 hours (270 minutes)</strong>. All questions have four answer choices.
-                There is no penalty for guessing — unanswered questions count as wrong, so
+                There is no penalty for guessing  -  unanswered questions count as wrong, so
                 always fill in an answer.
               </P>
               <P>
                 The exam is computer-based at PSI testing centers. You will be seated at a
-                testing station and work through questions on screen. The exam is open book —
+                testing station and work through questions on screen. The exam is open book  - 
                 PSI provides an unmarked NEC codebook at the testing center. You cannot bring
                 your own. No personal notes, annotations, or tabs are permitted.
               </P>
@@ -142,7 +142,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               </P>
               <CallOut>
                 The 4.5-hour time limit works out to about 2.5 minutes per question. Most
-                test-takers report the time is sufficient if you've prepared well — the real
+                test-takers report the time is sufficient if you've prepared well  -  the real
                 challenge is knowledge, not speed.
               </CallOut>
             </Section>
@@ -159,13 +159,13 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                   {mod:'Definitions & General Requirements', arts:'Articles 90, 100, 110', note:'Definitions, working clearances, equipment approval'},
                   {mod:'Wiring & Overcurrent Protection', arts:'Articles 210, 215, 220, 240', note:'Branch circuits, feeders, load calculations, GFCI/AFCI'},
                   {mod:'Services & Feeders', arts:'Articles 215, 225, 230', note:'Service entrance, service equipment, disconnects'},
-                  {mod:'Grounding & Bonding', arts:'Article 250', note:'Grounding electrodes, bonding, EGC sizing — heavily tested'},
+                  {mod:'Grounding & Bonding', arts:'Article 250', note:'Grounding electrodes, bonding, EGC sizing  -  heavily tested'},
                   {mod:'Wiring & Materials', arts:'Articles 300–392', note:'Conduit, cable methods, raceways, boxes'},
                   {mod:'Equipment for General Use', arts:'Articles 400–490', note:'Cords, switches, receptacles, panelboards'},
                   {mod:'Special Occupancies', arts:'Articles 500–590', note:'Hazardous locations, healthcare, temporary wiring'},
                   {mod:'Motors & Transformers', arts:'Articles 430, 450', note:'Motor circuit sizing, overload, transformer protection'},
                   {mod:'Communications & Emergency', arts:'Articles 700–820', note:'Emergency systems, standby power, low voltage'},
-                  {mod:'Trade Calculations', arts:'Chapter 9, Table 310.16', note:'Conduit fill, load calcs, wire sizing — math-heavy'},
+                  {mod:'Trade Calculations', arts:'Chapter 9, Table 310.16', note:'Conduit fill, load calcs, wire sizing  -  math-heavy'},
                   {mod:'Safety & Maintenance', arts:'NFPA 70E, Cal/OSHA', note:'Arc flash, lockout/tagout, PPE requirements'},
                 ].map(t => (
                   <div key={t.mod} style={s.topicCard}>
@@ -204,26 +204,26 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               </div>
 
               <CallOut>
-                The California General Electrician exam is open book — PSI provides an unmarked
+                The California General Electrician exam is open book  -  PSI provides an unmarked
                 NEC codebook at the testing center. You cannot bring your own, and no personal
                 notes, tabs, or annotations are permitted. Verify current testing policies at{' '}
                 <a href="https://www.psionline.com" target="_blank" rel="noopener noreferrer" style={{color:'#c8a84b'}}>psionline.com</a> before your exam.
-                Time is tight — know the code well enough to find answers fast.
+                Time is tight  -  know the code well enough to find answers fast.
               </CallOut>
             </Section>
 
             <Section id="passrate" title="Pass Rate & Difficulty">
               <P>
-                The California General Electrician exam has a low pass rate. The DLSE does not publish official figures, but available industry data puts the first-attempt pass rate around 50% or below — and repeat attempt pass rates are lower still. In 2020, one widely cited data point placed the first-attempt rate at approximately 53%, with repeat attempts around 36%.
+                The California General Electrician exam has a low pass rate. The DLSE does not publish official figures, but available industry data puts the first-attempt pass rate around 50% or below  -  and repeat attempt pass rates are lower still. In 2020, one widely cited data point placed the first-attempt rate at approximately 53%, with repeat attempts around 36%.
               </P>
               <P>
                 Several factors contribute to the difficulty:
               </P>
               <Ul items={[
-                'Broad scope — 110 questions spanning 12 content areas means no single topic can be ignored',
-                'Calculation questions — trade math (load calculations, conduit fill, motor sizing) requires actual computation under time pressure',
-                'Time pressure — the exam is open book, but 4.5 hours for 110 questions goes fast if you\'re looking up every answer',
-                'Question wording — questions often test nuance and exception clauses, not just the general rule',
+                'Broad scope  -  110 questions spanning 12 content areas means no single topic can be ignored',
+                'Calculation questions  -  trade math (load calculations, conduit fill, motor sizing) requires actual computation under time pressure',
+                'Time pressure  -  the exam is open book, but 4.5 hours for 110 questions goes fast if you\'re looking up every answer',
+                'Question wording  -  questions often test nuance and exception clauses, not just the general rule',
               ]} />
               <P>
                 Candidates who pass on their first attempt typically report studying consistently
@@ -236,9 +236,9 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               <P>The application process for the California General Electrician exam:</P>
               <Ul items={[
                 'Complete the DLSE Electrician Certification application (available at dir.ca.gov)',
-                'Gather documentation of your 8,000 hours of work experience — employer letters, pay stubs, W-2s',
+                'Gather documentation of your 8,000 hours of work experience  -  employer letters, pay stubs, W-2s',
                 'Submit your application and fee to the DLSE by mail or online',
-                'Wait for DLSE approval — processing times vary but typically take several weeks',
+                'Wait for DLSE approval  -  processing times vary but typically take several weeks',
                 'Once approved, you\'ll receive an Authorization to Test (ATT) from PSI Services',
                 'Schedule your exam at a PSI testing center (locations throughout California)',
                 'Pay the PSI examination fee at the time of scheduling',
@@ -262,12 +262,12 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                 <strong style={s.strong}>drilling your weak areas until they're strong</strong>.
               </P>
               <Ul items={[
-                'Start with a diagnostic — take a timed practice set across all modules and find out where your gaps are',
-                'Study by module — go deep on one topic area before moving to the next',
-                'The actual PSI exam questions are proprietary and owned by the DLSE — no prep company has access to them. Every study resource builds original questions from the same NEC content and PSI outline. Focus on understanding the NEC, not hunting for \'real\' test questions that don\'t exist outside PSI\'s vaults.',
-                'Don\'t just memorize answers — read the explanation to understand the NEC rule, not just the right letter',
-                'Practice calculations until they\'re automatic — motor sizing, conduit fill, load calculations',
-                'Simulate exam conditions — 110 questions, 4.5 hours, open book just like the real exam',
+                'Start with a diagnostic  -  take a timed practice set across all modules and find out where your gaps are',
+                'Study by module  -  go deep on one topic area before moving to the next',
+                'The actual PSI exam questions are proprietary and owned by the DLSE  -  no prep company has access to them. Every study resource builds original questions from the same NEC content and PSI outline. Focus on understanding the NEC, not hunting for \'real\' test questions that don\'t exist outside PSI\'s vaults.',
+                'Don\'t just memorize answers  -  read the explanation to understand the NEC rule, not just the right letter',
+                'Practice calculations until they\'re automatic  -  motor sizing, conduit fill, load calculations',
+                'Simulate exam conditions  -  110 questions, 4.5 hours, open book just like the real exam',
                 'In the final week before your exam, focus on your weakest modules only',
               ]} />
 
@@ -281,7 +281,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
                   Built by a California journeyman electrician and trade school instructor.
                 </div>
                 <div style={s.ctaBtns}>
-                  <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
+                  <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free  -  Modules 1 & 2</button>
                   
                 </div>
                 <div style={s.ctaNote}>Module 1 (30 questions) is always free. No account required.</div>
@@ -302,7 +302,7 @@ export default function ExamInfoPage({ onHome, onLaunchApp, onNavigate }) {
               ['Passing', '70%'],
               ['Format', 'Computer-based'],
               ['Location', 'PSI Testing Centers'],
-              ['Reference', 'Open book — NEC permitted'],
+              ['Reference', 'Open book  -  NEC permitted'],
               ['Calculator', 'Provided on-screen'],
               ['Code', '2023 NEC + CA amendments'],
             ].map(([k, v]) => (
@@ -354,7 +354,7 @@ function Ul({ items }) {
     <ul style={{listStyle:'none', padding:0, margin:'0 0 20px 0'}}>
       {items.map((item, i) => (
         <li key={i} style={{display:'flex', gap:'12px', fontSize:'15px', color:'#aabbcc', lineHeight:1.7, padding:'7px 0', borderBottom:'1px solid rgba(255,255,255,0.03)', fontFamily:"'Georgia', serif"}}>
-          <span style={{color:'#c8a84b', fontFamily:"'Courier New', monospace", flexShrink:0, marginTop:'2px'}}>—</span>
+          <span style={{color:'#c8a84b', fontFamily:"'Courier New', monospace", flexShrink:0, marginTop:'2px'}}> - </span>
           <span>{item}</span>
         </li>
       ))}
@@ -437,12 +437,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
         <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
-            {[['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+            {[['Start Studying  -  Free','landing'],['Start Free  -  No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass  -  Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>

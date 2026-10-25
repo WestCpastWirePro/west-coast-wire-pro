@@ -1,4 +1,4 @@
-// LandingPage — v2
+// LandingPage  -  v2
 import React, { useState, useEffect, useRef } from 'react'
 
 // ── Stripe checkout ───────────────────────────────────────────────────────────
@@ -231,7 +231,7 @@ function CircuitAnimation() {
         if (sig.dist > tr.totalLen) { spawnSignal(false); return }
         live.push(sig)
 
-        // Illuminated trail — draw lit trace segment behind signal
+        // Illuminated trail  -  draw lit trace segment behind signal
         const trailStart = Math.max(0, sig.dist - sig.trailLen)
         const TRAIL_STEPS = 24
         for (let i = 0; i <= TRAIL_STEPS; i++) {
@@ -250,7 +250,7 @@ function CircuitAnimation() {
           }
         }
 
-        // Signal head — square with glow
+        // Signal head  -  square with glow
         const pos = posAt(tr, sig.dist)
         const hs = sig.size + 2
 
@@ -325,7 +325,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             The demand for licensed California electricians has never been higher. <strong style={{color:'#d8e0e8'}}>Your Journeyman license is your ticket in.</strong> 500 original practice questions, every answer NEC referenced.
           </p>
           <div style={s.heroCtas}>
-            <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
+            <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Free  -  Modules 1 & 2</button>
           </div>
           <div style={{marginTop:'12px'}}>
             <button onClick={() => onNavigate && onNavigate('demo')}
@@ -360,10 +360,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <div style={{background:'linear-gradient(135deg,rgba(200,168,75,0.13),rgba(200,168,75,0.04))', borderBottom:'2px solid rgba(200,168,75,0.3)', padding:'18px clamp(16px,5vw,60px)', display:'flex', alignItems:'center', justifyContent:'space-between', gap:'20px', flexWrap:'wrap'}}>
         <div>
           <div style={{fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'clamp(14px,2.5vw,17px)', color:'#e8eaf0', marginBottom:'4px'}}>
-            Free Electrical Calculators — No Account Required
+            Free Electrical Calculators  -  No Account Required
           </div>
           <div style={{fontSize:'13px', color:'#8899aa', lineHeight:'1.5'}}>
-            Voltage Drop · Motor Sizing · Transformer · Box Fill — full step-by-step solutions, NEC referenced
+            Voltage Drop · Motor Sizing · Transformer · Box Fill  -  full step-by-step solutions, NEC referenced
           </div>
         </div>
         <button
@@ -397,15 +397,15 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             price="$0"
             priceSub="No account required"
             features={[
-              {text:'Module 1 — Definitions & General', locked:false},
-              {text:'Module 2 — Wiring & Overcurrent', locked:false},
+              {text:'Module 1  -  Definitions & General', locked:false},
+              {text:'Module 2  -  Wiring & Overcurrent', locked:false},
               {text:'75 practice questions (Modules 1 & 2)', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed mode', locked:false},
               {text:'Table 310.16 & Conduit Fill drills', locked:false},
               {text:'Set your exam date & see your countdown', locked:false},
               {text:'Modules 3–12 (425 questions)', locked:true},
-              {text:'Table Mastery — 8 more NEC tables', locked:true},
+              {text:'Table Mastery  -  8 more NEC tables', locked:true},
               {text:'Progress saved & missed question deck', locked:true},
             ]}
             btnLabel="Start Free →"
@@ -417,7 +417,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             price="$29.99"
             priceSub="One-time · Instant access"
             features={[
-              {text:'All 12 modules — 500 questions', locked:false},
+              {text:'All 12 modules  -  500 questions', locked:false},
               {text:'Detailed NEC explanations', locked:false},
               {text:'Timed & untimed modes', locked:false},
               {text:'Exam Simulator (full 110Q)', locked:false},
@@ -440,10 +440,10 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
             tagline="For the candidate who wants every available edge."
             features={[
               {text:'Everything in Standard', locked:false},
-              {text:'Code Sprint — train NEC article navigation under pressure', locked:false},
-              {text:'Full Table Mastery — 10 tables, 113 flashcards', locked:false},
-              {text:'Missed Questions deck — spaced repetition on your wrong answers', locked:false},
-              {text:'High-Priority Drill — 25 questions on the most-tested CA exam topics', locked:false},
+              {text:'Code Sprint  -  train NEC article navigation under pressure', locked:false},
+              {text:'Full Table Mastery  -  10 tables, 113 flashcards', locked:false},
+              {text:'Missed Questions deck  -  spaced repetition on your wrong answers', locked:false},
+              {text:'High-Priority Drill  -  25 questions on the most-tested CA exam topics', locked:false},
             ]}
             btnLabel="Get Pro Access ⚡"
             btnStyle="gold"
@@ -458,14 +458,14 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <SectionLabel>// HOW IT WORKS</SectionLabel>
         <SectionTitle>Built on how<br/>memory actually works.</SectionTitle>
         <p style={{color:'#7a8a9a', maxWidth:'520px', margin:'0 auto 40px', fontSize:'14px', lineHeight:'1.7', textAlign:'center'}}>
-          Built on active recall and spaced repetition — the two study methods with the strongest evidence base in learning science.
+          Built on active recall and spaced repetition  -  the two study methods with the strongest evidence base in learning science.
         </p>
         <div style={s.steps}>
           {[
-            ['01','🎯','Answer First, Always','Every session starts with a question, not a reading. Forcing your brain to retrieve an answer — even wrong — builds stronger memory than re-reading ever does. This is active recall, the most evidence-backed study method in cognitive psychology.'],
-            ['02','⚡','Timed Like the Real Exam','4.5 hours for 110 questions is 2.5 minutes each. Timed mode trains you to work at exam pace, not study pace. Research shows that practicing under test conditions — same time pressure, same format — directly improves test performance.'],
+            ['01','🎯','Answer First, Always','Every session starts with a question, not a reading. Forcing your brain to retrieve an answer  -  even wrong  -  builds stronger memory than re-reading ever does. This is active recall, the most evidence-backed study method in cognitive psychology.'],
+            ['02','⚡','Timed Like the Real Exam','4.5 hours for 110 questions is 2.5 minutes each. Timed mode trains you to work at exam pace, not study pace. Research shows that practicing under test conditions  -  same time pressure, same format  -  directly improves test performance.'],
             ['03','📖','Every Answer Cites the Code','After each question you see the exact NEC article, the reasoning, and what the code actually says. You learn where the rule lives, not just what it is. On an open-book exam, that is the difference between confirming an answer in 20 seconds and spending 3 minutes searching.'],
-            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve — reviewing right before you forget resets it. This is spaced repetition, and drilling your missed questions in the final week is the highest-ROI study move you can make.'],
+            ['04','🔁','Wrong Answers Come Back','Your missed questions automatically build their own review deck. Your brain forgets on a predictable curve  -  reviewing right before you forget resets it. This is spaced repetition, and drilling your missed questions in the final week is the highest-ROI study move you can make.'],
           ].map(([num, icon, title, text]) => (
             <div key={num} style={s.step}>
               <div style={s.stepNum}>{num}</div>
@@ -509,7 +509,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.06)', marginTop:'20px'}}>
           {[
             {
-              quote: "I failed my first attempt with another prep course. Switched to West Coast Wire Pro three weeks before my retake. The NEC references on every answer are what made the difference — I stopped guessing and started knowing where to look.",
+              quote: "I failed my first attempt with another prep course. Switched to West Coast Wire Pro three weeks before my retake. The NEC references on every answer are what made the difference  -  I stopped guessing and started knowing where to look.",
               name: "Marcus T.",
               detail: "Journeyman Electrician · Sacramento",
             },
@@ -524,7 +524,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               detail: "Independent Contractor · Los Angeles",
             },
             {
-              quote: "I studied on my phone during lunch breaks for 6 weeks. The module breakdown showed exactly where my gaps were. Grounding & Bonding was killing me — drilled it until I hit 80%. Passed.",
+              quote: "I studied on my phone during lunch breaks for 6 weeks. The module breakdown showed exactly where my gaps were. Grounding & Bonding was killing me  -  drilled it until I hit 80%. Passed.",
               name: "Kevin O.",
               detail: "Apprentice → Journeyman · San Diego",
             },
@@ -548,9 +548,9 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={s.faqGrid}>
           {[
             ['Which exam does this prepare me for?','The California General Electrician (Journeyman) certification exam administered by PSI Services on behalf of DLSE/DIR. Questions based on the 2023 NEC and California codes (Title 8 Cal/OSHA and Title 24 CEC).'],
-            ['Is this the actual exam content?','No — these are original practice questions developed from 2023 NEC content and electrical trade resources, then reviewed by a licensed California journeyman electrician against the codebook. The actual PSI exam questions are proprietary, owned by the DLSE, and not available to any prep company or training site anywhere.'],
+            ['Is this the actual exam content?','No  -  these are original practice questions developed from 2023 NEC content and electrical trade resources, then reviewed by a licensed California journeyman electrician against the codebook. The actual PSI exam questions are proprietary, owned by the DLSE, and not available to any prep company or training site anywhere.'],
             ['What NEC edition is used?','The 2023 NEC (NFPA 70), which is the current adopted edition in California.'],
-            ['Do I need a codebook to use this app?','Not to study here — every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2023 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you will need on exam day, when PSI hands you an unmarked codebook and the clock starts.'],
+            ['Do I need a codebook to use this app?','Not to study here  -  every answer includes the exact NEC article, the reasoning, and the relevant code language so you learn the rule, not just the letter. That said, having your own NEC 2023 is a good idea. Flipping to the actual article after drilling a question builds the book familiarity you will need on exam day, when PSI hands you an unmarked codebook and the clock starts.'],
             ['Is this a subscription?','No. One-time payment, yours forever. No recurring charges, no expiration dates. Study at your own pace until you pass.'],
             ['Does it work on my phone?','Yes. West Coast Wire Pro is fully mobile-optimized. Works on phone, tablet, and laptop.'],
           ].map(([q, a]) => (
@@ -566,7 +566,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
       <section style={s.ctaBanner}>
         <div style={s.ctaBannerEmoji}>⚡</div>
         <h2 style={s.ctaH2}>Ready to <span style={{color:'#c8a84b'}}>Wire Up</span><br/>Your Future?</h2>
-        <p style={s.ctaP}>Modules 1 & 2 free — 75 questions, no account, no credit card.</p>
+        <p style={s.ctaP}>Modules 1 & 2 free  -  75 questions, no account, no credit card.</p>
         <button style={s.btnPrimary} onClick={onLaunchApp}>⚡ Start Studying Free</button>
         <div style={{marginTop:'16px'}}>
           <button
@@ -620,22 +620,22 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
           <div style={s.modal} onClick={e => e.stopPropagation()}>
             <button style={s.modalClose} onClick={() => setModalOpen(false)}>✕</button>
             <div style={s.modalTitle}>
-              {modalTier === 'standard' ? 'Standard Access — $29.99' : 'Pro Access — $59.99'}
+              {modalTier === 'standard' ? 'Standard Access  -  $29.99' : 'Pro Access  -  $59.99'}
             </div>
             <div style={s.modalSub}>
-              One-time payment — no subscription, no expiration date.
+              One-time payment  -  no subscription, no expiration date.
             </div>
             <div style={{display:'flex', flexDirection:'column', gap:'12px', marginBottom:'20px'}}>
               {modalTier === 'pro' && (
                 <ModalOption
-                  name="Pro — Full Suite"
+                  name="Pro  -  Full Suite"
                   desc="Everything in Standard + Code Sprint, Table Mastery, saved progress & updates"
                   price="$59.99"
                   onClick={() => handlePurchase('pro')}
                 />
               )}
               <ModalOption
-                name={modalTier === 'standard' ? 'Standard — All 12 Modules' : 'Standard instead'}
+                name={modalTier === 'standard' ? 'Standard  -  All 12 Modules' : 'Standard instead'}
                 desc="500 questions · Timed mode · Score tracking"
                 price="$29.99"
                 onClick={() => handlePurchase('standard')}

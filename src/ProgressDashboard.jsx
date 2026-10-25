@@ -63,7 +63,7 @@ export default function ProgressDashboard({ onHome, onNavigate, access }) {
           <div style={{fontSize:"48px", marginBottom:"16px"}}>📊</div>
           <div style={{fontSize:"18px", fontWeight:"700", color:"#c8a84b", marginBottom:"8px"}}>No Data Yet</div>
           <div style={{fontSize:"14px", color:"#8899aa", maxWidth:"300px", margin:"0 auto 24px", lineHeight:"1.6"}}>
-            Complete a practice session and your scores, streaks, and module mastery will appear here. Progress is saved on this device — if you recently cleared your browser data, your history will have reset.
+            Complete a practice session and your scores, streaks, and module mastery will appear here. Progress is saved on this device  -  if you recently cleared your browser data, your history will have reset.
           </div>
           <button style={{...s.btn, ...s.btnGold}} onClick={onHome}>Start a Practice Quiz ⚡</button>
           <div style={{marginTop:"12px", fontSize:"12px", color:"#4a5a6a"}}>Complete any quiz and your scores will appear here automatically.</div>
@@ -85,7 +85,7 @@ export default function ProgressDashboard({ onHome, onNavigate, access }) {
     ? history[history.length-1].pct - history[history.length-2].pct
     : 0;
 
-  // Streak: consecutive days — allow today to not have a session yet without breaking streak
+  // Streak: consecutive days  -  allow today to not have a session yet without breaking streak
   const daySet = new Set(history.map(h => new Date(h.date).toDateString()));
   let streak = 0;
   const today = new Date();
@@ -173,7 +173,7 @@ export default function ProgressDashboard({ onHome, onNavigate, access }) {
       {chartData.length >= 2 && (
         <div style={s.card}>
           <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"12px"}}>
-            <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700"}}>SCORE TREND — LAST {chartData.length} SESSIONS</div>
+            <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700"}}>SCORE TREND  -  LAST {chartData.length} SESSIONS</div>
             <div style={{fontSize:"12px", color: trend>0?"#2ecc71":trend<0?"#e74c3c":"#8899aa", fontWeight:"700"}}>
               {trend>0?`▲ +${trend}%`:trend<0?`▼ ${trend}%`:"→ Steady"}
             </div>
@@ -276,15 +276,15 @@ export default function ProgressDashboard({ onHome, onNavigate, access }) {
             last5avg >= 75
               ? `Strong recent average (${last5avg}%). You're trending toward exam-ready. Take a full simulation.`
               : last5avg >= 60
-              ? `Recent average ${last5avg}% — improving. Focus on your weakest modules for another week before simulating.`
+              ? `Recent average ${last5avg}%  -  improving. Focus on your weakest modules for another week before simulating.`
               : `Recent average ${last5avg}%. Slow down and drill one module at a time rather than mixing everything.`,
             access === 'pro' && missed.length >= 10
-              ? `You have ${missed.length} questions in your Missed Questions deck. Clear those before your exam — they represent real gaps.`
+              ? `You have ${missed.length} questions in your Missed Questions deck. Clear those before your exam  -  they represent real gaps.`
               : access === 'pro' && missed.length > 0
               ? `${missed.length} missed questions queued. Run the Missed Questions deck to clear them.`
               : `No missed questions queued. Keep it up.`,
             streak >= 7
-              ? `${streak}-day study streak — excellent consistency. That's the most reliable predictor of passing.`
+              ? `${streak}-day study streak  -  excellent consistency. That's the most reliable predictor of passing.`
               : streak >= 3
               ? `${streak}-day streak going. Consistency beats cramming every time.`
               : `Study every day, even if just 20 minutes. Daily exposure builds pattern recognition.`,

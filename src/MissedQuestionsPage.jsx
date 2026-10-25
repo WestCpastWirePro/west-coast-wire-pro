@@ -175,7 +175,7 @@ export default function MissedQuestionsPage({ onHome, access , onNavigate }) {
         {selected !== null && (
           <div style={{...s.card, borderColor: selected === q.ans ? "#27ae60" : "#e74c3c"}}>
             <div style={{fontSize:"13px", fontWeight:"700", marginBottom:"8px", color: selected === q.ans ? "#2ecc71" : "#e74c3c"}}>
-              {selected === q.ans ? "✓ Correct" : "✗ Incorrect — Correct answer: " + String.fromCharCode(65 + q.ans)}
+              {selected === q.ans ? "✓ Correct" : "✗ Incorrect  -  Correct answer: " + String.fromCharCode(65 + q.ans)}
             </div>
             <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6"}}>{q.exp}</div>
             <div style={{marginTop:"8px", fontSize:"12px", color:"#c8a84b", fontWeight:"600"}}>{q.ref}</div>
@@ -183,7 +183,7 @@ export default function MissedQuestionsPage({ onHome, access , onNavigate }) {
             <div style={{display:"flex", gap:"10px", marginTop:"16px", flexWrap:"wrap"}}>
               {selected === q.ans && (
                 <button style={{...s.btn, background:"rgba(39,174,96,0.15)", color:"#2ecc71", border:"1px solid #27ae60", flex:1, fontSize:"13px"}} onClick={markCleared}>
-                  ✓ Got It — Remove from Deck
+                  ✓ Got It  -  Remove from Deck
                 </button>
               )}
               <button style={{...s.btn, ...s.btnGold, flex:1, fontSize:"13px"}} onClick={advance}>

@@ -56,7 +56,7 @@ export default function BlogPage({ onHome, onNavigate }) {
             Ready to Start Studying?
           </div>
           <p style={{color:'#7a8a9a', fontSize:'14px', marginBottom:'20px'}}>
-            Modules 1 & 2 free — no account needed.
+            Modules 1 & 2 free  -  no account needed.
           </p>
           <button onClick={() => nav('app')} style={{background:'linear-gradient(135deg,#c8a84b,#e8c878)', color:'#0a1016', fontFamily:"'Arial Black',Arial,sans-serif", fontWeight:'900', fontSize:'14px', textTransform:'uppercase', border:'none', borderRadius:'6px', padding:'13px 28px', cursor:'pointer'}}>
             ⚡ Start Studying Free

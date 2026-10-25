@@ -20,10 +20,10 @@ const SECTIONS = [
     title: "📋 What to Bring",
     content: [
       { type:"check", text:"Two valid, unexpired, government-issued photo IDs (driver's license + one more). The names must match exactly." },
-      { type:"check", text:"Your ATT (Authorization to Test) letter or email from the DLSE — either printed or on your phone." },
-      { type:"check", text:"Confirmation number from PSI — you'll need it at check-in." },
-      { type:"check", text:"PSI provides the NEC 2020 codebook at the testing center. Do NOT bring your own — no personal codebooks, tabs, highlights, or handwritten notes are permitted. The provided copy is clean and unmarked." },
-      { type:"warn", text:"Do NOT bring: your own NEC codebook, calculators, phones (must be off and stored), study materials, food or drink, smartwatches, or any electronic devices. PSI provides scratch paper — ask for it at check-in." },
+      { type:"check", text:"Your ATT (Authorization to Test) letter or email from the DLSE  -  either printed or on your phone." },
+      { type:"check", text:"Confirmation number from PSI  -  you'll need it at check-in." },
+      { type:"check", text:"PSI provides the NEC 2020 codebook at the testing center. Do NOT bring your own  -  no personal codebooks, tabs, highlights, or handwritten notes are permitted. The provided copy is clean and unmarked." },
+      { type:"warn", text:"Do NOT bring: your own NEC codebook, calculators, phones (must be off and stored), study materials, food or drink, smartwatches, or any electronic devices. PSI provides scratch paper  -  ask for it at check-in." },
     ]
   },
   {
@@ -31,8 +31,8 @@ const SECTIONS = [
     content: [
       { type:"check", text:"Arrive at least 30 minutes early. Late arrivals may be turned away with no refund." },
       { type:"check", text:"You'll be photographed and asked to sign in. Your palm vein or fingerprint may be scanned." },
-      { type:"check", text:"All personal items — including your phone, keys, and wallet — go into a locker. You'll carry only your ID into the testing room." },
-      { type:"check", text:"You'll be escorted to a testing workstation. Raise your hand if you have any technical issues — don't try to fix the computer yourself." },
+      { type:"check", text:"All personal items  -  including your phone, keys, and wallet  -  go into a locker. You'll carry only your ID into the testing room." },
+      { type:"check", text:"You'll be escorted to a testing workstation. Raise your hand if you have any technical issues  -  don't try to fix the computer yourself." },
       { type:"tip", text:"Tip: Before starting the timed exam, take a few minutes to review any tutorial screens PSI provides. They don't count against your time." },
     ]
   },
@@ -40,22 +40,22 @@ const SECTIONS = [
     title: "💻 The PSI Exam Interface",
     content: [
       { type:"check", text:"110 multiple-choice questions, one at a time. 4 answer choices per question." },
-      { type:"check", text:"You can flag any question and return to it before submitting. Use this — don't waste time stuck on a hard question." },
+      { type:"check", text:"You can flag any question and return to it before submitting. Use this  -  don't waste time stuck on a hard question." },
       { type:"check", text:"A timer counts down in the upper corner. You have 4 hours 30 minutes total." },
-      { type:"check", text:"There is an on-screen calculator available — find it in the toolbar before you need it." },
+      { type:"check", text:"There is an on-screen calculator available  -  find it in the toolbar before you need it." },
       { type:"check", text:"At the end, you'll see a summary showing answered and flagged questions before final submission. Review everything here." },
-      { type:"tip", text:"Tip: Don't change answers unless you're certain. Your first instinct is usually correct. Only change if you have a specific reason — second-guessing kills more people than wrong first guesses." },
+      { type:"tip", text:"Tip: Don't change answers unless you're certain. Your first instinct is usually correct. Only change if you have a specific reason  -  second-guessing kills more people than wrong first guesses." },
     ]
   },
   {
     title: "🧠 Strategy During the Exam",
     content: [
-      { type:"check", text:"Read every question twice before looking at answers. The wording matters — 'required,' 'permitted,' 'shall,' and 'shall not' mean very different things in the NEC." },
+      { type:"check", text:"Read every question twice before looking at answers. The wording matters  -  'required,' 'permitted,' 'shall,' and 'shall not' mean very different things in the NEC." },
       { type:"check", text:"Eliminate wrong answers first. You can often cut it to 2 choices immediately." },
       { type:"check", text:"For calculation questions: write out every step on your scratch paper. Don't do it in your head." },
-      { type:"check", text:"If you genuinely don't know, guess and move on. Never leave a blank — there's no penalty for wrong answers." },
+      { type:"check", text:"If you genuinely don't know, guess and move on. Never leave a blank  -  there's no penalty for wrong answers." },
       { type:"check", text:"Flag questions you're unsure about. Come back with fresh eyes after completing the rest." },
-      { type:"warn", text:"Watch for 'EXCEPT' and 'NOT' questions — they're easy to misread under pressure. Circle or underline those words on your scratch paper." },
+      { type:"warn", text:"Watch for 'EXCEPT' and 'NOT' questions  -  they're easy to misread under pressure. Circle or underline those words on your scratch paper." },
     ]
   },
   {
@@ -63,7 +63,7 @@ const SECTIONS = [
     content: [
       { type:"check", text:"You receive a pass/fail result immediately on screen when you submit." },
       { type:"check", text:"Passing score is 70%." },
-      { type:"check", text:"If you pass: PSI transmits your results to the DLSE. Your official California Electrician Certification card will be mailed to the address on your application — typically within a few weeks. Keep your score report as proof of certification until the card arrives. You are legally certified as of your pass date." },
+      { type:"check", text:"If you pass: PSI transmits your results to the DLSE. Your official California Electrician Certification card will be mailed to the address on your application  -  typically within a few weeks. Keep your score report as proof of certification until the card arrives. You are legally certified as of your pass date." },
       { type:"check", text:"If you fail: You'll receive a diagnostic report showing which topic areas you were weakest in. You must wait 60 days before reapplying to retake, and pay a $100 retake fee to DLSE." },
       { type:"tip", text:"Tip: If you fail, don't reschedule immediately. Study the diagnostic report. Most people who fail did so in 2–3 specific areas, not across the board." },
     ]
@@ -112,14 +112,14 @@ export default function ExamDayPage({ onHome, onNavigate }) {
 
       <div className="wcw-no-print" style={{padding:"4px 0 8px"}}>
         <div style={{padding:"0 16px 4px", fontSize:"13px", color:"#8899aa", lineHeight:"1.5"}}>
-          Everything you need to know about the day itself — logistics, the PSI interface, strategy, and what happens after.
+          Everything you need to know about the day itself  -  logistics, the PSI interface, strategy, and what happens after.
         </div>
       </div>
 
       <div className="wcw-print-only">
         <div style={{fontFamily:"'Segoe UI',sans-serif", color:"#000", padding:"16px 20px 0"}}>
           <div style={{borderBottom:"3px solid #c8a84b", paddingBottom:"8px", marginBottom:"16px"}}>
-            <div style={{fontSize:"20px", fontWeight:"900", color:"#1a2840"}}>CA Journeyman Exam — Day-Of Guide</div>
+            <div style={{fontSize:"20px", fontWeight:"900", color:"#1a2840"}}>CA Journeyman Exam  -  Day-Of Guide</div>
             <div style={{fontSize:"11px", color:"#555", marginTop:"4px"}}>West Coast Wire Pro · westcoastwirepro.com</div>
           </div>
           {SECTIONS.map((section, si) => (
@@ -135,7 +135,7 @@ export default function ExamDayPage({ onHome, onNavigate }) {
           <div style={{borderTop:"2px solid #c8a84b", paddingTop:"10px", marginTop:"4px"}}>
             <div style={{fontSize:"12px", fontWeight:"800", color:"#1a2840", marginBottom:"6px"}}>QUICK REFERENCE</div>
             <div style={{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3px 24px"}}>
-              {[["Time allowed","4 hr 30 min"],["Questions","110 multiple choice"],["Passing score","70%"],["Result","Immediate on screen"],["NEC Codebook","Provided by PSI — no personal copy"],["Calculator","On-screen only (no personal)"],["Arrive","30 min early minimum"],["IDs","2 government-issued photo IDs"]].map(([k,v]) => (
+              {[["Time allowed","4 hr 30 min"],["Questions","110 multiple choice"],["Passing score","70%"],["Result","Immediate on screen"],["NEC Codebook","Provided by PSI  -  no personal copy"],["Calculator","On-screen only (no personal)"],["Arrive","30 min early minimum"],["IDs","2 government-issued photo IDs"]].map(([k,v]) => (
                 <div key={k} style={{fontSize:"10px", padding:"3px 0", borderBottom:"1px solid #eee", display:"flex", justifyContent:"space-between", gap:"8px"}}>
                   <span style={{color:"#666"}}>{k}</span>
                   <span style={{fontWeight:"700", color:"#1a2840", textAlign:"right"}}>{v}</span>
@@ -175,13 +175,13 @@ export default function ExamDayPage({ onHome, onNavigate }) {
 
       {/* Quick reference card */}
       <div style={{...s.card, borderColor:"#c8a84b", background:"rgba(200,168,75,0.04)", margin:"12px 16px 32px"}}>
-        <div style={{...s.section, marginBottom:"14px"}}>📌 QUICK REFERENCE — DAY OF</div>
+        <div style={{...s.section, marginBottom:"14px"}}>📌 QUICK REFERENCE  -  DAY OF</div>
         {[
           ["Time allowed", "4 hours 30 minutes"],
           ["Questions", "110 multiple choice"],
           ["Passing score", "70%"],
           ["Result", "Immediate on screen"],
-          ["NEC Codebook", "Provided by PSI — do not bring your own"],
+          ["NEC Codebook", "Provided by PSI  -  do not bring your own"],
           ["Calculator", "On-screen only (provided)"],
           ["Arrive", "30 min early minimum"],
           ["IDs needed", "2 government-issued photo IDs"],

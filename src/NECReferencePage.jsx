@@ -19,13 +19,13 @@ const s = {
 const TABLES = [
   {
     id: "310-16",
-    title: "Table 310.16 — Conductor Ampacity (75°C, Copper)",
+    title: "Table 310.16  -  Conductor Ampacity (75°C, Copper)",
     ref: "NEC 310.16",
     tag: "Wiring",
     note: "Most common table on the exam. Used for branch circuits, feeders, and service conductors in conduit or cable.",
     headers: ["AWG / kcmil", "Ampacity (Copper)", "Ampacity (Aluminum)"],
     rows: [
-      ["14 AWG", "20A", "—"],
+      ["14 AWG", "20A", " - "],
       ["12 AWG", "25A", "20A"],
       ["10 AWG", "35A", "30A"],
       ["8 AWG", "50A", "40A"],
@@ -45,7 +45,7 @@ const TABLES = [
   },
   {
     id: "250-66",
-    title: "Table 250.66 — Grounding Electrode Conductor (GEC) Sizing",
+    title: "Table 250.66  -  Grounding Electrode Conductor (GEC) Sizing",
     ref: "NEC 250.66",
     tag: "Grounding",
     note: "Sized based on the largest service-entrance conductor. Exam frequently tests GEC vs EGC differences.",
@@ -62,7 +62,7 @@ const TABLES = [
   },
   {
     id: "430-52",
-    title: "Table 430.52 — Motor Branch-Circuit Short-Circuit Protection",
+    title: "Table 430.52  -  Motor Branch-Circuit Short-Circuit Protection",
     ref: "NEC 430.52",
     tag: "Motors",
     note: "Maximum OCPD sizing for motor branch circuits. Inverse-time breakers most common on exams.",
@@ -77,7 +77,7 @@ const TABLES = [
   },
   {
     id: "conduit-fill",
-    title: "Conduit Fill — Maximum Conductors",
+    title: "Conduit Fill  -  Maximum Conductors",
     ref: "NEC Chapter 9, Tables 4 & 5",
     tag: "Conduit",
     note: "1 conductor = 53%, 2 conductors = 31%, 3+ conductors = 40% of conduit cross-sectional area.",
@@ -95,21 +95,21 @@ const TABLES = [
   },
   {
     id: "transformer",
-    title: "Transformer OCPD Sizing — Table 450.3(B)",
+    title: "Transformer OCPD Sizing  -  Table 450.3(B)",
     ref: "NEC 450.3(B)",
     tag: "Transformers",
     note: "Primary protection for transformers 600V and under. Oversized OCPD requires secondary protection.",
     headers: ["Impedance", "Primary OCPD (max)", "Secondary OCPD (max)"],
     rows: [
       ["Not over 6%", "125%", "125%"],
-      ["Not over 6% (no secondary OCPD)", "250%", "—"],
+      ["Not over 6% (no secondary OCPD)", "250%", " - "],
       ["Over 6%, not over 10%", "125%", "125%"],
-      ["Over 6%, not over 10% (no secondary)", "125%", "—"],
+      ["Over 6%, not over 10% (no secondary)", "125%", " - "],
     ]
   },
   {
     id: "box-fill",
-    title: "Box Fill — Conductor Volume Allowances",
+    title: "Box Fill  -  Conductor Volume Allowances",
     ref: "NEC 314.16(B)",
     tag: "Boxes",
     note: "Each item counts toward total box volume. Clamps, studs, and devices each count. Grounds count as one total.",
@@ -137,13 +137,13 @@ const TABLES = [
       ["K (copper)", "12.9", "Resistance constant"],
       ["K (aluminum)", "21.2", "Resistance constant"],
       ["D", "One-way distance (feet)", "Not round trip"],
-      ["I", "Load current (amps)", "—"],
+      ["I", "Load current (amps)", " - "],
       ["CM", "Circular mils of conductor", "From wire tables"],
     ]
   },
   {
     id: "service-sizing",
-    title: "Service Load Calculation — Residential (Optional Method)",
+    title: "Service Load Calculation  -  Residential (Optional Method)",
     ref: "NEC 220.82",
     tag: "Calculations",
     note: "Optional method for dwellings (NEC 220.82). Uses 100% of first 10 kVA of general loads, 40% of remainder. Standard method uses Article 220.40–220.53.",
@@ -152,11 +152,11 @@ const TABLES = [
       ["General lighting (3 VA/sq ft)", "100%", "All square footage"],
       ["Small appliance circuits", "100%", "Min 1500 VA each, min 2 circuits"],
       ["Laundry circuit", "100%", "Min 1500 VA"],
-      ["First 10 kVA of above loads", "100%", "—"],
+      ["First 10 kVA of above loads", "100%", " - "],
       ["Remainder above 10 kVA", "40%", "Optional method"],
       ["A/C or heat (larger of two)", "100%", "Never add both"],
       ["Electric range ≤12 kW", "8000 VA", "Table 220.55 Col C"],
-      ["Dryer", "5000 VA min or nameplate", "—"],
+      ["Dryer", "5000 VA min or nameplate", " - "],
     ]
   },
   {
@@ -168,29 +168,29 @@ const TABLES = [
     headers: ["Location", "AFCI Required", "GFCI Required"],
     rows: [
       ["Kitchens", "✓ Yes", "✓ Yes (all receptacles)"],
-      ["Bedrooms", "✓ Yes", "—"],
-      ["Living/family/dining rooms", "✓ Yes", "—"],
-      ["Hallways and closets", "✓ Yes", "—"],
+      ["Bedrooms", "✓ Yes", " - "],
+      ["Living/family/dining rooms", "✓ Yes", " - "],
+      ["Hallways and closets", "✓ Yes", " - "],
       ["Bathrooms", "✓ Yes", "✓ Yes (all)"],
       ["Garages", "✓ Yes", "✓ Yes"],
       ["Unfinished basements", "✓ Yes", "✓ Yes"],
-      ["Crawl spaces", "—", "✓ Yes"],
-      ["Outdoors", "—", "✓ Yes"],
-      ["Boathouses", "—", "✓ Yes"],
-      ["Kitchenettes (non-dwelling)", "—", "✓ Yes (countertop)"],
+      ["Crawl spaces", " - ", "✓ Yes"],
+      ["Outdoors", " - ", "✓ Yes"],
+      ["Boathouses", " - ", "✓ Yes"],
+      ["Kitchenettes (non-dwelling)", " - ", "✓ Yes (countertop)"],
     ]
   },
   {
     id: "working-clearance",
-    title: "Working Clearance — Table 110.26(A)(1)",
+    title: "Working Clearance  -  Table 110.26(A)(1)",
     ref: "NEC 110.26(A)(1)",
     tag: "Safety",
     note: "Required clear space in front of electrical equipment. Condition depends on what's across from the equipment.",
     headers: ["Condition", "0–150V", "151–600V"],
     rows: [
-      ["Condition 1 — exposed live parts on one side only, no live or grounded parts on the other side", "3 ft", "3 ft"],
-      ["Condition 2 — exposed live parts on one side, grounded parts on the other side", "3 ft", "3.5 ft"],
-      ["Condition 3 — exposed live parts on both sides (operator between)", "3 ft", "4 ft"],
+      ["Condition 1  -  exposed live parts on one side only, no live or grounded parts on the other side", "3 ft", "3 ft"],
+      ["Condition 2  -  exposed live parts on one side, grounded parts on the other side", "3 ft", "3.5 ft"],
+      ["Condition 3  -  exposed live parts on both sides (operator between)", "3 ft", "4 ft"],
     ]
   },
 ];

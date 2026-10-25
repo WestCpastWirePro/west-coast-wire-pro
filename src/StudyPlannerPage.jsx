@@ -54,25 +54,25 @@ function buildPlan(examDate, dailyMins, weakMods, access) {
 
     if (isExamWeek) {
       plan.push({
-        week: w+1, label:`Week ${w+1} — EXAM WEEK`, dates:`${fmt(weekStart)} – ${fmt(weekEnd)}`,
+        week: w+1, label:`Week ${w+1}  -  EXAM WEEK`, dates:`${fmt(weekStart)} – ${fmt(weekEnd)}`,
         isPast, isCurrent,
         tasks: [
-          { day:"Mon–Wed", task:"Light review only — 30 min max. Focus on NEC articles you keep missing.", icon:"📖" },
+          { day:"Mon–Wed", task:"Light review only  -  30 min max. Focus on NEC articles you keep missing.", icon:"📖" },
           { day:"Thursday", task:"Rest day. No studying. Get 8+ hours of sleep.", icon:"😴" },
-          { day:"Friday", task:"Review your Exam Day checklist: ID, confirmation number. PSI provides scratch paper and an on-screen calculator — no personal calculator needed.", icon:"✅" },
+          { day:"Friday", task:"Review your Exam Day checklist: ID, confirmation number. PSI provides scratch paper and an on-screen calculator  -  no personal calculator needed.", icon:"✅" },
           { day:"Exam Day", task:"Arrive 30 min early. Read every question twice. Skip and return to hard ones.", icon:"🎯" },
         ]
       });
     } else if (isReviewWeek) {
       const reviewMods = weakMods.length > 0 ? weakMods : [1,2,3,4,5,6,7,8,9,10,11,12];
       plan.push({
-        week: w+1, label:`Week ${w+1} — Full Review`, dates:`${fmt(weekStart)} – ${fmt(weekEnd)}`,
+        week: w+1, label:`Week ${w+1}  -  Full Review`, dates:`${fmt(weekStart)} – ${fmt(weekEnd)}`,
         isPast, isCurrent,
         tasks: [
           { day:"Mon–Tue", task:`Run the full 110-question Exam Simulation. Score yourself.`, icon:"📋" },
-          { day:"Wed–Thu", task:`Drill Missed Questions deck — hit every wrong answer from this week.`, icon:"🔁" },
+          { day:"Wed–Thu", task:`Drill Missed Questions deck  -  hit every wrong answer from this week.`, icon:"🔁" },
           { day:"Fri", task:`Review weak modules: ${reviewMods.slice(0,4).map(id=>MODULES.find(m=>m.id===id)?.name||`Mod ${id}`).join(", ")}`, icon:"⚠️" },
-          ...(access==="pro" ? [{ day:"Sat", task:"Table Mastery — run ALL 10 NEC table decks. Any deck under 90% gets drilled twice.", icon:"⚡" }] : []),
+          ...(access==="pro" ? [{ day:"Sat", task:"Table Mastery  -  run ALL 10 NEC table decks. Any deck under 90% gets drilled twice.", icon:"⚡" }] : []),
           { day:"Sunday", task:`Second full simulation or 50-question timed sprint. Target 75%+.`, icon:"🎯" },
         ]
       });
@@ -91,10 +91,10 @@ function buildPlan(examDate, dailyMins, weakMods, access) {
         isPast, isCurrent,
         tasks: [
           { day:"Mon–Tue", task:`Read through ${modNames} NEC articles. Note every article number.`, icon:"📖" },
-          { day:"Wed–Thu", task:`Quiz mode: select only ${weekMods.map(m=>`Mod ${m.id}`).join("/")} — do 25 questions each day.`, icon:"❓" },
+          { day:"Wed–Thu", task:`Quiz mode: select only ${weekMods.map(m=>`Mod ${m.id}`).join("/")}  -  do 25 questions each day.`, icon:"❓" },
           { day:"Friday", task:`Review wrong answers. Look up every NEC reference you missed.`, icon:"🔁" },
           { day:"Sat", task:`50-question timed quiz across this week's modules. Target ≥70%.`, icon:"⏱️" },
-          ...(access==="pro" ? [{ day:"Sunday", task:"Table Mastery drills — run the NEC tables for this week's modules. Aim for 90%+ on each deck.", icon:"⚡" }] : [{ day:"Sunday", task:"Rest or light review.", icon:"😴" }]),
+          ...(access==="pro" ? [{ day:"Sunday", task:"Table Mastery drills  -  run the NEC tables for this week's modules. Aim for 90%+ on each deck.", icon:"⚡" }] : [{ day:"Sunday", task:"Rest or light review.", icon:"😴" }]),
         ]
       });
     }
@@ -173,10 +173,10 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
               <div style={{fontSize:'36px', fontWeight:'900', color:'#c8a84b', fontFamily:"'Arial Black',Arial,sans-serif", lineHeight:1}}>{daysLeft}</div>
               <div style={{fontSize:'12px', color:'#8899aa', marginTop:'4px'}}>days until your exam</div>
               <div style={{fontSize:'12px', color:'#7a8a9a', marginTop:'8px', lineHeight:'1.6'}}>
-                {daysLeft <= 14 ? '⚠️ Final stretch — run full exam simulations now.' :
-                 daysLeft <= 30 ? '📊 One month out — focus on your weak modules.' :
-                 daysLeft <= 60 ? '📚 Good runway — build your base now while you have time.' :
-                 '✅ Plenty of time — steady daily study beats cramming every time.'}
+                {daysLeft <= 14 ? '⚠️ Final stretch  -  run full exam simulations now.' :
+                 daysLeft <= 30 ? '📊 One month out  -  focus on your weak modules.' :
+                 daysLeft <= 60 ? '📚 Good runway  -  build your base now while you have time.' :
+                 '✅ Plenty of time  -  steady daily study beats cramming every time.'}
               </div>
             </div>
           )}
@@ -226,7 +226,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
             </div>
           </div>
           <div style={{marginBottom:"14px"}}>
-            <label style={s.label}>Weak Modules (optional — tap to mark)</label>
+            <label style={s.label}>Weak Modules (optional  -  tap to mark)</label>
             <div style={{display:"flex", flexWrap:"wrap", gap:"6px", marginTop:"6px"}}>
               {MODULES.map(m => (
                 <button key={m.id}
@@ -254,7 +254,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
           <>
             <div style={{...s.card, borderColor:"#c8a84b", background:"rgba(200,168,75,0.05)", textAlign:"center"}}>
               <div style={{fontSize:"28px", fontWeight:"900", color:"#c8a84b"}}>{plan.daysUntil} days</div>
-              <div style={{fontSize:"13px", color:"#8899aa"}}>until your exam — {plan.weeks} week{plan.weeks!==1?"s":""} of study time</div>
+              <div style={{fontSize:"13px", color:"#8899aa"}}>until your exam  -  {plan.weeks} week{plan.weeks!==1?"s":""} of study time</div>
               <div style={{fontSize:"12px", color:"#8899aa", marginTop:"4px"}}>{plan.dailyMins} min/day = {Math.round(plan.dailyMins * plan.daysUntil / 60)} total hours</div>
             </div>
 
@@ -267,7 +267,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
             <div className="wcw-print-only">
               <div style={{fontFamily:"'Segoe UI',sans-serif", color:"#000", padding:"8px 0 16px"}}>
                 <div style={{borderBottom:"3px solid #c8a84b", paddingBottom:"10px", marginBottom:"18px"}}>
-                  <div style={{fontSize:"22px", fontWeight:"900", color:"#1a2840"}}>West Coast Wire Pro — Study Plan</div>
+                  <div style={{fontSize:"22px", fontWeight:"900", color:"#1a2840"}}>West Coast Wire Pro  -  Study Plan</div>
                   <div style={{fontSize:"12px", color:"#555", marginTop:"4px"}}>
                     Exam in {plan.daysUntil} days · {plan.weeks} week{plan.weeks!==1?"s":""} · {plan.dailyMins} min/day · {Math.round(plan.dailyMins * plan.daysUntil / 60)} total hours · westcoastwirepro.com
                   </div>
@@ -289,7 +289,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
                   </div>
                 ))}
                 <div style={{borderTop:"1px solid #ccc", paddingTop:"10px", marginTop:"4px", fontSize:"11px", color:"#555", lineHeight:"1.7"}}>
-                  <strong>Study Rules:</strong> Never cram — 45–60 focused minutes beats 3 hours distracted. Run a full 110-question simulation at least 2 weeks before your exam. Scoring under 65%? Reschedule early (free). The Missed Questions deck is your best recovery tool — use it every week.
+                  <strong>Study Rules:</strong> Never cram  -  45–60 focused minutes beats 3 hours distracted. Run a full 110-question simulation at least 2 weeks before your exam. Scoring under 65%? Reschedule early (free). The Missed Questions deck is your best recovery tool  -  use it every week.
                 </div>
               </div>
             </div>
@@ -335,7 +335,7 @@ export default function StudyPlannerPage({ onHome, access , onNavigate }) {
               {[
                 "Never cram. 45–60 focused minutes beats 3 hours of distracted reading every time.",
                 "Take a full exam simulation at least 2 weeks before your test date.",
-                "If you're scoring under 65%, postpone your exam date — it's free to reschedule early.",
+                "If you're scoring under 65%, postpone your exam date  -  it's free to reschedule early.",
                 "The Missed Questions deck is your best recovery tool. Use it every week.",
               ].map((tip, i) => (
                 <div key={i} style={{fontSize:"13px", color:"#aabbcc", padding:"6px 0", borderBottom:i<3?"1px solid #2a3a54":"none", lineHeight:"1.5"}}>

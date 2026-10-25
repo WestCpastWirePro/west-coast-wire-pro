@@ -39,7 +39,7 @@ export default function SuccessPage({ onEnterApp }) {
       .then(r => r.json())
       .then(data => {
         if (!data?.valid) {
-          // Payment not confirmed or verification failed — don't grant access
+          // Payment not confirmed or verification failed  -  don't grant access
           setStatus('error')
           return
         }
@@ -52,7 +52,7 @@ export default function SuccessPage({ onEnterApp }) {
         window.history.replaceState({}, '', '/?app')
       })
       .catch(() => {
-        // Network error — show error, do NOT grant access from URL params alone
+        // Network error  -  show error, do NOT grant access from URL params alone
         setStatus('error')
       })
   }, [])
@@ -91,7 +91,7 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={s.tierBadge}>{tier === 'pro' ? 'PRO ACCESS' : 'STANDARD ACCESS'} UNLOCKED</div>
         <div style={s.sub}>
           {tier === 'pro'
-            ? 'You have every tool: Code Sprint, Full Table Mastery, Missed Questions deck, and High-Priority Drill — all yours. Go pass this exam.'
+            ? 'You have every tool: Code Sprint, Full Table Mastery, Missed Questions deck, and High-Priority Drill  -  all yours. Go pass this exam.'
             : 'All 500 questions across all 12 modules are now unlocked. Upgrade to Pro anytime for Code Sprint, Table Mastery, Missed Questions, and more.'}
         </div>
         <div style={s.divider} />
@@ -101,7 +101,7 @@ export default function SuccessPage({ onEnterApp }) {
         <div style={{marginTop:"20px", textAlign:"left"}}>
           <div style={s.noteTitle}>Save your access email</div>
           <div style={s.note}>
-            Your access link was emailed to you. If you ever clear your browser data or switch devices, click that link to restore access instantly — no password needed.
+            Your access link was emailed to you. If you ever clear your browser data or switch devices, click that link to restore access instantly  -  no password needed.
           </div>
           <div style={{background:"rgba(231,76,60,0.06)", border:"1px solid rgba(231,76,60,0.2)", borderRadius:"6px", padding:"10px 14px", textAlign:"left"}}>
             <div style={{fontSize:"11px", fontWeight:"700", color:"#e74c3c", marginBottom:"3px"}}>⚠️ Don't delete that email</div>

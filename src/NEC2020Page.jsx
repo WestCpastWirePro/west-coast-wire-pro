@@ -33,7 +33,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
           </div>
           <p style={s.heroSub}>
             California adopted the 2020 NEC. If you studied from older materials or learned
-            the code under the 2017 edition, several rules you know have changed — and the
+            the code under the 2017 edition, several rules you know have changed  -  and the
             exam will test the current version. Here's what's different and what you need to know.
           </p>
         </div>
@@ -54,11 +54,11 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
           <div style={s.toc}>
             <div style={s.tocTitle}>Changes Covered</div>
             {[
-              ['#afci',     'AFCI — Expanded to Entire Dwelling'],
-              ['#gfci',     'GFCI — More Locations Added'],
-              ['#ev',       'EV Charging — New Requirements'],
-              ['#solar',    'Solar & Storage — New Articles'],
-              ['#arc',      'Arc Energy Reduction — New Requirement'],
+              ['#afci',     'AFCI  -  Expanded to Entire Dwelling'],
+              ['#gfci',     'GFCI  -  More Locations Added'],
+              ['#ev',       'EV Charging  -  New Requirements'],
+              ['#solar',    'Solar & Storage  -  New Articles'],
+              ['#arc',      'Arc Energy Reduction  -  New Requirement'],
               ['#grounding','Grounding & Bonding Clarifications'],
               ['#tamper',   'Tamper-Resistant Receptacles'],
               ['#temp',     'Temporary Wiring Changes'],
@@ -73,7 +73,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
             <Intro>
               The NEC is updated on a three-year cycle. California adopted the 2020 edition,
               replacing the 2017 edition that many working electricians learned under.
-              For the journeyman exam, the 2020 NEC is the governing document — which means
+              For the journeyman exam, the 2020 NEC is the governing document  -  which means
               if you answer based on what you learned in the field under the old code,
               you may get questions wrong even if you know your craft cold.
               <br /><br />
@@ -82,15 +82,15 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
               the 2020 updates.
             </Intro>
 
-            <Section id="afci" title="1. AFCI Protection — Expanded to All Rooms">
+            <Section id="afci" title="1. AFCI Protection  -  Expanded to All Rooms">
               <P>
                 This is the biggest change for residential electricians and one of the
                 most-tested topics on the CA exam.
               </P>
               <ChangeBox
-                was="2017 NEC 210.12 — AFCI protection required in bedrooms only (and a few other specifically listed spaces in later 2017 amendments)."
-                now="2020 NEC 210.12(A) — AFCI protection required for ALL 120V, 15A and 20A branch circuits in ALL rooms of a dwelling unit — including kitchens, living rooms, dining rooms, hallways, closets, bathrooms, and garages."
-                impact="High — exam questions will specifically test the expanded scope. 'Bedrooms only' is now a wrong answer."
+                was="2017 NEC 210.12  -  AFCI protection required in bedrooms only (and a few other specifically listed spaces in later 2017 amendments)."
+                now="2020 NEC 210.12(A)  -  AFCI protection required for ALL 120V, 15A and 20A branch circuits in ALL rooms of a dwelling unit  -  including kitchens, living rooms, dining rooms, hallways, closets, bathrooms, and garages."
+                impact="High  -  exam questions will specifically test the expanded scope. 'Bedrooms only' is now a wrong answer."
               />
               <P>
                 The practical effect: virtually every branch circuit in a new residential
@@ -102,29 +102,29 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
                 Know this distinction: AFCI and GFCI serve different purposes. AFCI detects
                 arcing faults (damaged insulation, loose connections) that can cause fires.
                 GFCI detects ground faults that can cause electrocution. Some locations
-                now require both — a dual-function AFCI/GFCI breaker or receptacle satisfies
+                now require both  -  a dual-function AFCI/GFCI breaker or receptacle satisfies
                 both requirements.
               </P>
               <CallOut>
                 Exam tip: If a question asks about AFCI protection in a kitchen, living room,
-                or hallway — the 2020 NEC answer is yes, required. Under 2017 NEC those rooms
+                or hallway  -  the 2020 NEC answer is yes, required. Under 2017 NEC those rooms
                 were not covered. The exam tests the 2020 edition.
               </CallOut>
             </Section>
 
-            <Section id="gfci" title="2. GFCI Protection — More Locations">
+            <Section id="gfci" title="2. GFCI Protection  -  More Locations">
               <P>
                 GFCI requirements were also significantly expanded in 2020. Several locations
                 that were not previously covered are now required.
               </P>
               <ChangeBox
-                was="2017 NEC 210.8 — GFCI required in bathrooms, garages, outdoors, crawl spaces, unfinished basements, kitchen countertop surfaces, boathouses, and boat hoisting areas."
-                now="2020 NEC 210.8 — Added: washing machine locations (new), dishwasher branch circuits (new in 210.8(D)), indoor damp locations, and clarified that all kitchen countertop receptacles within 6 feet of a sink require GFCI — not just those 'serving countertop surfaces.'"
-                impact="Medium-High — washing machine receptacle GFCI requirement is new and testable. Dishwasher circuit requirement is new."
+                was="2017 NEC 210.8  -  GFCI required in bathrooms, garages, outdoors, crawl spaces, unfinished basements, kitchen countertop surfaces, boathouses, and boat hoisting areas."
+                now="2020 NEC 210.8  -  Added: washing machine locations (new), dishwasher branch circuits (new in 210.8(D)), indoor damp locations, and clarified that all kitchen countertop receptacles within 6 feet of a sink require GFCI  -  not just those 'serving countertop surfaces.'"
+                impact="Medium-High  -  washing machine receptacle GFCI requirement is new and testable. Dishwasher circuit requirement is new."
               />
               <P>
                 The 2020 NEC added a dedicated section <strong style={s.strong}>210.8(D)</strong> specifically
-                requiring GFCI protection for dishwasher branch circuits — a location not
+                requiring GFCI protection for dishwasher branch circuits  -  a location not
                 previously called out. This is a frequently tested detail because it's
                 counterintuitive (the dishwasher isn't a "countertop appliance" in the
                 traditional sense) and because it's new.
@@ -142,30 +142,30 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
               </CallOut>
             </Section>
 
-            <Section id="ev" title="3. Electric Vehicle Charging — New Article 625 Requirements">
+            <Section id="ev" title="3. Electric Vehicle Charging  -  New Article 625 Requirements">
               <P>
                 EV charging saw significant attention in the 2020 NEC, reflecting the
                 rapid growth of electric vehicle adoption. California's exam now tests
                 this more heavily than previous editions.
               </P>
               <ChangeBox
-                was="2017 NEC Article 625 — Basic requirements for EV supply equipment (EVSE). Limited guidance on load calculations and installation specifics."
-                now="2020 NEC Article 625 — Significant expansion. New requirements for ventilation of enclosed parking areas with EV charging, load management systems, and updated EVSE installation requirements. New 625.42 requires EVSE in dwelling units to be on a dedicated branch circuit."
-                impact="Medium — EV-related questions are increasingly common on the CA exam. California's aggressive EV adoption policies make this especially relevant."
+                was="2017 NEC Article 625  -  Basic requirements for EV supply equipment (EVSE). Limited guidance on load calculations and installation specifics."
+                now="2020 NEC Article 625  -  Significant expansion. New requirements for ventilation of enclosed parking areas with EV charging, load management systems, and updated EVSE installation requirements. New 625.42 requires EVSE in dwelling units to be on a dedicated branch circuit."
+                impact="Medium  -  EV-related questions are increasingly common on the CA exam. California's aggressive EV adoption policies make this especially relevant."
               />
               <P>
                 Key 2020 NEC Article 625 points for the exam:
               </P>
               <Ul items={[
-                'EVSE must be listed and identified for the purpose — 625.5',
-                'Cord-and-plug connected EVSE: cord length limits apply — 625.44',
+                'EVSE must be listed and identified for the purpose  -  625.5',
+                'Cord-and-plug connected EVSE: cord length limits apply  -  625.44',
                 'Continuous load rules apply: EVSE is treated as a continuous load (125% sizing applies)',
-                'Ventilation requirements for enclosed parking with charging — 625.52',
+                'Ventilation requirements for enclosed parking with charging  -  625.52',
                 'California Title 24 adds additional EV readiness requirements beyond the NEC',
               ]} />
             </Section>
 
-            <Section id="solar" title="4. Solar PV and Energy Storage — Updated Articles 690 & 706">
+            <Section id="solar" title="4. Solar PV and Energy Storage  -  Updated Articles 690 & 706">
               <P>
                 The 2020 NEC substantially revised the solar photovoltaic and energy storage
                 articles. With California's solar mandate for new residential construction
@@ -173,16 +173,16 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
                 the CA exam.
               </P>
               <ChangeBox
-                was="2017 NEC Article 690 — PV system requirements. Article 706 added as new in 2017 for energy storage systems."
-                now="2020 NEC Articles 690 & 706 — Major reorganization of Article 690. Rapid shutdown requirements expanded. Article 706 (energy storage) significantly expanded for battery storage systems. New requirements for arc-fault protection in PV systems (690.11)."
-                impact="Medium — California's solar mandate makes PV questions more likely on the CA exam than in other states."
+                was="2017 NEC Article 690  -  PV system requirements. Article 706 added as new in 2017 for energy storage systems."
+                now="2020 NEC Articles 690 & 706  -  Major reorganization of Article 690. Rapid shutdown requirements expanded. Article 706 (energy storage) significantly expanded for battery storage systems. New requirements for arc-fault protection in PV systems (690.11)."
+                impact="Medium  -  California's solar mandate makes PV questions more likely on the CA exam than in other states."
               />
               <P>
                 The rapid shutdown requirement under <strong style={s.strong}>690.12</strong> is heavily tested.
                 For rooftop PV systems, the 2020 NEC requires that conductors within
                 array boundaries be limited to 80V or less within 30 seconds of rapid
                 shutdown initiation. This essentially requires module-level power electronics
-                (MLPE) — optimizers or microinverters — on most residential systems.
+                (MLPE)  -  optimizers or microinverters  -  on most residential systems.
               </P>
               <CallOut>
                 California-specific note: California's Title 24 2022 update extended the solar
@@ -192,49 +192,49 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
               </CallOut>
             </Section>
 
-            <Section id="arc" title="5. Arc Energy Reduction — New 240.67 and 240.87">
+            <Section id="arc" title="5. Arc Energy Reduction  -  New 240.67 and 240.87">
               <P>
                 The 2020 NEC added requirements for arc energy reduction on overcurrent
-                protective devices above certain ratings — a topic that didn't exist in
+                protective devices above certain ratings  -  a topic that didn't exist in
                 the 2017 edition and catches many experienced electricians off guard.
               </P>
               <ChangeBox
-                was="2017 NEC — No specific arc energy reduction requirement for fuses. 240.87 required arc energy reduction for circuit breakers 1200A and above."
-                now="2020 NEC 240.67 — New section requires arc energy reduction methods for fuses rated 1200A or higher. 240.87 (circuit breakers) retained and clarified. Acceptable methods include: zone-selective interlocking, differential relaying, energy-reducing maintenance switching, energy-reducing active arc flash mitigation system, or an instantaneous trip setting."
-                impact="Medium — This appears in commercial/industrial calculations questions and safety module questions. New enough that many experienced electricians don't know it."
+                was="2017 NEC  -  No specific arc energy reduction requirement for fuses. 240.87 required arc energy reduction for circuit breakers 1200A and above."
+                now="2020 NEC 240.67  -  New section requires arc energy reduction methods for fuses rated 1200A or higher. 240.87 (circuit breakers) retained and clarified. Acceptable methods include: zone-selective interlocking, differential relaying, energy-reducing maintenance switching, energy-reducing active arc flash mitigation system, or an instantaneous trip setting."
+                impact="Medium  -  This appears in commercial/industrial calculations questions and safety module questions. New enough that many experienced electricians don't know it."
               />
             </Section>
 
-            <Section id="grounding" title="6. Grounding & Bonding — Key Clarifications">
+            <Section id="grounding" title="6. Grounding & Bonding  -  Key Clarifications">
               <P>
                 Article 250 didn't undergo dramatic restructuring, but several clarifications
                 in the 2020 NEC affect exam answers.
               </P>
               <ChangeBox
-                was="2017 NEC 250.53(A)(2) — Ground rod electrode: if a single ground rod doesn't achieve 25 ohms or less resistance, a supplemental electrode must be added."
-                now="2020 NEC 250.53(A)(2) — Same requirement, but clarified that the supplemental electrode must be bonded to the grounding electrode system. Also clarified spacing requirements between electrodes (must be at least 6 feet apart, but 20 feet is optimal for independent effectiveness)."
-                impact="Low-Medium — The 25-ohm rule and supplemental electrode requirement are heavily tested. The 2020 clarifications on spacing may appear."
+                was="2017 NEC 250.53(A)(2)  -  Ground rod electrode: if a single ground rod doesn't achieve 25 ohms or less resistance, a supplemental electrode must be added."
+                now="2020 NEC 250.53(A)(2)  -  Same requirement, but clarified that the supplemental electrode must be bonded to the grounding electrode system. Also clarified spacing requirements between electrodes (must be at least 6 feet apart, but 20 feet is optimal for independent effectiveness)."
+                impact="Low-Medium  -  The 25-ohm rule and supplemental electrode requirement are heavily tested. The 2020 clarifications on spacing may appear."
               />
               <P>
                 Additionally, <strong style={s.strong}>250.68(C)</strong> was updated to clarify
-                bonding connections to structural steel and metal water piping — relevant
+                bonding connections to structural steel and metal water piping  -  relevant
                 for commercial grounding questions.
               </P>
             </Section>
 
-            <Section id="tamper" title="7. Tamper-Resistant Receptacles — Expanded Locations">
+            <Section id="tamper" title="7. Tamper-Resistant Receptacles  -  Expanded Locations">
               <ChangeBox
-                was="2017 NEC 406.12 — Tamper-resistant receptacles required in dwelling units (all 15A and 20A, 125V receptacles), guest rooms of hotels/motels, child care facilities, and preschools."
-                now="2020 NEC 406.12 — Expanded to include: waiting rooms, emergency rooms, and clinics of pediatric facilities; business offices in daycare facilities. Also clarified that listed tamper-resistant receptacles must be marked 'TR' and visually distinguishable."
-                impact="Low — Mainly affects commercial/healthcare applications. Know the residential rule cold; the new locations are secondary."
+                was="2017 NEC 406.12  -  Tamper-resistant receptacles required in dwelling units (all 15A and 20A, 125V receptacles), guest rooms of hotels/motels, child care facilities, and preschools."
+                now="2020 NEC 406.12  -  Expanded to include: waiting rooms, emergency rooms, and clinics of pediatric facilities; business offices in daycare facilities. Also clarified that listed tamper-resistant receptacles must be marked 'TR' and visually distinguishable."
+                impact="Low  -  Mainly affects commercial/healthcare applications. Know the residential rule cold; the new locations are secondary."
               />
             </Section>
 
-            <Section id="temp" title="8. Temporary Wiring — Updated 590.4">
+            <Section id="temp" title="8. Temporary Wiring  -  Updated 590.4">
               <ChangeBox
-                was="2017 NEC 590.4 — Temporary wiring methods. GFCI protection required for all temporary 125V, 15/20/30A receptacle outlets on construction sites."
-                now="2020 NEC 590.4(D) — GFCI or an assured equipment grounding conductor program (AEGCP) required. Added clarity that GFCI protection applies to all temporary power on construction sites, including 240V single-phase equipment in some jurisdictions. Updated requirements for temporary lighting."
-                impact="Low-Medium — Construction site temporary wiring questions appear occasionally. Know the GFCI vs AEGCP option."
+                was="2017 NEC 590.4  -  Temporary wiring methods. GFCI protection required for all temporary 125V, 15/20/30A receptacle outlets on construction sites."
+                now="2020 NEC 590.4(D)  -  GFCI or an assured equipment grounding conductor program (AEGCP) required. Added clarity that GFCI protection applies to all temporary power on construction sites, including 240V single-phase equipment in some jurisdictions. Updated requirements for temporary lighting."
+                impact="Low-Medium  -  Construction site temporary wiring questions appear occasionally. Know the GFCI vs AEGCP option."
               />
             </Section>
 
@@ -262,7 +262,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
               <CallOut>
                 West Coast Wire Pro is based entirely on the 2023 NEC with California amendments.
                 Every question in the AFCI, GFCI, and wiring modules reflects the current
-                code — not the 2017 edition.
+                code  -  not the 2017 edition.
               </CallOut>
             </Section>
 
@@ -274,10 +274,10 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
             <div style={s.ctaTitle}>Practice 2023 NEC Questions</div>
             <div style={s.ctaBody}>
               Every question in West Coast Wire Pro is written to the 2023 NEC and California
-              amendments. Modules 1 & 2 + 2 Table Mastery drills free — no account needed.
+              amendments. Modules 1 & 2 + 2 Table Mastery drills free  -  no account needed.
             </div>
             <div style={s.ctaBtns}>
-              <button style={s.btnGold} onClick={onLaunchApp}>Start Free — Modules 1 & 2 ⚡</button>
+              <button style={s.btnGold} onClick={onLaunchApp}>Start Free  -  Modules 1 & 2 ⚡</button>
               
             </div>
           </div>
@@ -293,7 +293,7 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
               </div>
               <div style={s.relatedCard} onClick={() => onNavigate('exam-info')}>
                 <div style={s.relatedLabel}>Exam Guide</div>
-                <div style={s.relatedName}>CA General Electrician Exam — Complete Overview</div>
+                <div style={s.relatedName}>CA General Electrician Exam  -  Complete Overview</div>
                 <div style={s.relatedArrow}>→</div>
               </div>
             </div>
@@ -319,9 +319,9 @@ export default function NEC2020ChangesPage({ onLaunchApp, onNavigate, onHome }) 
           </div>
           <div style={s.sideCard}>
             <div style={s.sideTitle}>Most Tested Changes</div>
-            {['AFCI — all dwelling rooms', 'GFCI — washing machines', 'GFCI — dishwashers', 'EV charging circuits', 'PV rapid shutdown'].map(item => (
+            {['AFCI  -  all dwelling rooms', 'GFCI  -  washing machines', 'GFCI  -  dishwashers', 'EV charging circuits', 'PV rapid shutdown'].map(item => (
               <div key={item} style={{fontSize:'13px', color:'#aabbcc', padding:'6px 0', borderBottom:'1px solid rgba(255,255,255,0.04)', display:'flex', gap:'8px'}}>
-                <span style={{color:'#c8a84b'}}>—</span>{item}
+                <span style={{color:'#c8a84b'}}> - </span>{item}
               </div>
             ))}
           </div>
@@ -364,7 +364,7 @@ function Ul({ items }) {
     <ul style={{listStyle:'none', padding:0, margin:'0 0 16px'}}>
       {items.map((item, i) => (
         <li key={i} style={{display:'flex', gap:'10px', fontSize:'14px', color:'#aabbcc', padding:'6px 0', borderBottom:'1px solid rgba(255,255,255,0.03)', fontFamily:"'Georgia', serif", lineHeight:1.7}}>
-          <span style={{color:'#c8a84b', flexShrink:0}}>—</span><span>{item}</span>
+          <span style={{color:'#c8a84b', flexShrink:0}}> - </span><span>{item}</span>
         </li>
       ))}
     </ul>
@@ -463,12 +463,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
         <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
-            {[['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+            {[['Start Studying  -  Free','landing'],['Start Free  -  No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass  -  Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>

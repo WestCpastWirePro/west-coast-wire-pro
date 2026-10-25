@@ -30,7 +30,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
             <span style={s.metaItem}>Written by a CA Journeyman &amp; Trade School Instructor</span>
           </div>
           <p style={s.heroSub}>
-            The California journeyman exam has a low pass rate — but not because it's
+            The California journeyman exam has a low pass rate  -  but not because it's
             impossible. Most people who fail do so for predictable, fixable reasons.
             Here's a straight-talk guide on how to actually prepare, from someone who
             has been through it and taught hundreds of students to do the same.
@@ -46,9 +46,9 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
             {[
               ['#reality',    'The Honest Reality About This Exam'],
               ['#mistakes',   'Why Most People Fail (And How to Not Be One of Them)'],
-              ['#timeline',   'How Long to Study — Realistic Timelines'],
+              ['#timeline',   'How Long to Study  -  Realistic Timelines'],
               ['#modules',    'Which Modules to Prioritize'],
-              ['#calc',       'Trade Math — The Make-or-Break Section'],
+              ['#calc',       'Trade Math  -  The Make-or-Break Section'],
               ['#method',     'The Study Method That Actually Works'],
               ['#final',      'The Final 2 Weeks'],
               ['#openbooktactics', 'Open Book Exam Tactics That Actually Save Time'],
@@ -62,7 +62,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
 
             <Section id="reality" title="The Honest Reality About This Exam">
               <P>
-                The California General Electrician exam is hard. Not artificially hard —
+                The California General Electrician exam is hard. Not artificially hard  - 
                 genuinely hard. The pass rate is low because the exam tests a wide range of
                 material at a meaningful depth, and many candidates underestimate how much
                 preparation it actually requires.
@@ -71,7 +71,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                 Here's what 14 years in the trade and four years teaching this material has
                 taught me: <strong style={s.strong}>experience in the field is not the same as being ready for the exam.</strong> I've
                 watched journeymen with 10+ years on job sites fail this exam because they
-                assumed their field knowledge would be enough. It isn't — not because the
+                assumed their field knowledge would be enough. It isn't  -  not because the
                 exam is disconnected from real work, but because it tests code knowledge
                 specifically, and real-world work involves a lot of habit and shortcut that
                 doesn't map cleanly to code questions.
@@ -92,8 +92,8 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               <P>In my experience, failed attempts fall into a few consistent patterns:</P>
 
               <TipBlock icon="✗" color="#e74c3c" title="Studying only from field experience">
-                Your field knowledge is valuable context, but habits built on the job — especially
-                on older installations — may not match current code. The exam tests 2023 NEC.
+                Your field knowledge is valuable context, but habits built on the job  -  especially
+                on older installations  -  may not match current code. The exam tests 2023 NEC.
                 Some things you do every day might be wrong by the book. Study the book.
               </TipBlock>
 
@@ -107,7 +107,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               <TipBlock icon="✗" color="#e74c3c" title="Memorizing answers instead of understanding rules">
                 If you study by memorizing which letter goes with which question, you'll be
                 lost when the exam paraphrases a question differently. You need to understand
-                why an answer is correct — which code section, which principle, which exception.
+                why an answer is correct  -  which code section, which principle, which exception.
                 That understanding is what transfers to the exam.
               </TipBlock>
 
@@ -118,7 +118,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               </TipBlock>
             </Section>
 
-            <Section id="timeline" title="How Long to Study — Realistic Timelines">
+            <Section id="timeline" title="How Long to Study  -  Realistic Timelines">
               <P>
                 The honest answer depends on your current knowledge, how recently you've
                 worked with the code, and how consistently you can study. Here are realistic
@@ -131,7 +131,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                     profile: 'Active apprentice, current with code',
                     time: '8–10 weeks',
                     color: '#27ae60',
-                    detail: 'Daily study, 45–60 min. Strong foundation — main work is filling gaps and drilling calculations.',
+                    detail: 'Daily study, 45–60 min. Strong foundation  -  main work is filling gaps and drilling calculations.',
                   },
                   {
                     profile: 'Working journeyman, haven\'t studied in years',
@@ -171,13 +171,13 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               <div style={s.moduleGrid}>
                 {[
                   { mod:'Grounding & Bonding', priority:'🔴 High', note:'Article 250 is dense, frequently tested, and heavily calculation-based. Most candidates are weak here. Start early.', time:'Extra time' },
-                  { mod:'Calculations & Trade Math', priority:'🔴 High', note:'10–15% of the exam is math. Conduit fill, load calcs, motor sizing. Can\'t wing it — needs practice.', time:'Extra time' },
-                  { mod:'Wiring & Overcurrent', priority:'🔴 High', note:'AFCI, GFCI, branch circuit rules. Frequently tested — know which spaces require AFCI and GFCI protection cold.', time:'Extra time' },
+                  { mod:'Calculations & Trade Math', priority:'🔴 High', note:'10–15% of the exam is math. Conduit fill, load calcs, motor sizing. Can\'t wing it  -  needs practice.', time:'Extra time' },
+                  { mod:'Wiring & Overcurrent', priority:'🔴 High', note:'AFCI, GFCI, branch circuit rules. Frequently tested  -  know which spaces require AFCI and GFCI protection cold.', time:'Extra time' },
                   { mod:'Wiring', priority:'🟡 Medium', note:'Articles 300–392. Conduit types, fill rules, installation requirements. Broad but learnable.', time:'Standard' },
                   { mod:'Motors & Transformers', priority:'🟡 Medium', note:'430 and 450. Table-heavy. Know Table 430.52 (breaker sizing) and 430.22 (conductor sizing).', time:'Standard' },
                   { mod:'Services & Feeders', priority:'🟡 Medium', note:'Articles 215, 225, and 230. Service entrance rules, disconnects, clearances.', time:'Standard' },
-                  { mod:'Definitions & General', priority:'🟢 Foundation', note:'Start here regardless — Article 100 definitions underpin everything. Solid week to build vocabulary.', time:'Week 1' },
-                  { mod:'Equipment General Use', priority:'🟡 Medium', note:'Articles 400–490. Receptacles, switches, panelboards, cords. Practical everyday material — don\'t overlook it.', time:'Standard' },
+                  { mod:'Definitions & General', priority:'🟢 Foundation', note:'Start here regardless  -  Article 100 definitions underpin everything. Solid week to build vocabulary.', time:'Week 1' },
+                  { mod:'Equipment General Use', priority:'🟡 Medium', note:'Articles 400–490. Receptacles, switches, panelboards, cords. Practical everyday material  -  don\'t overlook it.', time:'Standard' },
                   { mod:'Communications & Emergency', priority:'🟢 Lower', note:'Articles 700–820. Emergency systems and standby power. Lighter on the exam but worth knowing the basics.', time:'Light' },
                   { mod:'Special Occupancies', priority:'🟢 Lower', note:'Articles 500–590. Hazardous locations. Study the classification system but don\'t over-invest.', time:'Light' },
                   { mod:'Safety, Maintenance & Repair', priority:'🟢 Lower', note:'NFPA 70E, Cal/OSHA. Arc flash, lockout/tagout, PPE requirements.', time:'Light' },
@@ -196,24 +196,24 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               </div>
             </Section>
 
-            <Section id="calc" title="Trade Math — The Make-or-Break Section">
+            <Section id="calc" title="Trade Math  -  The Make-or-Break Section">
               <P>
-                Calculation questions are where many candidates lose the most points —
+                Calculation questions are where many candidates lose the most points  - 
                 not because they can't do the math, but because they haven't practiced
                 the specific calculation types the exam uses.
               </P>
               <P>Know these cold before exam day:</P>
               <Ul items={[
-                'Conduit fill calculations — using Chapter 9 tables and Annex C. Know how to find conductor area, apply fill percentages (1 wire: 53%, 2 wires: 31%, 3+ wires: 40%)',
-                'Load calculations for dwelling units — NEC 220.12 lighting load, 220.54 dryer, 220.55 ranges, demand factors',
-                'Motor circuit sizing — full-load current from Tables 430.247–430.250, conductor at 125% FLC, breaker from Table 430.52',
-                'Transformer sizing — kVA calculations, primary/secondary current, primary overcurrent protection at 125% or 250% depending on type',
-                'Voltage drop calculations — 2% for branch circuits, 3% for feeders, 5% combined. Conductor sizing formula.',
-                'Box fill calculations — Article 314. Volume per conductor by wire size, device fill, clamp fill.',
+                'Conduit fill calculations  -  using Chapter 9 tables and Annex C. Know how to find conductor area, apply fill percentages (1 wire: 53%, 2 wires: 31%, 3+ wires: 40%)',
+                'Load calculations for dwelling units  -  NEC 220.12 lighting load, 220.54 dryer, 220.55 ranges, demand factors',
+                'Motor circuit sizing  -  full-load current from Tables 430.247–430.250, conductor at 125% FLC, breaker from Table 430.52',
+                'Transformer sizing  -  kVA calculations, primary/secondary current, primary overcurrent protection at 125% or 250% depending on type',
+                'Voltage drop calculations  -  2% for branch circuits, 3% for feeders, 5% combined. Conductor sizing formula.',
+                'Box fill calculations  -  Article 314. Volume per conductor by wire size, device fill, clamp fill.',
               ]} />
               <CallOut>
                 A basic calculator is provided on-screen at PSI testing centers. Practice
-                all calculations with a simple calculator — not a scientific or programmable one.
+                all calculations with a simple calculator  -  not a scientific or programmable one.
                 If you're slower without complex calculator functions, practice until you're not.
               </CallOut>
               <P>
@@ -241,7 +241,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                   {
                     step:'Weeks 3–8',
                     title:'Module-by-Module Deep Study',
-                    body:'Take one module per week. Read the relevant NEC articles first — don\'t just practice questions. Understand the structure of the article, the main rules, and the key exceptions. Then drill questions on that module. Review every wrong answer until you understand why you got it wrong.',
+                    body:'Take one module per week. Read the relevant NEC articles first  -  don\'t just practice questions. Understand the structure of the article, the main rules, and the key exceptions. Then drill questions on that module. Review every wrong answer until you understand why you got it wrong.',
                   },
                   {
                     step:'Throughout',
@@ -256,7 +256,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                   {
                     step:'Week 12+',
                     title:'Mixed Practice and Simulation',
-                    body:'Stop studying module-by-module. Start mixing questions across all modules — this is how the real exam works. Run full 110-question timed simulations. Identify which modules you\'re still weakest on and concentrate there.',
+                    body:'Stop studying module-by-module. Start mixing questions across all modules  -  this is how the real exam works. Run full 110-question timed simulations. Identify which modules you\'re still weakest on and concentrate there.',
                   },
                 ].map((m, i) => (
                   <div key={i} style={s.methodStep}>
@@ -273,21 +273,21 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
             <Section id="final" title="The Final 2 Weeks">
               <P>
                 Two weeks out from your exam date, change your approach completely.
-                Stop learning new material. You don't have time to absorb anything new —
+                Stop learning new material. You don't have time to absorb anything new  - 
                 and trying to will create anxiety without improving your score.
               </P>
               <Ul items={[
                 'Identify your three weakest modules from your practice scores. Study only those.',
-                'Run at least two full 110-question timed simulations — 4.5 hours each, open book like the real exam.',
-                'Review every question you got wrong in those simulations. Don\'t just note the right answer — understand the reasoning.',
+                'Run at least two full 110-question timed simulations  -  4.5 hours each, open book like the real exam.',
+                'Review every question you got wrong in those simulations. Don\'t just note the right answer  -  understand the reasoning.',
                 
-                'The night before: stop studying at 6pm. Eat a real dinner. Sleep. You\'re not going to learn anything new in the last 12 hours that will help you — but being tired will definitely hurt.',
+                'The night before: stop studying at 6pm. Eat a real dinner. Sleep. You\'re not going to learn anything new in the last 12 hours that will help you  -  but being tired will definitely hurt.',
               ]} />
             </Section>
 
             <Section id="openbooktactics" title="Open Book Exam Tactics That Actually Save Time">
               <P>
-                The CA exam is open book — PSI provides an unmarked codebook, no tabs, no highlights, no personal notes. But 4.5 hours for 110 questions is about 2.5 minutes per question. Time is the real test. The goal of every drill on this site is to burn NEC chapters, article citations, and table values into memory so you can navigate that codebook at full speed. The actual PSI exam questions are proprietary — no prep site has them. Everyone is working from the same NEC. The edge goes to whoever knows it best.
+                The CA exam is open book  -  PSI provides an unmarked codebook, no tabs, no highlights, no personal notes. But 4.5 hours for 110 questions is about 2.5 minutes per question. Time is the real test. The goal of every drill on this site is to burn NEC chapters, article citations, and table values into memory so you can navigate that codebook at full speed. The actual PSI exam questions are proprietary  -  no prep site has them. Everyone is working from the same NEC. The edge goes to whoever knows it best.
 
                 That only helps you if you can find answers
                 quickly. Most candidates who fail don't run out of knowledge. They run out
@@ -295,7 +295,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                 three codebook strategies. Here's exactly what they do.
               </P>
 
-              <TipBlock icon="📇" color="#c8a84b" title="Use the index — not the chapters">
+              <TipBlock icon="📇" color="#c8a84b" title="Use the index  -  not the chapters">
                 <P>
                   The single biggest time-saver in the exam is the NEC index in the back
                   of the codebook. Experienced electricians skip the chapter pages entirely
@@ -307,7 +307,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                   answer inside that section. That's it.
                 </P>
                 <P>
-                  For example — a question about GFCI requirements for a garage. Instead
+                  For example  -  a question about GFCI requirements for a garage. Instead
                   of flipping through Chapter 2 hoping to find it, go straight to the index:
                   GFCI → garages → Article 210.8. You're there in 15 seconds instead of 90.
                 </P>
@@ -318,10 +318,10 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                 </P>
               </TipBlock>
 
-              <TipBlock icon="🧠" color="#c8a84b" title="Memorize where key sections live — the codebook is unfamiliar">
+              <TipBlock icon="🧠" color="#c8a84b" title="Memorize where key sections live  -  the codebook is unfamiliar">
                 <P>
                   PSI provides an unmarked NEC codebook at the testing center. You cannot
-                  bring your own. That means no personal tabs, no annotations — just a
+                  bring your own. That means no personal tabs, no annotations  -  just a
                   clean book you've never touched before.
                 </P>
                 <P>
@@ -361,10 +361,10 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
                 <P>
                   This is one of the most consistently useful test-taking strategies for
                   this exam. Not all 110 questions take the same amount of time. Code
-                  lookup questions — where you're confirming a rule or a requirement —
+                  lookup questions  -  where you're confirming a rule or a requirement  - 
                   can be answered in 20 to 40 seconds with the index and a little
-                  familiarity. Calculation questions — load calcs, voltage drop, motor
-                  sizing — can easily take 2 to 3 minutes each.
+                  familiarity. Calculation questions  -  load calcs, voltage drop, motor
+                  sizing  -  can easily take 2 to 3 minutes each.
                 </P>
                 <P>
                   The strategy: on your first pass through the exam, answer every code
@@ -382,7 +382,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               </TipBlock>
 
               <CallOut>
-                Practice all three of these tactics before exam day — not just on the
+                Practice all three of these tactics before exam day  -  not just on the
                 actual exam. Run through index lookups during your study sessions.
                 Drill the key ampacity and conductor values until they're automatic. And in
                 every timed practice session, skip calculation questions on the first pass.
@@ -399,7 +399,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               <TipBlock icon="✓" color="#27ae60" title="Read the entire question before reading the answers">
                 Sounds obvious. Under pressure, most people read half a question and start
                 eliminating answers. Read the whole thing. Pay attention to words like
-                "minimum," "maximum," "not permitted," and "required" — these change the
+                "minimum," "maximum," "not permitted," and "required"  -  these change the
                 correct answer entirely.
               </TipBlock>
 
@@ -424,7 +424,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
 
               <TipBlock icon="✓" color="#27ae60" title="Trust your preparation on calculation questions">
                 For calculation questions, work the math. Don't guess based on feel.
-                If you've been practicing calculations daily, trust the process — do the
+                If you've been practicing calculations daily, trust the process  -  do the
                 calculation, check your units, pick the answer.
               </TipBlock>
             </Section>
@@ -440,7 +440,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               Built by a California journeyman electrician and trade school instructor. Modules 1 & 2 always free.
             </div>
             <div style={s.ctaBtns}>
-              <button style={s.btnGold} onClick={onLaunchApp}>Start Free — Modules 1 & 2 ⚡</button>
+              <button style={s.btnGold} onClick={onLaunchApp}>Start Free  -  Modules 1 & 2 ⚡</button>
               
             </div>
           </div>
@@ -456,7 +456,7 @@ export default function StudyTipsPage({ onHome, onLaunchApp, onNavigate }) {
               </div>
               <div style={s.relatedCard} onClick={() => onNavigate('exam-info')}>
                 <div style={s.relatedLabel}>Exam Guide</div>
-                <div style={s.relatedName}>CA General Electrician Exam — Complete Overview</div>
+                <div style={s.relatedName}>CA General Electrician Exam  -  Complete Overview</div>
                 <div style={s.relatedArrow}>→</div>
               </div>
             </div>
@@ -519,7 +519,7 @@ function Ul({ items }) {
     <ul style={{listStyle:'none', padding:0, margin:'0 0 16px'}}>
       {items.map((item, i) => (
         <li key={i} style={{display:'flex', gap:'10px', fontSize:'14px', color:'#aabbcc', padding:'7px 0', borderBottom:'1px solid rgba(255,255,255,0.03)', fontFamily:"'Georgia', serif", lineHeight:1.7}}>
-          <span style={{color:'#c8a84b', flexShrink:0}}>—</span><span>{item}</span>
+          <span style={{color:'#c8a84b', flexShrink:0}}> - </span><span>{item}</span>
         </li>
       ))}
     </ul>
@@ -608,12 +608,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
         <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
-            {[['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+            {[['Start Studying  -  Free','landing'],['Start Free  -  No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass  -  Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>

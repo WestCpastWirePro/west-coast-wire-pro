@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-// ── GlobalNav — used on every page ────────────────────────────────────────
+// ── GlobalNav  -  used on every page ────────────────────────────────────────
 // Props:
-//   onHome       () => void  — navigate to landing
-//   onNavigate   (page) => void — navigate to any page
-//   onLaunchApp  () => void  — open the study app (optional, shows Try Free btn)
-//   currentPage  string      — highlights active dropdown (optional)
+//   onHome       () => void   -  navigate to landing
+//   onNavigate   (page) => void  -  navigate to any page
+//   onLaunchApp  () => void   -  open the study app (optional, shows Try Free btn)
+//   currentPage  string       -  highlights active dropdown (optional)
 
 export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -76,12 +76,12 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
           <button onClick={() => { if(window.location.pathname === '/') { document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'}); } else { onHome && onHome(); setTimeout(() => document.getElementById('pricing')?.scrollIntoView({behavior:'smooth'}), 300); }}} style={{background:'none',border:'none',color:'#7a8a9a',textDecoration:'none',fontSize:'13px',fontWeight:'600',letterSpacing:'0.5px',textTransform:'uppercase',fontFamily:"'Segoe UI',Arial,sans-serif",cursor:'pointer',transition:'color 0.2s'}}
             onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>e.target.style.color='#7a8a9a'}>Pricing</button>
           <GnDropdown label="Study Tools" onNavigate={nav} currentPage={currentPage} items={[
-            {label:'Start Free — No Account Needed', page:'landing'},
+            {label:'Start Free  -  No Account Needed', page:'landing'},
             {label:'Diagnostic Test', page:'diagnostic'},
             {label:'Exam Simulator', page:'simulator'},
             {label:'Missed Questions', page:'missed'},
             {label:'Study Planner', page:'planner'},
-            {label:'Code Sprint — Article Navigator', page:'code-sprint'},
+            {label:'Code Sprint  -  Article Navigator', page:'code-sprint'},
             {label:'NEC Reference Guide', page:'nec-ref'},
             {label:'Calculations Helper', page:'calculations'},
             {label:'Progress Dashboard', page:'progress'},
@@ -92,7 +92,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
             onMouseEnter={e=>e.target.style.color='#c8a84b'} onMouseLeave={e=>{if(currentPage!=='blog')e.target.style.color='#7a8a9a'}}>Blog</button>
           <GnDropdown label="Resources" onNavigate={nav} currentPage={currentPage} items={[
             {label:'CA Journeyman Exam Guide', page:'exam-info'},
-            {label:'How to Pass — Study Tips', page:'study-tips'},
+            {label:'How to Pass  -  Study Tips', page:'study-tips'},
             {label:'Exam Day Guide', page:'exam-day'},
             {label:'Electrician Salary in CA', page:'salary'},
             {label:'Contractor vs. Electrician', page:'contractor-vs-electrician'},
@@ -112,7 +112,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
           </button>
         </div>
 
-        {/* MOBILE — just the hamburger button, clean and simple */}
+        {/* MOBILE  -  just the hamburger button, clean and simple */}
         <div className="gn-hamburger" ref={menuRef} style={{alignItems:'center'}}>
           <button onClick={e=>{e.stopPropagation();setMenuOpen(o=>!o)}} style={{background:'#c8a84b',border:'none',cursor:'pointer',padding:'10px 12px',borderRadius:'6px',display:'flex',flexDirection:'column',gap:'5px',flexShrink:0,boxShadow:'0 2px 8px rgba(200,168,75,0.4)'}} aria-label="Menu">
             <span style={{display:'block',width:'22px',height:'3px',background:'#0a1016',borderRadius:'2px',transition:'all 0.25s',transform:menuOpen?'rotate(45deg) translate(5px,6px)':'none'}}/>
@@ -140,7 +140,7 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
           <div style={{height:'1px',background:'rgba(200,168,75,0.2)',margin:'16px 20px 4px'}}/>
 
           <MobileSection title="⚡ Study App" items={[
-            ['Start Studying — Free','landing'],
+            ['Start Studying  -  Free','landing'],
             ['Code Sprint','code-sprint'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],
             ['Missed Questions Review','missed'],['Study Planner','planner'],
             ['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],
@@ -148,13 +148,13 @@ export default function GlobalNav({ onHome, onNavigate, onLaunchApp, currentPage
           ]} onNav={nav} currentPage={currentPage}/>
           <MobileDivider/>
           <MobileSection title="📝 Blog" items={[
-            ['Blog — All Articles','blog'],
+            ['Blog  -  All Articles','blog'],
             ['What Nobody Tells You About the CA Exam','blog-post:what-nobody-tells-you-california-journeyman-exam'],
             ['We Analyzed 2,987 Comments on the CA Exam','blog-post:what-people-say-about-passing-california-journeyman-exam'],
           ]} onNav={nav} currentPage={currentPage}/>
           <MobileDivider/>
           <MobileSection title="📋 Resources" items={[
-            ['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],
+            ['CA Journeyman Exam Guide','exam-info'],['How to Pass  -  Study Tips','study-tips'],
             ['Exam Day Guide','exam-day'],
             ['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician'],
           ]} onNav={nav} currentPage={currentPage}/>

@@ -47,7 +47,7 @@ function VoltageDropCalc() {
         `VD = ${(multiplier * K * I * D).toFixed(1)} / ${CM}`,
         `VD = ${vd.toFixed(2)} volts`,
         `Percentage = ${vd.toFixed(2)}V / ${voltage}V = ${pct.toFixed(1)}%`,
-        pct <= 3 ? "✓ Within 3% recommendation (NEC 210.19 Note)" : "⚠️ Exceeds 3% recommendation — upsize conductor",
+        pct <= 3 ? "✓ Within 3% recommendation (NEC 210.19 Note)" : "⚠️ Exceeds 3% recommendation  -  upsize conductor",
       ]});
     } else {
       const allowedVD = parseFloat(voltage) * 0.03;
@@ -64,7 +64,7 @@ function VoltageDropCalc() {
         `CM = (${multiplier} × ${K} × ${I}A × ${D}ft) / ${allowedVD.toFixed(2)}V`,
         `CM = ${(multiplier * K * I * D).toFixed(1)} / ${allowedVD.toFixed(2)}`,
         `CM needed = ${Math.ceil(cmNeeded).toLocaleString()} CM`,
-        wire ? `Minimum wire size = ${wire.size} (${wire.cm.toLocaleString()} CM)` : "Size exceeds 4/0 — use kcmil conductors",
+        wire ? `Minimum wire size = ${wire.size} (${wire.cm.toLocaleString()} CM)` : "Size exceeds 4/0  -  use kcmil conductors",
       ]});
     }
   };
@@ -248,7 +248,7 @@ function TransformerCalc() {
       steps: [
         `Primary FLA = (kVA × 1000) / ${phase==="3"?"(V × 1.732)":"V"} = (${k} × 1000) / ${div.toFixed(1)} = ${primaryFLA.toFixed(1)}A`,
         `Secondary FLA = (kVA × 1000) / ${phase==="3"?"(V × 1.732)":"V"} = (${k} × 1000) / ${divS.toFixed(1)} = ${secondaryFLA.toFixed(1)}A`,
-        `Primary OCPD (125%) = ${primaryFLA.toFixed(1)} × 1.25 = ${primaryOCPD.toFixed(1)}A — NEC 450.3(B)`,
+        `Primary OCPD (125%) = ${primaryFLA.toFixed(1)} × 1.25 = ${primaryOCPD.toFixed(1)}A  -  NEC 450.3(B)`,
         `Secondary OCPD (125%) = ${secondaryFLA.toFixed(1)} × 1.25 = ${secondaryOCPD.toFixed(1)}A`,
         `If no secondary OCPD, primary may be sized at 250% = ${(primaryFLA*2.5).toFixed(1)}A`,
       ]
@@ -335,7 +335,7 @@ function BoxFillCalc() {
             </select>
           </div>
           <div>
-            <label style={s.label}>All Conductors (hot, neutral, travelers — not grounds)</label>
+            <label style={s.label}>All Conductors (hot, neutral, travelers  -  not grounds)</label>
             <input style={s.input} type="number" placeholder="e.g. 4" value={conductors} onChange={e=>setConductors(e.target.value)}/>
           </div>
           <div>
@@ -488,7 +488,7 @@ const CALCS = [
   { id:"motor", label:"Motor Sizing", icon:"⚙️", desc:"FLA, branch conductor, OCPD sizing" },
   { id:"transformer", label:"Transformer", icon:"🔌", desc:"Primary/secondary FLA and OCPD" },
   { id:"boxfill", label:"Box Fill", icon:"📦", desc:"NEC 314.16 volume calculations" },
-  { id:"ref", label:"Formula Reference Card", icon:"📄", desc:"All key formulas — printable one-page cheat sheet" },
+  { id:"ref", label:"Formula Reference Card", icon:"📄", desc:"All key formulas  -  printable one-page cheat sheet" },
 ];
 
 export default function CalculationsPage({ onHome , onNavigate }) {
@@ -500,11 +500,11 @@ export default function CalculationsPage({ onHome , onNavigate }) {
       {!active && (
         <div style={{padding:"12px 0 32px"}}>
           <div style={{padding:"0 16px 8px", fontSize:"13px", color:"#8899aa", lineHeight:"1.6"}}>
-            Enter values and get a full step-by-step solution — the same format you'll need to show on the exam. Each calculator includes the relevant NEC article reference.
+            Enter values and get a full step-by-step solution  -  the same format you'll need to show on the exam. Each calculator includes the relevant NEC article reference.
           </div>
           <div style={{margin:"4px 16px 8px", background:"linear-gradient(135deg,rgba(200,168,75,0.12),rgba(200,168,75,0.04))", border:"1px solid rgba(200,168,75,0.35)", borderRadius:"10px", padding:"14px 16px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"14px", flexWrap:"wrap"}}>
             <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", lineHeight:"1.5"}}>
-              Like these?<span style={{color:"#aabbcc", fontWeight:"400"}}> Get 500 practice questions for the CA journeyman exam — every answer NEC referenced.</span>
+              Like these?<span style={{color:"#aabbcc", fontWeight:"400"}}> Get 500 practice questions for the CA journeyman exam  -  every answer NEC referenced.</span>
             </div>
             <button onClick={() => onNavigate && onNavigate('landing')}
               style={{...s.btnSm, ...s.btnGold, whiteSpace:"nowrap", flexShrink:0}}>
@@ -526,13 +526,13 @@ export default function CalculationsPage({ onHome , onNavigate }) {
           <div style={{...s.card, borderColor:"rgba(200,168,75,0.3)", background:"rgba(200,168,75,0.04)"}}>
             <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>💡 Exam Tip</div>
             <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.5"}}>
-              The California journeyman exam typically includes 6–10 calculation problems. Know voltage drop, motor sizing, and box fill cold — they show up every time.
+              The California journeyman exam typically includes 6–10 calculation problems. Know voltage drop, motor sizing, and box fill cold  -  they show up every time.
             </div>
           </div>
           <div style={s.ctaBanner}>
             <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📝 See These on the Real CA Journeyman Exam</div>
             <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"14px"}}>
-              Calculation questions like these appear on every exam. Practice them in full exam context — 500 original NEC-referenced questions across all 12 modules.
+              Calculation questions like these appear on every exam. Practice them in full exam context  -  500 original NEC-referenced questions across all 12 modules.
             </div>
             <button onClick={() => onNavigate && onNavigate('landing')}
               style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"15px"}}>
@@ -556,7 +556,7 @@ export default function CalculationsPage({ onHome , onNavigate }) {
         <div style={s.ctaBanner}>
           <div style={{fontSize:"15px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>📝 See How This Shows Up on the Real Exam</div>
           <div style={{fontSize:"14px", color:"#aabbcc", lineHeight:"1.6", marginBottom:"14px"}}>
-            Calculation questions appear on every CA Journeyman exam — typically 6–10. Practice the full 500 questions with step-by-step NEC explanations for every answer.
+            Calculation questions appear on every CA Journeyman exam  -  typically 6–10. Practice the full 500 questions with step-by-step NEC explanations for every answer.
           </div>
           <button onClick={() => onNavigate && onNavigate('landing')}
             style={{...s.btn, ...s.btnGold, width:"100%", fontSize:"15px"}}>

@@ -87,7 +87,7 @@ export default function AdminGrantPage() {
           {['standard', 'pro'].map(t => (
             <button key={t} onClick={() => setTier(t)}
               style={{...s.tierBtn, ...(tier === t ? s.tierBtnActive : {})}}>
-              {t === 'standard' ? 'Standard — $29.99' : 'Pro — $59.99'}
+              {t === 'standard' ? 'Standard  -  $29.99' : 'Pro  -  $59.99'}
             </button>
           ))}
         </div>

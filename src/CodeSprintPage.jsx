@@ -1,4 +1,4 @@
-// CodeSprintPage.jsx — NEC Article Navigator Game
+// CodeSprintPage.jsx  -  NEC Article Navigator Game
 // Scientific basis:
 //   • Spatial memory: seeing WHERE in the NEC builds "book map" in your brain
 //   • Active recall under time pressure (Roediger & Karpicke 2006)
@@ -9,58 +9,58 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 // ─── NEC 2023 Article Data ────────────────────────────────────────────────────
 // Each entry: { id, article, title, chapter, chapterName, scenario, hint, distractors }
 const ARTICLES = [
-  // Chapter 1 — General
-  { id:1,  article:'90',  title:'Introduction — Scope & Purpose',           chapter:1, chapterName:'General',
-    scenario:'You need to find the purpose and scope of the NEC itself — what it does and does not cover.',
-    hint:'The very first article — where the book explains what it regulates.',
+  // Chapter 1  -  General
+  { id:1,  article:'90',  title:'Introduction  -  Scope & Purpose',           chapter:1, chapterName:'General',
+    scenario:'You need to find the purpose and scope of the NEC itself  -  what it does and does not cover.',
+    hint:'The very first article  -  where the book explains what it regulates.',
     distractors:['100','110','200'] },
   { id:2,  article:'100', title:'Definitions',                               chapter:1, chapterName:'General',
     scenario:'The exam question uses a term like "accessible" or "ampacity" and you need the official NEC definition.',
-    hint:'Every defined term in the NEC — your dictionary.',
+    hint:'Every defined term in the NEC  -  your dictionary.',
     distractors:['90','110','210'] },
   { id:3,  article:'110', title:'Requirements for Electrical Installations',  chapter:1, chapterName:'General',
-    scenario:'Working clearance in front of a 480V panel — how much space is required?',
+    scenario:'Working clearance in front of a 480V panel  -  how much space is required?',
     hint:'Workspace, headroom, lighting, and general installation requirements.',
     distractors:['230','408','250'] },
 
-  // Chapter 2 — Wiring and Protection
+  // Chapter 2  -  Wiring and Protection
   { id:4,  article:'210', title:'Branch Circuits',                            chapter:2, chapterName:'Wiring & Protection',
-    scenario:'GFCI protection required for a bathroom receptacle — which article covers it?',
+    scenario:'GFCI protection required for a bathroom receptacle  -  which article covers it?',
     hint:'Everything about branch circuits: GFCI, AFCI, receptacle spacing, small appliance circuits.',
     distractors:['406','215','220'] },
   { id:5,  article:'215', title:'Feeders',                                    chapter:2, chapterName:'Wiring & Protection',
     scenario:'Sizing the conductors between the main panel and a sub-panel.',
-    hint:'Feeder conductors — between service and final branch circuit overcurrent device.',
+    hint:'Feeder conductors  -  between service and final branch circuit overcurrent device.',
     distractors:['210','220','230'] },
   { id:6,  article:'220', title:'Branch-Circuit, Feeder & Service Calculations', chapter:2, chapterName:'Wiring & Protection',
-    scenario:'Calculating total load for a residential service — demand factors and load calculations.',
+    scenario:'Calculating total load for a residential service  -  demand factors and load calculations.',
     hint:'All the load calculation math: demand factors, optional method, standard method.',
     distractors:['230','310','215'] },
   { id:7,  article:'225', title:'Outside Branch Circuits and Feeders',        chapter:2, chapterName:'Wiring & Protection',
-    scenario:'Running overhead conductors from a house to a detached garage — clearances and requirements.',
+    scenario:'Running overhead conductors from a house to a detached garage  -  clearances and requirements.',
     hint:'Outdoor overhead and underground feeders to separate structures.',
     distractors:['230','300','215'] },
   { id:8,  article:'230', title:'Services',                                   chapter:2, chapterName:'Wiring & Protection',
     scenario:'Service entrance conductors, service disconnect location, number of service disconnects allowed.',
-    hint:'Everything from the utility to the first disconnect — the service.',
+    hint:'Everything from the utility to the first disconnect  -  the service.',
     distractors:['215','250','310'] },
   { id:9,  article:'240', title:'Overcurrent Protection',                     chapter:2, chapterName:'Wiring & Protection',
     scenario:'Breaker sizing, fuse ratings, where overcurrent devices must be located.',
-    hint:'Breakers and fuses — sizing, location, and exceptions.',
+    hint:'Breakers and fuses  -  sizing, location, and exceptions.',
     distractors:['430','250','310'] },
   { id:10, article:'250', title:'Grounding and Bonding',                      chapter:2, chapterName:'Wiring & Protection',
     scenario:'Size of the grounding electrode conductor, bonding jumper requirements, ground rod spacing.',
-    hint:'The longest article in the NEC — all things grounding and bonding.',
+    hint:'The longest article in the NEC  -  all things grounding and bonding.',
     distractors:['310','230','300'] },
 
-  // Chapter 3 — Wiring Methods
-  { id:11, article:'300', title:'General Requirements — Wiring Methods',      chapter:3, chapterName:'Wiring Methods & Materials',
+  // Chapter 3  -  Wiring Methods
+  { id:11, article:'300', title:'General Requirements  -  Wiring Methods',      chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Minimum burial depth for underground conductors, protection from physical damage.',
-    hint:'General rules that apply to ALL wiring methods — burial depths, bends, protection.',
+    hint:'General rules that apply to ALL wiring methods  -  burial depths, bends, protection.',
     distractors:['310','250','334'] },
   { id:12, article:'310', title:'Conductors for General Wiring',              chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Maximum temperature rating for conductors in a conduit, conductor insulation types.',
-    hint:'Conductor ampacity, insulation types, temperature ratings — and Table 310.16.',
+    hint:'Conductor ampacity, insulation types, temperature ratings  -  and Table 310.16.',
     distractors:['300','240','250'] },
   { id:13, article:'314', title:'Outlet, Device, Pull & Junction Boxes',      chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Maximum fill for a 4" square junction box, box fill calculations for conductors.',
@@ -68,143 +68,143 @@ const ARTICLES = [
     distractors:['300','312','358'] },
   { id:14, article:'334', title:'Nonmetallic-Sheathed Cable (NM / Romex)',    chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Where NM cable (Romex) is permitted and prohibited, staple spacing requirements.',
-    hint:'Romex — support intervals, permitted uses, prohibited locations.',
+    hint:'Romex  -  support intervals, permitted uses, prohibited locations.',
     distractors:['320','330','300'] },
   { id:15, article:'344', title:'Rigid Metal Conduit (RMC)',                  chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Support intervals and permitted uses for rigid metal conduit.',
-    hint:'RMC — the heaviest conduit, maximum protection.',
+    hint:'RMC  -  the heaviest conduit, maximum protection.',
     distractors:['352','358','348'] },
   { id:16, article:'348', title:'Flexible Metal Conduit (FMC)',               chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Maximum length of flex when used as a grounding means, permitted uses.',
-    hint:'Flex conduit — the coiled metal wiring method, 6-foot rule.',
+    hint:'Flex conduit  -  the coiled metal wiring method, 6-foot rule.',
     distractors:['350','344','358'] },
   { id:17, article:'352', title:'Rigid PVC Conduit (PVC)',                    chapter:3, chapterName:'Wiring Methods & Materials',
-    scenario:'Expansion fittings required for long PVC conduit runs — thermal expansion requirements.',
-    hint:'PVC conduit — expansion joints, burial, support intervals.',
+    scenario:'Expansion fittings required for long PVC conduit runs  -  thermal expansion requirements.',
+    hint:'PVC conduit  -  expansion joints, burial, support intervals.',
     distractors:['344','358','300'] },
   { id:18, article:'358', title:'Electrical Metallic Tubing (EMT)',           chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Support intervals for EMT conduit, number of bends permitted between pull points.',
-    hint:'EMT — the thin-wall conduit used everywhere commercially.',
+    hint:'EMT  -  the thin-wall conduit used everywhere commercially.',
     distractors:['344','352','348'] },
 
-  // Chapter 4 — Equipment for General Use
+  // Chapter 4  -  Equipment for General Use
   { id:19, article:'404', title:'Switches',                                   chapter:4, chapterName:'Equipment for General Use',
     scenario:'Height requirements for wall switches, snap switches used as motor disconnects.',
-    hint:'All switch requirements — ratings, locations, grounding.',
+    hint:'All switch requirements  -  ratings, locations, grounding.',
     distractors:['406','408','210'] },
   { id:20, article:'406', title:'Receptacles, Cord Connectors & Attachment Plugs', chapter:4, chapterName:'Equipment for General Use',
     scenario:'Tamper-resistant receptacle requirements, receptacle replacement rules.',
-    hint:'Receptacles — tamper-resistant, weather-resistant, replacement requirements.',
+    hint:'Receptacles  -  tamper-resistant, weather-resistant, replacement requirements.',
     distractors:['210','404','410'] },
   { id:21, article:'408', title:'Switchboards, Panelboards & Distribution Boards', chapter:4, chapterName:'Equipment for General Use',
     scenario:'Panelboard clearances, directory requirements, maximum number of circuits in a panel.',
-    hint:'Panels and switchboards — the article with the 42-circuit rule.',
+    hint:'Panels and switchboards  -  the article with the 42-circuit rule.',
     distractors:['404','450','230'] },
   { id:22, article:'410', title:'Luminaires, Lampholders & Lamps',           chapter:4, chapterName:'Equipment for General Use',
     scenario:'Clearance required between a recessed light and insulation, luminaire in a closet.',
-    hint:'Lighting fixtures — clearances, closet lights, recessed fixture requirements.',
+    hint:'Lighting fixtures  -  clearances, closet lights, recessed fixture requirements.',
     distractors:['406','424','422'] },
   { id:23, article:'422', title:'Appliances',                                 chapter:4, chapterName:'Equipment for General Use',
     scenario:'Branch circuit requirements for a dishwasher, cord-and-plug connected appliances.',
-    hint:'Appliances — cord length, disconnects, branch circuit protection.',
+    hint:'Appliances  -  cord length, disconnects, branch circuit protection.',
     distractors:['424','440','210'] },
   { id:24, article:'430', title:'Motors',                                     chapter:4, chapterName:'Equipment for General Use',
     scenario:'Motor branch circuit conductor sizing (125% rule), motor overload protection sizing.',
-    hint:'The most complex article — motors have their own conductor, OCP, and disconnect rules.',
+    hint:'The most complex article  -  motors have their own conductor, OCP, and disconnect rules.',
     distractors:['440','240','250'] },
   { id:25, article:'440', title:'Air-Conditioning & Refrigerating Equipment', chapter:4, chapterName:'Equipment for General Use',
     scenario:'Disconnect requirements and conductor sizing for a rooftop HVAC unit.',
-    hint:'A/C and refrigeration — supplements Article 430 with hermetic motor rules.',
+    hint:'A/C and refrigeration  -  supplements Article 430 with hermetic motor rules.',
     distractors:['430','422','210'] },
   { id:26, article:'450', title:'Transformers',                               chapter:4, chapterName:'Equipment for General Use',
     scenario:'Overcurrent protection for a 75 kVA dry-type transformer, clearance requirements.',
-    hint:'Transformers — primary and secondary protection, installation clearances.',
+    hint:'Transformers  -  primary and secondary protection, installation clearances.',
     distractors:['408','480','430'] },
 
-  // Chapter 5 — Special Occupancies
+  // Chapter 5  -  Special Occupancies
   { id:27, article:'501', title:'Class I Hazardous Locations',                chapter:5, chapterName:'Special Occupancies',
     scenario:'Wiring methods required in a spray booth where flammable vapors may be present.',
-    hint:'Class I — flammable gases or vapors (gas stations, spray booths).',
+    hint:'Class I  -  flammable gases or vapors (gas stations, spray booths).',
     distractors:['502','503','500'] },
   { id:28, article:'517', title:'Health Care Facilities',                     chapter:5, chapterName:'Special Occupancies',
     scenario:'Patient care area wiring requirements, isolated power systems in operating rooms.',
-    hint:'Hospitals and medical offices — patient protection, isolated power, essential systems.',
+    hint:'Hospitals and medical offices  -  patient protection, isolated power, essential systems.',
     distractors:['700','701','547'] },
   { id:29, article:'547', title:'Agricultural Buildings',                     chapter:5, chapterName:'Special Occupancies',
-    scenario:'Wiring in a barn or livestock building — equipotential planes, special grounding.',
-    hint:'Farms and barns — corrosive and wet environments, equipotential planes.',
+    scenario:'Wiring in a barn or livestock building  -  equipotential planes, special grounding.',
+    hint:'Farms and barns  -  corrosive and wet environments, equipotential planes.',
     distractors:['501','551','300'] },
   { id:30, article:'590', title:'Temporary Installations',                    chapter:5, chapterName:'Special Occupancies',
     scenario:'GFCI requirements on a construction site, temporary wiring permitted methods.',
-    hint:'Construction site temporary power — all the rules for temp wiring.',
+    hint:'Construction site temporary power  -  all the rules for temp wiring.',
     distractors:['300','210','400'] },
 
-  // Chapter 6 — Special Equipment
+  // Chapter 6  -  Special Equipment
   { id:31, article:'625', title:'Electric Vehicle (EV) Charging',             chapter:6, chapterName:'Special Equipment',
     scenario:'EVSE installation requirements, grounding of EV charging equipment.',
-    hint:'EV charging stations — EVSE requirements, indoor vs outdoor, ventilation.',
+    hint:'EV charging stations  -  EVSE requirements, indoor vs outdoor, ventilation.',
     distractors:['430','210','480'] },
   { id:32, article:'680', title:'Swimming Pools, Fountains & Similar',        chapter:6, chapterName:'Special Equipment',
     scenario:'Clearance of overhead conductors above a swimming pool, bonding grid requirements.',
-    hint:'Pools — overhead clearances, bonding, GFCI, underwater lighting.',
+    hint:'Pools  -  overhead clearances, bonding, GFCI, underwater lighting.',
     distractors:['547','210','250'] },
   { id:33, article:'690', title:'Solar Photovoltaic (PV) Systems',            chapter:6, chapterName:'Special Equipment',
     scenario:'Rapid shutdown requirements for a rooftop solar array, PV system disconnect.',
-    hint:'Solar PV — rapid shutdown, labeling, DC conductors, inverters.',
+    hint:'Solar PV  -  rapid shutdown, labeling, DC conductors, inverters.',
     distractors:['445','700','480'] },
   { id:34, article:'695', title:'Fire Pumps',                                 chapter:6, chapterName:'Special Equipment',
     scenario:'Dedicated service requirements for a fire pump, continuity of power requirements.',
-    hint:'Fire pumps must keep running even during a building fire — unique power requirements.',
+    hint:'Fire pumps must keep running even during a building fire  -  unique power requirements.',
     distractors:['700','230','430'] },
 
-  // Chapter 7 — Special Conditions
+  // Chapter 7  -  Special Conditions
   { id:35, article:'700', title:'Emergency Systems',                          chapter:7, chapterName:'Special Conditions',
     scenario:'Transfer switch requirements, automatic operation of emergency lighting systems.',
-    hint:'Emergency systems — must restore power within 10 seconds, hospitals, high-rises.',
+    hint:'Emergency systems  -  must restore power within 10 seconds, hospitals, high-rises.',
     distractors:['701','702','517'] },
   { id:36, article:'701', title:'Legally Required Standby Systems',           chapter:7, chapterName:'Special Conditions',
-    scenario:'Sewage lift station backup power — legally required by local code.',
-    hint:'Legally required standby — not as critical as emergency, but required by law.',
+    scenario:'Sewage lift station backup power  -  legally required by local code.',
+    hint:'Legally required standby  -  not as critical as emergency, but required by law.',
     distractors:['700','702','695'] },
   { id:37, article:'702', title:'Optional Standby Systems',                   chapter:7, chapterName:'Special Conditions',
-    scenario:'Homeowner wants a generator for convenience — which article applies?',
-    hint:'Optional standby — generators for convenience, not required by code.',
+    scenario:'Homeowner wants a generator for convenience  -  which article applies?',
+    hint:'Optional standby  -  generators for convenience, not required by code.',
     distractors:['700','701','445'] },
   { id:38, article:'760', title:'Fire Alarm Systems',                         chapter:7, chapterName:'Special Conditions',
     scenario:'Wiring methods for fire alarm circuits, separation from other wiring.',
-    hint:'Fire alarm system wiring — Class A and Class B circuits.',
+    hint:'Fire alarm system wiring  -  Class A and Class B circuits.',
     distractors:['725','700','800'] },
 
-  // Chapter 8 — Communications
-  { id:39, article:'800', title:'General Requirements — Communications Systems', chapter:8, chapterName:'Communications Systems',
+  // Chapter 8  -  Communications
+  { id:39, article:'800', title:'General Requirements  -  Communications Systems', chapter:8, chapterName:'Communications Systems',
     scenario:'Separation requirements between communication cables and power conductors.',
-    hint:'Communications (phone, internet) — separation from power, grounding, protection.',
+    hint:'Communications (phone, internet)  -  separation from power, grounding, protection.',
     distractors:['760','300','725'] },
 
   // Additional high-frequency exam articles
   { id:40, article:'320', title:'Armored Cable (AC / BX)',                   chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Support intervals and permitted uses for Type AC (BX) armored cable.',
-    hint:'AC cable — the metal-spiral flexible cable with a paper liner inside.',
+    hint:'AC cable  -  the metal-spiral flexible cable with a paper liner inside.',
     distractors:['330','334','348'] },
   { id:41, article:'330', title:'Metal-Clad Cable (MC)',                      chapter:3, chapterName:'Wiring Methods & Materials',
     scenario:'Where MC cable is permitted in a commercial building, support requirements.',
-    hint:'MC cable — like AC but has an actual ground conductor inside.',
+    hint:'MC cable  -  like AC but has an actual ground conductor inside.',
     distractors:['320','334','344'] },
   { id:42, article:'445', title:'Generators',                                 chapter:4, chapterName:'Equipment for General Use',
     scenario:'Overcurrent protection and disconnecting means for a standby generator.',
-    hint:'Generators — nameplate, disconnects, overcurrent protection.',
+    hint:'Generators  -  nameplate, disconnects, overcurrent protection.',
     distractors:['702','700','430'] },
   { id:43, article:'480', title:'Storage Batteries',                          chapter:4, chapterName:'Equipment for General Use',
     scenario:'Ventilation requirements and disconnecting means for a battery backup system.',
-    hint:'Batteries — venting, spacing, charging equipment requirements.',
+    hint:'Batteries  -  venting, spacing, charging equipment requirements.',
     distractors:['690','445','430'] },
   { id:44, article:'424', title:'Fixed Electric Space-Heating Equipment',     chapter:4, chapterName:'Equipment for General Use',
-    scenario:'Branch circuit sizing for a baseboard heater — the 125% continuous load rule.',
-    hint:'Electric heaters — baseboard, radiant, and duct heaters.',
+    scenario:'Branch circuit sizing for a baseboard heater  -  the 125% continuous load rule.',
+    hint:'Electric heaters  -  baseboard, radiant, and duct heaters.',
     distractors:['422','430','210'] },
   { id:45, article:'411', title:'Lighting Systems ≤30 Volts',                chapter:4, chapterName:'Equipment for General Use',
     scenario:'Low-voltage landscape lighting system requirements.',
-    hint:'Low-voltage lighting (landscape, under-cabinet) — 30V or less systems.',
+    hint:'Low-voltage lighting (landscape, under-cabinet)  -  30V or less systems.',
     distractors:['410','406','725'] },
 ]
 
@@ -238,15 +238,15 @@ function ReportButton({ qid, qText }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          subject: `Question Issue Report — ID #${qid}`,
-          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz — user did not leave the session]`,
+          subject: `Question Issue Report  -  ID #${qid}`,
+          message: `Question ID: ${qid}\nQuestion: ${qText}\n\nReported issue:\n${note || "(no details provided)"}\n\n[Auto-reported from quiz  -  user did not leave the session]`,
         }),
       });
       setState(res.ok ? 'done' : 'error');
     } catch { setState('error'); }
   };
   if (state === 'done') return (
-    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported — we'll review it. Keep going.</span>
+    <span style={{fontSize:"11px", color:"#27ae60"}}>✓ Reported  -  we'll review it. Keep going.</span>
   );
   if (state === 'idle') return (
     <button onClick={() => setState('open')} style={{background:"none",border:"none",cursor:"pointer",fontSize:"11px",color:"#4a5a6a",padding:"0",display:"inline-flex",alignItems:"center",gap:"4px"}}>
@@ -264,7 +264,7 @@ function ReportButton({ qid, qText }) {
           {state==='sending' ? 'Sending…' : 'Send Report'}
         </button>
         <button onClick={()=>{setState('idle');setNote('');}} style={{background:"none",border:"none",color:"#4a5a6a",fontSize:"11px",cursor:"pointer",padding:"5px 0"}}>Cancel</button>
-        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed — try again</span>}
+        {state==='error' && <span style={{fontSize:"11px",color:"#e74c3c",alignSelf:"center"}}>Failed  -  try again</span>}
       </div>
     </div>
   );
@@ -445,7 +445,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
             Code <span style={s.gold}>Sprint</span>
           </h1>
           <p style={{color:'#7a8a9a', fontSize:'15px', lineHeight:'1.7', maxWidth:'480px', margin:'0 auto 8px'}}>
-            Train your brain to find anything in the NEC — fast. On the real exam, every second counts.
+            Train your brain to find anything in the NEC  -  fast. On the real exam, every second counts.
           </p>
         </div>
 
@@ -454,9 +454,9 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
         <div style={{background:'rgba(200,168,75,0.05)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'8px', padding:'20px 24px', marginBottom:'28px'}}>
           <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'10px'}}>⚗️ Why This Works</div>
           <div style={{color:'#8a9aaa', fontSize:'13px', lineHeight:'1.8'}}>
-            <strong style={{color:'#d8e0e8'}}>Spatial memory</strong> — your brain remembers locations. This game builds a mental map of the NEC.<br/>
-            <strong style={{color:'#d8e0e8'}}>Active recall under pressure</strong> — timed retrieval practice is the most effective study method proven by research.<br/>
-            <strong style={{color:'#d8e0e8'}}>Spaced repetition</strong> — articles you miss come back. Articles you nail get retired. Leitner system.
+            <strong style={{color:'#d8e0e8'}}>Spatial memory</strong>  -  your brain remembers locations. This game builds a mental map of the NEC.<br/>
+            <strong style={{color:'#d8e0e8'}}>Active recall under pressure</strong>  -  timed retrieval practice is the most effective study method proven by research.<br/>
+            <strong style={{color:'#d8e0e8'}}>Spaced repetition</strong>  -  articles you miss come back. Articles you nail get retired. Leitner system.
           </div>
         </div>
 
@@ -479,10 +479,10 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           <div style={{color:'#c8a84b', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'14px'}}>How to Play</div>
           {[
             ['🎯', 'Burns NEC chapter and article locations into memory so you can navigate the codebook fast under exam time pressure.'],
-            ['📋', 'A scenario appears — something that would show up on the exam'],
+            ['📋', 'A scenario appears  -  something that would show up on the exam'],
             ['⚡', 'Pick the NEC Article where you\'d find the answer'],
-            ['⏱️', '22 seconds per question — answered questions stack up on the page'],
-            ['👇', 'Hit Next Question when you\'re ready — you control the pace'],
+            ['⏱️', '22 seconds per question  -  answered questions stack up on the page'],
+            ['👇', 'Hit Next Question when you\'re ready  -  you control the pace'],
             ['✅', 'At the end, review every question with the correct article and hint'],
           ].map(([icon, text]) => (
             <div key={text} style={{display:'flex', gap:'12px', alignItems:'flex-start', marginBottom:'10px'}}>
@@ -565,7 +565,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                     <span style={{fontSize:'11px', color:'#e74c3c', flexShrink:0, marginTop:'1px'}}>You: Art. {entry.selected} →</span>
                   )}
                   <span style={{fontSize:'11px', color: entry.correct ? '#27ae60' : '#c8a84b', fontWeight:'700', flexShrink:0}}>
-                    {entry.correct ? '✓ ' : '✗ Correct: '}Art. {entry.item.article} — {entry.item.title}.{' '}
+                    {entry.correct ? '✓ ' : '✗ Correct: '}Art. {entry.item.article}  -  {entry.item.title}.{' '}
                   </span>
                   <span style={{fontSize:'11px', color:'#6a7a8a', lineHeight:'1.5'}}>{entry.item.hint}</span>
                 </div>
@@ -573,7 +573,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                 {eCh && (
                   <div style={{marginLeft:'28px', marginTop:'6px', display:'flex', alignItems:'center', gap:'6px'}}>
                     <div style={{width:'16px', height:'16px', borderRadius:'2px', background:eCh.color+'22', border:`1px solid ${eCh.color}55`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'9px', fontWeight:'900', color:eCh.color, flexShrink:0}}>{entry.item.chapter}</div>
-                    <span style={{fontSize:'10px', color:eCh.color}}>Ch. {entry.item.chapter} — {eCh.name} · Articles {eCh.articles}</span>
+                    <span style={{fontSize:'10px', color:eCh.color}}>Ch. {entry.item.chapter}  -  {eCh.name} · Articles {eCh.articles}</span>
                   </div>
                 )}
               </div>
@@ -649,8 +649,8 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                       <div>
                         <div style={{fontWeight:'700', color: selected === current.article ? '#2ecc71' : '#e74c3c', marginBottom:'3px', fontSize:'14px'}}>
                           {selected === current.article
-                            ? `Correct — Article ${current.article} · +${lastPts.current} pts`
-                            : `Article ${current.article} — ${current.title}`}
+                            ? `Correct  -  Article ${current.article} · +${lastPts.current} pts`
+                            : `Article ${current.article}  -  ${current.title}`}
                         </div>
                         <div style={{color:'#8a9aaa', fontSize:'13px', lineHeight:'1.6'}}>{current.hint}</div>
                         <div style={{marginTop:'10px', paddingTop:'8px', borderTop:'1px solid rgba(255,255,255,0.06)'}}><ReportButton qid={current.num} qText={current.scenario} /></div>
@@ -659,7 +659,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                     {ch && (
                       <div style={{display:'flex', alignItems:'center', gap:'8px', paddingTop:'8px', borderTop:'1px solid rgba(255,255,255,0.06)'}}>
                         <div style={{width:'18px', height:'18px', borderRadius:'3px', background:ch.color+'22', border:`1px solid ${ch.color}66`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'9px', fontWeight:'900', color:ch.color, flexShrink:0}}>{current.chapter}</div>
-                        <span style={{fontSize:'12px', color:ch.color, fontWeight:'700'}}>Chapter {current.chapter} — {ch.name}</span>
+                        <span style={{fontSize:'12px', color:ch.color, fontWeight:'700'}}>Chapter {current.chapter}  -  {ch.name}</span>
                         <span style={{fontSize:'12px', color:'#4a5a6a'}}>· Articles {ch.articles}</span>
                       </div>
                     )}
@@ -667,7 +667,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                   {/* Timeout message */}
                   {timeLeft === 0 && selected === null && (
                     <div style={{textAlign:'center', color:'#e74c3c', fontWeight:'700', fontSize:'13px', marginBottom:'10px'}}>
-                      Time's up — answer was Article {current.article}
+                      Time's up  -  answer was Article {current.article}
                     </div>
                   )}
                   {/* Next / Finish button */}
@@ -704,7 +704,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
               Round {roundNum} Complete
             </h2>
             <div style={{color:'#7a8a9a', fontSize:'14px'}}>
-              {pct >= 90 ? 'Excellent — you know this book.' : pct >= 70 ? 'Good. Drill the misses below.' : 'Keep going — spaced repetition will lock these in.'}
+              {pct >= 90 ? 'Excellent  -  you know this book.' : pct >= 70 ? 'Good. Drill the misses below.' : 'Keep going  -  spaced repetition will lock these in.'}
             </div>
           </div>
 
@@ -729,11 +729,11 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
             </div>
           )}
 
-          {/* ── Missed articles — study these ── */}
+          {/* ── Missed articles  -  study these ── */}
           {missedItems.length > 0 && (
             <div style={{marginBottom:'20px'}}>
               <div style={{color:'#e74c3c', fontSize:'11px', fontWeight:'700', letterSpacing:'2px', textTransform:'uppercase', marginBottom:'12px'}}>
-                ❌ Missed — Study These ({missedItems.length})
+                ❌ Missed  -  Study These ({missedItems.length})
               </div>
               <div style={{display:'flex', flexDirection:'column', gap:'8px'}}>
                 {missedItems.map((r, i) => {
@@ -751,9 +751,9 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                         {r.item.scenario}
                       </div>
                       <div style={{background:'rgba(200,168,75,0.08)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'6px', padding:'8px 12px'}}>
-                        <span style={{color:'#c8a84b', fontWeight:'700', fontSize:'12px'}}>Article {r.item.article} — {r.item.title}. </span>
+                        <span style={{color:'#c8a84b', fontWeight:'700', fontSize:'12px'}}>Article {r.item.article}  -  {r.item.title}. </span>
                         <span style={{color:'#8a9aaa', fontSize:'12px', lineHeight:'1.6'}}>{r.item.hint}</span>
-                        {eCh && <div style={{marginTop:'4px', fontSize:'11px', color:eCh.color}}>Chapter {r.item.chapter} — {eCh.name} · Articles {eCh.articles}</div>}
+                        {eCh && <div style={{marginTop:'4px', fontSize:'11px', color:eCh.color}}>Chapter {r.item.chapter}  -  {eCh.name} · Articles {eCh.articles}</div>}
                       </div>
                     </div>
                   )
@@ -779,7 +779,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
                         <span style={{fontSize:'11px', color:'#27ae60', flexShrink:0}}>+{r.pts}pts · {r.timeUsed}s</span>
                       </div>
                       <div style={{fontSize:'11px', color:'#5a6a7a', lineHeight:'1.5', marginLeft:'0'}}>{r.item.hint}</div>
-                      {eCh && <div style={{fontSize:'10px', color:eCh.color, marginTop:'3px'}}>Ch. {r.item.chapter} — {eCh.name}</div>}
+                      {eCh && <div style={{fontSize:'10px', color:eCh.color, marginTop:'3px'}}>Ch. {r.item.chapter}  -  {eCh.name}</div>}
                     </div>
                   )
                 })}
@@ -790,7 +790,7 @@ export default function CodeSprintPage({ onNavigate, onHome, access }) {
           {/* Spaced repetition note */}
           {wrongBucket.length > 0 && (
             <div style={{background:'rgba(231,76,60,0.06)', border:'1px solid rgba(231,76,60,0.2)', borderRadius:'8px', padding:'12px 16px', marginBottom:'20px', fontSize:'13px', color:'#e74c3c'}}>
-              🔁 <strong>{wrongBucket.length} article{wrongBucket.length > 1 ? 's' : ''} missed</strong> — they'll come back in Round {roundNum + 1}
+              🔁 <strong>{wrongBucket.length} article{wrongBucket.length > 1 ? 's' : ''} missed</strong>  -  they'll come back in Round {roundNum + 1}
             </div>
           )}
 

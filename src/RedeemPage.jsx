@@ -14,12 +14,12 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
             Already purchased? Here&#39;s how to get back in on this device.
           </div>
 
-          {/* Primary — magic link */}
+          {/* Primary  -  magic link */}
           <div style={{background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.25)', borderRadius:'8px', padding:'20px', marginBottom:'20px', textAlign:'left'}}>
             <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b', textTransform:'uppercase', letterSpacing:'1px', marginBottom:'10px'}}>⚡ Use Your Access Link</div>
             <div style={{fontSize:'13px', color:'#8a9aaa', lineHeight:'1.7'}}>
-              When you purchased, we emailed you a one-click access link from <strong style={{color:'#d8e0e8'}}>noreply@westcoastwirepro.com</strong>. Find that email and tap the link — it will restore your access instantly.<br/><br/>
-              <strong style={{color:'#d8e0e8'}}>Subject line:</strong> &#34;Your West Coast Wire Pro Access — Click to Start Studying&#34;<br/>
+              When you purchased, we emailed you a one-click access link from <strong style={{color:'#d8e0e8'}}>noreply@westcoastwirepro.com</strong>. Find that email and tap the link  -  it will restore your access instantly.<br/><br/>
+              <strong style={{color:'#d8e0e8'}}>Subject line:</strong> &#34;Your West Coast Wire Pro Access  -  Click to Start Studying&#34;<br/>
               <strong style={{color:'#d8e0e8'}}>Also check:</strong> Spam, Promotions, or Junk folders.
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function RedeemPage({ onEnterApp, onHome, onNavigate }) {
 
         <div style={s.freeTip}>
           <span style={{color:'#4a5a6a', fontSize:'13px'}}>
-            Modules 1 &amp; 2 are always free —{' '}
+            Modules 1 &amp; 2 are always free  - {' '}
           </span>
           <button onClick={onHome} style={{background:'none', border:'none', color:'#c8a84b', fontSize:'13px', cursor:'pointer', padding:0}}>
             start studying without an account →

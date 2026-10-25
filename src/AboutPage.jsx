@@ -15,7 +15,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
             <span style={s.h1Gold}>The Science Behind It.</span>
           </h1>
           <p style={s.heroSub}>
-            West Coast Wire Pro is built around how memory actually works under pressure — active recall, spaced repetition, and exam simulation. The same methods top-stakes test-takers in medicine and law have used for decades, applied to the NEC.
+            West Coast Wire Pro is built around how memory actually works under pressure  -  active recall, spaced repetition, and exam simulation. The same methods top-stakes test-takers in medicine and law have used for decades, applied to the NEC.
           </p>
         </div>
       </header>
@@ -33,50 +33,50 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
 
           <h2 style={s.h2}>The Science Behind How This Works</h2>
           <p style={s.p}>
-            West Coast Wire Pro is built around what memory research actually says about how people retain information under pressure — not how it feels like you should study.
+            West Coast Wire Pro is built around what memory research actually says about how people retain information under pressure  -  not how it feels like you should study.
           </p>
 
           <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Active Recall Beats Passive Review</h3>
           <p style={s.p}>
-            Reading your notes feels productive. Re-reading a chapter feels like studying. But memory research — going back to Roediger and Karpicke's 2006 landmark study and replicated dozens of times since — shows that <strong style={{color:'#d8e0e8'}}>the act of retrieving information is what builds durable memory</strong>, not the act of reviewing it. Every time you force your brain to recall an answer before seeing it, you strengthen the neural pathway. Every time you just re-read, you don't.
+            Reading your notes feels productive. Re-reading a chapter feels like studying. But memory research  -  going back to Roediger and Karpicke's 2006 landmark study and replicated dozens of times since  -  shows that <strong style={{color:'#d8e0e8'}}>the act of retrieving information is what builds durable memory</strong>, not the act of reviewing it. Every time you force your brain to recall an answer before seeing it, you strengthen the neural pathway. Every time you just re-read, you don't.
           </p>
           <p style={s.p}>
-            This is why every feature in West Coast Wire Pro is built around answering, not reading. You don't browse explanations — you attempt a question, commit to an answer, then see whether you were right and why. That sequence — attempt, feedback, explanation — is the core of spaced retrieval practice, the most evidence-backed study method in cognitive psychology.
+            This is why every feature in West Coast Wire Pro is built around answering, not reading. You don't browse explanations  -  you attempt a question, commit to an answer, then see whether you were right and why. That sequence  -  attempt, feedback, explanation  -  is the core of spaced retrieval practice, the most evidence-backed study method in cognitive psychology.
           </p>
 
           <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Spaced Repetition and the Missed Questions Deck</h3>
           <p style={s.p}>
-            Your brain forgets things on a predictable curve — steeply at first, then more gradually over time. Reviewing material right before you forget it interrupts that curve and resets the clock. This is spaced repetition, and it's why the Missed Questions deck is one of the most powerful tools in the app. It automatically resurfaces the exact questions you got wrong, targeting the specific gaps in your knowledge rather than making you re-drill material you already know.
+            Your brain forgets things on a predictable curve  -  steeply at first, then more gradually over time. Reviewing material right before you forget it interrupts that curve and resets the clock. This is spaced repetition, and it's why the Missed Questions deck is one of the most powerful tools in the app. It automatically resurfaces the exact questions you got wrong, targeting the specific gaps in your knowledge rather than making you re-drill material you already know.
           </p>
 
           <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Spatial Memory and the Open-Book Exam</h3>
           <p style={s.p}>
-            The CA Journeyman exam is open book — but the book only helps you if you know where to look. Research on spatial memory shows that people who regularly navigate a physical reference (like a codebook) build a mental map of where information lives. They stop "reading" and start "navigating." This is why the <strong style={{color:'#d8e0e8'}}>Code Sprint drill</strong> exists: it trains your brain to associate topics with NEC chapter and article locations under time pressure, building exactly the kind of book-navigation speed the exam rewards.
+            The CA Journeyman exam is open book  -  but the book only helps you if you know where to look. Research on spatial memory shows that people who regularly navigate a physical reference (like a codebook) build a mental map of where information lives. They stop "reading" and start "navigating." This is why the <strong style={{color:'#d8e0e8'}}>Code Sprint drill</strong> exists: it trains your brain to associate topics with NEC chapter and article locations under time pressure, building exactly the kind of book-navigation speed the exam rewards.
           </p>
 
           <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Desirable Difficulty</h3>
           <p style={s.p}>
-            Cognitive psychologist Robert Bjork introduced the concept of "desirable difficulties" — the counterintuitive finding that <strong style={{color:'#d8e0e8'}}>studying that feels harder in the moment produces stronger long-term retention</strong>. Timed questions feel harder than untimed ones. Mixed-module drilling feels harder than blocking one topic at a time. Both of these are features, not bugs. The discomfort of not immediately knowing the answer is the signal that learning is actually happening.
+            Cognitive psychologist Robert Bjork introduced the concept of "desirable difficulties"  -  the counterintuitive finding that <strong style={{color:'#d8e0e8'}}>studying that feels harder in the moment produces stronger long-term retention</strong>. Timed questions feel harder than untimed ones. Mixed-module drilling feels harder than blocking one topic at a time. Both of these are features, not bugs. The discomfort of not immediately knowing the answer is the signal that learning is actually happening.
           </p>
           <p style={s.p}>
-            This is why the app offers timed mode, difficulty filtering, and mixed-module drilling — not to make studying more stressful, but because the research is clear: harder retrieval practice produces better exam performance.
+            This is why the app offers timed mode, difficulty filtering, and mixed-module drilling  -  not to make studying more stressful, but because the research is clear: harder retrieval practice produces better exam performance.
           </p>
 
           <h3 style={{...s.h2, fontSize:'17px', color:'#c8a84b', marginTop:'24px'}}>Test-Taking Simulation</h3>
           <p style={s.p}>
-            One of the most consistent findings in learning science is that <strong style={{color:'#d8e0e8'}}>practicing under conditions that match the test improves performance on the test</strong>. This is called encoding specificity. The CA Journeyman exam is timed, open book, and computer-based. The Exam Simulator replicates all three: 110 questions, a running 4.5-hour clock, no explanations during the exam (just like the real thing), and your full NEC sitting beside you. Doing at least two full simulations before your exam date isn't just helpful — it's one of the highest-ROI things you can do in the final two weeks.
+            One of the most consistent findings in learning science is that <strong style={{color:'#d8e0e8'}}>practicing under conditions that match the test improves performance on the test</strong>. This is called encoding specificity. The CA Journeyman exam is timed, open book, and computer-based. The Exam Simulator replicates all three: 110 questions, a running 4.5-hour clock, no explanations during the exam (just like the real thing), and your full NEC sitting beside you. Doing at least two full simulations before your exam date isn't just helpful  -  it's one of the highest-ROI things you can do in the final two weeks.
           </p>
 
           <div style={{background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.2)', borderRadius:'8px', padding:'20px 20px', marginTop:'24px', marginBottom:'8px'}}>
             <div style={{fontSize:'13px', fontWeight:'700', color:'#c8a84b', marginBottom:'12px', textTransform:'uppercase', letterSpacing:'0.5px'}}>The Bottom Line</div>
             <p style={{...s.p, margin:0, lineHeight:'1.8'}}>
-              Most study tools are built around content delivery. West Coast Wire Pro is built around <strong style={{color:'#d8e0e8'}}>retrieval practice, spaced repetition, desirable difficulty, and exam simulation</strong> — the four interventions with the strongest evidence base in learning science. Not because it sounds good, but because these are the methods that produce the highest pass rates, and passing this exam is the only outcome that matters.
+              Most study tools are built around content delivery. West Coast Wire Pro is built around <strong style={{color:'#d8e0e8'}}>retrieval practice, spaced repetition, desirable difficulty, and exam simulation</strong>  -  the four interventions with the strongest evidence base in learning science. Not because it sounds good, but because these are the methods that produce the highest pass rates, and passing this exam is the only outcome that matters.
             </p>
           </div>
 
           <div style={{height:'1px', background:'rgba(200,168,75,0.15)', margin:'40px 0'}} />
           <p style={{...s.p, color:'#c8a84b', fontWeight:'700', fontSize:'15px'}}>
-            Who built it — and why.
+            Who built it  -  and why.
           </p>
 
         </div>
@@ -87,30 +87,30 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
         <div style={s.prose}>
 
           <div style={s.pullQuote}>
-            "I didn't grow up in a family of tradesmen. I didn't have any leg up in this industry. I drove seven hours to Oakland — that's where the California DLSE (Department of Labor Standards Enforcement) office is — just trying to get information. Everything I built in this trade, I built myself."
+            "I didn't grow up in a family of tradesmen. I didn't have any leg up in this industry. I drove seven hours to Oakland  -  that's where the California DLSE (Department of Labor Standards Enforcement) office is  -  just trying to get information. Everything I built in this trade, I built myself."
           </div>
 
           <h2 style={s.h2}>No Head Start. No Shortcuts.</h2>
           <p style={s.p}>
             I didn't come from a family in the trades. Nobody handed me an apprenticeship
             connection or told me which exam prep resources actually worked. When I was trying
-            to break into this industry and figure out how to get ahead, I was on my own —
+            to break into this industry and figure out how to get ahead, I was on my own  - 
             researching, asking questions, and hitting walls.
           </p>
           <p style={s.p}>
-            The DLSE office is in Oakland — seven hours from where I was living. I made that drive because I couldn't find the information I needed anywhere else, and giving up wasn't an option.
+            The DLSE office is in Oakland  -  seven hours from where I was living. I made that drive because I couldn't find the information I needed anywhere else, and giving up wasn't an option.
           </p>
           <p style={s.p}>
             That's the background I carry into everything I do in this trade. I know what it
             feels like to be the person with no connections, no family in the industry, no mentor
             pointing you in the right direction. I built my career from scratch, and I built
-            West Coast Wire Pro the same way — because I couldn't find what I needed, so I made it.
+            West Coast Wire Pro the same way  -  because I couldn't find what I needed, so I made it.
           </p>
 
           <h2 style={s.h2}>The Problem I Couldn't Ignore</h2>
           <p style={s.p}>
             The California General Electrician exam has one of the lowest pass rates of any
-            skilled trades license in the state. There are study resources out there — some of
+            skilled trades license in the state. There are study resources out there  -  some of
             them solid, well-established tools. But most are built around a particular kind of
             studying: sit-down, scheduled, organized. A textbook. A printed practice set.
             A dedicated block of time at a desk.
@@ -120,7 +120,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
             up 15 minutes between jobs. Studying on my phone during lunch in a truck. I needed
             a built-in timer that started automatically, not one I had to manage on a separate
             device. I needed to see the exact NEC article behind every answer right there on the
-            screen — not look it up in a book afterward. I needed to drill the NEC tables that
+            screen  -  not look it up in a book afterward. I needed to drill the NEC tables that
             show up on the exam until they were second nature, with a tool that tracked where
             I was weak. I needed a calculator that handled the trade math without switching apps.
           </p>
@@ -130,7 +130,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
 
           <h2 style={s.h2}>14 Years in the Field</h2>
           <p style={s.p}>
-            I've been a working electrician for 14 years — residential, commercial, and industrial.
+            I've been a working electrician for 14 years  -  residential, commercial, and industrial.
             I know what it feels like to go from apprentice to journeyman: the gap in responsibility,
             the jump in knowledge expected of you, and the weight of knowing that one exam stands
             between you and the next level of your career.
@@ -138,7 +138,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
 
           <p style={s.p}>
             That breadth of experience shapes every question in West Coast Wire Pro. Every question is
-            NEC-referenced and exam-style — built to reflect what actually shows up on the California
+            NEC-referenced and exam-style  -  built to reflect what actually shows up on the California
             Journeyman exam. The focus throughout is on the sections that trip people up in the field
             and on the test, drawn from over a decade of hands-on electrical work.
           </p>
@@ -147,19 +147,19 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
           <p style={s.p}>
             For the past four years I've been an instructor in an electrical program at a trade school,
             working with hundreds of students every semester. A lot of those students are in the same
-            position I was when I started — no family connections in the industry, no one telling them
+            position I was when I started  -  no family connections in the industry, no one telling them
             the shortcuts or what to focus on, just determination and a willingness to put in the work.
           </p>
           <p style={s.p}>
             I didn't have mentors in this trade when I was coming up. That shaped everything about
-            how I teach. I try to be the person I wish I'd had — someone who explains the why behind
+            how I teach. I try to be the person I wish I'd had  -  someone who explains the why behind
             the rules, who meets students where they are, and who understands that people learn
             differently. Some need repetition. Some need to understand the reasoning before the rule
             sticks. Some need to see it timed and under pressure before it clicks.
           </p>
           <p style={s.p}>
             I hope I've been that for my students. West Coast Wire Pro is my attempt to extend that to
-            every apprentice in California preparing for this exam — whether they have a mentor or not.
+            every apprentice in California preparing for this exam  -  whether they have a mentor or not.
           </p>
 
           <div style={s.credBar}>
@@ -174,7 +174,7 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
           <h2 style={s.h2}>What West Coast Wire Pro Is</h2>
           <p style={s.p}>
             It's the study tool I wish I'd had when I was coming up in this trade. It lives on
-            your phone. It runs in the time you actually have — a break between pulls, a commute,
+            your phone. It runs in the time you actually have  -  a break between pulls, a commute,
             ten minutes before a job starts. No setup, no papers, no separate timer.
           </p>
           <p style={s.p}>
@@ -187,8 +187,8 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
           </p>
           <p style={s.p}>
             It's what I recommend to every student I teach who is preparing for the journeyman
-            exam. It's built for the person who is figuring it out on their own — with or without
-            a mentor, with or without connections — and needs a tool that fits into a working
+            exam. It's built for the person who is figuring it out on their own  -  with or without
+            a mentor, with or without connections  -  and needs a tool that fits into a working
             electrician's life, not the other way around.
           </p>
           <p style={s.p}>
@@ -198,9 +198,9 @@ export default function AboutPage({ onHome, onLaunchApp, onNavigate }) {
           {/* CTA */}
           <div style={s.ctaBlock}>
             <div style={s.ctaTitle}>Ready to Start?</div>
-            <div style={s.ctaSub}>Modules 1 & 2 + 2 Table Mastery drills — free. No account, no credit card.</div>
+            <div style={s.ctaSub}>Modules 1 & 2 + 2 Table Mastery drills  -  free. No account, no credit card.</div>
             <div style={s.ctaBtns}>
-              <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free — Modules 1 & 2</button>
+              <button style={s.btnGold} onClick={onLaunchApp}>⚡ Start Free  -  Modules 1 & 2</button>
               
             </div>
           </div>
@@ -290,12 +290,12 @@ function SiteNav({ onHome, onLaunchApp, onNavigate }) {
         <div style={{position:'fixed',top:'58px',left:0,right:0,zIndex:199,background:'#0d1520',borderBottom:'2px solid #c8a84b',boxShadow:'0 8px 32px rgba(0,0,0,0.7)',maxHeight:'calc(100vh - 58px)',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>⚡ Study App</div>
-            {[['Start Studying — Free','landing'],['Start Free — No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
+            {[['Start Studying  -  Free','landing'],['Start Free  -  No Account Needed','landing'],['Am I Ready? Diagnostic','diagnostic'],['Full Exam Simulator','simulator'],['Missed Questions Review','missed'],['Study Planner','planner'],['NEC Reference Guide','nec-ref'],['Calculations Helper','calculations'],['Progress Dashboard','progress'],['Glossary','glossary']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>
             <div style={{fontFamily:"'Courier New',monospace",fontSize:'10px',color:'#c8a84b',letterSpacing:'3px',textTransform:'uppercase',marginBottom:'8px',paddingLeft:'4px'}}>📋 Exam Resources</div>
-            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass — Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
+            {[['CA Journeyman Exam Guide','exam-info'],['How to Pass  -  Study Tips','study-tips'],['Exam Day Guide','exam-day'],['Electrician Salary in CA','salary'],['Contractor vs. Electrician','contractor-vs-electrician']].map(([l,p])=>nav(l,p))}
           </div>
           <div style={{height:'1px',background:'rgba(200,168,75,0.15)',margin:'4px 20px'}}/>
           <div style={{padding:'12px 20px 4px'}}>

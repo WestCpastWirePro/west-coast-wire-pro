@@ -63,7 +63,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
   }, [inExam, questions, idx]);
 
   const safeHome = (...args) => {
-    if (inExam && !window.confirm("Leave the exam? Your progress is auto-saved — you can resume later.")) return;
+    if (inExam && !window.confirm("Leave the exam? Your progress is auto-saved  -  you can resume later.")) return;
     onHome(...args);
   };
 
@@ -179,7 +179,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
             ["⏱️","4.5 Hour Timer","Auto-submits when time expires"],
             ["🎯","70% to Pass","Same threshold as the real PSI exam"],
             ["📈","Full Breakdown","Score by module when you finish"],
-            ["🔇","No Explanations","During exam — just like the real thing"],
+            ["🔇","No Explanations","During exam  -  just like the real thing"],
           ].map(([icon, title, sub]) => (
             <div key={title} style={{display:"flex", gap:"12px", alignItems:"flex-start", marginBottom:"14px"}}>
               <span style={{fontSize:"20px"}}>{icon}</span>
@@ -193,7 +193,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
         <div style={{...s.card, borderColor:"rgba(231,76,60,0.4)", background:"rgba(231,76,60,0.05)"}}>
           <div style={{fontSize:"13px", color:"#e74c3c", fontWeight:"700", marginBottom:"6px"}}>⚠️ BEFORE YOU START</div>
           <div style={{fontSize:"13px", color:"#aabbcc", lineHeight:"1.6"}}>
-            Set aside 4.5 uninterrupted hours. Keep your phone face-down. Treat this exactly like the real exam — your score will only mean something if the conditions match.
+            Set aside 4.5 uninterrupted hours. Keep your phone face-down. Treat this exactly like the real exam  -  your score will only mean something if the conditions match.
           </div>
         </div>
         {access === "free" && (
@@ -272,7 +272,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
 
         {/* Question Navigator */}
         <div style={s.card}>
-          <div style={{fontSize:"12px", color:"#8899aa", marginBottom:"8px"}}>QUESTION NAVIGATOR — tap to jump</div>
+          <div style={{fontSize:"12px", color:"#8899aa", marginBottom:"8px"}}>QUESTION NAVIGATOR  -  tap to jump</div>
           <div style={{display:"flex", flexWrap:"wrap", gap:"6px"}}>
             {questions.map((_, i) => (
               <button key={i} onClick={()=>setIdx(i)}
@@ -313,7 +313,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
       <div style={{padding:"16px"}}>
         {timeUpBanner && (
           <div style={{...s.card, borderColor:"#e74c3c", background:"rgba(231,76,60,0.08)", textAlign:"center", marginBottom:"0"}}>
-            <div style={{fontSize:"13px", color:"#e74c3c", fontWeight:"700"}}>⏰ TIME EXPIRED — Exam auto-submitted</div>
+            <div style={{fontSize:"13px", color:"#e74c3c", fontWeight:"700"}}>⏰ TIME EXPIRED  -  Exam auto-submitted</div>
           </div>
         )}
         <div style={{...s.card, textAlign:"center", borderColor:passed?"#27ae60":"#e74c3c"}}>
@@ -330,7 +330,7 @@ export default function ExamSimulatorPage({ onHome, access , onNavigate }) {
             <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>What to do next</div>
             <div style={{fontSize:"13px", color:"#aabbcc", lineHeight:"1.6"}}>
               {pct >= 60
-                ? "You're close. Focus on the red modules below — getting those to 70%+ will push you over the threshold."
+                ? "You're close. Focus on the red modules below  -  getting those to 70%+ will push you over the threshold."
                 : "Don't be discouraged. Most candidates fail their first practice exam. Review the weakest modules systematically, then retake in 1–2 weeks."}
             </div>
           </div>

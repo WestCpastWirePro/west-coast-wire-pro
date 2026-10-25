@@ -1,4 +1,4 @@
-// Shared wrapper for all legal pages — consistent with site branding
+// Shared wrapper for all legal pages  -  consistent with site branding
 // Used by: PrivacyPolicy.jsx, TermsOfService.jsx, RefundPolicy.jsx
 
 export default function LegalLayout({ title, subtitle, lastUpdated, children, onHome, onNavigate }) {
@@ -67,7 +67,7 @@ export function Ul({ items }) {
     <ul style={sc.ul}>
       {items.map((item, i) => (
         <li key={i} style={sc.li}>
-          <span style={sc.bullet}>—</span>
+          <span style={sc.bullet}> - </span>
           <span>{item}</span>
         </li>
       ))}

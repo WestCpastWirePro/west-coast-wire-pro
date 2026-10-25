@@ -28,7 +28,7 @@ onNavigate={onNavigate}       title="Privacy Policy"
           <strong style={{color:'#d8e0e8'}}>What we collect directly:</strong> When you make a purchase, 
           Stripe collects your name, email address, and payment details on our behalf. We receive your 
           email address and the details of your purchase (plan tier, amount, date). We do not receive 
-          or store your full credit card number — Stripe handles all payment data.
+          or store your full credit card number  -  Stripe handles all payment data.
         </Highlight>
         <Ul items={[
           'Email address (provided at checkout via Stripe)',
@@ -65,9 +65,9 @@ onNavigate={onNavigate}       title="Privacy Policy"
           own privacy policy and data practices:
         </P>
         <Ul items={[
-          'Stripe (stripe.com) — payment processing. Stripe collects and stores your payment card details, billing address, and transaction history. Stripe is PCI-DSS Level 1 certified. See stripe.com/privacy.',
-          'Vercel (vercel.com) — website hosting and serverless functions. Vercel may log request metadata including IP addresses for security purposes. See vercel.com/legal/privacy-policy.',
-          'Google Fonts (fonts.googleapis.com) — typography. Google may collect your IP address when fonts are loaded. See policies.google.com/privacy.',
+          'Stripe (stripe.com)  -  payment processing. Stripe collects and stores your payment card details, billing address, and transaction history. Stripe is PCI-DSS Level 1 certified. See stripe.com/privacy.',
+          'Vercel (vercel.com)  -  website hosting and serverless functions. Vercel may log request metadata including IP addresses for security purposes. See vercel.com/legal/privacy-policy.',
+          'Google Fonts (fonts.googleapis.com)  -  typography. Google may collect your IP address when fonts are loaded. See policies.google.com/privacy.',
         ]} />
       </Section>
 
