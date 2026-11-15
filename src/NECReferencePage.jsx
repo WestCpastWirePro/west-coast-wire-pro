@@ -22,7 +22,7 @@ const TABLES = [
     title: "Table 310.16  -  Conductor Ampacity (75°C, Copper)",
     ref: "NEC 310.16",
     tag: "Wiring",
-    note: "Table 310.16 — Conductor Ampacity. Use this for every wire sizing question. Find the wire size on the left, read across to the temperature column that matches the termination: 60°C for most residential, 75°C for commercial equipment. This is the most referenced table on the exam.",
+    note: "Table 310.16: Conductor Ampacity. Use this for every wire sizing question. Find the wire size on the left, read across to the temperature column that matches the termination: 60°C for most residential, 75°C for commercial equipment. This is the most referenced table on the exam.",
     headers: ["AWG / kcmil", "Ampacity (Copper)", "Ampacity (Aluminum)"],
     rows: [
       ["14 AWG", "20A", " - "],
@@ -48,7 +48,7 @@ const TABLES = [
     title: "Table 250.66  -  Grounding Electrode Conductor (GEC) Sizing",
     ref: "NEC 250.66",
     tag: "Grounding",
-    note: "Table 250.66 — GEC Sizing. Use this when a question asks for the grounding electrode conductor size. Input is the service entrance conductor size, not the breaker rating. The GEC and EGC come from two different tables — this is one of the most common exam mix-ups.",
+    note: "Table 250.66: GEC Sizing. Use this when a question asks for the grounding electrode conductor size. Input is the service entrance conductor size, not the breaker rating. The GEC and EGC come from two different tables. This is one of the most common exam mix-ups.",
     headers: ["Service Conductor Size", "GEC Size (Copper)", "GEC Size (Aluminum)"],
     rows: [
       ["2 or smaller", "8 AWG", "6 AWG"],
@@ -65,7 +65,7 @@ const TABLES = [
     title: "Table 430.52  -  Motor Branch-Circuit Short-Circuit Protection",
     ref: "NEC 430.52",
     tag: "Motors",
-    note: "Table 430.52 — Motor Branch-Circuit Overcurrent Protection. Use this when a question asks for the maximum OCPD for a motor circuit. Find the motor type and device type, multiply FLC by the listed percentage. The most common exam scenario: squirrel cage motor with an inverse-time breaker at 250%.",
+    note: "Table 430.52: Motor Branch-Circuit Overcurrent Protection. Use this when a question asks for the maximum OCPD for a motor circuit. Find the motor type and device type, multiply FLC by the listed percentage. The most common exam scenario: squirrel cage motor with an inverse-time breaker at 250%.",
     headers: ["Motor Type", "Non-Time Delay Fuse", "Dual Element Fuse", "Inverse Time Breaker", "Instantaneous Trip Breaker"],
     rows: [
       ["Single-phase motors", "300%", "175%", "250%", "800%"],
@@ -80,7 +80,7 @@ const TABLES = [
     title: "Conduit Fill  -  Maximum Conductors",
     ref: "NEC Chapter 9, Tables 4 & 5",
     tag: "Conduit",
-    note: "Chapter 9, Tables 4 and 5 — Conduit Fill. Use this for conduit fill calculations. Apply the fill percentage to get the allowable wire area: 1 conductor = 53%, 2 conductors = 31%, 3 or more = 40%. Find the conduit internal area in Table 4, then compare to the sum of conductor areas from Table 5.",
+    note: "Chapter 9, Tables 4 and 5: Conduit Fill. Use this for conduit fill calculations. Apply the fill percentage to get the allowable wire area: 1 conductor = 53%, 2 conductors = 31%, 3 or more = 40%. Find the conduit internal area in Table 4, then compare to the sum of conductor areas from Table 5.",
     headers: ["Trade Size", "EMT Area (in²)", "40% Fill (in²)", "3+ #12 THHN Conductors"],
     rows: [
       ["½\"", "0.304", "0.122", "9"],
@@ -98,7 +98,7 @@ const TABLES = [
     title: "Transformer OCPD Sizing  -  Table 450.3(B)",
     ref: "NEC 450.3(B)",
     tag: "Transformers",
-    note: "Table 450.3(B) — Transformer Overcurrent Protection (600V and under). Use this when a question asks for the maximum OCPD on a transformer. Find the impedance column, read the maximum percentage, then apply to primary and secondary FLA. If there is no secondary OCPD, the primary can be sized at 250%.",
+    note: "Table 450.3(B): Transformer Overcurrent Protection (600V and under). Use this when a question asks for the maximum OCPD on a transformer. Find the impedance column, read the maximum percentage, then apply to primary and secondary FLA. If there is no secondary OCPD, the primary can be sized at 250%.",
     headers: ["Impedance", "Primary OCPD (max)", "Secondary OCPD (max)"],
     rows: [
       ["Not over 6%", "125%", "125%"],
@@ -112,7 +112,7 @@ const TABLES = [
     title: "Box Fill  -  Conductor Volume Allowances",
     ref: "NEC 314.16(B)",
     tag: "Boxes",
-    note: "NEC 314.16(B) — Box Fill Volume Allowances. Use this for box fill questions. Count each item type separately: each conductor = 1 unit, each device = 2 units, all grounds combined = 1 unit, all internal clamps combined = 1 unit. Multiply total units by the volume allowance for the largest conductor in the box.",
+    note: "NEC 314.16(B): Box Fill Volume Allowances. Use this for box fill questions. Count each item type separately: each conductor = 1 unit, each device = 2 units, all grounds combined = 1 unit, all internal clamps combined = 1 unit. Multiply total units by the volume allowance for the largest conductor in the box.",
     headers: ["Item", "# of Conductors (volume count)"],
     rows: [
       ["Each current-carrying conductor", "1"],
@@ -128,7 +128,7 @@ const TABLES = [
     title: "Voltage Drop Formula",
     ref: "NEC 210.19(A) Informational Note",
     tag: "Calculations",
-    note: "NEC 210.19 Informational Note — Voltage Drop Formula. Use this when a question gives you amperage and distance and asks whether the conductor meets the 3% recommendation. Not a mandatory code requirement but heavily tested on the CA exam. Formula: VD = (K x I x D x multiplier) / CM, where K = 12.9 for copper, 2 for single-phase, 1.732 for three-phase.",
+    note: "NEC 210.19 Informational Note: Voltage Drop Formula. Use this when a question gives you amperage and distance and asks whether the conductor meets the 3% recommendation. Not a mandatory code requirement but heavily tested on the CA exam. Formula: VD = (K x I x D x multiplier) / CM, where K = 12.9 for copper, 2 for single-phase, 1.732 for three-phase.",
     headers: ["Variable", "Formula", "Notes"],
     rows: [
       ["VD (single phase)", "VD = (2 × K × I × D) / CM", "K = 12.9 (Cu), 21.2 (Al)"],
@@ -146,7 +146,7 @@ const TABLES = [
     title: "Service Load Calculation  -  Residential (Optional Method)",
     ref: "NEC 220.82",
     tag: "Calculations",
-    note: "NEC 220.82 — Residential Service Load Calculation (Optional Method). Use this for service sizing questions on dwelling units. Apply 100% to the first 10 kVA of general loads, 40% to the remainder. This method almost always gives a smaller result than the standard method and is commonly tested.",
+    note: "NEC 220.82: Residential Service Load Calculation (Optional Method). Use this for service sizing questions on dwelling units. Apply 100% to the first 10 kVA of general loads, 40% to the remainder. This method almost always gives a smaller result than the standard method and is commonly tested.",
     headers: ["Load Type", "Demand Factor", "Notes"],
     rows: [
       ["General lighting (3 VA/sq ft)", "100%", "All square footage"],
@@ -164,7 +164,7 @@ const TABLES = [
     title: "AFCI & GFCI Requirements (2023 NEC)",
     ref: "NEC 210.12, 210.8",
     tag: "Protection",
-    note: "NEC 210.12 and 210.8 — AFCI and GFCI Requirements (2023 NEC). Use this to look up which protection type is required in which location. Key 2023 change: GFCI now required for all kitchen receptacles, not just countertop receptacles within 6 feet of a sink. AFCI now covers all habitable rooms including kitchens and laundry areas.",
+    note: "NEC 210.12 and 210.8: AFCI and GFCI Requirements (2023 NEC). Use this to look up which protection type is required in which location. Key 2023 change: GFCI now required for all kitchen receptacles, not just countertop receptacles within 6 feet of a sink. AFCI now covers all habitable rooms including kitchens and laundry areas.",
     headers: ["Location", "AFCI Required", "GFCI Required"],
     rows: [
       ["Kitchens", "✓ Yes", "✓ Yes (all receptacles)"],
@@ -185,7 +185,7 @@ const TABLES = [
     title: "Working Clearance  -  Table 110.26(A)(1)",
     ref: "NEC 110.26(A)(1)",
     tag: "Safety",
-    note: "Table 110.26(A)(1) — Working Clearance Depths. Use this when a question asks for required clear space in front of electrical equipment. Condition 1 = no grounded parts opposite, Condition 2 = grounded wall or surface opposite (most common field scenario), Condition 3 = live parts on both sides. At 151-600V with a concrete wall opposite, the answer is 3.5 ft.",
+    note: "Table 110.26(A)(1): Working Clearance Depths. Use this when a question asks for required clear space in front of electrical equipment. Condition 1 = no grounded parts opposite, Condition 2 = grounded wall or surface opposite (most common field scenario), Condition 3 = live parts on both sides. At 151-600V with a concrete wall opposite, the answer is 3.5 ft.",
     headers: ["Condition", "0–150V", "151–600V"],
     rows: [
       ["Condition 1  -  exposed live parts on one side only, no live or grounded parts on the other side", "3 ft", "3 ft"],
