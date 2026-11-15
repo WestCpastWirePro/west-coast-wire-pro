@@ -997,28 +997,16 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
 
         {access === "free" && (
           <div style={{...styles.card, background:"linear-gradient(135deg,rgba(200,168,75,0.08),rgba(200,168,75,0.03))", borderColor:"rgba(200,168,75,0.4)", marginBottom:"4px"}}>
-            <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"10px"}}>
-              <div>
-                <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"4px"}}>⚡ FREE TIER  -  Modules 1 &amp; 2</div>
-                <div style={{fontSize:"12px", color:"#4a5a6a"}}>Table 310.16 &amp; Conduit Fill drills included</div>
-              </div>
-              <div style={{display:"flex", gap:"8px", flexWrap:"wrap"}}>
-                <button style={{...styles.btn, background:"transparent", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"12px", padding:"7px 14px"}}
-                  onClick={() => onNavigate && onNavigate('mastery')}>
-                  🏆 Table Mastery
-                </button>
-                <button style={{...styles.btn, ...styles.btnGold, fontSize:"13px", padding:"8px 16px"}}
-                  onClick={() => setScreen("paywall")}>
-                  Unlock Full Access →
-                </button>
-              </div>
-            </div>
-            {/* Already paid restore link  -  always visible for free tier */}
-            <div style={{marginTop:"10px", paddingTop:"10px", borderTop:"1px solid rgba(200,168,75,0.15)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
-              <div style={{fontSize:"12px", color:"#4a5a6a"}}>Already purchased? Your access is tied to your email.</div>
-              <button onClick={() => onNavigate && onNavigate('redeem')}
-                style={{background:"none", border:"1px solid rgba(200,168,75,0.35)", color:"#c8a84b", fontSize:"11px", fontWeight:"700", padding:"5px 12px", borderRadius:"4px", cursor:"pointer", fontFamily:"'Arial Black',Arial,sans-serif", textTransform:"uppercase", letterSpacing:"0.3px", whiteSpace:"nowrap"}}>
-                🔓 Restore Access
+            <div style={{fontSize:"13px", color:"#c8a84b", fontWeight:"700", marginBottom:"6px"}}>⚡ FREE  -  Modules 1 &amp; 2 (75 questions)</div>
+            <div style={{fontSize:"12px", color:"#4a5a6a", marginBottom:"12px"}}>Hit the Start Practice Quiz button above to begin. No account needed.</div>
+            <div style={{display:"flex", gap:"8px", flexWrap:"wrap"}}>
+              <button style={{...styles.btn, background:"transparent", border:"1px solid rgba(200,168,75,0.4)", color:"#c8a84b", fontSize:"12px", padding:"7px 14px"}}
+                onClick={() => onNavigate && onNavigate('mastery')}>
+                🏆 Table Mastery
+              </button>
+              <button style={{...styles.btn, ...styles.btnGold, fontSize:"13px", padding:"8px 16px"}}
+                onClick={() => setScreen("paywall")}>
+                Unlock All 12 Modules →
               </button>
             </div>
           </div>
