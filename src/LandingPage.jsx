@@ -509,7 +509,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
         <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px,1fr))', gap:'1px', background:'rgba(200,168,75,0.06)', border:'1px solid rgba(200,168,75,0.06)', marginTop:'20px'}}>
           {[
             {
-              quote: "I failed my first attempt with another prep course. Switched to West Coast Wire Pro three weeks before my retake. The NEC references on every answer are what made the difference  -  I stopped guessing and started knowing where to look.",
+              quote: "I failed my first attempt with another prep course. Switched to West Coast Wire Pro three weeks before my retake. The NEC references on every answer are what made the difference. I stopped guessing and started knowing where to look.",
               name: "Marcus T.",
               detail: "Journeyman Electrician · Sacramento",
             },
@@ -524,7 +524,7 @@ export default function LandingPage({ onLaunchApp, onNavigate }) {
               detail: "Independent Contractor · Los Angeles",
             },
             {
-              quote: "I studied on my phone during lunch breaks for 6 weeks. The module breakdown showed exactly where my gaps were. Grounding & Bonding was killing me  -  drilled it until I hit 80%. Passed.",
+              quote: "I studied on my phone during lunch breaks for 6 weeks. The module breakdown showed exactly where my gaps were. Grounding & Bonding was killing me. Drilled it until I hit 80%. Passed.",
               name: "Kevin O.",
               detail: "Apprentice → Journeyman · San Diego",
             },
