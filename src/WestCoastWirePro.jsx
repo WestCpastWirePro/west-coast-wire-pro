@@ -1378,6 +1378,9 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
   if (screen === "quiz-intro") {
     const isSingleMod = selectedMods.length === 1;
     const introMod = isSingleMod ? MODULES.find(m => m.id === selectedMods[0]) : null;
+    const selectedModObjects = !isSingleMod
+      ? (selectedMods.length === 0 ? MODULES : MODULES.filter(m => selectedMods.includes(m.id)))
+      : [];
     const quizLabel = introMod
       ? `Module ${introMod.id}: ${introMod.name}`
       : selectedMods.length === 0
@@ -1419,6 +1422,25 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
                   <span style={{fontWeight:"700", color:"#1a2840"}}>NEC articles referenced: </span>{introMod.articles}
                 </div>
               </div>
+            </div>
+          )}
+
+          {selectedModObjects.length > 0 && (
+            <div style={{display:"grid", gap:"8px"}}>
+              {selectedModObjects.map(mod => (
+                <div key={mod.id} style={{...styles.card, borderLeft:`4px solid ${mod.color}`, padding:"12px 14px"}}>
+                  <div style={{fontSize:"12px", color:mod.color, fontWeight:"700", textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"6px"}}>
+                    {mod.icon} Module {mod.id}: {mod.name}
+                  </div>
+                  <div style={{fontSize:"13px", color:"#2a3a54", lineHeight:"1.5", marginBottom:"4px"}}>
+                    <span style={{fontWeight:"700", color:"#1a2840"}}>Covers: </span>{mod.what}
+                  </div>
+                  <div style={{fontSize:"13px", color:"#2a3a54", lineHeight:"1.5", marginBottom:"4px"}}>
+                    <span style={{fontWeight:"700", color:"#1a2840"}}>Why it's tested: </span>{mod.why}
+                  </div>
+                  <div style={{fontSize:"11px", color:"#8899aa", marginTop:"2px"}}>{mod.articles}</div>
+                </div>
+              ))}
             </div>
           )}
 
