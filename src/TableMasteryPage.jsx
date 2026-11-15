@@ -31,6 +31,7 @@ const CARD_DATA = {
     color: "#c8a84b",
     ref: "NEC Article 310",
     why: "Used for every wire sizing question. You'll reference it 10+ times per exam.",
+    caption: "Table 310.16 — Conductor Ampacity. Find the wire size on the left, read across to the temperature column that matches the termination (60°C for most residential, 75°C for commercial equipment). This is the most referenced table on the exam.",
     cards: [
       { front:"14 AWG copper · 60°C",  back:"15A",  hint:"Smallest common wire  -  15A circuit" },
       { front:"12 AWG copper · 60°C",  back:"20A",  hint:"Standard 20A circuit" },
@@ -61,6 +62,7 @@ const CARD_DATA = {
     color: "#4fc3f7",
     ref: "NEC Chapter 9, Table 1",
     why: "Every conduit fill question starts here. These three numbers must be automatic.",
+    caption: "Chapter 9, Table 1 — Maximum Conduit Fill Percentages. Use this every time you calculate how many wires fit in a conduit. 1 conductor = 53%, 2 conductors = 31%, 3 or more conductors = 40%.",
     cards: [
       { front:"1 conductor  -  max fill %",  back:"53%", hint:"One round wire in a round conduit fits most efficiently" },
       { front:"2 conductors  -  max fill %", back:"31%", hint:"Two wires can wedge  -  tighter limit" },
@@ -80,6 +82,7 @@ const CARD_DATA = {
     color: "#81c784",
     ref: "NEC Chapter 9, Table 4",
     why: "Used with Table 5 to determine how many conductors fit. Know the key EMT sizes.",
+    caption: "Chapter 9, Table 4 — Conduit Internal Area. Find the conduit type and size, then multiply total area by the fill percentage (usually 40%) to get the allowable wire area. Use this with Table 5 conductor areas.",
     cards: [
       { front:"½\" EMT  -  total area",    back:"0.304 in²", hint:"40% = 0.122 in²" },
       { front:"¾\" EMT  -  total area",    back:"0.533 in²", hint:"40% = 0.213 in²" },
@@ -104,6 +107,7 @@ const CARD_DATA = {
     color: "#ce93d8",
     ref: "NEC Chapter 9, Table 5",
     why: "Used with Table 4 to calculate how many wires fit in a conduit. Sum of areas ÷ conduit area.",
+    caption: "Chapter 9, Table 5 — Conductor Cross-Section Area (THWN/THHN). Find each conductor size, add up the areas, and compare to the conduit's allowable fill area from Table 4. If the sum exceeds the limit, go up a conduit size.",
     cards: [
       { front:"14 AWG THWN  -  area",  back:"0.0097 in²", hint:"12 fit in ½\" EMT at 40% (0.122÷0.0097)" },
       { front:"12 AWG THWN  -  area",  back:"0.0133 in²", hint:"9 fit in ½\" EMT at 40% (0.122÷0.0133)" },
@@ -126,6 +130,7 @@ const CARD_DATA = {
     color: "#ffb74d",
     ref: "NEC Chapter 9, Table 8",
     why: "Every voltage drop calculation needs the CM value from this table. VD = 2×K×I×D ÷ CM.",
+    caption: "Chapter 9, Table 8 — Conductor Properties (Circular Mils and Resistance). Find the wire size, read the CM column for the voltage drop formula denominator. Formula: VD = (K x I x D x multiplier) / CM.",
     cards: [
       { front:"14 AWG copper  -  CM area",  back:"4,110 CM",   hint:"Smallest  -  used in VD formula denominator" },
       { front:"12 AWG copper  -  CM area",  back:"6,530 CM",   hint:"Common residential  -  6530" },
@@ -151,6 +156,7 @@ const CARD_DATA = {
     color: "#a5d6a7",
     ref: "NEC Table 250.66",
     why: "GEC sizing questions are on almost every exam. Sized by service entrance conductor, not OCPD.",
+    caption: "Table 250.66 — Grounding Electrode Conductor (GEC) Sizing. Input: the size of the service entrance conductor. Output: minimum GEC size. This is not the same as Table 250.122. The GEC is sized from the service conductor, not the breaker.",
     cards: [
       { front:"SE conductors: 2 AWG or smaller → GEC?",  back:"8 AWG copper",  hint:"Small service = 8 AWG GEC" },
       { front:"SE conductors: 1 AWG or 1/0 → GEC?",      back:"6 AWG copper",  hint:"100A range service" },
@@ -172,6 +178,7 @@ const CARD_DATA = {
     color: "#ef9a9a",
     ref: "NEC Table 250.122",
     why: "EGC sizing appears constantly. Sized by the OCPD (breaker) rating  -  different from GEC.",
+    caption: "Table 250.122 — Equipment Grounding Conductor (EGC) Sizing. Input: the rating of the overcurrent device (breaker). Output: minimum EGC size. Not the same as Table 250.66. The EGC is sized from the OCPD, not the service conductor.",
     cards: [
       { front:"15A OCPD → EGC?",   back:"14 AWG copper", hint:"15A circuit = 14 AWG ground" },
       { front:"20A OCPD → EGC?",   back:"12 AWG copper", hint:"20A circuit = 12 AWG ground" },
@@ -195,6 +202,7 @@ const CARD_DATA = {
     color: "#80deea",
     ref: "NEC Table 430.52",
     why: "Motor circuit protection questions always reference this table. Max % × FLC = max OCPD size.",
+    caption: "Table 430.52 — Motor Branch-Circuit Short-Circuit and Ground-Fault Protection. Use this when a question asks for the maximum overcurrent device size for a motor. The result is a percentage of the motor's FLC from Tables 430.248 or 430.250.",
     cards: [
       { front:"AC squirrel cage motor  -  inverse-time breaker max %",     back:"250%", hint:"Most common motor type  -  250% ITB" },
       { front:"AC squirrel cage motor  -  dual-element fuse max %",        back:"175%", hint:"Dual-element fuse more restrictive than ITB" },
@@ -215,6 +223,7 @@ const CARD_DATA = {
     color: "#b0bec5",
     ref: "NEC Tables 430.248 (1φ) and 430.250 (3φ)",
     why: "Motor conductor and OCPD sizing starts with FLC from these tables  -  not the nameplate.",
+    caption: "Tables 430.248 / 430.250 — Motor Full-Load Currents. Use these to find FLC for sizing conductors and OCPDs. Table 430.248 covers single-phase motors, 430.250 covers three-phase motors. Always use the table value, not the motor nameplate.",
     cards: [
       { front:"1HP single-phase 115V motor  -  FLC?",   back:"16A",   hint:"430.248  -  1HP at 115V = 16A" },
       { front:"1HP single-phase 230V motor  -  FLC?",   back:"8A",    hint:"230V = half of 115V FLC" },
@@ -240,6 +249,7 @@ const CARD_DATA = {
     color: "#fff176",
     ref: "NEC Table 220.12",
     why: "Load calculation questions always start with VA/sq ft from this table.",
+    caption: "Table 220.12 — Lighting Load by Occupancy (VA per Square Foot). Use this as the first step in any load calculation question. Find the occupancy type, multiply by square footage. Dwelling = 3 VA/sq ft, office = 3.5, warehouse = 0.25.",
     cards: [
       { front:"Dwelling unit  -  VA/sq ft?",         back:"3 VA/sq ft",    hint:"Most common  -  residential load calcs" },
       { front:"Office building  -  VA/sq ft?",       back:"3.5 VA/sq ft",  hint:"Higher than residential" },
@@ -371,6 +381,13 @@ function Drill({ tableId, data, onBack, onComplete }) {
           <span style={{ color:"#c8a84b" }}>{total>0?`${pct}% · ${got}✓`:""}</span>
         </div>
       </div>
+
+      {/* Table caption */}
+      {data.caption && (
+        <div style={{ margin:"8px 16px 0", fontSize:"12px", color:"#8899aa", background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.15)", borderRadius:"8px", padding:"10px 14px", lineHeight:"1.55" }}>
+          {data.caption}
+        </div>
+      )}
 
       {/* Card */}
       <div style={{ ...s.card, marginTop:"8px" }}>

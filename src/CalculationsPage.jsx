@@ -484,10 +484,10 @@ function RefCard() {
 
 // ── MAIN PAGE ─────────────────────────────────────────────────
 const CALCS = [
-  { id:"vd", label:"Voltage Drop", icon:"⚡", desc:"Single & three phase, find VD or wire size" },
-  { id:"motor", label:"Motor Sizing", icon:"⚙️", desc:"FLA, branch conductor, OCPD sizing" },
-  { id:"transformer", label:"Transformer", icon:"🔌", desc:"Primary/secondary FLA and OCPD" },
-  { id:"boxfill", label:"Box Fill", icon:"📦", desc:"NEC 314.16 volume calculations" },
+  { id:"vd", label:"Voltage Drop", icon:"⚡", desc:"Single & three phase, find VD or wire size", examTip:"Calculates voltage drop or minimum wire size for a circuit. Use this when a question gives you amperage and distance and asks whether the conductor meets the 3% recommendation (NEC 210.19 Informational Note 3)." },
+  { id:"motor", label:"Motor Sizing", icon:"⚙️", desc:"FLA, branch conductor, OCPD sizing", examTip:"Calculates FLA, minimum conductor size, and maximum OCPD for a motor circuit. FLA comes from NEC Table 430.248 (single phase) or 430.250 (three phase)  -  not the nameplate. Use this for any motor branch circuit sizing question." },
+  { id:"transformer", label:"Transformer", icon:"🔌", desc:"Primary/secondary FLA and OCPD", examTip:"Calculates primary and secondary FLA and overcurrent protection for a transformer. Use this for transformer protection questions referencing NEC 450.3. Enter kVA and voltages to get FLA and maximum OCPD on both sides." },
+  { id:"boxfill", label:"Box Fill", icon:"📦", desc:"NEC 314.16 volume calculations", examTip:"Calculates total cubic inches required in a box. Use this for box fill questions referencing NEC 314.16 and Table 314.16(B). Count conductors, devices, internal clamps, and grounds as separate items." },
   { id:"ref", label:"Formula Reference Card", icon:"📄", desc:"All key formulas  -  printable one-page cheat sheet" },
 ];
 
@@ -545,6 +545,11 @@ export default function CalculationsPage({ onHome , onNavigate }) {
       {active && (
         <div style={{padding:'12px 16px 0'}}>
           <button style={{...s.btnSm, background:'#2a3a54', color:'#8899aa'}} onClick={()=>setActive(null)}>← Back</button>
+        </div>
+      )}
+      {active && active !== "ref" && CALCS.find(c=>c.id===active)?.examTip && (
+        <div style={{margin:"8px 16px 0", fontSize:"13px", color:"#aabbcc", background:"rgba(200,168,75,0.07)", border:"1px solid rgba(200,168,75,0.2)", borderRadius:"8px", padding:"10px 14px", lineHeight:"1.55"}}>
+          {CALCS.find(c=>c.id===active).examTip}
         </div>
       )}
       {active === "vd" && <VoltageDropCalc />}

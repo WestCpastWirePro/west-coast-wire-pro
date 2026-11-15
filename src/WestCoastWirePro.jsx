@@ -524,18 +524,42 @@ const ALL_QUESTIONS = [
 // MODULE METADATA
 // ═══════════════════════════════════════════════════════════
 const MODULES = [
-  {id:1,name:"Definitions & General",color:"#e74c3c",icon:"📖",articles:"Articles 90, 100, 110"},
-  {id:2,name:"Wiring & Overcurrent",color:"#e67e22",icon:"⚡",articles:"Articles 210, 215, 220, 240"},
-  {id:3,name:"Services & Feeders",color:"#f39c12",icon:"🔌",articles:"Articles 215, 225, 230"},
-  {id:4,name:"Grounding & Bonding",color:"#27ae60",icon:"🔋",articles:"Article 250"},
-  {id:5,name:"Wiring",color:"#16a085",icon:"🪛",articles:"Articles 300-392"},
-  {id:6,name:"Equipment General Use",color:"#2980b9",icon:"🔧",articles:"Articles 400-490"},
-  {id:7,name:"Special Occupancies",color:"#8e44ad",icon:"🏭",articles:"Articles 500-590"},
-  {id:8,name:"Motors & Transformers",color:"#c0392b",icon:"⚙️",articles:"Articles 430, 450"},
-  {id:9,name:"Communications & Emergency",color:"#d35400",icon:"📡",articles:"Articles 700-800"},
-  {id:10,name:"Calculations & Trade Math",color:"#1abc9c",icon:"🧮",articles:"Chapter 9, Table 310.16"},
-  {id:11,name:"California-Specific",color:"#e67e22",icon:"🐻",articles:"CSLB, DIR, Cal/OSHA, Title 24"},
-  {id:12,name:"Safety, Maintenance & Repair",color:"#2c3e50",icon:"🦺",articles:"NFPA 70E, Cal/OSHA"},
+  {id:1,name:"Definitions & General",color:"#e74c3c",icon:"📖",articles:"Articles 90, 100, 110",
+    what:"How the NEC is structured, key definitions, and general installation requirements including working space.",
+    why:"Article 100 definitions and 110.26 working space rules appear on every exam. Getting the language right is how you answer trick questions."},
+  {id:2,name:"Wiring & Overcurrent",color:"#e67e22",icon:"⚡",articles:"Articles 210, 215, 220, 240",
+    what:"Branch circuit requirements, GFCI/AFCI protection, receptacle placement, load calculations, and overcurrent device sizing.",
+    why:"The largest module on the exam. Residential wiring, continuous load calculations, and conductor protection rules are heavily tested."},
+  {id:3,name:"Services & Feeders",color:"#f39c12",icon:"🔌",articles:"Articles 215, 225, 230",
+    what:"Service entrance requirements, feeder sizing, service clearances, and the 6-disconnect rule.",
+    why:"Service sizing and clearance questions are on every exam. The 2023 NEC added new SPD and emergency disconnect requirements that are actively tested."},
+  {id:4,name:"Grounding & Bonding",color:"#27ae60",icon:"🔋",articles:"Article 250",
+    what:"Grounding electrode systems, GEC sizing, EGC sizing, bonding requirements, and system grounding.",
+    why:"Article 250 is one of the most tested articles. GEC sizing (Table 250.66) and EGC sizing (Table 250.122) show up on nearly every exam."},
+  {id:5,name:"Wiring",color:"#16a085",icon:"🪛",articles:"Articles 300-392",
+    what:"Wiring methods, conductor installation, conduit fill, raceway sizing, and cable types.",
+    why:"Conduit fill calculations, ampacity derating, and wiring method restrictions are common exam topics."},
+  {id:6,name:"Equipment General Use",color:"#2980b9",icon:"🔧",articles:"Articles 400-490",
+    what:"Receptacles, switches, luminaires, panelboards, and switchgear requirements.",
+    why:"Panelboard and breaker requirements, working clearances, and equipment marking rules are regularly tested."},
+  {id:7,name:"Special Occupancies",color:"#8e44ad",icon:"🏭",articles:"Articles 500-590",
+    what:"Hazardous locations (Classes, Divisions, Zones), healthcare facilities, and places of assembly.",
+    why:"Hazardous location classification and healthcare facility requirements appear on every CA journeyman exam."},
+  {id:8,name:"Motors & Transformers",color:"#c0392b",icon:"⚙️",articles:"Articles 430, 450",
+    what:"Motor branch circuit sizing, FLA vs. FLC, OCPD sizing, overload protection, and transformer protection.",
+    why:"Motor circuit calculations are on every exam. Know Tables 430.248, 430.250, and 430.52 by heart."},
+  {id:9,name:"Communications & Emergency",color:"#d35400",icon:"📡",articles:"Articles 700-800",
+    what:"Emergency systems, legally required standby systems, and communications wiring.",
+    why:"Emergency system requirements and the distinction between emergency, standby, and optional standby are frequently tested."},
+  {id:10,name:"Calculations & Trade Math",color:"#1abc9c",icon:"🧮",articles:"Chapter 9, Table 310.16",
+    what:"Voltage drop, conduit fill, ampacity calculations, load calculations, and box fill.",
+    why:"6 to 10 calculation questions appear on every CA exam. Know the voltage drop formula, conduit fill percentages, and Table 310.16 cold."},
+  {id:11,name:"California-Specific",color:"#e67e22",icon:"🐻",articles:"CSLB, DIR, Cal/OSHA, Title 24",
+    what:"California licensing law, contractor rules, Title 24 energy code, and Cal/OSHA electrical safety requirements.",
+    why:"The CA journeyman exam includes California law questions that the NEC alone does not cover."},
+  {id:12,name:"Safety, Maintenance & Repair",color:"#2c3e50",icon:"🦺",articles:"NFPA 70E, Cal/OSHA",
+    what:"Lockout/tagout, arc flash, PPE requirements, and electrical safety in the workplace.",
+    why:"Cal/OSHA and NFPA 70E safety questions are on every CA exam. LOTO procedures and arc flash requirements are heavily weighted."},
 ];
 
 export { ALL_QUESTIONS, MODULES };
@@ -759,7 +783,7 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     setAnswered([]);
     setTimeExpired(false);
     clearSession();
-    setScreen("quiz");
+    setScreen("quiz-intro");
   };
 
   const handleAnswer = (idx) => {
@@ -1351,6 +1375,84 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
     </div>
   );
 
+  if (screen === "quiz-intro") {
+    const isSingleMod = selectedMods.length === 1;
+    const introMod = isSingleMod ? MODULES.find(m => m.id === selectedMods[0]) : null;
+    const quizLabel = introMod
+      ? `Module ${introMod.id}: ${introMod.name}`
+      : selectedMods.length === 0
+        ? "All Modules"
+        : `${selectedMods.length} Modules Selected`;
+
+    return (
+      <div style={styles.app}>
+        {GlobalMenu}
+        <div style={{...styles.header, padding:"12px 16px"}}>
+          <button onClick={() => setMenuOpen(o => !o)} aria-label="Menu"
+            style={{background:"#c8a84b",border:"none",borderRadius:"8px",cursor:"pointer",padding:"11px 13px",display:"flex",flexDirection:"column",gap:"5px",flexShrink:0,boxShadow:"0 2px 8px rgba(200,168,75,0.4)"}}>
+            <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+            <span style={{display:"block",width:"22px",height:"3px",background:"#0f1923",borderRadius:"2px"}} />
+          </button>
+          <div style={{flex:1, marginLeft:"12px"}}>
+            <div style={styles.logo}>{quizLabel}</div>
+            <div style={{fontSize:"11px", color:"#8899aa"}}>{quizQuestions.length} questions</div>
+          </div>
+          <button style={{...styles.btn, ...styles.btnGray, fontSize:"13px", padding:"8px 14px"}} onClick={() => setScreen("home")}>← Back</button>
+        </div>
+
+        <div style={{padding:"16px"}}>
+
+          {introMod && introMod.what && (
+            <div style={{...styles.card, borderLeft:`4px solid ${introMod.color}`}}>
+              <div style={{fontSize:"13px", color:introMod.color, fontWeight:"700", textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"12px"}}>
+                {introMod.icon} Module {introMod.id}: {introMod.name}
+              </div>
+              <div style={{display:"grid", gap:"8px"}}>
+                <div style={{fontSize:"13px", color:"#2a3a54", lineHeight:"1.5"}}>
+                  <span style={{fontWeight:"700", color:"#1a2840"}}>What this covers: </span>{introMod.what}
+                </div>
+                <div style={{fontSize:"13px", color:"#2a3a54", lineHeight:"1.5"}}>
+                  <span style={{fontWeight:"700", color:"#1a2840"}}>Why it's on the exam: </span>{introMod.why}
+                </div>
+                <div style={{fontSize:"13px", color:"#2a3a54", lineHeight:"1.5"}}>
+                  <span style={{fontWeight:"700", color:"#1a2840"}}>NEC articles referenced: </span>{introMod.articles}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div style={styles.card}>
+            <div style={{fontSize:"13px", color:"#b8902a", fontWeight:"700", marginBottom:"10px", textTransform:"uppercase", letterSpacing:"0.5px"}}>How to use this quiz</div>
+            <div style={{fontSize:"14px", color:"#2a3a54", lineHeight:"1.65", marginBottom:"14px"}}>
+              The California journeyman exam is 100% open book. The skill being tested is how fast you can find the answer, not what you've memorized. Practice the same way.
+            </div>
+            <div style={{display:"grid", gap:"10px"}}>
+              {[
+                "Keep your NEC code book open next to you",
+                "Read the question, then look up the answer before selecting it",
+                "Give yourself about 90 seconds per question, which is the pace you'll need on exam day",
+                "Read the NEC article reference after answering, even when you got it right",
+              ].map((tip, i) => (
+                <div key={i} style={{display:"flex", gap:"10px", fontSize:"13px", color:"#2a3a54", lineHeight:"1.5"}}>
+                  <span style={{color:"#c8a84b", fontWeight:"700", flexShrink:0, minWidth:"18px"}}>{i+1}.</span>
+                  <span>{tip}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            style={{...styles.btn, ...styles.btnGold, width:"100%", fontSize:"17px", padding:"16px"}}
+            onClick={() => setScreen("quiz")}>
+            Start {introMod ? `Module ${introMod.id}` : "Quiz"} ({quizQuestions.length} Questions) →
+          </button>
+
+        </div>
+      </div>
+    );
+  }
+
   if (screen === "quiz" && q) {
     const progress = qIndex / quizQuestions.length;
 
@@ -1428,6 +1530,11 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
             @keyframes flashGreen{0%,100%{background:rgba(39,174,96,0.12)}40%{background:rgba(39,174,96,0.45)}}
             @keyframes shakeRed{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
           `}</style>
+          {selected === null && !timeExpired && (
+            <div style={{margin:"0 16px 10px", fontSize:"13px", color:"#6a7a8a", fontStyle:"italic"}}>
+              Look it up in your code book first, then select your answer.
+            </div>
+          )}
           <div style={{margin:"0 16px"}}>
             {q.opts.map((opt, i) => {
               let style = {...styles.optionBtn};
@@ -1453,8 +1560,14 @@ export default function WestCoastWirePro({ onHome, onNavigate }) {
               <div style={{fontSize:"14px", fontWeight:"700", color: timeExpired&&selected===null?"#d68910":selected===q.ans?"#1a6635":"#b02a1a", marginBottom:"8px"}}>
                 {timeExpired && selected===null ? "⏰ TIME'S UP" : selected===q.ans ? "✓ CORRECT" : "✗ INCORRECT"}
               </div>
+              <div style={{fontSize:"11px", color:"#b8902a", fontWeight:"700", textTransform:"uppercase", letterSpacing:"0.5px", marginBottom:"6px"}}>Answer &amp; NEC Reference</div>
               <div style={{fontSize:"15px", color:"#1a2840", lineHeight:"1.7"}}>{q.exp}</div>
               <div style={{marginTop:"8px", fontSize:"13px", color:"#b8902a", fontWeight:"700"}}>{q.ref}</div>
+              {(selected !== q.ans || (timeExpired && selected === null)) && (
+                <div style={{marginTop:"10px", fontSize:"12px", color:"#8899aa", lineHeight:"1.55", fontStyle:"italic", borderTop:"1px solid rgba(0,0,0,0.08)", paddingTop:"8px"}}>
+                  Didn't find it in time? That's the real exam problem. Note the article number and practice locating it again.
+                </div>
+              )}
               <div style={{marginTop:"12px", paddingTop:"10px", borderTop:"1px solid rgba(0,0,0,0.1)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                 <ReportButton qid={q.id} qText={q.q} />
               </div>
